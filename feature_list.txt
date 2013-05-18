@@ -1,0 +1,14 @@
+Feature List for IVLE Metro for Windows 8
+
+* home screen
+	- my modules (live tiles flipping, showing latest announcement)
+	- my timetable
+	- student events
+	- ivle news
+* my modules page
+	- module information
+	- announcement
+	- workbin
+	- webcast lecture
+	- gradebook
+	- forum
