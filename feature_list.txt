@@ -1,14 +1,25 @@
-Feature List for IVLE Metro for Windows 8
+feature list of IVLE app
 
-* home screen
-	- my modules (live tiles flipping, showing latest announcement)
-	- my timetable
-	- student events
-	- ivle news
-* my modules page
-	- module information
-	- announcement
-	- workbin
-	- webcast lecture
-	- gradebook
-	- forum
+splash screen
+	
+	animated splash screen with IVLE Metro logo sliding to the left, revealing the username/password input fields on the right
+	token caching instead of username/password caching
+
+main menu screen
+
+	modules as secondary tiles
+	IVLE timetable in the middle
+	IVLE news and student events to the right
+
+module screen
+
+	module info
+	announcements
+	forum
+	gradebook
+	webcast lectures
+	workbin
+
+push notification
+skydrive sync
+offline
