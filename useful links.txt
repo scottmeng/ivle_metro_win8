@@ -1,0 +1,35 @@
+http://www.geekchamp.com/articles/all-about-splash-screens-in-wp7-ndash-creating-animated-splash-screen
+
+windows phone animated splash screen
+
+
+http://code.msdn.microsoft.com/windowsapps/Splash-screen-sample-89c1dc78
+
+windows 8 splash screen sample
+
+
+http://www.windows8designhandbook.com/
+
+windows 8 design handbook
+
+
+http://msdn.microsoft.com/library/windows/apps/BR242183
+
+windows8 Windows.UI.StartScreen.SecondaryTile class specifics
+
+
+http://code.msdn.microsoft.com/windowsapps/Secondary-Tiles-Sample-edf2a178
+
+windows 8 secondary tile example
+
+
+http://blogs.msdn.com/b/jennifer/archive/2012/11/19/real-world-secondary-tiles-top-three-tips-for-working-with-secondary-tiles-in-windows-8-apps.aspx
+
+top three tips for secondary tiles
+
+
+http://blogs.msdn.com/b/brunoterkaly/archive/2013/02/12/parsing-json-data-from-windows-8.aspx
+http://msdn.microsoft.com/en-us/library/bb412179.aspx
+http://blogs.msdn.com/b/africaapps/archive/2013/02/21/parsing-json-in-windows-8-store-applications.aspx
+
+parsing JSON in Windows 8 applications
