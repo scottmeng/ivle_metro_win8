@@ -8,6 +8,15 @@
 //     the code is regenerated.
 //------------------------------------------------------------------------------
 
+namespace Windows {
+    namespace UI {
+        namespace Xaml {
+            namespace Controls {
+                ref class ComboBox;
+            }
+        }
+    }
+}
 
 namespace IVLE_Metro
 {
@@ -21,6 +30,7 @@ namespace IVLE_Metro
     private:
         bool _contentLoaded;
     
+        private: ::Windows::UI::Xaml::Controls::ComboBox^ domainComboBox;
     };
 }
 

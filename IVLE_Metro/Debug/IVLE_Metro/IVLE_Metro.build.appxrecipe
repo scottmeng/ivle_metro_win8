@@ -7,47 +7,47 @@
     <PackageArchitecture>x86</PackageArchitecture>
   </PropertyGroup>
   <ItemGroup>
-    <AppXManifest Include="c:\users\scott\documents\visual studio 2012\Projects\IVLE_Metro\Debug\IVLE_Metro\AppxManifest.xml">
+    <AppXManifest Include="C:\Users\Scott\ivle_metro_win8\IVLE_Metro\Debug\IVLE_Metro\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
-    <AppxPackagedFile Include="c:\users\scott\documents\visual studio 2012\Projects\IVLE_Metro\Debug\IVLE_Metro\IVLE_Metro.exe">
+    <AppxPackagedFile Include="C:\Users\Scott\ivle_metro_win8\IVLE_Metro\Debug\IVLE_Metro\IVLE_Metro.exe">
       <PackagePath>IVLE_Metro.exe</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="c:\users\scott\documents\visual studio 2012\Projects\IVLE_Metro\Debug\IVLE_Metro\IVLE_Metro.pdb">
+    <AppxPackagedFile Include="C:\Users\Scott\ivle_metro_win8\IVLE_Metro\Debug\IVLE_Metro\IVLE_Metro.pdb">
       <PackagePath>IVLE_Metro.pdb</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="c:\users\scott\documents\visual studio 2012\Projects\IVLE_Metro\Debug\IVLE_Metro\IVLE_Metro.winmd">
+    <AppxPackagedFile Include="C:\Users\Scott\ivle_metro_win8\IVLE_Metro\Debug\IVLE_Metro\IVLE_Metro.winmd">
       <PackagePath>IVLE_Metro.winmd</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="c:\Users\Scott\documents\visual studio 2012\Projects\IVLE_Metro\IVLE_Metro\Assets\Logo.png">
+    <AppxPackagedFile Include="C:\Users\Scott\ivle_metro_win8\IVLE_Metro\IVLE_Metro\Assets\Logo.png">
       <PackagePath>Assets\Logo.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="c:\Users\Scott\documents\visual studio 2012\Projects\IVLE_Metro\IVLE_Metro\Assets\SmallLogo.png">
+    <AppxPackagedFile Include="C:\Users\Scott\ivle_metro_win8\IVLE_Metro\IVLE_Metro\Assets\SmallLogo.png">
       <PackagePath>Assets\SmallLogo.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="c:\Users\Scott\documents\visual studio 2012\Projects\IVLE_Metro\IVLE_Metro\Assets\StoreLogo.png">
+    <AppxPackagedFile Include="C:\Users\Scott\ivle_metro_win8\IVLE_Metro\IVLE_Metro\Assets\StoreLogo.png">
       <PackagePath>Assets\StoreLogo.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="c:\Users\Scott\documents\visual studio 2012\Projects\IVLE_Metro\IVLE_Metro\Assets\SplashScreen.png">
+    <AppxPackagedFile Include="C:\Users\Scott\ivle_metro_win8\IVLE_Metro\IVLE_Metro\Assets\SplashScreen.png">
       <PackagePath>Assets\SplashScreen.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="c:\users\scott\documents\visual studio 2012\Projects\IVLE_Metro\Debug\IVLE_Metro\App.xaml">
+    <AppxPackagedFile Include="C:\Users\Scott\ivle_metro_win8\IVLE_Metro\Debug\IVLE_Metro\App.xaml">
       <PackagePath>App.xaml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="c:\users\scott\documents\visual studio 2012\Projects\IVLE_Metro\Debug\IVLE_Metro\Common\StandardStyles.xaml">
+    <AppxPackagedFile Include="C:\Users\Scott\ivle_metro_win8\IVLE_Metro\Debug\IVLE_Metro\Common\StandardStyles.xaml">
       <PackagePath>Common\StandardStyles.xaml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="c:\users\scott\documents\visual studio 2012\Projects\IVLE_Metro\Debug\IVLE_Metro\MainPage.xaml">
+    <AppxPackagedFile Include="C:\Users\Scott\ivle_metro_win8\IVLE_Metro\Debug\IVLE_Metro\MainPage.xaml">
       <PackagePath>MainPage.xaml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="c:\users\scott\documents\visual studio 2012\Projects\IVLE_Metro\Debug\IVLE_Metro\resources.pri">
+    <AppxPackagedFile Include="C:\Users\Scott\ivle_metro_win8\IVLE_Metro\Debug\IVLE_Metro\resources.pri">
       <PackagePath>resources.pri</PackagePath>
     </AppxPackagedFile>
   </ItemGroup>

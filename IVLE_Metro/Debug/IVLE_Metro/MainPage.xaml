@@ -7,8 +7,30 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
-
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}"
+          Margin="400,200">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="120"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="80"/>            
+        </Grid.RowDefinitions>
+        
+        <TextBlock Grid.Column="0" Grid.Row="0" Text="Username:" />
+        <TextBox Grid.Column="1" Grid.Row="0" />
+        <TextBlock Grid.Column="0" Grid.Row="1" Text="Password:" />
+        <TextBox Grid.Column="1" Grid.Row="1" />
+        <TextBlock Grid.Column="0" Grid.Row="2" Text="Type:" />
+        <ComboBox Grid.Column="1" Grid.Row="2" x:Name="comboBox1" Width="100">
+            <x:String>Item 1</x:String>
+            <x:String>Item 2</x:String>
+            <x:String>Item 3</x:String>
+        </ComboBox>
+        <Button Grid.Column="0" Grid.Row="3">Log in</Button>
     </Grid>
 </Page>
 
