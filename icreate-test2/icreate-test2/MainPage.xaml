@@ -87,6 +87,11 @@
                 </StackPanel>
             </StackPanel>
         </Viewbox>
+        <Viewbox MaxHeight="768" MaxWidth="1024">
+            <StackPanel Margin="0,50,0,400">
+                <ProgressRing x:Name="progressRing" IsActive="False" Height="100" Width="100"/>
+            </StackPanel>
+        </Viewbox>
         <VisualStateManager.VisualStateGroups>
 
             <!-- Visual states reflect the application's view state -->

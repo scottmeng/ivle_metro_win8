@@ -71,6 +71,7 @@ namespace icreate_test2
 
         private void login_Click(object sender, RoutedEventArgs e)
         {
+            progressRing.IsActive = true;
         }
         private void userIDChanged(object sender, TextChangedEventArgs e)
         {
