@@ -24,8 +24,8 @@ namespace icreate_test2
         public MainPage()
         {
             this.InitializeComponent();
-            myStoryboard.Begin();
             hideUserInfo.Begin();
+            myStoryboard.Begin();
             myStoryboard.Completed += myStoryboard_Completed;
         }
 

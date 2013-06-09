@@ -27,9 +27,9 @@
                 <Canvas Height="768" Width="1366" >
                     <Canvas.Resources>
                         <Storyboard x:Name="myStoryboard"> 
-                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MyAnimatedTranslateTransform" Storyboard.TargetProperty="X" Duration="0:0:3">
-                            <LinearDoubleKeyFrame Value="0" KeyTime="0:0:1" />
-                            <LinearDoubleKeyFrame Value="-350" KeyTime="0:0:2" />
+                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MyAnimatedTranslateTransform" 
+                                                           Storyboard.TargetProperty="X" Duration="0:0:1.5">
+                            <LinearDoubleKeyFrame Value="-300" KeyTime="0:0:1.5" />
                             </DoubleAnimationUsingKeyFrames>
                         </Storyboard>
                     </Canvas.Resources>
@@ -44,49 +44,58 @@
             <StackPanel>
                 <StackPanel.Resources>
                     <Storyboard x:Name="showUserInfo">
-                        <FadeInThemeAnimation  Storyboard.TargetName="userInfo" Duration="0:0:0.6"/>
+                        <FadeInThemeAnimation  Storyboard.TargetName="userInfo"/>
                     </Storyboard>
                     <Storyboard x:Name="hideUserInfo">
                         <FadeOutThemeAnimation  Storyboard.TargetName="userInfo" />
                     </Storyboard>
                     <Storyboard x:Name="userInfoOpacity">
-                        <DoubleAnimation Storyboard.TargetName="userInfo" Storyboard.TargetProperty="(Rectangle.Opacity)" From="0.0" To="1.0" Duration="0:0:5" />
+                        <DoubleAnimation Storyboard.TargetName="userInfo" 
+                                         Storyboard.TargetProperty="(Rectangle.Opacity)" 
+                                         From="0.0" To="1.0" Duration="0:0:0.5" />
                     </Storyboard>
                 </StackPanel.Resources>
-                <StackPanel Name="userInfo" Margin="1000,234,100,234" >
-                    <StackPanel  Orientation="Horizontal" Margin="0,10,0,10">
-                        <TextBlock Text="UserID" FontSize="42" Margin="0,4,0,4"/>
-                    <Border Margin="150,0,0,0" BorderBrush="Gray" BorderThickness="4">
-                            <TextBox Name="userID"  Width="300" FontSize="30" TextChanged="userIDChanged" />
-                        </Border>
-                    </StackPanel>
-                    <StackPanel  Orientation="Horizontal" Margin="0,10,0,10">
-                    <TextBlock Text="Password" FontSize="42" Margin="0,4,0,4"/>
-                    <Border Margin="101,0,0,0" BorderBrush="Gray" BorderThickness="4">
-                            <PasswordBox Name="password"  Width="300" FontSize="30" PasswordChar="*" PasswordChanged="passwordChanged" />
-                        </Border>
-                    </StackPanel>
-                    <StackPanel  Orientation="Horizontal" Margin="0,10,0,10">
-                    <TextBlock Text="Domain" FontSize="42" Margin="0,4,0,4"/>
-                    <Border Margin="128,0,0,0" BorderBrush="Gray" BorderThickness="4">
-                            <ComboBox x:Name="domain" SelectedItem="domainItem"  Width="200" FontSize="30" SelectionChanged="domainSelectionChanged">
-                                <x:String>NUSSTU</x:String>
-                                <x:String>NUSSTF</x:String>
-                                <x:String>NUSSSS</x:String>
-                            </ComboBox>
-                        </Border>
-                    </StackPanel>
-                    <StackPanel Margin="0,40,0,10">
-                        <Border Margin="228,0,230,0" BorderBrush="Gray" BorderThickness="4">
-                            <Button Content="Login" FontSize="35" Click="login_Click"/>
-                        </Border>
-                    </StackPanel>
-                </StackPanel>
+                <Grid Name="userInfo" Margin="1000,234,100,234">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="UserID:" FontSize="28" Margin="5,5,5,5" 
+                               Grid.Column="0" Grid.Row="0"/>
+                    <TextBox Margin="5,5,5,5" Name="userID"  Width="300" FontSize="24" 
+                             TextChanged="userIDChanged" Grid.Column="1" Grid.Row="0" />
+                    <TextBlock Text="Password:" FontSize="28" Margin="5,5,5,5" 
+                               Grid.Column="0" Grid.Row="1"/>
+                    <PasswordBox Margin="5,5,5,5" Name="password"  Width="300" FontSize="24" 
+                                 PasswordChar="*" PasswordChanged="passwordChanged"
+                                 Grid.Column="1" Grid.Row="1"/>
+                    <TextBlock Text="Domain:" FontSize="28" Margin="5,5,5,5" 
+                               Grid.Column="0" Grid.Row="2"/>
+                    <ComboBox Margin="5,5,5,5" x:Name="domain" SelectedItem="domainItem"  
+                              Width="300" FontSize="28" SelectionChanged="domainSelectionChanged"
+                              Grid.Column="1" Grid.Row="2">
+                        <x:String>NUSSTU</x:String>
+                        <x:String>NUSSTF</x:String>
+                        <x:String>NUSSSS</x:String>
+                    </ComboBox>
+                    <CheckBox x:Name="checkbox_rmbme" Margin="5,5,5,5"
+                              Grid.Column="0" Grid.Row="3" HorizontalAlignment="Left" FontSize="28">
+                        Rmb me
+                    </CheckBox>
+                    <Button Margin="5,5,5,5" Content="Login" FontSize="28" Click="login_Click" 
+                            Grid.Column="1" Grid.Row="3" Width="200" HorizontalAlignment="Right"/>
+                </Grid>
             </StackPanel>
         </Viewbox>
         <Viewbox Height="768" Width="1366">
             <StackPanel Margin="0,50,0,400">
-                <ProgressRing x:Name="progressRing" IsActive="False" Height="50" Width="50"/>
+                <ProgressRing x:Name="progressRing" IsActive="False" Height="20" Width="20"/>
             </StackPanel>
         </Viewbox>
         <VisualStateManager.VisualStateGroups>
