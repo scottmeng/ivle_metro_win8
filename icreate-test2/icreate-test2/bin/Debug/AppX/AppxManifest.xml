@@ -24,7 +24,7 @@
     <Application Id="App" Executable="icreate-test2.exe" EntryPoint="icreate_test2.App">
       <VisualElements DisplayName="icreate-test2" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="icreate-test2" ForegroundText="light" BackgroundColor="#464646">
         <DefaultTile ShowName="allLogos" />
-        <SplashScreen Image="Assets\SplashScreen.png" />
+        <SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#FFFFFF" />
       </VisualElements>
     </Application>
   </Applications>
