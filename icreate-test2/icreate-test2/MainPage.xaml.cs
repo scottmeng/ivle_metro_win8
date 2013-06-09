@@ -45,6 +45,19 @@ namespace icreate_test2
         /// session.  This will be null the first time a page is visited.</param>
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
+            Windows.Storage.ApplicationDataContainer roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
+            if (roamingSettings.Values.ContainsKey("userID"))
+            {
+                userID.Text = roamingSettings.Values["userID"].ToString();
+            }
+            if (roamingSettings.Values.ContainsKey("password"))
+            {
+                password.Password = roamingSettings.Values["password"].ToString();
+            }
+            if (roamingSettings.Values.ContainsKey("domain"))
+            {
+                domain.SelectedItem = roamingSettings.Values["domain"].ToString();
+            }
         }
         /// <summary>
         /// Preserves state associated with this page in case the application is suspended or the
@@ -54,6 +67,28 @@ namespace icreate_test2
         /// <param name="pageState">An empty dictionary to be populated with serializable state.</param>
         protected override void SaveState(Dictionary<String, Object> pageState)
         {
+        }
+
+        private void login_Click(object sender, RoutedEventArgs e)
+        {
+        }
+        private void userIDChanged(object sender, TextChangedEventArgs e)
+        {
+            Windows.Storage.ApplicationDataContainer roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
+            roamingSettings.Values["userID"] = userID.Text;
+            
+        }
+
+        private void passwordChanged(object sender, RoutedEventArgs e)
+        {
+            Windows.Storage.ApplicationDataContainer roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
+            roamingSettings.Values["password"] = password.Password;
+        }
+
+        private void domainSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Windows.Storage.ApplicationDataContainer roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
+            roamingSettings.Values["domain"] = domain.SelectedItem;
         }
     }
 }

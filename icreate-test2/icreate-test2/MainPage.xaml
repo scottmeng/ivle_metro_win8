@@ -56,27 +56,32 @@
                         <DoubleAnimation Storyboard.TargetName="userInfo" Storyboard.TargetProperty="(Rectangle.Opacity)" From="0.0" To="1.0" Duration="0:0:5" />
                     </Storyboard>
                 </StackPanel.Resources>
-                <StackPanel Name="userInfo" Margin="850,300,100,0" >
+                <StackPanel Name="userInfo" Margin="850,400,100,0" >
                     <StackPanel  Orientation="Horizontal" Margin="0,10,0,10">
                         <TextBlock Text="UserID" FontSize="42" Margin="0,4,0,4"/>
                     <Border Margin="150,0,0,0" BorderBrush="Gray" BorderThickness="4">
-                            <TextBox Name="userID"  Width="300" FontSize="30"/>
+                            <TextBox Name="userID"  Width="300" FontSize="30" TextChanged="userIDChanged" />
                         </Border>
                     </StackPanel>
                     <StackPanel  Orientation="Horizontal" Margin="0,10,0,10">
                     <TextBlock Text="Password" FontSize="42" Margin="0,4,0,4"/>
                     <Border Margin="101,0,0,0" BorderBrush="Gray" BorderThickness="4">
-                            <TextBox Name="password"  Width="300" FontSize="30"/>
+                            <PasswordBox Name="password"  Width="300" FontSize="30" PasswordChar="*" PasswordChanged="passwordChanged" />
                         </Border>
                     </StackPanel>
                     <StackPanel  Orientation="Horizontal" Margin="0,10,0,10">
                     <TextBlock Text="Domain" FontSize="42" Margin="0,4,0,4"/>
                     <Border Margin="128,0,0,0" BorderBrush="Gray" BorderThickness="4">
-                            <ComboBox x:Name="domainList" SelectedItem="domainItem"  Width="200" FontSize="30">
+                            <ComboBox x:Name="domain" SelectedItem="domainItem"  Width="200" FontSize="30" SelectionChanged="domainSelectionChanged">
                                 <x:String>NUSSTU</x:String>
                                 <x:String>NUSSTF</x:String>
                                 <x:String>NUSSSS</x:String>
                             </ComboBox>
+                        </Border>
+                    </StackPanel>
+                    <StackPanel Margin="0,40,0,10">
+                        <Border Margin="228,0,230,0" BorderBrush="Gray" BorderThickness="4">
+                            <Button Content="Login" FontSize="35" Click="login_Click"/>
                         </Border>
                     </StackPanel>
                 </StackPanel>
