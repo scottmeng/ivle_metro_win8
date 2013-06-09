@@ -23,27 +23,24 @@
     -->
 
     <Grid Style="{StaticResource LayoutRootStyle}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="768"/>
-        </Grid.RowDefinitions>
-            <Viewbox MaxHeight="768" MaxWidth="1024">
-                <Canvas Height="768" Width="1024" >
+            <Viewbox Height="768" Width="1366">
+                <Canvas Height="768" Width="1366" >
                     <Canvas.Resources>
                         <Storyboard x:Name="myStoryboard"> 
                             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MyAnimatedTranslateTransform" Storyboard.TargetProperty="X" Duration="0:0:3">
                             <LinearDoubleKeyFrame Value="0" KeyTime="0:0:1" />
-                            <LinearDoubleKeyFrame Value="-250" KeyTime="0:0:2" />
+                            <LinearDoubleKeyFrame Value="-350" KeyTime="0:0:2" />
                             </DoubleAnimationUsingKeyFrames>
                         </Storyboard>
                     </Canvas.Resources>
-                    <Image Source="Assets/SplashScreen.png"  Margin="202,234,202,234">
+                    <Image Source="Assets/SplashScreen.png"  Margin="373,234,202,373">
                         <Image.RenderTransform>
                             <TranslateTransform x:Name="MyAnimatedTranslateTransform" X="0" Y="0" />
                         </Image.RenderTransform>
                     </Image>
                 </Canvas>
             </Viewbox>
-        <Viewbox MaxHeight="768" MaxWidth="1366">
+        <Viewbox Height="768" Width="1366">
             <StackPanel>
                 <StackPanel.Resources>
                     <Storyboard x:Name="showUserInfo">
@@ -87,9 +84,9 @@
                 </StackPanel>
             </StackPanel>
         </Viewbox>
-        <Viewbox MaxHeight="768" MaxWidth="1024">
+        <Viewbox Height="768" Width="1366">
             <StackPanel Margin="0,50,0,400">
-                <ProgressRing x:Name="progressRing" IsActive="False" Height="100" Width="100"/>
+                <ProgressRing x:Name="progressRing" IsActive="False" Height="50" Width="50"/>
             </StackPanel>
         </Viewbox>
         <VisualStateManager.VisualStateGroups>

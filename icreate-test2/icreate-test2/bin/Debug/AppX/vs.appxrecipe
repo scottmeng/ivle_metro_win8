@@ -16,17 +16,17 @@
     <AppXManifest Include="C:\Users\Jiajianiu\Documents\Visual Studio 2012\Projects\icreate-test2\icreate-test2\bin\Debug\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2013-06-09T14:32:28.534</Modified>
+      <Modified>2013-06-09T15:14:07.082</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\Jiajianiu\Documents\Visual Studio 2012\Projects\icreate-test2\icreate-test2\bin\Debug\icreate-test2.exe">
       <PackagePath>icreate-test2.exe</PackagePath>
-      <Modified>2013-06-09T14:37:01.352</Modified>
+      <Modified>2013-06-09T15:14:06.922</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Jiajianiu\Documents\Visual Studio 2012\Projects\icreate-test2\icreate-test2\bin\Debug\icreate-test2.pdb">
       <PackagePath>icreate-test2.pdb</PackagePath>
-      <Modified>2013-06-09T14:37:01.321</Modified>
+      <Modified>2013-06-09T15:14:06.885</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Jiajianiu\Documents\Visual Studio 2012\Projects\icreate-test2\icreate-test2\Assets\Logo.png">
       <PackagePath>Assets\Logo.png</PackagePath>
@@ -58,7 +58,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Jiajianiu\Documents\Visual Studio 2012\Projects\icreate-test2\icreate-test2\bin\Debug\MainPage.xaml">
       <PackagePath>MainPage.xaml</PackagePath>
-      <Modified>2013-06-09T14:36:59.762</Modified>
+      <Modified>2013-06-09T15:13:42.117</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Jiajianiu\Documents\Visual Studio 2012\Projects\icreate-test2\icreate-test2\bin\Debug\Common\StandardStyles.xaml">
       <PackagePath>Common\StandardStyles.xaml</PackagePath>
