@@ -16,17 +16,17 @@
     <AppXManifest Include="C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\bin\Debug\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2013-06-09T15:46:47.729</Modified>
+      <Modified>2013-06-10T16:01:45.503</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\bin\Debug\icreate-test2.exe">
       <PackagePath>icreate-test2.exe</PackagePath>
-      <Modified>2013-06-09T15:46:47.596</Modified>
+      <Modified>2013-06-10T16:01:45.065</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\bin\Debug\icreate-test2.pdb">
       <PackagePath>icreate-test2.pdb</PackagePath>
-      <Modified>2013-06-09T15:46:47.563</Modified>
+      <Modified>2013-06-10T16:01:45.024</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\Assets\Logo.png">
       <PackagePath>Assets\Logo.png</PackagePath>
