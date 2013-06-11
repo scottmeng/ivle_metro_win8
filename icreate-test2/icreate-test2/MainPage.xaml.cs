@@ -68,6 +68,7 @@ namespace icreate_test2
                 DomainComboBox.SelectedItem = roamingSettings.Values["domain"].ToString();
             }
         }
+
         /// <summary>
         /// Preserves state associated with this page in case the application is suspended or the
         /// page is discarded from the navigation cache.  Values must conform to the serialization
@@ -83,6 +84,7 @@ namespace icreate_test2
             if (!NetworkInterface.GetIsNetworkAvailable())
             {
                 MessageDialog noInternetDialog = new MessageDialog("There is currently no internet connection..", "Oops");
+                noInternetDialog.Commands.Add(new UICommand("Go offline", new UICommandInvokedHandler(this.GoOfflineHandler)));
                 await noInternetDialog.ShowAsync();
             }
             else
@@ -143,7 +145,7 @@ namespace icreate_test2
 
                 // remove the first "{" and its associated header
                 responseString = responseString.Substring(responseString.IndexOf(":") + 1);
-                Token token = (Token)Deserialize(responseString, typeof(Token));
+                Utils.Token token = (Utils.Token)Deserialize(responseString, typeof(Utils.Token));
 
                 if (token != null && token.TokenSuccess.Equals(true))
                 {
@@ -185,6 +187,11 @@ namespace icreate_test2
                     });
                 }
             }
+        }
+
+        private void GoOfflineHandler(IUICommand command)
+        {
+
         }
 
 
