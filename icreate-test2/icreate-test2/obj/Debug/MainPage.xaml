@@ -68,27 +68,27 @@
                     </Grid.RowDefinitions>
                     <TextBlock Text="UserID:" FontSize="28" Margin="5,5,5,5" 
                                Grid.Column="0" Grid.Row="0"/>
-                    <TextBox x:ConnectionId='1' Margin="5,5,5,5" Name="userID"  Width="300" FontSize="24" 
+                    <TextBox x:ConnectionId='1' x:Name="UsernameTextBox" Margin="5,5,5,5"   Width="300" FontSize="24" 
                                                          Grid.Column="1" Grid.Row="0" />
                     <TextBlock Text="Password:" FontSize="28" Margin="5,5,5,5" 
                                Grid.Column="0" Grid.Row="1"/>
-                    <PasswordBox x:ConnectionId='2' Margin="5,5,5,5" Name="password"  Width="300" FontSize="24" 
+                    <PasswordBox x:ConnectionId='2' x:Name="PasswordBox" Margin="5,5,5,5" Width="300" FontSize="24" 
                                  PasswordChar="*"                                  
                                  Grid.Column="1" Grid.Row="1"/>
                     <TextBlock Text="Domain:" FontSize="28" Margin="5,5,5,5" 
                                Grid.Column="0" Grid.Row="2"/>
-                    <ComboBox x:ConnectionId='3' Margin="5,5,5,5" x:Name="domain" SelectedItem="domainItem"  
+                    <ComboBox x:ConnectionId='3' x:Name="DomainComboBox" Margin="5,5,5,5" SelectedItem="domainItem"  
                               Width="300" FontSize="28"                                          
                               Grid.Column="1" Grid.Row="2">
                         <x:String>NUSSTU</x:String>
                         <x:String>NUSSTF</x:String>
                         <x:String>NUSSSS</x:String>
                     </ComboBox>
-                    <CheckBox x:Name="checkbox_rmbme" Margin="5,5,5,5"
+                    <CheckBox x:Name="RmbmeCheckBox" Margin="5,5,5,5"
                               Grid.Column="0" Grid.Row="3" HorizontalAlignment="Left" FontSize="28">
                         Rmb me
                     </CheckBox>
-                    <Button x:ConnectionId='4' Margin="5,5,5,5" Content="Login" FontSize="28"                     
+                    <Button x:ConnectionId='4' x:Name="LoginButton" Margin="5,5,5,5" Content="Login" FontSize="28"                     
                             Grid.Column="1" Grid.Row="3" Width="200" HorizontalAlignment="Right"/>
                 </Grid>
             </StackPanel>

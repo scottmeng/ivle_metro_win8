@@ -19,6 +19,9 @@
     <AppxPackagedFile Include="C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\bin\Debug\icreate-test2.pdb">
       <PackagePath>icreate-test2.pdb</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Scott\ivle_metro_win8\icreate-test2\Newtonsoft.Json.dll">
+      <PackagePath>Newtonsoft.Json.dll</PackagePath>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\Assets\Logo.png">
       <PackagePath>Assets\Logo.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>

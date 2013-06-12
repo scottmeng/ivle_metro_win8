@@ -15,6 +15,11 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Popups;
 using System.Net.NetworkInformation;
+using System.Runtime.Serialization.Json;
+using Windows.Data.Json;
+using System.Net.Http;
+
+using Newtonsoft.Json;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
@@ -111,7 +116,7 @@ namespace icreate_test2
             }
 
         }
-
+        
         public void GetRequestStreamCallback(IAsyncResult asynchronousResult)
         {
             HttpWebRequest request = (HttpWebRequest)asynchronousResult.AsyncState;
@@ -131,26 +136,31 @@ namespace icreate_test2
             HttpWebRequest request = (HttpWebRequest)asynchronousResult.AsyncState;
             HttpWebResponse response;
 
+
             try
             {
                 response = (HttpWebResponse)request.EndGetResponse(asynchronousResult);
                 Stream streamResponse = response.GetResponseStream();
                 StreamReader streamRead = new StreamReader(streamResponse);
-
+                DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(Utils.Token));
+                
                 // returned JSON string for validation
                 string responseString = streamRead.ReadToEnd();
 
+                
                 // remove the last "}"
                 responseString = responseString.Remove(responseString.Length - 1);
 
                 // remove the first "{" and its associated header
                 responseString = responseString.Substring(responseString.IndexOf(":") + 1);
-                Utils.Token token = (Utils.Token)Deserialize(responseString, typeof(Utils.Token));
 
+                Utils.Token token = JsonConvert.DeserializeObject<Utils.Token>(responseString);
+
+                /*
                 if (token != null && token.TokenSuccess.Equals(true))
                 {
-                    LAPI.token = token.TokenContent;
-
+                    Utils.LAPI.token = token.TokenContent;
+                    
                     Dispatcher.BeginInvoke(() =>
                     {
                         (Application.Current as App).online = true;
@@ -159,6 +169,7 @@ namespace icreate_test2
                         loginProgressBar.IsIndeterminate = false;
                         NavigationService.Navigate(new Uri(("/MenuPage.xaml"), UriKind.Relative));
                     });
+                     
                 }
                 else
                 {
@@ -169,25 +180,28 @@ namespace icreate_test2
                         MessageBox.Show("Log in failed");
                     });
                 }
-
+                */
                 // Close the stream object
-                streamResponse.Close();
-                streamRead.Close();
+                streamResponse.Dispose();
+                streamRead.Dispose();
 
                 // Release the HttpWebResponse
-                response.Close();
+                response.Dispose();
             }
             catch (WebException ex)
             {
                 if (ex.Status == WebExceptionStatus.RequestCanceled)
                 {
+                    /*
                     Dispatcher.BeginInvoke(() =>
                     {
                         Login();
                     });
+                     */
                 }
             }
         }
+        
 
         private void GoOfflineHandler(IUICommand command)
         {

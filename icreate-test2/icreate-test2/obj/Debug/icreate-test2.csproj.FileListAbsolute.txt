@@ -52,3 +52,6 @@ C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\priconfig.x
 C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\layout.resfiles.intermediate
 C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\resources.resfiles.intermediate
 C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\pri.resfiles.intermediate
+C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\icreate-test2.csprojResolveAssemblyReference.cache
+C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\icreate-test2.csproj.GenerateResource.Cache

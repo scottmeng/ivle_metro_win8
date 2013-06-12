@@ -19,6 +19,8 @@ namespace icreate_test2.Utils
         [DataMember(Name = "ValidTill_js")]
         public DateTime TokenValidTill { get; set; }
 
+        public Token() { }
+
         public Token(string content, bool success, DateTime validTill)
         {
             TokenContent = content;
