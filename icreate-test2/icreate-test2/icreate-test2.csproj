@@ -111,6 +111,7 @@
     <Compile Include="Common\SuspensionManager.cs" />
     <Compile Include="DataStructure\Announcement.cs" />
     <Compile Include="DataStructure\Class.cs" />
+    <Compile Include="DataStructure\ConstName.cs" />
     <Compile Include="DataStructure\File.cs" />
     <Compile Include="DataStructure\Folder.cs" />
     <Compile Include="DataStructure\Lecturer.cs" />
@@ -123,7 +124,8 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\LAPI.cs" />
-    <Compile Include="Utils\Token.cs" />
+    <Compile Include="DataStructure\Token.cs" />
+    <Compile Include="Utils\TokenManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">

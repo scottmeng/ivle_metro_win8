@@ -59,6 +59,8 @@ namespace icreate_test2
         /// session.  This will be null the first time a page is visited.</param>
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
+            // ******************************* TO BE REMOVED *********************************************
+            /*
             Windows.Storage.ApplicationDataContainer roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
             if (roamingSettings.Values.ContainsKey("userID"))
             {
@@ -71,6 +73,34 @@ namespace icreate_test2
             if (roamingSettings.Values.ContainsKey("domain"))
             {
                 DomainComboBox.SelectedItem = roamingSettings.Values["domain"].ToString();
+            }
+            */
+            // ********************************************************************************************
+
+            // load userID, password and domain from setting data
+
+
+            // if there have been token stored
+            // load the token
+            if (Utils.TokenManager.isTokenExisting())
+            {
+                // disable controls
+
+                // display progress circle
+
+                // check if token is valid
+
+
+                // if so, hide progress circle
+                // navigate to main menu page
+
+
+                // if not, hide progress circle
+                // enable controls
+            }
+            else
+            {
+                // do nothing?
             }
         }
 
@@ -142,7 +172,7 @@ namespace icreate_test2
                 response = (HttpWebResponse)request.EndGetResponse(asynchronousResult);
                 Stream streamResponse = response.GetResponseStream();
                 StreamReader streamRead = new StreamReader(streamResponse);
-                DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(Utils.Token));
+                DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(DataStructure.Token));
                 
                 // returned JSON string for validation
                 string responseString = streamRead.ReadToEnd();
@@ -154,7 +184,7 @@ namespace icreate_test2
                 // remove the first "{" and its associated header
                 responseString = responseString.Substring(responseString.IndexOf(":") + 1);
 
-                Utils.Token token = JsonConvert.DeserializeObject<Utils.Token>(responseString);
+                DataStructure.Token token = JsonConvert.DeserializeObject<DataStructure.Token>(responseString);
 
                 /*
                 if (token != null && token.TokenSuccess.Equals(true))

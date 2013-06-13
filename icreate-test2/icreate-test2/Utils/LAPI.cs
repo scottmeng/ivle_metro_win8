@@ -32,7 +32,7 @@ namespace icreate_test2.Utils
             return url;
         }
 
-        // return the url for token achieve
+        // return the url for token achievement
         public static string GeneratePostString(string userid, string password, string domain)
         {
             string url = "APIKey=" + key + "&UserID=" + userid + "&Password=" + password + "&Domain=" + domain;
