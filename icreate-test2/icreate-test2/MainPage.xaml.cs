@@ -77,30 +77,50 @@ namespace icreate_test2
             */
             // ********************************************************************************************
 
-            // load userID, password and domain from setting data
+            this.LoadUserCredentials();
 
-
-            // if there have been token stored
-            // load the token
-            if (Utils.TokenManager.isTokenExisting())
+            if (!NetworkInterface.GetIsNetworkAvailable())
             {
-                // disable controls
-
-                // display progress circle
-
-                // check if token is valid
-
-
-                // if so, hide progress circle
-                // navigate to main menu page
-
-
-                // if not, hide progress circle
-                // enable controls
+                MessageDialog noInternetDialog = new MessageDialog("There is currently no internet connection..", "Oops");
+                noInternetDialog.Commands.Add(new UICommand("Go offline", new UICommandInvokedHandler(this.GoOfflineHandler)));
+                noInternetDialog.ShowAsync();
             }
             else
             {
-                // do nothing?
+                // load userID, password and domain from setting data
+
+                // if there have been token stored
+                // load the token
+                if (Utils.TokenManager.isTokenExisting())
+                {
+                    // disable controls
+                    UsernameTextBox.IsEnabled = false;
+                    PasswordBox.IsEnabled = false;
+                    DomainComboBox.IsEnabled = false;
+                    LoginButton.IsEnabled = false;
+
+                    // display progress circle
+                    ProgressRing.IsActive = true;
+
+                    // check if token is valid
+
+
+                    // if so, hide progress circle
+                    ProgressRing.IsActive = false;
+
+                    // save user credentials
+                    this.SaveUserCredentials();
+
+                    // navigate to main menu page
+
+
+                    // if not, hide progress circle
+                    // enable controls
+                }
+                else
+                {
+                    // do nothing?
+                }
             }
         }
 
@@ -124,7 +144,14 @@ namespace icreate_test2
             }
             else
             {
-                progressRing.IsActive = true;
+                // disable controls
+                UsernameTextBox.IsEnabled = false;
+                PasswordBox.IsEnabled = false;
+                DomainComboBox.IsEnabled = false;
+                LoginButton.IsEnabled = false;
+
+                // display progress ring
+                ProgressRing.IsActive = true;
 
                 username = UsernameTextBox.Text;
                 password = PasswordBox.Password;
@@ -238,24 +265,33 @@ namespace icreate_test2
 
         }
 
-
-        private void userIDChanged(object sender, TextChangedEventArgs e)
+        // loading user credential from application data settings
+        private void LoadUserCredentials()
         {
             Windows.Storage.ApplicationDataContainer roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
+
+            if (roamingSettings.Values.ContainsKey("userID"))
+            {
+                UsernameTextBox.Text = roamingSettings.Values["userID"].ToString();
+            }
+            if (roamingSettings.Values.ContainsKey("password"))
+            {
+                PasswordBox.Password = roamingSettings.Values["password"].ToString();
+            }
+            if (roamingSettings.Values.ContainsKey("domain"))
+            {
+                DomainComboBox.SelectedItem = roamingSettings.Values["domain"].ToString();
+            }
+        }
+
+        // saving user credentials to application data settings
+        private void SaveUserCredentials()
+        {
+            Windows.Storage.ApplicationDataContainer roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
+
             roamingSettings.Values["userID"] = UsernameTextBox.Text;
-            
-        }
-
-        private void passwordChanged(object sender, RoutedEventArgs e)
-        {
-            Windows.Storage.ApplicationDataContainer roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
             roamingSettings.Values["password"] = PasswordBox.Password;
-        }
-
-        private void domainSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            Windows.Storage.ApplicationDataContainer roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
-            roamingSettings.Values["domain"] = DomainComboBox.SelectedItem;
+            roamingSettings.Values["domain"] = DomainComboBox.SelectedItem.ToString();
         }
     }
 }

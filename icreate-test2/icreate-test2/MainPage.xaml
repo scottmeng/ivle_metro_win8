@@ -55,47 +55,43 @@
                                          From="0.0" To="1.0" Duration="0:0:0.5" />
                     </Storyboard>
                 </StackPanel.Resources>
-                <Grid Name="userInfo" Margin="1000,234,100,234">
+                <Grid Name="userInfo" Margin="1000,234,100,234" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
                     </Grid.RowDefinitions>
                     <TextBlock Text="UserID:" FontSize="28" Margin="5,5,5,5" 
-                               Grid.Column="0" Grid.Row="0"/>
+                               Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                     <TextBox x:Name="UsernameTextBox" Margin="5,5,5,5"   Width="300" FontSize="24" 
-                             TextChanged="userIDChanged" Grid.Column="1" Grid.Row="0" />
+                             Grid.Column="1" Grid.Row="0"/>
                     <TextBlock Text="Password:" FontSize="28" Margin="5,5,5,5" 
-                               Grid.Column="0" Grid.Row="1"/>
+                               Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                     <PasswordBox x:Name="PasswordBox" Margin="5,5,5,5" Width="300" FontSize="24" 
-                                 PasswordChar="*" PasswordChanged="passwordChanged"
-                                 Grid.Column="1" Grid.Row="1"/>
+                                 PasswordChar="*" Grid.Column="1" Grid.Row="1"/>
                     <TextBlock Text="Domain:" FontSize="28" Margin="5,5,5,5" 
-                               Grid.Column="0" Grid.Row="2"/>
+                               Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                     <ComboBox x:Name="DomainComboBox" Margin="5,5,5,5" SelectedItem="domainItem"  
-                              Width="300" FontSize="28" SelectionChanged="domainSelectionChanged"
-                              Grid.Column="1" Grid.Row="2">
+                              Width="300" FontSize="28" Grid.Column="1" Grid.Row="2" SelectedIndex="0">
                         <x:String>NUSSTU</x:String>
                         <x:String>NUSSTF</x:String>
                         <x:String>NUSSSS</x:String>
                     </ComboBox>
-                    <CheckBox x:Name="RmbmeCheckBox" Margin="5,5,5,5"
-                              Grid.Column="0" Grid.Row="3" HorizontalAlignment="Left" FontSize="28">
-                        Rmb me
-                    </CheckBox>
+                    <ProgressRing x:Name="ProgressRing" Margin="5,5,5,5" IsActive="False" Height="40" Width="40"
+                                  Grid.Column="0" Grid.Row="3" />
                     <Button x:Name="LoginButton" Margin="5,5,5,5" Content="Login" FontSize="28" Click="login_Click" 
-                            Grid.Column="1" Grid.Row="3" Width="200" HorizontalAlignment="Right"/>
+                            Grid.Column="1"  Grid.Row="3" Width="200" HorizontalAlignment="Right"/>
                 </Grid>
             </StackPanel>
         </Viewbox>
         <Viewbox Height="768" Width="1366">
             <StackPanel Margin="0,50,0,400">
-                <ProgressRing x:Name="progressRing" IsActive="False" Height="20" Width="20"/>
+                
             </StackPanel>
         </Viewbox>
         <VisualStateManager.VisualStateGroups>
