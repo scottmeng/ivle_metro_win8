@@ -48,10 +48,6 @@ C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\resources.r
 C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\pri.resfiles
 C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\LanguageQualifiers.txt
 C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\ProjectArchitectures.txt
-C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\priconfig.xml.intermediate
-C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\layout.resfiles.intermediate
-C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\resources.resfiles.intermediate
-C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\pri.resfiles.intermediate
 C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\icreate-test2.csprojResolveAssemblyReference.cache
 C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\icreate-test2.csproj.GenerateResource.Cache

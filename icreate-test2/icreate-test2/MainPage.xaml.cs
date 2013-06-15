@@ -59,24 +59,7 @@ namespace icreate_test2
         /// session.  This will be null the first time a page is visited.</param>
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
-            // ******************************* TO BE REMOVED *********************************************
-            /*
-            Windows.Storage.ApplicationDataContainer roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
-            if (roamingSettings.Values.ContainsKey("userID"))
-            {
-                UsernameTextBox.Text = roamingSettings.Values["userID"].ToString();
-            }
-            if (roamingSettings.Values.ContainsKey("password"))
-            {
-                PasswordBox.Password = roamingSettings.Values["password"].ToString();
-            }
-            if (roamingSettings.Values.ContainsKey("domain"))
-            {
-                DomainComboBox.SelectedItem = roamingSettings.Values["domain"].ToString();
-            }
-            */
-            // ********************************************************************************************
-
+            // load userId, password and domain from application setting data
             this.LoadUserCredentials();
 
             if (!NetworkInterface.GetIsNetworkAvailable())
@@ -87,8 +70,6 @@ namespace icreate_test2
             }
             else
             {
-                // load userID, password and domain from setting data
-
                 // if there have been token stored
                 // load the token
                 if (Utils.TokenManager.isTokenExisting())
@@ -117,10 +98,6 @@ namespace icreate_test2
                     // if not, hide progress circle
                     // enable controls
                 }
-                else
-                {
-                    // do nothing?
-                }
             }
         }
 
@@ -132,6 +109,7 @@ namespace icreate_test2
         /// <param name="pageState">An empty dictionary to be populated with serializable state.</param>
         protected override void SaveState(Dictionary<String, Object> pageState)
         {
+            //base.SaveState(pageState);
         }
 
         private async void login_Click(object sender, RoutedEventArgs e)
