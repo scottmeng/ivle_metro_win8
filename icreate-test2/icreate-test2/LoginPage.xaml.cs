@@ -28,14 +28,14 @@ namespace icreate_test2
     /// <summary>
     /// A basic page that provides characteristics common to most applications.
     /// </summary>
-    public sealed partial class MainPage : icreate_test2.Common.LayoutAwarePage
+    public sealed partial class LoginPage : icreate_test2.Common.LayoutAwarePage
     {
         private String username;
         private String password;
         private String domain;
         private String postString;
 
-        public MainPage()
+        public LoginPage()
         {
             this.InitializeComponent();
             hideUserInfo.Begin();
