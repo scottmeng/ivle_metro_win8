@@ -18,11 +18,11 @@ using System.Net.NetworkInformation;
 using System.Runtime.Serialization.Json;
 using Windows.Data.Json;
 using System.Net.Http;
+using System.Threading.Tasks;
 
 using Newtonsoft.Json;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
-
 namespace icreate_test2
 {
     /// <summary>
@@ -57,22 +57,22 @@ namespace icreate_test2
         /// </param>
         /// <param name="pageState">A dictionary of state preserved by this page during an earlier
         /// session.  This will be null the first time a page is visited.</param>
-        protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
+        protected async override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
             // load userId, password and domain from application setting data
             this.LoadUserCredentials();
 
+            // make sure network connection is available
             if (!NetworkInterface.GetIsNetworkAvailable())
             {
                 MessageDialog noInternetDialog = new MessageDialog("There is currently no internet connection..", "Oops");
-                noInternetDialog.Commands.Add(new UICommand("Go offline", new UICommandInvokedHandler(this.GoOfflineHandler)));
                 noInternetDialog.ShowAsync();
             }
             else
             {
                 // if there have been token stored
                 // load the token
-                if (Utils.TokenManager.isTokenExisting())
+                if (Utils.TokenManager.IsTokenExisting())
                 {
                     // disable controls
                     UsernameTextBox.IsEnabled = false;
@@ -84,19 +84,23 @@ namespace icreate_test2
                     ProgressRing.IsActive = true;
 
                     // check if token is valid
+                    if (await UpdateTokenAsync())
+                    {
+                        // if so, hide progress circle
+                        ProgressRing.IsActive = false;
+                        // navigate to main menu page
 
-
-                    // if so, hide progress circle
-                    ProgressRing.IsActive = false;
-
-                    // save user credentials
-                    this.SaveUserCredentials();
-
-                    // navigate to main menu page
-
-
-                    // if not, hide progress circle
-                    // enable controls
+                    }
+                    else
+                    {
+                        // if not, hide progress circle
+                        // enable controls
+                        ProgressRing.IsActive = false;
+                        UsernameTextBox.IsEnabled = true;
+                        PasswordBox.IsEnabled = true;
+                        DomainComboBox.IsEnabled = true;
+                        LoginButton.IsEnabled = true;
+                    }
                 }
             }
         }
@@ -117,7 +121,6 @@ namespace icreate_test2
             if (!NetworkInterface.GetIsNetworkAvailable())
             {
                 MessageDialog noInternetDialog = new MessageDialog("There is currently no internet connection..", "Oops");
-                noInternetDialog.Commands.Add(new UICommand("Go offline", new UICommandInvokedHandler(this.GoOfflineHandler)));
                 await noInternetDialog.ShowAsync();
             }
             else
@@ -191,6 +194,21 @@ namespace icreate_test2
 
                 DataStructure.Token token = JsonConvert.DeserializeObject<DataStructure.Token>(responseString);
 
+                // hide progress ring
+                //ProgressRing.IsActive = false;
+
+                // if token exists and is valid
+                if (token != null && token.TokenSuccess)
+                {
+                    // hide progress ring
+                    Utils.TokenManager.UpdateToken(token);
+                    SaveUserCredentials();
+                }
+                else
+                {
+
+                }
+
                 /*
                 if (token != null && token.TokenSuccess.Equals(true))
                 {
@@ -243,6 +261,32 @@ namespace icreate_test2
 
         }
 
+        // asynchronous function to validate token, to 
+        // update token if necessary or to return false
+        // if token is invalid
+        private async Task<bool> UpdateTokenAsync()
+        {
+            HttpClient client = new HttpClient();
+
+            // http get request to validate token
+            HttpResponseMessage response = await client.GetAsync(Utils.LAPI.GenerateURL("Validate", new Dictionary<string, string>()));
+
+            // make sure the http reponse is successful
+            response.EnsureSuccessStatusCode();
+
+            // convert http response to string
+            string responseString = await response.Content.ReadAsStringAsync();
+
+            DataStructure.Token token = JsonConvert.DeserializeObject<DataStructure.Token>(responseString);
+
+            if (token.TokenSuccess)
+            {
+                Utils.TokenManager.UpdateToken(token);
+            }
+
+            return token.TokenSuccess;
+        }
+
         // loading user credential from application data settings
         private void LoadUserCredentials()
         {
@@ -267,9 +311,9 @@ namespace icreate_test2
         {
             Windows.Storage.ApplicationDataContainer roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
 
-            roamingSettings.Values["userID"] = UsernameTextBox.Text;
-            roamingSettings.Values["password"] = PasswordBox.Password;
-            roamingSettings.Values["domain"] = DomainComboBox.SelectedItem.ToString();
+            roamingSettings.Values["userID"] = this.username;
+            roamingSettings.Values["password"] = this.password;
+            roamingSettings.Values["domain"] = this.domain;
         }
     }
 }

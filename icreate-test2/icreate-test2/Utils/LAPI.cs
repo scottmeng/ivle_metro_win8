@@ -17,12 +17,11 @@ namespace icreate_test2.Utils
     {
         private static String key = "lAY3TAAcAGYcokEEqKNCt";
         private static String domain = "https://ivle.nus.edu.sg/";
-        public static String token { get; set; }
 
         // get the request url with API item and parameters
         public static string GenerateURL(string item, Dictionary<String,String> parameters)
         {
-            string url = domain + "api/Lapi.svc/" + item + "?APIKey=" + key + "&AuthToken=" + token;
+            string url = domain + "api/Lapi.svc/" + item + "?APIKey=" + key + "&Token=" + Utils.TokenManager.GetTokenValue();
 
             foreach (KeyValuePair<String, String> parameter in parameters)
             {
@@ -43,7 +42,7 @@ namespace icreate_test2.Utils
         // generate the url for downloading files
         public static string GenerateDownloadURL(string id)
         {
-            string url = domain + "api/downloadfile.ashx?APIKey=" + key + "&AuthToken=" + token + "&ID=" + id + "&target=workbin";
+            string url = domain + "api/downloadfile.ashx?APIKey=" + key + "&AuthToken=" + Utils.TokenManager.GetTokenValue() + "&ID=" + id + "&target=workbin";
 
             return url;
         }

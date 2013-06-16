@@ -16,17 +16,17 @@
     <AppXManifest Include="C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\bin\Debug\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2013-06-15T15:59:35.703</Modified>
+      <Modified>2013-06-16T13:13:44.216</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\bin\Debug\icreate-test2.exe">
       <PackagePath>icreate-test2.exe</PackagePath>
-      <Modified>2013-06-15T16:40:00.092</Modified>
+      <Modified>2013-06-16T13:44:07.813</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\bin\Debug\icreate-test2.pdb">
       <PackagePath>icreate-test2.pdb</PackagePath>
-      <Modified>2013-06-15T16:40:00.053</Modified>
+      <Modified>2013-06-16T13:44:07.787</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Scott\ivle_metro_win8\icreate-test2\Newtonsoft.Json.dll">
       <PackagePath>Newtonsoft.Json.dll</PackagePath>
