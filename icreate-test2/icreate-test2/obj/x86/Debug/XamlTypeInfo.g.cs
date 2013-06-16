@@ -112,9 +112,17 @@ namespace icreate_test2.icreate_test2_XamlTypeInfo
             }
         }
 
+<<<<<<< HEAD
+        private object Activate_0_HomePage() { return new global::icreate_test2.HomePage(); }
+
+        private object Activate_1_LayoutAwarePage() { return new global::icreate_test2.Common.LayoutAwarePage(); }
+
+        private object Activate_2_LoginPage() { return new global::icreate_test2.LoginPage(); }
+=======
         private object Activate_0_LayoutAwarePage() { return new global::icreate_test2.Common.LayoutAwarePage(); }
 
         private object Activate_1_MainPage() { return new global::icreate_test2.MainPage(); }
+>>>>>>> d9d84f2a13c127ec1f859e6c281dfb957de74da6
 
 
         private global::Windows.UI.Xaml.Markup.IXamlType CreateXamlType(string typeName)
@@ -132,6 +140,23 @@ namespace icreate_test2.icreate_test2_XamlTypeInfo
                 xamlType = new global::icreate_test2.icreate_test2_XamlTypeInfo.XamlSystemBaseType(typeName, typeof(global::Windows.UI.Xaml.Controls.UserControl));
                 break;
 
+<<<<<<< HEAD
+            case "icreate_test2.HomePage":
+                userType = new global::icreate_test2.icreate_test2_XamlTypeInfo.XamlUserType(this, typeName, typeof(global::icreate_test2.HomePage), GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_0_HomePage;
+                xamlType = userType;
+                break;
+
+            case "icreate_test2.Common.LayoutAwarePage":
+                userType = new global::icreate_test2.icreate_test2_XamlTypeInfo.XamlUserType(this, typeName, typeof(global::icreate_test2.Common.LayoutAwarePage), GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_1_LayoutAwarePage;
+                xamlType = userType;
+                break;
+
+            case "icreate_test2.LoginPage":
+                userType = new global::icreate_test2.icreate_test2_XamlTypeInfo.XamlUserType(this, typeName, typeof(global::icreate_test2.LoginPage), GetXamlTypeByName("icreate_test2.Common.LayoutAwarePage"));
+                userType.Activator = Activate_2_LoginPage;
+=======
             case "icreate_test2.Common.LayoutAwarePage":
                 userType = new global::icreate_test2.icreate_test2_XamlTypeInfo.XamlUserType(this, typeName, typeof(global::icreate_test2.Common.LayoutAwarePage), GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
                 userType.Activator = Activate_0_LayoutAwarePage;
@@ -141,6 +166,7 @@ namespace icreate_test2.icreate_test2_XamlTypeInfo
             case "icreate_test2.MainPage":
                 userType = new global::icreate_test2.icreate_test2_XamlTypeInfo.XamlUserType(this, typeName, typeof(global::icreate_test2.MainPage), GetXamlTypeByName("icreate_test2.Common.LayoutAwarePage"));
                 userType.Activator = Activate_1_MainPage;
+>>>>>>> d9d84f2a13c127ec1f859e6c281dfb957de74da6
                 xamlType = userType;
                 break;
 

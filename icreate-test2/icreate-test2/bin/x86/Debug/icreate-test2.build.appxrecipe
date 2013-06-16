@@ -1,18 +1,70 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
+<<<<<<< HEAD
+    <Machine>LINGYID57D</Machine>
+    <WindowsUser>lingyi</WindowsUser>
+=======
     <Machine>SCOTTMENG-PC</Machine>
     <WindowsUser>Scott</WindowsUser>
+>>>>>>> d9d84f2a13c127ec1f859e6c281dfb957de74da6
     <SolutionConfiguration>Debug|x86</SolutionConfiguration>
     <PackageArchitecture>x86</PackageArchitecture>
   </PropertyGroup>
   <ItemGroup>
+<<<<<<< HEAD
+    <AppXManifest Include="C:\Users\lingyi\Documents\GitHub\ivle_metro_win8\icreate-test2\icreate-test2\bin\x86\Debug\AppxManifest.xml">
+=======
     <AppXManifest Include="C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\bin\x86\Debug\AppxManifest.xml">
+>>>>>>> d9d84f2a13c127ec1f859e6c281dfb957de74da6
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
+    <AppxPackagedFile Include="C:\Users\lingyi\Documents\GitHub\ivle_metro_win8\icreate-test2\icreate-test2\bin\x86\Debug\icreate-test2.exe">
+      <PackagePath>icreate-test2.exe</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lingyi\Documents\GitHub\ivle_metro_win8\icreate-test2\icreate-test2\bin\x86\Debug\icreate-test2.pdb">
+      <PackagePath>icreate-test2.pdb</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lingyi\Documents\GitHub\ivle_metro_win8\icreate-test2\Newtonsoft.Json.dll">
+      <PackagePath>Newtonsoft.Json.dll</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lingyi\Documents\GitHub\ivle_metro_win8\icreate-test2\icreate-test2\Assets\Logo.png">
+      <PackagePath>Assets\Logo.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lingyi\Documents\GitHub\ivle_metro_win8\icreate-test2\icreate-test2\Assets\SmallLogo.png">
+      <PackagePath>Assets\SmallLogo.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lingyi\Documents\GitHub\ivle_metro_win8\icreate-test2\icreate-test2\Assets\SplashScreen.png">
+      <PackagePath>Assets\SplashScreen.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lingyi\Documents\GitHub\ivle_metro_win8\icreate-test2\icreate-test2\Assets\StoreLogo.png">
+      <PackagePath>Assets\StoreLogo.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lingyi\Documents\GitHub\ivle_metro_win8\icreate-test2\icreate-test2\Common\ReadMe.txt">
+      <PackagePath>Common\ReadMe.txt</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lingyi\Documents\GitHub\ivle_metro_win8\icreate-test2\icreate-test2\bin\x86\Debug\App.xaml">
+      <PackagePath>App.xaml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lingyi\Documents\GitHub\ivle_metro_win8\icreate-test2\icreate-test2\bin\x86\Debug\HomePage.xaml">
+      <PackagePath>HomePage.xaml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lingyi\Documents\GitHub\ivle_metro_win8\icreate-test2\icreate-test2\bin\x86\Debug\LoginPage.xaml">
+      <PackagePath>LoginPage.xaml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lingyi\Documents\GitHub\ivle_metro_win8\icreate-test2\icreate-test2\bin\x86\Debug\Common\StandardStyles.xaml">
+      <PackagePath>Common\StandardStyles.xaml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\lingyi\Documents\GitHub\ivle_metro_win8\icreate-test2\icreate-test2\bin\x86\Debug\resources.pri">
+=======
     <AppxPackagedFile Include="C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\bin\x86\Debug\icreate-test2.exe">
       <PackagePath>icreate-test2.exe</PackagePath>
     </AppxPackagedFile>
@@ -51,6 +103,7 @@
       <PackagePath>Common\StandardStyles.xaml</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\bin\x86\Debug\resources.pri">
+>>>>>>> d9d84f2a13c127ec1f859e6c281dfb957de74da6
       <PackagePath>resources.pri</PackagePath>
     </AppxPackagedFile>
   </ItemGroup>

@@ -1,1 +1,5 @@
+<<<<<<< HEAD
+C:\Users\lingyi\Documents\GitHub\ivle_metro_win8\icreate-test2\icreate-test2\icreate-test2.csproj;x86
+=======
 C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\icreate-test2.csproj;x86
+>>>>>>> d9d84f2a13c127ec1f859e6c281dfb957de74da6

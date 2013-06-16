@@ -23,7 +23,6 @@ namespace icreate_test2.Utils
         public static void UpdateToken(DataStructure.Token token)
         {
             _token = token;
-            StoreToken();
         }
 
         public static string GetTokenValue()
@@ -31,9 +30,20 @@ namespace icreate_test2.Utils
             return _token.TokenContent;
         }
 
+<<<<<<< HEAD
+=======
+        // to check if the current token is still valid
+        // returns true if token is valid
+        // returns false if token has expired
+        public static bool isTokenValid()
+        {
+            return false;
+        }
+
+>>>>>>> d9d84f2a13c127ec1f859e6c281dfb957de74da6
         // to check if token has been stored in application data
         // if so, restore the token from stored data, else, return false
-        public static bool IsTokenExisting()
+        public static bool isTokenExisting()
         {
             Windows.Storage.ApplicationDataContainer roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
 
@@ -48,6 +58,7 @@ namespace icreate_test2.Utils
                 return false;
             }
         }
+<<<<<<< HEAD
 
         // asynchronous function to validate token, to 
         // update token if necessary or to return false
@@ -85,5 +96,7 @@ namespace icreate_test2.Utils
 
             roamingSettings.Values[DataStructure.ConstName.Token] = _token.TokenContent;
         }
+=======
+>>>>>>> d9d84f2a13c127ec1f859e6c281dfb957de74da6
     }
 }

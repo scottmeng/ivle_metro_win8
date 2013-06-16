@@ -1,1 +1,1 @@
-C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\icreate-test2.csproj;neutral
+\\psf\Home\Documents\ivle_metro_win8\icreate-test2\icreate-test2\icreate-test2.csproj;neutral

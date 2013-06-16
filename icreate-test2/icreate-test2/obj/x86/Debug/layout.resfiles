@@ -4,5 +4,10 @@ Assets\SplashScreen.png
 Assets\StoreLogo.png
 App.xaml
 Common\StandardStyles.xaml
+<<<<<<< HEAD
+HomePage.xaml
+LoginPage.xaml
+=======
 MainPage.xaml
+>>>>>>> d9d84f2a13c127ec1f859e6c281dfb957de74da6
 Common\ReadMe.txt
