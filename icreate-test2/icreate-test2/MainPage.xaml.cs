@@ -18,11 +18,11 @@ using System.Net.NetworkInformation;
 using System.Runtime.Serialization.Json;
 using Windows.Data.Json;
 using System.Net.Http;
-using System.Threading.Tasks;
 
 using Newtonsoft.Json;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
+
 namespace icreate_test2
 {
     /// <summary>
@@ -57,22 +57,41 @@ namespace icreate_test2
         /// </param>
         /// <param name="pageState">A dictionary of state preserved by this page during an earlier
         /// session.  This will be null the first time a page is visited.</param>
-        protected async override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
+        protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
-            // load userId, password and domain from application setting data
+            // ******************************* TO BE REMOVED *********************************************
+            /*
+            Windows.Storage.ApplicationDataContainer roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
+            if (roamingSettings.Values.ContainsKey("userID"))
+            {
+                UsernameTextBox.Text = roamingSettings.Values["userID"].ToString();
+            }
+            if (roamingSettings.Values.ContainsKey("password"))
+            {
+                PasswordBox.Password = roamingSettings.Values["password"].ToString();
+            }
+            if (roamingSettings.Values.ContainsKey("domain"))
+            {
+                DomainComboBox.SelectedItem = roamingSettings.Values["domain"].ToString();
+            }
+            */
+            // ********************************************************************************************
+
             this.LoadUserCredentials();
 
-            // make sure network connection is available
             if (!NetworkInterface.GetIsNetworkAvailable())
             {
                 MessageDialog noInternetDialog = new MessageDialog("There is currently no internet connection..", "Oops");
+                noInternetDialog.Commands.Add(new UICommand("Go offline", new UICommandInvokedHandler(this.GoOfflineHandler)));
                 noInternetDialog.ShowAsync();
             }
             else
             {
+                // load userID, password and domain from setting data
+
                 // if there have been token stored
                 // load the token
-                if (false)
+                if (Utils.TokenManager.isTokenExisting())
                 {
                     // disable controls
                     UsernameTextBox.IsEnabled = false;
@@ -84,23 +103,23 @@ namespace icreate_test2
                     ProgressRing.IsActive = true;
 
                     // check if token is valid
-                    if (await Utils.TokenManager.IsTokenValid())
-                    {
-                        // if so, hide progress circle
-                        ProgressRing.IsActive = false;
-                        // navigate to main menu page
 
-                    }
-                    else
-                    {
-                        // if not, hide progress circle
-                        // enable controls
-                        ProgressRing.IsActive = false;
-                        UsernameTextBox.IsEnabled = true;
-                        PasswordBox.IsEnabled = true;
-                        DomainComboBox.IsEnabled = true;
-                        LoginButton.IsEnabled = true;
-                    }
+
+                    // if so, hide progress circle
+                    ProgressRing.IsActive = false;
+
+                    // save user credentials
+                    this.SaveUserCredentials();
+
+                    // navigate to main menu page
+
+
+                    // if not, hide progress circle
+                    // enable controls
+                }
+                else
+                {
+                    // do nothing?
                 }
             }
         }
@@ -113,7 +132,6 @@ namespace icreate_test2
         /// <param name="pageState">An empty dictionary to be populated with serializable state.</param>
         protected override void SaveState(Dictionary<String, Object> pageState)
         {
-            base.SaveState(pageState);
         }
 
         private async void login_Click(object sender, RoutedEventArgs e)
@@ -121,6 +139,7 @@ namespace icreate_test2
             if (!NetworkInterface.GetIsNetworkAvailable())
             {
                 MessageDialog noInternetDialog = new MessageDialog("There is currently no internet connection..", "Oops");
+                noInternetDialog.Commands.Add(new UICommand("Go offline", new UICommandInvokedHandler(this.GoOfflineHandler)));
                 await noInternetDialog.ShowAsync();
             }
             else
@@ -140,48 +159,110 @@ namespace icreate_test2
 
                 postString = Utils.LAPI.GeneratePostString(username, password, domain);
 
-                DataStructure.Token token = await LoginAsync(postString);
-                
-                // hide progress ring
-                ProgressRing.IsActive = false;
+                string authenticationURL = "https://ivle.nus.edu.sg/api/Lapi.svc/Login_JSON";
 
-                if (token != null && token.TokenSuccess)
-                {
-                    // update token
-                    Utils.TokenManager.UpdateToken(token);
-                    SaveUserCredentials();
-                }
-                else
-                {
-                    MessageDialog noInternetDialog = new MessageDialog("Log in failed. Please check your userId and password", "Oops");
-                    noInternetDialog.ShowAsync();
-                }
+                // Create a new HttpWebRequest object.
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(authenticationURL);
+
+                // Set the Method property to 'POST' to post data to the URI.
+                request.Method = "POST";
+
+                request.ContentType = "application/x-www-form-urlencoded";
+
+                request.BeginGetRequestStream(new AsyncCallback(GetRequestStreamCallback), request);
             }
 
         }
-              
-        private async Task<DataStructure.Token> LoginAsync(string data)
+        
+        public void GetRequestStreamCallback(IAsyncResult asynchronousResult)
         {
-            string authenticationURL = "https://ivle.nus.edu.sg/api/Lapi.svc/Login_JSON";
-            HttpClient client = new HttpClient();
+            HttpWebRequest request = (HttpWebRequest)asynchronousResult.AsyncState;
 
-            HttpContent payload = new StringContent(data, Encoding.UTF8, "application/x-www-form-urlencoded");
-            HttpResponseMessage response = client.PostAsync(authenticationURL, payload).Result;
-            string responseString = await response.Content.ReadAsStringAsync();
+            Stream postStream = request.EndGetRequestStream(asynchronousResult);
 
-            // remove the last "}"
-            responseString = responseString.Remove(responseString.Length - 1);
+            byte[] byteArray = Encoding.UTF8.GetBytes(postString);
 
-            // remove the first "{" and its associated header
-            responseString = responseString.Substring(responseString.IndexOf(":") + 1);
+            postStream.Write(byteArray, 0, postString.Length);
+            postStream.Dispose();
 
-            DataStructure.Token token = JsonConvert.DeserializeObject<DataStructure.Token>(responseString);
+            request.BeginGetResponse(new AsyncCallback(GetResponseCallback), request);
+        }
 
-            payload.Dispose();
-            response.Dispose();
-            client.Dispose();
+        private void GetResponseCallback(IAsyncResult asynchronousResult)
+        {
+            HttpWebRequest request = (HttpWebRequest)asynchronousResult.AsyncState;
+            HttpWebResponse response;
 
-            return token;
+
+            try
+            {
+                response = (HttpWebResponse)request.EndGetResponse(asynchronousResult);
+                Stream streamResponse = response.GetResponseStream();
+                StreamReader streamRead = new StreamReader(streamResponse);
+                DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(DataStructure.Token));
+                
+                // returned JSON string for validation
+                string responseString = streamRead.ReadToEnd();
+
+                
+                // remove the last "}"
+                responseString = responseString.Remove(responseString.Length - 1);
+
+                // remove the first "{" and its associated header
+                responseString = responseString.Substring(responseString.IndexOf(":") + 1);
+
+                DataStructure.Token token = JsonConvert.DeserializeObject<DataStructure.Token>(responseString);
+
+                /*
+                if (token != null && token.TokenSuccess.Equals(true))
+                {
+                    Utils.LAPI.token = token.TokenContent;
+                    
+                    Dispatcher.BeginInvoke(() =>
+                    {
+                        (Application.Current as App).online = true;
+
+                        SaveCredentials();
+                        loginProgressBar.IsIndeterminate = false;
+                        NavigationService.Navigate(new Uri(("/MenuPage.xaml"), UriKind.Relative));
+                    });
+                     
+                }
+                else
+                {
+                    Dispatcher.BeginInvoke(() =>
+                    {
+                        loginProgressBar.IsIndeterminate = false;
+
+                        MessageBox.Show("Log in failed");
+                    });
+                }
+                */
+                // Close the stream object
+                streamResponse.Dispose();
+                streamRead.Dispose();
+
+                // Release the HttpWebResponse
+                response.Dispose();
+            }
+            catch (WebException ex)
+            {
+                if (ex.Status == WebExceptionStatus.RequestCanceled)
+                {
+                    /*
+                    Dispatcher.BeginInvoke(() =>
+                    {
+                        Login();
+                    });
+                     */
+                }
+            }
+        }
+        
+
+        private void GoOfflineHandler(IUICommand command)
+        {
+
         }
 
         // loading user credential from application data settings
@@ -208,9 +289,9 @@ namespace icreate_test2
         {
             Windows.Storage.ApplicationDataContainer roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
 
-            roamingSettings.Values["userID"] = this.username;
-            roamingSettings.Values["password"] = this.password;
-            roamingSettings.Values["domain"] = this.domain;
+            roamingSettings.Values["userID"] = UsernameTextBox.Text;
+            roamingSettings.Values["password"] = PasswordBox.Password;
+            roamingSettings.Values["domain"] = DomainComboBox.SelectedItem.ToString();
         }
     }
 }
