@@ -72,7 +72,7 @@ namespace icreate_test2
             {
                 // if there have been token stored
                 // load the token
-                if (Utils.TokenManager.IsTokenExisting())
+                if (false)
                 {
                     // disable controls
                     UsernameTextBox.IsEnabled = false;
@@ -84,7 +84,7 @@ namespace icreate_test2
                     ProgressRing.IsActive = true;
 
                     // check if token is valid
-                    if (await UpdateTokenAsync())
+                    if (await Utils.TokenManager.IsTokenValid())
                     {
                         // if so, hide progress circle
                         ProgressRing.IsActive = false;
@@ -113,7 +113,7 @@ namespace icreate_test2
         /// <param name="pageState">An empty dictionary to be populated with serializable state.</param>
         protected override void SaveState(Dictionary<String, Object> pageState)
         {
-            //base.SaveState(pageState);
+            base.SaveState(pageState);
         }
 
         private async void login_Click(object sender, RoutedEventArgs e)
@@ -140,151 +140,48 @@ namespace icreate_test2
 
                 postString = Utils.LAPI.GeneratePostString(username, password, domain);
 
-                string authenticationURL = "https://ivle.nus.edu.sg/api/Lapi.svc/Login_JSON";
-
-                // Create a new HttpWebRequest object.
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(authenticationURL);
-
-                // Set the Method property to 'POST' to post data to the URI.
-                request.Method = "POST";
-
-                request.ContentType = "application/x-www-form-urlencoded";
-
-                request.BeginGetRequestStream(new AsyncCallback(GetRequestStreamCallback), request);
-            }
-
-        }
-        
-        public void GetRequestStreamCallback(IAsyncResult asynchronousResult)
-        {
-            HttpWebRequest request = (HttpWebRequest)asynchronousResult.AsyncState;
-
-            Stream postStream = request.EndGetRequestStream(asynchronousResult);
-
-            byte[] byteArray = Encoding.UTF8.GetBytes(postString);
-
-            postStream.Write(byteArray, 0, postString.Length);
-            postStream.Dispose();
-
-            request.BeginGetResponse(new AsyncCallback(GetResponseCallback), request);
-        }
-
-        private void GetResponseCallback(IAsyncResult asynchronousResult)
-        {
-            HttpWebRequest request = (HttpWebRequest)asynchronousResult.AsyncState;
-            HttpWebResponse response;
-
-
-            try
-            {
-                response = (HttpWebResponse)request.EndGetResponse(asynchronousResult);
-                Stream streamResponse = response.GetResponseStream();
-                StreamReader streamRead = new StreamReader(streamResponse);
-                DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(DataStructure.Token));
+                DataStructure.Token token = await LoginAsync(postString);
                 
-                // returned JSON string for validation
-                string responseString = streamRead.ReadToEnd();
-
-                
-                // remove the last "}"
-                responseString = responseString.Remove(responseString.Length - 1);
-
-                // remove the first "{" and its associated header
-                responseString = responseString.Substring(responseString.IndexOf(":") + 1);
-
-                DataStructure.Token token = JsonConvert.DeserializeObject<DataStructure.Token>(responseString);
-
                 // hide progress ring
-                //ProgressRing.IsActive = false;
+                ProgressRing.IsActive = false;
 
-                // if token exists and is valid
                 if (token != null && token.TokenSuccess)
                 {
-                    // hide progress ring
+                    // update token
                     Utils.TokenManager.UpdateToken(token);
                     SaveUserCredentials();
                 }
                 else
                 {
-
-                }
-
-                /*
-                if (token != null && token.TokenSuccess.Equals(true))
-                {
-                    Utils.LAPI.token = token.TokenContent;
-                    
-                    Dispatcher.BeginInvoke(() =>
-                    {
-                        (Application.Current as App).online = true;
-
-                        SaveCredentials();
-                        loginProgressBar.IsIndeterminate = false;
-                        NavigationService.Navigate(new Uri(("/MenuPage.xaml"), UriKind.Relative));
-                    });
-                     
-                }
-                else
-                {
-                    Dispatcher.BeginInvoke(() =>
-                    {
-                        loginProgressBar.IsIndeterminate = false;
-
-                        MessageBox.Show("Log in failed");
-                    });
-                }
-                */
-                // Close the stream object
-                streamResponse.Dispose();
-                streamRead.Dispose();
-
-                // Release the HttpWebResponse
-                response.Dispose();
-            }
-            catch (WebException ex)
-            {
-                if (ex.Status == WebExceptionStatus.RequestCanceled)
-                {
-                    /*
-                    Dispatcher.BeginInvoke(() =>
-                    {
-                        Login();
-                    });
-                     */
+                    MessageDialog noInternetDialog = new MessageDialog("Log in failed. Please check your userId and password", "Oops");
+                    noInternetDialog.ShowAsync();
                 }
             }
-        }
-        
-
-        private void GoOfflineHandler(IUICommand command)
-        {
 
         }
-
-        // asynchronous function to validate token, to 
-        // update token if necessary or to return false
-        // if token is invalid
-        private async Task<bool> UpdateTokenAsync()
+              
+        private async Task<DataStructure.Token> LoginAsync(string data)
         {
+            string authenticationURL = "https://ivle.nus.edu.sg/api/Lapi.svc/Login_JSON";
             HttpClient client = new HttpClient();
 
-            // http get request to validate token
-            HttpResponseMessage response = await client.GetAsync(Utils.LAPI.GenerateURL("Validate", new Dictionary<string, string>()));
-
-            // make sure the http reponse is successful
-            response.EnsureSuccessStatusCode();
-
-            // convert http response to string
+            HttpContent payload = new StringContent(data, Encoding.UTF8, "application/x-www-form-urlencoded");
+            HttpResponseMessage response = client.PostAsync(authenticationURL, payload).Result;
             string responseString = await response.Content.ReadAsStringAsync();
+
+            // remove the last "}"
+            responseString = responseString.Remove(responseString.Length - 1);
+
+            // remove the first "{" and its associated header
+            responseString = responseString.Substring(responseString.IndexOf(":") + 1);
 
             DataStructure.Token token = JsonConvert.DeserializeObject<DataStructure.Token>(responseString);
 
-            if (token.TokenSuccess)
-            {
-                Utils.TokenManager.UpdateToken(token);
-            }
+            payload.Dispose();
+            response.Dispose();
+            client.Dispose();
 
-            return token.TokenSuccess;
+            return token;
         }
 
         // loading user credential from application data settings
