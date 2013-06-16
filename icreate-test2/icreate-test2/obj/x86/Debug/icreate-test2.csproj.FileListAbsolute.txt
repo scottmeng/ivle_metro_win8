@@ -28,7 +28,6 @@ C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\obj\x86\Debug\resourc
 C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\obj\x86\Debug\pri.resfiles
 C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\obj\x86\Debug\LanguageQualifiers.txt
 C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\obj\x86\Debug\ProjectArchitectures.txt
-<<<<<<< HEAD
 C:\Users\lingyi\Desktop\temp\icreate-test2\icreate-test2\bin\x86\Debug\icreate-test2.exe
 C:\Users\lingyi\Desktop\temp\icreate-test2\icreate-test2\bin\x86\Debug\icreate-test2.pdb
 C:\Users\lingyi\Desktop\temp\icreate-test2\icreate-test2\bin\x86\Debug\resources.pri
@@ -55,38 +54,3 @@ C:\Users\lingyi\Desktop\temp\icreate-test2\icreate-test2\obj\x86\Debug\resources
 C:\Users\lingyi\Desktop\temp\icreate-test2\icreate-test2\obj\x86\Debug\pri.resfiles
 C:\Users\lingyi\Desktop\temp\icreate-test2\icreate-test2\obj\x86\Debug\LanguageQualifiers.txt
 C:\Users\lingyi\Desktop\temp\icreate-test2\icreate-test2\obj\x86\Debug\ProjectArchitectures.txt
-C:\Users\lingyi\Documents\GitHub\ivle_metro_win8\icreate-test2\icreate-test2\bin\x86\Debug\icreate-test2.exe
-C:\Users\lingyi\Documents\GitHub\ivle_metro_win8\icreate-test2\icreate-test2\bin\x86\Debug\icreate-test2.pdb
-C:\Users\lingyi\Documents\GitHub\ivle_metro_win8\icreate-test2\icreate-test2\bin\x86\Debug\resources.pri
-C:\Users\lingyi\Documents\GitHub\ivle_metro_win8\icreate-test2\icreate-test2\bin\x86\Debug\AppxManifest.xml
-C:\Users\lingyi\Documents\GitHub\ivle_metro_win8\icreate-test2\icreate-test2\bin\x86\Debug\icreate-test2.build.appxrecipe
-C:\Users\lingyi\Documents\GitHub\ivle_metro_win8\icreate-test2\icreate-test2\bin\x86\Debug\Newtonsoft.Json.dll
-C:\Users\lingyi\Documents\GitHub\ivle_metro_win8\icreate-test2\icreate-test2\obj\x86\Debug\icreate-test2.csprojResolveAssemblyReference.cache
-C:\Users\lingyi\Documents\GitHub\ivle_metro_win8\icreate-test2\icreate-test2\obj\x86\Debug\App.g.i.cs
-C:\Users\lingyi\Documents\GitHub\ivle_metro_win8\icreate-test2\icreate-test2\obj\x86\Debug\App.g.cs
-C:\Users\lingyi\Documents\GitHub\ivle_metro_win8\icreate-test2\icreate-test2\obj\x86\Debug\HomePage.g.i.cs
-C:\Users\lingyi\Documents\GitHub\ivle_metro_win8\icreate-test2\icreate-test2\obj\x86\Debug\HomePage.g.cs
-C:\Users\lingyi\Documents\GitHub\ivle_metro_win8\icreate-test2\icreate-test2\obj\x86\Debug\LoginPage.g.i.cs
-C:\Users\lingyi\Documents\GitHub\ivle_metro_win8\icreate-test2\icreate-test2\obj\x86\Debug\LoginPage.g.cs
-C:\Users\lingyi\Documents\GitHub\ivle_metro_win8\icreate-test2\icreate-test2\obj\x86\Debug\Common\StandardStyles.g.i.cs
-C:\Users\lingyi\Documents\GitHub\ivle_metro_win8\icreate-test2\icreate-test2\obj\x86\Debug\Common\StandardStyles.g.cs
-C:\Users\lingyi\Documents\GitHub\ivle_metro_win8\icreate-test2\icreate-test2\obj\x86\Debug\XamlTypeInfo.g.cs
-C:\Users\lingyi\Documents\GitHub\ivle_metro_win8\icreate-test2\icreate-test2\obj\x86\Debug\App.xaml
-C:\Users\lingyi\Documents\GitHub\ivle_metro_win8\icreate-test2\icreate-test2\obj\x86\Debug\Common\StandardStyles.xaml
-C:\Users\lingyi\Documents\GitHub\ivle_metro_win8\icreate-test2\icreate-test2\obj\x86\Debug\HomePage.xaml
-C:\Users\lingyi\Documents\GitHub\ivle_metro_win8\icreate-test2\icreate-test2\obj\x86\Debug\LoginPage.xaml
-C:\Users\lingyi\Documents\GitHub\ivle_metro_win8\icreate-test2\icreate-test2\obj\x86\Debug\icreate-test2.exe
-C:\Users\lingyi\Documents\GitHub\ivle_metro_win8\icreate-test2\icreate-test2\obj\x86\Debug\icreate-test2.pdb
-C:\Users\lingyi\Documents\GitHub\ivle_metro_win8\icreate-test2\icreate-test2\obj\x86\Debug\icreate-test2.csproj.GenerateResource.Cache
-C:\Users\lingyi\Documents\GitHub\ivle_metro_win8\icreate-test2\icreate-test2\obj\x86\Debug\priconfig.xml.intermediate
-C:\Users\lingyi\Documents\GitHub\ivle_metro_win8\icreate-test2\icreate-test2\obj\x86\Debug\layout.resfiles.intermediate
-C:\Users\lingyi\Documents\GitHub\ivle_metro_win8\icreate-test2\icreate-test2\obj\x86\Debug\resources.resfiles.intermediate
-C:\Users\lingyi\Documents\GitHub\ivle_metro_win8\icreate-test2\icreate-test2\obj\x86\Debug\pri.resfiles.intermediate
-C:\Users\lingyi\Documents\GitHub\ivle_metro_win8\icreate-test2\icreate-test2\obj\x86\Debug\priconfig.xml
-C:\Users\lingyi\Documents\GitHub\ivle_metro_win8\icreate-test2\icreate-test2\obj\x86\Debug\layout.resfiles
-C:\Users\lingyi\Documents\GitHub\ivle_metro_win8\icreate-test2\icreate-test2\obj\x86\Debug\resources.resfiles
-C:\Users\lingyi\Documents\GitHub\ivle_metro_win8\icreate-test2\icreate-test2\obj\x86\Debug\pri.resfiles
-C:\Users\lingyi\Documents\GitHub\ivle_metro_win8\icreate-test2\icreate-test2\obj\x86\Debug\LanguageQualifiers.txt
-C:\Users\lingyi\Documents\GitHub\ivle_metro_win8\icreate-test2\icreate-test2\obj\x86\Debug\ProjectArchitectures.txt
-=======
->>>>>>> d9d84f2a13c127ec1f859e6c281dfb957de74da6

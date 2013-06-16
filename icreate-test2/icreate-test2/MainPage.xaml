@@ -84,7 +84,7 @@
                     </ComboBox>
                     <ProgressRing x:Name="ProgressRing" Margin="5,5,5,5" IsActive="False" Height="40" Width="40"
                                   Grid.Column="0" Grid.Row="3" />
-                    <Button x:ConnectionId='1' x:Name="LoginButton" Margin="5,5,5,5" Content="Login" FontSize="28"                     
+                    <Button x:Name="LoginButton" Margin="5,5,5,5" Content="Login" FontSize="28" Click="login_Click" 
                             Grid.Column="1"  Grid.Row="3" Width="200" HorizontalAlignment="Right"/>
                 </Grid>
             </StackPanel>
@@ -129,4 +129,3 @@
         </VisualStateManager.VisualStateGroups>
     </Grid>
 </common:LayoutAwarePage>
-
