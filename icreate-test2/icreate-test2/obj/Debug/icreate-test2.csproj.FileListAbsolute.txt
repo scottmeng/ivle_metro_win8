@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 c:\users\jiajianiu\documents\visual studio 2012\Projects\icreate-test2\icreate-test2\obj\Debug\App.g.i.cs
 c:\users\jiajianiu\documents\visual studio 2012\Projects\icreate-test2\icreate-test2\obj\Debug\App.g.cs
 c:\users\jiajianiu\documents\visual studio 2012\Projects\icreate-test2\icreate-test2\obj\Debug\Common\StandardStyles.g.i.cs
@@ -85,3 +86,92 @@ C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\icreate-tes
 \\psf\Home\Documents\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\pri.resfiles
 \\psf\Home\Documents\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\LanguageQualifiers.txt
 \\psf\Home\Documents\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\ProjectArchitectures.txt
+=======
+c:\users\jiajianiu\documents\visual studio 2012\Projects\icreate-test2\icreate-test2\obj\Debug\App.g.i.cs
+c:\users\jiajianiu\documents\visual studio 2012\Projects\icreate-test2\icreate-test2\obj\Debug\App.g.cs
+c:\users\jiajianiu\documents\visual studio 2012\Projects\icreate-test2\icreate-test2\obj\Debug\Common\StandardStyles.g.i.cs
+c:\users\jiajianiu\documents\visual studio 2012\Projects\icreate-test2\icreate-test2\obj\Debug\Common\StandardStyles.g.cs
+c:\users\jiajianiu\documents\visual studio 2012\Projects\icreate-test2\icreate-test2\obj\Debug\XamlTypeInfo.g.cs
+c:\users\jiajianiu\documents\visual studio 2012\Projects\icreate-test2\icreate-test2\obj\Debug\App.xaml
+c:\users\jiajianiu\documents\visual studio 2012\Projects\icreate-test2\icreate-test2\obj\Debug\Common\StandardStyles.xaml
+c:\users\jiajianiu\documents\visual studio 2012\Projects\icreate-test2\icreate-test2\bin\Debug\icreate-test2.exe
+c:\users\jiajianiu\documents\visual studio 2012\Projects\icreate-test2\icreate-test2\bin\Debug\icreate-test2.pdb
+c:\users\jiajianiu\documents\visual studio 2012\Projects\icreate-test2\icreate-test2\bin\Debug\resources.pri
+c:\users\jiajianiu\documents\visual studio 2012\Projects\icreate-test2\icreate-test2\bin\Debug\AppxManifest.xml
+c:\users\jiajianiu\documents\visual studio 2012\Projects\icreate-test2\icreate-test2\bin\Debug\icreate-test2.build.appxrecipe
+c:\users\jiajianiu\documents\visual studio 2012\Projects\icreate-test2\icreate-test2\obj\Debug\MainPage.g.i.cs
+c:\users\jiajianiu\documents\visual studio 2012\Projects\icreate-test2\icreate-test2\obj\Debug\MainPage.g.cs
+c:\users\jiajianiu\documents\visual studio 2012\Projects\icreate-test2\icreate-test2\obj\Debug\MainPage.xaml
+c:\users\jiajianiu\documents\visual studio 2012\Projects\icreate-test2\icreate-test2\obj\Debug\icreate-test2.exe
+c:\users\jiajianiu\documents\visual studio 2012\Projects\icreate-test2\icreate-test2\obj\Debug\icreate-test2.pdb
+c:\users\jiajianiu\documents\visual studio 2012\Projects\icreate-test2\icreate-test2\obj\Debug\priconfig.xml.intermediate
+c:\users\jiajianiu\documents\visual studio 2012\Projects\icreate-test2\icreate-test2\obj\Debug\layout.resfiles.intermediate
+c:\users\jiajianiu\documents\visual studio 2012\Projects\icreate-test2\icreate-test2\obj\Debug\resources.resfiles.intermediate
+c:\users\jiajianiu\documents\visual studio 2012\Projects\icreate-test2\icreate-test2\obj\Debug\pri.resfiles.intermediate
+c:\users\jiajianiu\documents\visual studio 2012\Projects\icreate-test2\icreate-test2\obj\Debug\priconfig.xml
+c:\users\jiajianiu\documents\visual studio 2012\Projects\icreate-test2\icreate-test2\obj\Debug\layout.resfiles
+c:\users\jiajianiu\documents\visual studio 2012\Projects\icreate-test2\icreate-test2\obj\Debug\resources.resfiles
+c:\users\jiajianiu\documents\visual studio 2012\Projects\icreate-test2\icreate-test2\obj\Debug\pri.resfiles
+c:\users\jiajianiu\documents\visual studio 2012\Projects\icreate-test2\icreate-test2\obj\Debug\LanguageQualifiers.txt
+c:\users\jiajianiu\documents\visual studio 2012\Projects\icreate-test2\icreate-test2\obj\Debug\ProjectArchitectures.txt
+C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\bin\Debug\icreate-test2.exe
+C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\bin\Debug\icreate-test2.pdb
+C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\bin\Debug\resources.pri
+C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\bin\Debug\AppxManifest.xml
+C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\bin\Debug\icreate-test2.build.appxrecipe
+C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\App.g.i.cs
+C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\App.g.cs
+C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\MainPage.g.i.cs
+C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\MainPage.g.cs
+C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\Common\StandardStyles.g.i.cs
+C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\Common\StandardStyles.g.cs
+C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\XamlTypeInfo.g.cs
+C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\App.xaml
+C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\MainPage.xaml
+C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\Common\StandardStyles.xaml
+C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\icreate-test2.exe
+C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\icreate-test2.pdb
+C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\priconfig.xml
+C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\layout.resfiles
+C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\resources.resfiles
+C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\pri.resfiles
+C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\LanguageQualifiers.txt
+C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\ProjectArchitectures.txt
+C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\priconfig.xml.intermediate
+C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\layout.resfiles.intermediate
+C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\resources.resfiles.intermediate
+C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\pri.resfiles.intermediate
+C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\icreate-test2.csprojResolveAssemblyReference.cache
+C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\icreate-test2.csproj.GenerateResource.Cache
+\\psf\Home\Documents\ivle_metro_win8\icreate-test2\icreate-test2\bin\Debug\icreate-test2.exe
+\\psf\Home\Documents\ivle_metro_win8\icreate-test2\icreate-test2\bin\Debug\icreate-test2.pdb
+\\psf\Home\Documents\ivle_metro_win8\icreate-test2\icreate-test2\bin\Debug\resources.pri
+\\psf\Home\Documents\ivle_metro_win8\icreate-test2\icreate-test2\bin\Debug\AppxManifest.xml
+\\psf\Home\Documents\ivle_metro_win8\icreate-test2\icreate-test2\bin\Debug\icreate-test2.build.appxrecipe
+\\psf\Home\Documents\ivle_metro_win8\icreate-test2\icreate-test2\bin\Debug\Newtonsoft.Json.dll
+\\psf\Home\Documents\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\icreate-test2.csprojResolveAssemblyReference.cache
+\\psf\Home\Documents\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\App.g.i.cs
+\\psf\Home\Documents\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\App.g.cs
+\\psf\Home\Documents\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\MainPage.g.i.cs
+\\psf\Home\Documents\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\MainPage.g.cs
+\\psf\Home\Documents\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\Common\StandardStyles.g.i.cs
+\\psf\Home\Documents\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\Common\StandardStyles.g.cs
+\\psf\Home\Documents\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\XamlTypeInfo.g.cs
+\\psf\Home\Documents\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\App.xaml
+\\psf\Home\Documents\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\MainPage.xaml
+\\psf\Home\Documents\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\Common\StandardStyles.xaml
+\\psf\Home\Documents\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\icreate-test2.exe
+\\psf\Home\Documents\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\icreate-test2.pdb
+\\psf\Home\Documents\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\icreate-test2.csproj.GenerateResource.Cache
+\\psf\Home\Documents\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\priconfig.xml.intermediate
+\\psf\Home\Documents\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\layout.resfiles.intermediate
+\\psf\Home\Documents\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\resources.resfiles.intermediate
+\\psf\Home\Documents\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\pri.resfiles.intermediate
+\\psf\Home\Documents\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\priconfig.xml
+\\psf\Home\Documents\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\layout.resfiles
+\\psf\Home\Documents\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\resources.resfiles
+\\psf\Home\Documents\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\pri.resfiles
+\\psf\Home\Documents\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\LanguageQualifiers.txt
+\\psf\Home\Documents\ivle_metro_win8\icreate-test2\icreate-test2\obj\Debug\ProjectArchitectures.txt
+>>>>>>> d9d84f2a13c127ec1f859e6c281dfb957de74da6

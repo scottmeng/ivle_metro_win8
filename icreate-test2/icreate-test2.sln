@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Express 2012 for Windows 8
@@ -44,3 +45,51 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal
+=======
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2012 for Windows 8
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "icreate-test2", "C:\Users\lingyi\Documents\GitHub\ivle_metro_win8\icreate-test2\icreate-test2\icreate-test2.csproj", "{5DE12551-01FA-433E-81F5-A3459997A9DF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|ARM = Debug|ARM
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|ARM = Release|ARM
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5DE12551-01FA-433E-81F5-A3459997A9DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5DE12551-01FA-433E-81F5-A3459997A9DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5DE12551-01FA-433E-81F5-A3459997A9DF}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{5DE12551-01FA-433E-81F5-A3459997A9DF}.Debug|ARM.ActiveCfg = Debug|ARM
+		{5DE12551-01FA-433E-81F5-A3459997A9DF}.Debug|ARM.Build.0 = Debug|ARM
+		{5DE12551-01FA-433E-81F5-A3459997A9DF}.Debug|ARM.Deploy.0 = Debug|ARM
+		{5DE12551-01FA-433E-81F5-A3459997A9DF}.Debug|x64.ActiveCfg = Debug|x64
+		{5DE12551-01FA-433E-81F5-A3459997A9DF}.Debug|x64.Build.0 = Debug|x64
+		{5DE12551-01FA-433E-81F5-A3459997A9DF}.Debug|x64.Deploy.0 = Debug|x64
+		{5DE12551-01FA-433E-81F5-A3459997A9DF}.Debug|x86.ActiveCfg = Debug|x86
+		{5DE12551-01FA-433E-81F5-A3459997A9DF}.Debug|x86.Build.0 = Debug|x86
+		{5DE12551-01FA-433E-81F5-A3459997A9DF}.Debug|x86.Deploy.0 = Debug|x86
+		{5DE12551-01FA-433E-81F5-A3459997A9DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5DE12551-01FA-433E-81F5-A3459997A9DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5DE12551-01FA-433E-81F5-A3459997A9DF}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{5DE12551-01FA-433E-81F5-A3459997A9DF}.Release|ARM.ActiveCfg = Release|ARM
+		{5DE12551-01FA-433E-81F5-A3459997A9DF}.Release|ARM.Build.0 = Release|ARM
+		{5DE12551-01FA-433E-81F5-A3459997A9DF}.Release|ARM.Deploy.0 = Release|ARM
+		{5DE12551-01FA-433E-81F5-A3459997A9DF}.Release|x64.ActiveCfg = Release|x64
+		{5DE12551-01FA-433E-81F5-A3459997A9DF}.Release|x64.Build.0 = Release|x64
+		{5DE12551-01FA-433E-81F5-A3459997A9DF}.Release|x64.Deploy.0 = Release|x64
+		{5DE12551-01FA-433E-81F5-A3459997A9DF}.Release|x86.ActiveCfg = Release|x86
+		{5DE12551-01FA-433E-81F5-A3459997A9DF}.Release|x86.Build.0 = Release|x86
+		{5DE12551-01FA-433E-81F5-A3459997A9DF}.Release|x86.Deploy.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
+>>>>>>> d9d84f2a13c127ec1f859e6c281dfb957de74da6

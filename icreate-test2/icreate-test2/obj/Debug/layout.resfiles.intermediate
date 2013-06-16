@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Assets\Logo.png
 Assets\SmallLogo.png
 Assets\SplashScreen.png
@@ -6,3 +7,13 @@ App.xaml
 Common\StandardStyles.xaml
 MainPage.xaml
 Common\ReadMe.txt
+=======
+Assets\Logo.png
+Assets\SmallLogo.png
+Assets\SplashScreen.png
+Assets\StoreLogo.png
+App.xaml
+Common\StandardStyles.xaml
+MainPage.xaml
+Common\ReadMe.txt
+>>>>>>> d9d84f2a13c127ec1f859e6c281dfb957de74da6

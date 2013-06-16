@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
   <index root="\" startIndexAt="obj\Debug\layout.resfiles">
@@ -21,4 +22,29 @@
     <indexer-config type="PRI" />
     <indexer-config type="RESFILES" qualifierDelimiter="." />
   </index>
+=======
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <index root="\" startIndexAt="obj\Debug\layout.resfiles">
+    <default>
+      <qualifier name="language" value="en-US" />
+    </default>
+    <indexer-config type="RESFILES" qualifierDelimiter="." />
+  </index>
+  <index root="\" startIndexAt="obj\Debug\resources.resfiles">
+    <default>
+      <qualifier name="language" value="en-US" />
+    </default>
+    <indexer-config type="RESW" convertDotsToSlashes="true" />
+    <indexer-config type="RESJSON" />
+    <indexer-config type="RESFILES" qualifierDelimiter="." />
+  </index>
+  <index root="\" startIndexAt="obj\Debug\pri.resfiles">
+    <default>
+      <qualifier name="language" value="en-US" />
+    </default>
+    <indexer-config type="PRI" />
+    <indexer-config type="RESFILES" qualifierDelimiter="." />
+  </index>
+>>>>>>> d9d84f2a13c127ec1f859e6c281dfb957de74da6
 </resources>
