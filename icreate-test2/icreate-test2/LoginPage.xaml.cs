@@ -72,7 +72,7 @@ namespace icreate_test2
             {
                 // if there have been token stored
                 // load the token
-                if (false)
+                if (Utils.TokenManager.IsTokenExisting())
                 {
                     // disable controls
                     UsernameTextBox.IsEnabled = false;
@@ -89,7 +89,7 @@ namespace icreate_test2
                         // if so, hide progress circle
                         ProgressRing.IsActive = false;
                         // navigate to main menu page
-
+                        this.Frame.Navigate(typeof(HomePage));
                     }
                     else
                     {
@@ -150,6 +150,9 @@ namespace icreate_test2
                     // update token
                     Utils.TokenManager.UpdateToken(token);
                     SaveUserCredentials();
+
+                    // navigate to the home page
+                    this.Frame.Navigate(typeof(HomePage));
                 }
                 else
                 {
