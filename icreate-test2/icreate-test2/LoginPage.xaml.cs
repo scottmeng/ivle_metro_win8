@@ -75,10 +75,7 @@ namespace icreate_test2
                 if (Utils.TokenManager.IsTokenExisting())
                 {
                     // disable controls
-                    UsernameTextBox.IsEnabled = false;
-                    PasswordBox.IsEnabled = false;
-                    DomainComboBox.IsEnabled = false;
-                    LoginButton.IsEnabled = false;
+                    DisableLoginControls();
 
                     // display progress circle
                     ProgressRing.IsActive = true;
@@ -96,10 +93,7 @@ namespace icreate_test2
                         // if not, hide progress circle
                         // enable controls
                         ProgressRing.IsActive = false;
-                        UsernameTextBox.IsEnabled = true;
-                        PasswordBox.IsEnabled = true;
-                        DomainComboBox.IsEnabled = true;
-                        LoginButton.IsEnabled = true;
+                        EnableLoginControls();
                     }
                 }
             }
@@ -126,10 +120,7 @@ namespace icreate_test2
             else
             {
                 // disable controls
-                UsernameTextBox.IsEnabled = false;
-                PasswordBox.IsEnabled = false;
-                DomainComboBox.IsEnabled = false;
-                LoginButton.IsEnabled = false;
+                DisableLoginControls();
 
                 // display progress ring
                 ProgressRing.IsActive = true;
@@ -139,16 +130,14 @@ namespace icreate_test2
                 domain = DomainComboBox.SelectedValue.ToString();
 
                 postString = Utils.LAPI.GeneratePostString(username, password, domain);
-
-                DataStructure.Token token = await LoginAsync(postString);
                 
-                // hide progress ring
-                ProgressRing.IsActive = false;
-
-                if (token != null && token.TokenSuccess)
+                if (await Utils.TokenManager.LoginAsync(postString))
                 {
+                    // hide progress ring
+                    ProgressRing.IsActive = false;
+
                     // update token
-                    Utils.TokenManager.UpdateToken(token);
+                    Utils.TokenManager.StoreToken();
                     SaveUserCredentials();
 
                     // navigate to the home page
@@ -156,36 +145,18 @@ namespace icreate_test2
                 }
                 else
                 {
+                    // hide progress ring
+                    // enable log in controls
+                    ProgressRing.IsActive = false;
+                    EnableLoginControls();
+
                     MessageDialog noInternetDialog = new MessageDialog("Log in failed. Please check your userId and password", "Oops");
                     noInternetDialog.ShowAsync();
                 }
             }
 
         }
-              
-        private async Task<DataStructure.Token> LoginAsync(string data)
-        {
-            string authenticationURL = "https://ivle.nus.edu.sg/api/Lapi.svc/Login_JSON";
-            HttpClient client = new HttpClient();
 
-            HttpContent payload = new StringContent(data, Encoding.UTF8, "application/x-www-form-urlencoded");
-            HttpResponseMessage response = client.PostAsync(authenticationURL, payload).Result;
-            string responseString = await response.Content.ReadAsStringAsync();
-
-            // remove the last "}"
-            responseString = responseString.Remove(responseString.Length - 1);
-
-            // remove the first "{" and its associated header
-            responseString = responseString.Substring(responseString.IndexOf(":") + 1);
-
-            DataStructure.Token token = JsonConvert.DeserializeObject<DataStructure.Token>(responseString);
-
-            payload.Dispose();
-            response.Dispose();
-            client.Dispose();
-
-            return token;
-        }
 
         // loading user credential from application data settings
         private void LoadUserCredentials()
@@ -214,6 +185,24 @@ namespace icreate_test2
             roamingSettings.Values["userID"] = this.username;
             roamingSettings.Values["password"] = this.password;
             roamingSettings.Values["domain"] = this.domain;
+        }
+
+        // disable log in page controls
+        private void DisableLoginControls()
+        {
+            UsernameTextBox.IsEnabled = false;
+            PasswordBox.IsEnabled = false;
+            DomainComboBox.IsEnabled = false;
+            LoginButton.IsEnabled = false;
+        }
+
+        // enable log in page controls
+        private void EnableLoginControls()
+        {
+            UsernameTextBox.IsEnabled = true;
+            PasswordBox.IsEnabled = true;
+            DomainComboBox.IsEnabled = true;
+            LoginButton.IsEnabled = true;
         }
     }
 }

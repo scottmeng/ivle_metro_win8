@@ -18,10 +18,18 @@ namespace icreate_test2.Utils
         private static String key = "lAY3TAAcAGYcokEEqKNCt";
         private static String domain = "https://ivle.nus.edu.sg/";
 
-        // get the request url with API item and parameters
-        public static string GenerateURL(string item, Dictionary<String,String> parameters)
+        // get the request url for token validation
+        public static string GenerateValidateURL()
         {
-            string url = domain + "api/Lapi.svc/" + item + "?APIKey=" + key + "&Token=" + Utils.TokenManager.GetTokenValue();
+            string url = domain + "api/Lapi.svc/Validate?APIKey=" + key + "&Token=" + Utils.TokenManager.GetTokenValue();
+
+            return url;
+        }
+
+        // get the request url with API item and parameters
+        public static string GenerateGetURL(string item, Dictionary<String,String> parameters)
+        {
+            string url = domain + "api/Lapi.svc/" + item + "?APIKey=" + key + "&AuthToken=" + Utils.TokenManager.GetTokenValue();
 
             foreach (KeyValuePair<String, String> parameter in parameters)
             {

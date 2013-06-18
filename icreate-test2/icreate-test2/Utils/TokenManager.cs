@@ -20,12 +20,6 @@ namespace icreate_test2.Utils
     {
         private static DataStructure.Token _token;
 
-        public static void UpdateToken(DataStructure.Token token)
-        {
-            _token = token;
-            StoreToken();
-        }
-
         public static string GetTokenValue()
         {
             return _token.TokenContent;
@@ -57,7 +51,7 @@ namespace icreate_test2.Utils
             HttpClient client = new HttpClient();
 
             // http get request to validate token
-            HttpResponseMessage response = await client.GetAsync(Utils.LAPI.GenerateURL("Validate", new Dictionary<string, string>()));
+            HttpResponseMessage response = await client.GetAsync(Utils.LAPI.GenerateValidateURL());
 
             // make sure the http reponse is successful
             response.EnsureSuccessStatusCode();
@@ -65,17 +59,40 @@ namespace icreate_test2.Utils
             // convert http response to string
             string responseString = await response.Content.ReadAsStringAsync();
 
-            DataStructure.Token token = JsonConvert.DeserializeObject<DataStructure.Token>(responseString);
-
-            if (token.TokenSuccess)
-            {
-                UpdateToken(token);
-            }
+            _token = JsonConvert.DeserializeObject<DataStructure.Token>(responseString);
 
             response.Dispose();
             client.Dispose();
 
-            return token.TokenSuccess;
+            return (_token != null && _token.TokenSuccess);
+        }
+
+        public static async Task<bool> LoginAsync(string data)
+        {
+            string authenticationURL = "https://ivle.nus.edu.sg/api/Lapi.svc/Login_JSON";
+            HttpClient client = new HttpClient();
+
+            // encode the request content in url encoding format
+            HttpContent payload = new StringContent(data, Encoding.UTF8, "application/x-www-form-urlencoded");
+            HttpResponseMessage response = client.PostAsync(authenticationURL, payload).Result;
+
+            // wait for the string response
+            string responseString = await response.Content.ReadAsStringAsync();
+
+            // remove the last "}"
+            responseString = responseString.Remove(responseString.Length - 1);
+
+            // remove the first "{" and its associated header
+            responseString = responseString.Substring(responseString.IndexOf(":") + 1);
+
+            // store the newly received token
+            _token = JsonConvert.DeserializeObject<DataStructure.Token>(responseString);
+
+            payload.Dispose();
+            response.Dispose();
+            client.Dispose();
+
+            return (_token != null && _token.TokenSuccess);
         }
         
         // to store token in application data settings
