@@ -86,7 +86,7 @@ namespace icreate_test2
                         // if so, hide progress circle
                         ProgressRing.IsActive = false;
                         // navigate to main menu page
-                        this.Frame.Navigate(typeof(HomePage));
+                        this.Frame.Navigate(typeof(MainPage));
                     }
                     else
                     {
@@ -141,7 +141,7 @@ namespace icreate_test2
                     SaveUserCredentials();
 
                     // navigate to the home page
-                    this.Frame.Navigate(typeof(HomePage));
+                    this.Frame.Navigate(typeof(MainPage));
                 }
                 else
                 {
