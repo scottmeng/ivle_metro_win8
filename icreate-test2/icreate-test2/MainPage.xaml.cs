@@ -12,6 +12,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
+using Newtonsoft.Json;
+
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
 namespace icreate_test2
@@ -21,9 +23,22 @@ namespace icreate_test2
     /// </summary>
     public sealed partial class MainPage : icreate_test2.Common.LayoutAwarePage
     {
+        private List<DataStructure.Module> modules;
+        private List<DataStructure.Announcement> recentAnnouncements;
+        private List<DataStructure.Class> classes;
+
         public MainPage()
         {
             this.InitializeComponent();
+
+            modules = new List<DataStructure.Module>();
+            recentAnnouncements = new List<DataStructure.Announcement>();
+            classes = new List<DataStructure.Class>();
+
+            /*
+             * test data
+             * 
+
             List<TestListView> itemsList = new List<TestListView>();
             itemsList.Add(new TestListView() { Background = "#00BFFF", Title = "IS3233", Description = "slkdjfa;lskdjga;lsa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;ladkjf;lakdjf" });
             itemsList.Add(new TestListView() { Background = "#8A2BE2", Title = "ES3231", Description = "slkdjfa;lskdjga;lsa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;ladkjf;lakdjf" });
@@ -45,8 +60,12 @@ namespace icreate_test2
             itemsListGrid.Add(new TestGridView() { Background = "#EE0000", Title = "EC5223" });
             itemsListGrid.Add(new TestGridView() { Background = "#006400", Title = "ME3233" });
             itemGridView.ItemsSource = itemsListGrid;
+             * 
+             * test data
+             */
 
         }
+
 
         /// <summary>
         /// Populates the page with content passed during navigation.  Any saved state is also
@@ -57,8 +76,24 @@ namespace icreate_test2
         /// </param>
         /// <param name="pageState">A dictionary of state preserved by this page during an earlier
         /// session.  This will be null the first time a page is visited.</param>
-        protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
+        protected async override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters.Add("Duration", "0");
+            parameters.Add("IncludeAllInfo", "false");
+
+            String modulesResponse = await Utils.RequestSender.GetResponseString("Modules", parameters);
+            DataStructure.ModuleInfoWrapper moduleWrapper = JsonConvert.DeserializeObject<DataStructure.ModuleInfoWrapper>(modulesResponse);
+
+            if (moduleWrapper.comments.Equals("Valid login!"))
+            {
+                foreach (DataStructure.Module module in moduleWrapper.modules)
+                {
+                    modules.Add(module);
+                }
+            }
+
+            moduleListView.ItemsSource = modules;
         }
 
         /// <summary>

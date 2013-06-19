@@ -31,12 +31,11 @@
             <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
         <Grid Margin="0,0,50,0">
-            <ListView x:ConnectionId='1' x:Name="itemListView" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Hidden" 
-          ItemsSource="{Binding Source={StaticResource itemsViewSource}}"                                                 >
+            <ListView x:ConnectionId='1' x:Name="announcementListView" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Hidden" 
+          ItemsSource="{Binding Source={StaticResource itemsViewSource}}"                                                  >
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                        <Setter Property="IsSelected" Value="False"/>
                     </Style>
                 </ListView.ItemContainerStyle>
                 <ListView.ItemTemplate>
@@ -75,14 +74,14 @@
                 <TextBlock Margin="20,0,0,20" x:Name="pageTitle" Grid.Column="1" Text="{StaticResource AppName}" Style="{StaticResource PageHeaderTextStyle}" FontSize="89"/>
             </Grid>
             <Grid Grid.Row="1" Grid.RowSpan="2" HorizontalAlignment="Left">
-                <GridView x:Name="itemGridView" Margin="20" ItemsSource="{Binding Source={StaticResource itemsView}}"  ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Disabled" >
+                <GridView x:Name="moduleListView" Margin="20" ItemsSource="{Binding Source={StaticResource itemsView}}"  ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Disabled" >
                     <GridView.ItemTemplate>
                         <DataTemplate>
                             <Grid Width="400" Height="200">
                                 <Grid.Background>
                                     <SolidColorBrush Color="{Binding Background}" />
                                 </Grid.Background>
-                                <TextBlock Text="{Binding Title}" Margin="10"  Foreground="White" FontSize="55" FontFamily="Segoe UI" FontWeight="Light"/>
+                                <TextBlock Text="{Binding CourseName}" Margin="10"  Foreground="White" FontSize="55" FontFamily="Segoe UI" FontWeight="Light"/>
                             </Grid>
                         </DataTemplate>
                     </GridView.ItemTemplate>

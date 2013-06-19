@@ -51,11 +51,8 @@ C:\Users\lingyi\Desktop\temp\icreate-test2\icreate-test2\obj\x86\Debug\resources
 C:\Users\lingyi\Desktop\temp\icreate-test2\icreate-test2\obj\x86\Debug\pri.resfiles
 C:\Users\lingyi\Desktop\temp\icreate-test2\icreate-test2\obj\x86\Debug\LanguageQualifiers.txt
 C:\Users\lingyi\Desktop\temp\icreate-test2\icreate-test2\obj\x86\Debug\ProjectArchitectures.txt
-C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\obj\x86\Debug\HomePage.g.i.cs
-C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\obj\x86\Debug\HomePage.g.cs
 C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\obj\x86\Debug\LoginPage.g.i.cs
 C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\obj\x86\Debug\LoginPage.g.cs
-C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\obj\x86\Debug\HomePage.xaml
 C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\obj\x86\Debug\LoginPage.xaml
 C:\Users\Jiajianiu\Documents\GitHub\ivle_metro_win8\ivle_metro_win8\icreate-test2\icreate-test2\bin\x86\Debug\icreate-test2.exe
 C:\Users\Jiajianiu\Documents\GitHub\ivle_metro_win8\ivle_metro_win8\icreate-test2\icreate-test2\bin\x86\Debug\icreate-test2.pdb
@@ -90,3 +87,6 @@ C:\Users\Jiajianiu\Documents\GitHub\ivle_metro_win8\ivle_metro_win8\icreate-test
 C:\Users\Jiajianiu\Documents\GitHub\ivle_metro_win8\ivle_metro_win8\icreate-test2\icreate-test2\obj\x86\Debug\layout.resfiles.intermediate
 C:\Users\Jiajianiu\Documents\GitHub\ivle_metro_win8\ivle_metro_win8\icreate-test2\icreate-test2\obj\x86\Debug\resources.resfiles.intermediate
 C:\Users\Jiajianiu\Documents\GitHub\ivle_metro_win8\ivle_metro_win8\icreate-test2\icreate-test2\obj\x86\Debug\pri.resfiles.intermediate
+C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\obj\x86\Debug\MainPage.g.i.cs
+C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\obj\x86\Debug\MainPage.g.cs
+C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\obj\x86\Debug\MainPage.xaml
