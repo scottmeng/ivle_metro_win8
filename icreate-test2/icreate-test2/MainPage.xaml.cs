@@ -11,6 +11,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.UI;
 
 using Newtonsoft.Json;
 
@@ -26,6 +27,7 @@ namespace icreate_test2
         private List<DataStructure.Module> modules;
         private List<DataStructure.Announcement> recentAnnouncements;
         private List<DataStructure.Class> classes;
+        private Color[] moduleColors;
 
         public MainPage()
         {
@@ -34,6 +36,20 @@ namespace icreate_test2
             modules = new List<DataStructure.Module>();
             recentAnnouncements = new List<DataStructure.Announcement>();
             classes = new List<DataStructure.Class>();
+
+
+            // to be changed
+            moduleColors = new Color[10];
+            moduleColors[0] = Color.FromArgb(255, 162, 0, 255);
+            moduleColors[1] = Color.FromArgb(255, 255, 0, 151);
+            moduleColors[2] = Color.FromArgb(255, 0, 171, 169);
+            moduleColors[3] = Color.FromArgb(255, 140, 191, 38);
+            moduleColors[4] = Color.FromArgb(255, 160, 80, 0);
+            moduleColors[5] = Color.FromArgb(255, 230, 113, 184);
+            moduleColors[6] = Color.FromArgb(255, 240, 150, 9);
+            moduleColors[7] = Color.FromArgb(255, 27, 161, 226); 
+            moduleColors[8] = Color.FromArgb(255, 229, 20, 0);
+            moduleColors[9] = Color.FromArgb(255, 51, 153, 51);
         }
 
 
@@ -48,6 +64,8 @@ namespace icreate_test2
         /// session.  This will be null the first time a page is visited.</param>
         protected async override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
+            int iterator = 0;
+
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters.Add("Duration", "0");
             parameters.Add("IncludeAllInfo", "true");
@@ -64,7 +82,10 @@ namespace icreate_test2
                         announcement.GenerateDisplayContent(module.moduleCode);
                         this.recentAnnouncements.Add(announcement);
                     }
+                    module.SetModuleColor(moduleColors[iterator]);
+
                     this.modules.Add(module);
+                    iterator++;
                 }
             }
 

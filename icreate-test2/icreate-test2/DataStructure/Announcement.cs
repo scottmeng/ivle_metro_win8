@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using System.Text.RegularExpressions;
+using Windows.UI;
 
 namespace icreate_test2.DataStructure
 {
@@ -29,6 +30,7 @@ namespace icreate_test2.DataStructure
         [DataMember(Name = "isRead")]
         public bool announceIsRead { get; set; }
 
+        public Color annouceColor { get; set; }
         public String announceContentDisplay { get; set; }
         public String announceContentPreview { get; set; }
         public String announceNameDisplay { get; set; }

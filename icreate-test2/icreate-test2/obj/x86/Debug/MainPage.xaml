@@ -47,10 +47,7 @@
                             </Grid.ColumnDefinitions>
                             <StackPanel Grid.Column="0">
                                 <StackPanel.Background>
-                                    <!--
-                                    <SolidColorBrush Color="{Binding Background}" />
-                                    -->
-                                    <SolidColorBrush Color="Pink"/>
+                                    <SolidColorBrush Color="{Binding annouceColor}" />
                                 </StackPanel.Background>
                             </StackPanel>
                             <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="0" Orientation="Vertical">
@@ -84,11 +81,7 @@
                         <DataTemplate>
                             <Grid Width="400" Height="200">
                                 <Grid.Background>
-                                    <!--
-                                    <SolidColorBrush Color="{Binding Background}" />
-                                    -->
-                                    <SolidColorBrush Color="Black"/>
-                                    
+                                    <SolidColorBrush Color="{Binding moduleColor}" />                                  
                                 </Grid.Background>
                                 <TextBlock Text="{Binding moduleCode}" Margin="15" Foreground="White" FontSize="42" FontFamily="Segoe UI" FontWeight="Light"
                                            VerticalAlignment="Top"  HorizontalAlignment="Left"/>
