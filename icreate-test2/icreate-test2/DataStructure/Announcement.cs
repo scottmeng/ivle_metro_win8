@@ -26,6 +26,9 @@ namespace icreate_test2.DataStructure
         [DataMember(Name = "Creator")]
         public Member announceCreator { get; set; }
 
+        [DataMember(Name = "isRead")]
+        public bool announceIsRead { get; set; }
+
         public String announceContentDisplay { get; set; }
         public String announceContentPreview { get; set; }
         public String announceNameDisplay { get; set; }

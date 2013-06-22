@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
+using Windows.UI.Xaml.Media;
 
 namespace icreate_test2.DataStructure
 {
@@ -39,6 +40,8 @@ namespace icreate_test2.DataStructure
 
         [DataMember(Name = "Lecturers")]
         public Lecturer[] moduleLecturers { get; set; }
+
+        public Windows.UI.Xaml.Media.SolidColorBrush moduleColr { get; set; }
 
         public Module(Announcement[] announces, Workbin[] workins, String id, String code, String name, String depart, String sem, String ay, String mc, Lecturer[] lecturers)
         {

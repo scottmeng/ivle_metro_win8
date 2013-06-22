@@ -34,36 +34,6 @@ namespace icreate_test2
             modules = new List<DataStructure.Module>();
             recentAnnouncements = new List<DataStructure.Announcement>();
             classes = new List<DataStructure.Class>();
-
-            /*
-             * test data
-             * 
-
-            List<TestListView> itemsList = new List<TestListView>();
-            itemsList.Add(new TestListView() { Background = "#00BFFF", Title = "IS3233", Description = "slkdjfa;lskdjga;lsa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;ladkjf;lakdjf" });
-            itemsList.Add(new TestListView() { Background = "#8A2BE2", Title = "ES3231", Description = "slkdjfa;lskdjga;lsa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;ladkjf;lakdjf" });
-            itemsList.Add(new TestListView() { Background = "#00BFFF", Title = "CG3213", Description = "slkdjfa;lskdjga;lsa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;ladkjf;lakdjf" });
-            itemsList.Add(new TestListView() { Background = "#EE0000", Title = "CS3133", Description = "slkdjfa;lskdjga;lsa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;ladkjf;lakdjf" });
-            itemsList.Add(new TestListView() { Background = "#FF69B4", Title = "CS3233", Description = "slkdjfa;lskdjga;lsa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;ladkjf;lakdjf" });
-            itemsList.Add(new TestListView() { Background = "#FF7256", Title = "CS3233", Description = "slkdjfa;lskdjga;lsa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;ladkjf;lakdjf" });
-            itemsList.Add(new TestListView() { Background = "#FF69B4", Title = "EC3233", Description = "slkdjfa;lskdjga;lsa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;ladkjf;lakdjf" });
-            itemsList.Add(new TestListView() { Background = "#006400", Title = "EE3233", Description = "slkdjfa;lskdjga;lsa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;ladkjf;lakdjf" });
-            itemsList.Add(new TestListView() { Background = "#8A2BE2", Title = "ME3233", Description = "slkdjfa;lskdjga;lsa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;laa;lskdjga;lsdkjf;ladkjf;lakdjf" });
-
-            itemListView.ItemsSource = itemsList;
-
-            List<TestGridView> itemsListGrid = new List<TestGridView>();
-            itemsListGrid.Add(new TestGridView() { Background = "#00BFFF", Title = "IS3233" });
-            itemsListGrid.Add(new TestGridView() { Background = "#8A2BE2", Title = "ES3231" });
-            itemsListGrid.Add(new TestGridView() { Background = "#FF69B4", Title = "CG3213" });
-            itemsListGrid.Add(new TestGridView() { Background = "#FF7256", Title = "CS3233" });
-            itemsListGrid.Add(new TestGridView() { Background = "#EE0000", Title = "EC5223" });
-            itemsListGrid.Add(new TestGridView() { Background = "#006400", Title = "ME3233" });
-            itemGridView.ItemsSource = itemsListGrid;
-             * 
-             * test data
-             */
-
         }
 
 
@@ -80,7 +50,7 @@ namespace icreate_test2
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters.Add("Duration", "0");
-            parameters.Add("IncludeAllInfo", "false");
+            parameters.Add("IncludeAllInfo", "true");
 
             String modulesResponse = await Utils.RequestSender.GetResponseString("Modules", parameters);
             DataStructure.ModuleInfoWrapper moduleWrapper = JsonConvert.DeserializeObject<DataStructure.ModuleInfoWrapper>(modulesResponse);
@@ -89,11 +59,18 @@ namespace icreate_test2
             {
                 foreach (DataStructure.Module module in moduleWrapper.modules)
                 {
-                    modules.Add(module);
+                    foreach (DataStructure.Announcement announcement in module.moduleAnnouncements)
+                    {
+                        announcement.GenerateDisplayContent(module.moduleCode);
+                        this.recentAnnouncements.Add(announcement);
+                    }
+                    this.modules.Add(module);
                 }
             }
 
             moduleListView.ItemsSource = modules;
+
+            announcementListView.ItemsSource = recentAnnouncements;
         }
 
         /// <summary>
@@ -109,17 +86,6 @@ namespace icreate_test2
         private void ItemListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
-        }
-        public class TestListView
-        {
-            public string Background { get; set; }
-            public string Title { get; set; }
-            public string Description { get; set; }
-        }
-        public class TestGridView
-        {
-            public string Background { get; set; }
-            public string Title { get; set; }
         }
     }
 }
