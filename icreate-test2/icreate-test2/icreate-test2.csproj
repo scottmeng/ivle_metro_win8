@@ -113,6 +113,7 @@
     <Compile Include="Common\SuspensionManager.cs" />
     <Compile Include="DataStructure\Announcement.cs" />
     <Compile Include="DataStructure\Class.cs" />
+    <Compile Include="DataStructure\ClassWrapper.cs" />
     <Compile Include="DataStructure\ConstName.cs" />
     <Compile Include="DataStructure\File.cs" />
     <Compile Include="DataStructure\Folder.cs" />

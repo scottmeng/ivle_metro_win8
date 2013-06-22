@@ -15,7 +15,7 @@ namespace icreate_test2.Utils
         // asynchronous function to validate token, to 
         // update token if necessary or to return false
         // if token is invalid
-        public static async Task<String> GetResponseString(string field, Dictionary<string, string> dataPairs)
+        public static async Task<String> GetResponseStringAsync(string field, Dictionary<string, string> dataPairs)
         {
             HttpClient client = new HttpClient();
 

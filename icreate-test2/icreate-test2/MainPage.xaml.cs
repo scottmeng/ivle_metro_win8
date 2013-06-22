@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -27,6 +28,8 @@ namespace icreate_test2
         private List<DataStructure.Module> modules;
         private List<DataStructure.Announcement> recentAnnouncements;
         private List<DataStructure.Class> classes;
+
+        private List<DataStructure.SemesterInfo> sems;
         private Color[] moduleColors;
 
         public MainPage()
@@ -36,7 +39,7 @@ namespace icreate_test2
             modules = new List<DataStructure.Module>();
             recentAnnouncements = new List<DataStructure.Announcement>();
             classes = new List<DataStructure.Class>();
-
+            sems = new List<DataStructure.SemesterInfo>();
 
             // to be changed
             moduleColors = new Color[10];
@@ -64,33 +67,10 @@ namespace icreate_test2
         /// session.  This will be null the first time a page is visited.</param>
         protected async override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
-            int iterator = 0;
-
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
-            parameters.Add("Duration", "0");
-            parameters.Add("IncludeAllInfo", "true");
-
-            String modulesResponse = await Utils.RequestSender.GetResponseString("Modules", parameters);
-            DataStructure.ModuleInfoWrapper moduleWrapper = JsonConvert.DeserializeObject<DataStructure.ModuleInfoWrapper>(modulesResponse);
-
-            if (moduleWrapper.comments.Equals("Valid login!"))
-            {
-                foreach (DataStructure.Module module in moduleWrapper.modules)
-                {
-                    foreach (DataStructure.Announcement announcement in module.moduleAnnouncements)
-                    {
-                        announcement.GenerateDisplayContent(module.moduleCode);
-                        this.recentAnnouncements.Add(announcement);
-                    }
-                    module.SetModuleColor(moduleColors[iterator]);
-
-                    this.modules.Add(module);
-                    iterator++;
-                }
-            }
+            await GetModulesAsync();
+            await GetClassesAsync();
 
             moduleListView.ItemsSource = modules;
-
             announcementListView.ItemsSource = recentAnnouncements;
         }
 
@@ -107,6 +87,85 @@ namespace icreate_test2
         private void ItemListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private async Task GetClassesAsync()
+        {
+            foreach (DataStructure.SemesterInfo sem in sems)
+            {
+                Dictionary<string, string> parameters = new Dictionary<string, string>();
+                parameters.Add("AcadYear", sem.AcademicYear);
+                parameters.Add("Semester", sem.Semester);
+
+                String classesResponse = await Utils.RequestSender.GetResponseStringAsync("Timetable_Student", parameters);
+                DataStructure.ClassWrapper classWrapper = JsonConvert.DeserializeObject<DataStructure.ClassWrapper>(classesResponse);
+
+                if (classWrapper.comments.Equals("Valid login!"))
+                {
+                    foreach (DataStructure.Class mClass in classWrapper.classes)
+                    {
+                        mClass.GenerateDisplay();
+                        classes.Add(mClass);
+                    }
+                }
+
+            }
+        }
+
+        private async Task GetModulesAsync()
+        {
+            int iterator = 0;
+
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters.Add("Duration", "0");
+            parameters.Add("IncludeAllInfo", "true");
+
+            String modulesResponse = await Utils.RequestSender.GetResponseStringAsync("Modules", parameters);
+            DataStructure.ModuleInfoWrapper moduleWrapper = JsonConvert.DeserializeObject<DataStructure.ModuleInfoWrapper>(modulesResponse);
+
+            if (moduleWrapper.comments.Equals("Valid login!"))
+            {
+                foreach (DataStructure.Module module in moduleWrapper.modules)
+                {
+                    foreach (DataStructure.Announcement announcement in module.moduleAnnouncements)
+                    {
+                        announcement.GenerateDisplayContent(module.moduleCode);
+                        this.recentAnnouncements.Add(announcement);
+                    }
+                    module.SetModuleColor(moduleColors[iterator]);
+
+                    DataStructure.SemesterInfo newSemInfo = new DataStructure.SemesterInfo(module.moduleAcadYear, 
+                                                                                           module.moduleSemester.Replace("Semester ", String.Empty));
+                    if (!sems.Contains(newSemInfo, new SeminfoEqualityComparer()))
+                    {
+                        sems.Add(newSemInfo);
+                    }
+
+                    this.modules.Add(module);
+                    iterator++;
+                }
+            }
+        }
+
+        class SeminfoEqualityComparer : IEqualityComparer<DataStructure.SemesterInfo>
+        {
+            public bool Equals(DataStructure.SemesterInfo s1, DataStructure.SemesterInfo s2)
+            {
+                if (s1.Semester == s2.Semester && s1.AcademicYear == s2.AcademicYear)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            public int GetHashCode(DataStructure.SemesterInfo sem)
+            {
+                int hCode = sem.AcademicYear.Length ^ sem.Semester.Length;
+                return hCode.GetHashCode();
+            }
         }
     }
 }
