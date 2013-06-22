@@ -28,8 +28,9 @@
                     <Canvas.Resources>
                         <Storyboard x:Name="myStoryboard"> 
                             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MyAnimatedTranslateTransform" 
-                                                           Storyboard.TargetProperty="X" Duration="0:0:1.5">
-                            <LinearDoubleKeyFrame Value="-300" KeyTime="0:0:1.5" />
+                                                           Storyboard.TargetProperty="X" Duration="0:0:3">
+                            <LinearDoubleKeyFrame Value="0" KeyTime="0:0:1" />
+                            <LinearDoubleKeyFrame Value="-300" KeyTime="0:0:2" />
                             </DoubleAnimationUsingKeyFrames>
                         </Storyboard>
                     </Canvas.Resources>
