@@ -58,6 +58,7 @@ namespace icreate_test2.DataStructure
             announceContentPreview = WebUtility.HtmlDecode(announceContent);
             announceContentPreview = Regex.Replace(announceContentPreview, "<.+?>", string.Empty);
             announceContentPreview = announceContentPreview.Replace(System.Environment.NewLine, " ");
+            announceContentPreview = announceContentPreview.Replace("\t", string.Empty);
             announceContentPreview = Regex.Replace(announceContentPreview, "&nbsp;", string.Empty);
 
             // remove the header

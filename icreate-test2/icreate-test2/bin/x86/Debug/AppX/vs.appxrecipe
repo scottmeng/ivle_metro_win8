@@ -22,11 +22,11 @@
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\bin\x86\Debug\icreate-test2.exe">
       <PackagePath>icreate-test2.exe</PackagePath>
-      <Modified>2013-06-22T15:42:57.419</Modified>
+      <Modified>2013-06-22T16:15:55.981</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\bin\x86\Debug\icreate-test2.pdb">
       <PackagePath>icreate-test2.pdb</PackagePath>
-      <Modified>2013-06-22T15:42:57.397</Modified>
+      <Modified>2013-06-22T16:15:55.945</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Scott\ivle_metro_win8\icreate-test2\Newtonsoft.Json.dll">
       <PackagePath>Newtonsoft.Json.dll</PackagePath>
@@ -62,7 +62,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\bin\x86\Debug\MainPage.xaml">
       <PackagePath>MainPage.xaml</PackagePath>
-      <Modified>2013-06-22T15:42:40.116</Modified>
+      <Modified>2013-06-22T16:15:51.652</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\bin\x86\Debug\LoginPage.xaml">
       <PackagePath>LoginPage.xaml</PackagePath>
