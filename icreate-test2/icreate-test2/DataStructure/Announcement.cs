@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using System.Text.RegularExpressions;
 using Windows.UI;
+using System.Net;
 
 namespace icreate_test2.DataStructure
 {
@@ -50,10 +51,12 @@ namespace icreate_test2.DataStructure
 
         public void GenerateDisplayContent(String moduleCode)
         {
-            announceContentDisplay = Regex.Replace(announceContent, "<.+?>", string.Empty);
+            announceContentDisplay = WebUtility.HtmlDecode(announceContent);
+            announceContentDisplay = Regex.Replace(announceContentDisplay, "<.+?>", string.Empty);
             announceContentDisplay = Regex.Replace(announceContentDisplay, "&nbsp;", string.Empty);
 
-            announceContentPreview = Regex.Replace(announceContent, "<.+?>", string.Empty);
+            announceContentPreview = WebUtility.HtmlDecode(announceContent);
+            announceContentPreview = Regex.Replace(announceContentPreview, "<.+?>", string.Empty);
             announceContentPreview = announceContentPreview.Replace(System.Environment.NewLine, " ");
             announceContentPreview = Regex.Replace(announceContentPreview, "&nbsp;", string.Empty);
 

@@ -40,7 +40,7 @@
                 </ListView.ItemContainerStyle>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Grid Height="200" Background="LightGray">
+                        <Grid Height="180" Background="LightGray">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="20"/>
                                 <ColumnDefinition Width="*"/>
@@ -51,8 +51,10 @@
                                 </StackPanel.Background>
                             </StackPanel>
                             <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="0" Orientation="Vertical">
-                                <TextBlock Margin="20,5,20,0" Text="{Binding announceName}"  TextWrapping="NoWrap" Foreground="White" FontSize="36"/>
-                                <TextBlock Margin="20,5,20,5" Height="110" Text="{Binding announceContentPreview}" TextWrapping="Wrap"  Foreground="White" FontSize="18" />
+                                <TextBlock Margin="20,5,20,5" Text="{Binding announceName}"  TextWrapping="NoWrap" Foreground="White" FontSize="36"
+                                           TextTrimming="WordEllipsis"/>
+                                <TextBlock Margin="20,5,20,5" Height="110" Text="{Binding announceContentPreview}" TextWrapping="Wrap" 
+                                           Foreground="White" FontSize="24" TextTrimming="WordEllipsis"/>
                             </StackPanel>
                         </Grid>
                     </DataTemplate>
