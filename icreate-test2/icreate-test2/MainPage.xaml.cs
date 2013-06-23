@@ -41,7 +41,7 @@ namespace icreate_test2
             classes = new List<DataStructure.Class>();
             sems = new List<DataStructure.SemesterInfo>();
 
-            // to be changed
+            // to be moved under data structures
             moduleColors = new Color[10];
             moduleColors[0] = Color.FromArgb(255, 162, 0, 255);
             moduleColors[1] = Color.FromArgb(255, 255, 0, 151);
@@ -69,6 +69,8 @@ namespace icreate_test2
         {
             await GetModulesAsync();
             await GetClassesAsync();
+
+            this.recentAnnouncements.Sort(new AnnouncementTimeComparer());
 
             moduleListView.ItemsSource = modules;
             announcementListView.ItemsSource = recentAnnouncements;
@@ -165,6 +167,26 @@ namespace icreate_test2
             {
                 int hCode = sem.AcademicYear.Length ^ sem.Semester.Length;
                 return hCode.GetHashCode();
+            }
+        }
+
+        class AnnouncementTimeComparer : IComparer<DataStructure.Announcement>
+        {
+            // Compares the published date of the announcement
+            public int Compare(DataStructure.Announcement announce1, DataStructure.Announcement announce2)
+            {
+                if (announce1.announceTime.CompareTo(announce2.announceTime) != 0)
+                {
+                    return announce1.announceTime.CompareTo(announce2.announceTime);
+                }
+                else if (announce1.announceIsRead.CompareTo(announce2.announceIsRead) != 0)
+                {
+                    return announce1.announceIsRead.CompareTo(announce2.announceIsRead);
+                }
+                else
+                {
+                    return announce1.announceName.CompareTo(announce2.announceName);
+                }
             }
         }
     }
