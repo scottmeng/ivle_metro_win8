@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using Windows.Foundation;
@@ -32,6 +33,9 @@ namespace icreate_test2
         private List<DataStructure.SemesterInfo> sems;
         private Color[] moduleColors;
 
+        //temp
+        private List<object> week;
+
         public MainPage()
         {
             this.InitializeComponent();
@@ -53,8 +57,13 @@ namespace icreate_test2
             moduleColors[7] = Color.FromArgb(255, 27, 161, 226); 
             moduleColors[8] = Color.FromArgb(255, 229, 20, 0);
             moduleColors[9] = Color.FromArgb(255, 51, 153, 51);
+
+            //temp
+            week = new List<object>();
+          
         }
 
+      
 
         /// <summary>
         /// Populates the page with content passed during navigation.  Any saved state is also
@@ -74,6 +83,12 @@ namespace icreate_test2
 
             moduleListView.ItemsSource = modules;
             announcementListView.ItemsSource = recentAnnouncements;
+
+            //temp
+            calendarFlipView.Source = week;
+            dailyListView.Source = modules;
+            
+
         }
 
         /// <summary>
@@ -146,6 +161,11 @@ namespace icreate_test2
                     this.modules.Add(module);
                     iterator++;
                 }
+
+                //temp
+                week.Add(modules);
+                week.Add(modules);
+
             }
         }
 
@@ -189,5 +209,12 @@ namespace icreate_test2
                 }
             }
         }
+
+        private void calendar_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
+
+   
 }
