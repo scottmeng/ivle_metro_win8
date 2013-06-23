@@ -22,6 +22,19 @@
        
     </Page.Resources>
 
+    <Page.BottomAppBar>
+        <AppBar x:Name="bottomAppBar" Padding="10,0,10,0">
+            <Grid>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <Button x:ConnectionId='2' Style="{StaticResource EditAppBarButtonStyle}"                     />
+                    <Button x:ConnectionId='3' Style="{StaticResource LogOffAppBarButtonStyle}"                            />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button x:ConnectionId='1' Style="{StaticResource LogOffAppBarButtonStyle}"                            />
+                </StackPanel>
+            </Grid>
+        </AppBar>
+    </Page.BottomAppBar>
     <!--
         This grid acts as a root panel for the page that defines two rows:
         * Row 0 contains the back button and page title
@@ -33,7 +46,7 @@
             <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
         <Grid Margin="0,0,50,0">
-            <ListView x:ConnectionId='2' x:Name="announcementListView" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Hidden" 
+            <ListView x:ConnectionId='5' x:Name="announcementListView" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Hidden" 
           ItemsSource="{Binding Source={StaticResource itemsViewSource}}"                                                  >
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
@@ -107,7 +120,7 @@
                             <StackPanel Background="Gray" Opacity="0.8">
                             <TextBlock Text="Calendar" HorizontalAlignment="Left" Foreground="White" Padding="10" FontSize="48"/>
                             </StackPanel>-->
-                            <FlipView x:ConnectionId='1' x:Name="calendar" Width="350" Margin="0,20" ItemsSource="{Binding Source={StaticResource calendarFlipView}}" 
+                            <FlipView x:ConnectionId='4' x:Name="calendar" Width="350" Margin="0,20" ItemsSource="{Binding Source={StaticResource calendarFlipView}}" 
                                                                                    >
                                 <Style TargetType="FlipView">
                                     <Setter Property="Background" Value="Transparent"/>

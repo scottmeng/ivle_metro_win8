@@ -31,7 +31,6 @@ namespace icreate_test2
         private List<DataStructure.Class> classes;
 
         private List<DataStructure.SemesterInfo> sems;
-        private Color[] moduleColors;
 
         //temp
         private List<object> week;
@@ -44,19 +43,6 @@ namespace icreate_test2
             recentAnnouncements = new List<DataStructure.Announcement>();
             classes = new List<DataStructure.Class>();
             sems = new List<DataStructure.SemesterInfo>();
-
-            // to be moved under data structures
-            moduleColors = new Color[10];
-            moduleColors[0] = Color.FromArgb(255, 162, 0, 255);
-            moduleColors[1] = Color.FromArgb(255, 255, 0, 151);
-            moduleColors[2] = Color.FromArgb(255, 0, 171, 169);
-            moduleColors[3] = Color.FromArgb(255, 140, 191, 38);
-            moduleColors[4] = Color.FromArgb(255, 160, 80, 0);
-            moduleColors[5] = Color.FromArgb(255, 230, 113, 184);
-            moduleColors[6] = Color.FromArgb(255, 240, 150, 9);
-            moduleColors[7] = Color.FromArgb(255, 27, 161, 226); 
-            moduleColors[8] = Color.FromArgb(255, 229, 20, 0);
-            moduleColors[9] = Color.FromArgb(255, 51, 153, 51);
 
             //temp
             week = new List<object>();
@@ -149,7 +135,7 @@ namespace icreate_test2
                         announcement.GenerateDisplayContent(module.moduleCode);
                         this.recentAnnouncements.Add(announcement);
                     }
-                    module.SetModuleColor(moduleColors[iterator]);
+                    module.SetModuleColor(DataStructure.Colors.GetModuleColor(iterator));
 
                     DataStructure.SemesterInfo newSemInfo = new DataStructure.SemesterInfo(module.moduleAcadYear, 
                                                                                            module.moduleSemester.Replace("Semester ", String.Empty));
@@ -213,6 +199,17 @@ namespace icreate_test2
         private void calendar_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Logoff_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Utils.TokenManager.RemoveToken();
+            this.Frame.Navigate(typeof(LoginPage));
         }
     }
 

@@ -57,7 +57,7 @@ namespace icreate_test2.DataStructure
             moduleLecturers = lecturers;
         }
 
-        // set the color of this module and every announcement
+        // set the color of this module and every announcement in it
         public void SetModuleColor(Color color)
         {
             this.moduleColor = color;

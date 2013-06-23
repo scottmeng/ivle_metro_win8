@@ -20,6 +20,15 @@ namespace icreate_test2.Utils
     {
         private static DataStructure.Token _token;
 
+        public static void RemoveToken()
+        {
+            _token = null;
+
+            Windows.Storage.ApplicationDataContainer roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
+
+            roamingSettings.Values[DataStructure.ConstName.Token] = null;
+        }
+
         public static string GetTokenValue()
         {
             return _token.TokenContent;

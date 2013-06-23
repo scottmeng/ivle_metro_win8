@@ -22,6 +22,19 @@
        
     </Page.Resources>
 
+    <Page.BottomAppBar>
+        <AppBar x:Name="bottomAppBar" Padding="10,0,10,0">
+            <Grid>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                    <Button Style="{StaticResource EditAppBarButtonStyle}" Click="Button_Click"/>
+                    <Button Style="{StaticResource LogOffAppBarButtonStyle}" Click="Logoff_Button_Click"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Style="{StaticResource LogOffAppBarButtonStyle}" Click="Logoff_Button_Click"/>
+                </StackPanel>
+            </Grid>
+        </AppBar>
+    </Page.BottomAppBar>
     <!--
         This grid acts as a root panel for the page that defines two rows:
         * Row 0 contains the back button and page title
