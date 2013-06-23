@@ -103,11 +103,11 @@
                             </GridView.ItemTemplate>
                         </GridView>
 
-                        <StackPanel x:Name="schedule" Margin="20" Orientation="Vertical" Background="LemonChiffon">
-                            <StackPanel Background="Brown" Opacity="0.4">
-                            <TextBlock Text="Calendar" HorizontalAlignment="Center" Foreground="Black"  FontSize="48"/>
-                            </StackPanel>
-                            <FlipView x:ConnectionId='1' x:Name="calendar" Width="350" ItemsSource="{Binding Source={StaticResource calendarFlipView}}" 
+                        <!--<StackPanel x:Name="schedule" Margin="20" Orientation="Vertical" Background="Transparent">
+                            <StackPanel Background="Gray" Opacity="0.8">
+                            <TextBlock Text="Calendar" HorizontalAlignment="Left" Foreground="White" Padding="10" FontSize="48"/>
+                            </StackPanel>-->
+                            <FlipView x:ConnectionId='1' x:Name="calendar" Width="350" Margin="0,20" ItemsSource="{Binding Source={StaticResource calendarFlipView}}" 
                                                                                    >
                                 <Style TargetType="FlipView">
                                     <Setter Property="Background" Value="Transparent"/>
@@ -132,28 +132,36 @@
                                         <ListView x:Name="timetable" ItemsSource="{Binding Source={StaticResource dailyListView}}"
                                                               SelectionMode="None" Background="Orange">
                                             <ListView.Header>
-                                                <TextBlock Text="Today" FontSize="38" Foreground="DarkOrchid" HorizontalAlignment="Right"/>                                                    
+                                                <TextBlock Text="Today" FontSize="38" Foreground="LightSlateGray" HorizontalAlignment="Stretch" Padding="10" Opacity="0.7"/>                                                    
                                             </ListView.Header>
                                             <ListView.ItemTemplate>
                                                 <DataTemplate>
-                                                    <StackPanel Height="100" Orientation="Horizontal"> 
-                                                        <StackPanel Orientation="Vertical" Height="100" Width="330" Margin='0' Background="RosyBrown">
-                                                            <TextBlock Margin="20,0" Text="{Binding moduleCode}"  TextWrapping="NoWrap" Foreground="White" 
-                                                                           FontSize="36" HorizontalAlignment="Stretch"/>
-                                                            <TextBlock Margin="20,0" Text="{Binding moduleName}" TextWrapping="NoWrap" Foreground="White" 
-                                                                           FontSize="18" HorizontalAlignment="Stretch" />
-                                                            <TextBlock Margin="20,0" Text="UTown Auditorium" TextWrapping="NoWrap"  
-                                                                           HorizontalAlignment="Right" Foreground="White" FontSize="18" />
-                                                        </StackPanel>
-                                                        <StackPanel Width="20" Height ="100" Margin="0" Background="{Binding moduleColor}"/>      
+                                                <Grid Height="100" Width="350">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="330"/>
+                                                        <ColumnDefinition Width="20"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <StackPanel Grid.Column="1" Margin="0">
+                                                        <StackPanel.Background>
+                                                            <SolidColorBrush Color="{Binding moduleColor}"/>
+                                                        </StackPanel.Background>
                                                     </StackPanel>
-                                                </DataTemplate>
+                                                    <StackPanel Grid.Column="0" Orientation="Vertical" Height="100" Width="330" Margin='10,-2' Background="Teal">
+                                                        <TextBlock Margin="20,0" Text="{Binding moduleCode}"  TextWrapping="NoWrap" Foreground="White" 
+                                                                           FontSize="36" HorizontalAlignment="Stretch"/>
+                                                        <TextBlock Margin="20,0" Text="{Binding moduleName}" TextWrapping="NoWrap" Foreground="White" 
+                                                                           FontSize="18" HorizontalAlignment="Stretch" />
+                                                        <TextBlock Margin="20,0" Text="UTown Auditorium" TextWrapping="NoWrap"  
+                                                                           HorizontalAlignment="Right" Foreground="White" FontSize="18" />
+                                                    </StackPanel>                                                   
+                                                </Grid>
+                                            </DataTemplate>
                                             </ListView.ItemTemplate>
                                         </ListView>
                                     </DataTemplate>
                                 </FlipView.ItemTemplate>
                             </FlipView>
-                        </StackPanel>
+                        <!--</StackPanel>-->
                     </StackPanel>
                 </ScrollViewer>
 
