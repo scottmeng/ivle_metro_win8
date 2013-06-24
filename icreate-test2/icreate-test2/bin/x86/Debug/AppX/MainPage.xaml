@@ -46,8 +46,12 @@
             <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
         <Grid Margin="0,0,50,0">
-            <ListView x:ConnectionId='6' x:Name="announcementListView" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Hidden" 
-          ItemsSource="{Binding Source={StaticResource newAnnouncementListView}}"                                                                                     >
+            <ListView x:ConnectionId='7' x:Name="announcementListView" 
+                      ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                      ScrollViewer.VerticalScrollBarVisibility="Hidden" 
+                      ItemsSource="{Binding Source={StaticResource newAnnouncementListView}}" 
+                                                                       
+                                                         >
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -66,11 +70,23 @@
                                     <SolidColorBrush Color="{Binding annouceColor}" />
                                 </StackPanel.Background>
                             </StackPanel>
-                            <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="0" Orientation="Vertical">
-                                <TextBlock Margin="20,5,20,5" Text="{Binding announceName}"  TextWrapping="NoWrap" Foreground="White" FontSize="36"
+                            <StackPanel Grid.Column="1" 
+                                        VerticalAlignment="Top" 
+                                        Margin="0" 
+                                        Orientation="Vertical">
+                                <TextBlock Margin="20,5,20,5" 
+                                           Text="{Binding announceName}"  
+                                           TextWrapping="NoWrap" 
+                                           Foreground="White" 
+                                           FontSize="36"
                                            TextTrimming="WordEllipsis"/>
-                                <TextBlock Margin="20,5,20,5" Height="110" Text="{Binding announceContentPreview}" TextWrapping="Wrap" 
-                                           Foreground="White" FontSize="24" TextTrimming="WordEllipsis"/>
+                                <TextBlock Margin="20,5,20,5" 
+                                           Height="110" 
+                                           Text="{Binding announceContentPreview}" 
+                                           TextWrapping="Wrap" 
+                                           Foreground="White" 
+                                           FontSize="24" 
+                                           TextTrimming="WordEllipsis"/>
                             </StackPanel>
                         </Grid>
                     </DataTemplate>
@@ -89,15 +105,24 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Margin="20,0,0,20" x:Name="pageTitle" Grid.Column="1" Text="{StaticResource AppName}" 
-                           Style="{StaticResource PageHeaderTextStyle}" FontSize="89"/>
+                <TextBlock x:Name="pageTitle" 
+                           Margin="20,0,0,20" 
+                           Grid.Column="1" 
+                           Text="{StaticResource AppName}" 
+                           Style="{StaticResource PageHeaderTextStyle}" 
+                           FontSize="89"/>
             </Grid>
 
             
                 <Grid Grid.Row="1" Grid.RowSpan="2" HorizontalAlignment="Left">
-                <ScrollViewer x:Name="scrollViewer" HorizontalAlignment="Left" VerticalAlignment="Top"
-                      VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Hidden" VerticalScrollMode="Disabled" 
-                              HorizontalScrollMode="Auto" ZoomMode="Disabled">
+                <ScrollViewer x:Name="scrollViewer" 
+                              HorizontalAlignment="Left" 
+                              VerticalAlignment="Top"
+                              VerticalScrollBarVisibility="Disabled" 
+                              HorizontalScrollBarVisibility="Hidden" 
+                              VerticalScrollMode="Disabled" 
+                              HorizontalScrollMode="Auto" 
+                              ZoomMode="Disabled">
                     
                     <StackPanel Orientation="Horizontal">
 
@@ -121,7 +146,8 @@
 
                         <ItemsControl x:ConnectionId='4' x:Name="moduleListView" 
                                       ItemsSource="{Binding Source={StaticResource moduleGridView}}"  
-                                      Margin="20,20,50,20"                          >
+                                      Margin="20,20,50,20" 
+                                                               >
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
                                 <WrapGrid/>
@@ -129,23 +155,36 @@
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                <Grid Width="400" Height="200" Margin="10">
+                                <Grid Width="400" 
+                                      Height="200" 
+                                      Margin="10">
                                     <Grid.Background>
                                         <SolidColorBrush Color="{Binding moduleColor}" />
                                     </Grid.Background>
-                                    <TextBlock Text="{Binding moduleCode}" Margin="15" Foreground="White" FontSize="42" FontFamily="Segoe UI" FontWeight="Light"
-                                           VerticalAlignment="Top"  HorizontalAlignment="Left"/>
-                                    <TextBlock Text="{Binding moduleName}" Margin="15" Foreground="White" FontSize="24" FontFamily="Segoe UI" FontWeight="Light"
-                                           VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+                                    <TextBlock Text="{Binding moduleCode}" 
+                                               Margin="15" 
+                                               Foreground="White" 
+                                               FontSize="42" 
+                                               FontFamily="Segoe UI" 
+                                               FontWeight="Light"
+                                               VerticalAlignment="Top"  
+                                               HorizontalAlignment="Left"/>
+                                    <TextBlock Text="{Binding moduleName}" 
+                                               Margin="15" 
+                                               Foreground="White" 
+                                               FontSize="24" 
+                                               FontFamily="Segoe UI" 
+                                               FontWeight="Light"
+                                               VerticalAlignment="Bottom" 
+                                               HorizontalAlignment="Right"/>
                                 </Grid>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                             
                         </ItemsControl>
-                        
 
-                            <FlipView x:ConnectionId='5' x:Name="calendar" Width="350" Margin="0,20" ItemsSource="{Binding Source={StaticResource calendarFlipView}}" 
-                                                                                   >
+                        <!--<FlipView x:Name="calendar" Width="350" Margin="0,20" ItemsSource="{Binding Source={StaticResource calendarFlipView}}" 
+                                      SelectionChanged="calendar_SelectionChanged" >
                     <Style TargetType="FlipView">
                         <Setter Property="Background" Value="Transparent"/>
                         <Setter Property="BorderThickness" Value="0"/>
@@ -165,40 +204,61 @@
                         </Setter>
                     </Style>
                     <FlipView.ItemTemplate>
-                        <DataTemplate>
-                            <ListView x:Name="timetable" ItemsSource="{Binding Source={StaticResource dailyListView}}"
-                                                              SelectionMode="None" Background="Orange" IsSwipeEnabled="false" IsItemClickEnabled="False">
-                                <ListView.Header>
-                                    <TextBlock Text="Today" FontSize="38" Foreground="LightSlateGray" HorizontalAlignment="Stretch" Padding="10" Opacity="0.7"/>
-                                </ListView.Header>
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <Grid Height="100" Width="350">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="330"/>
-                                                <ColumnDefinition Width="20"/>
-                                            </Grid.ColumnDefinitions>
-                                            <StackPanel Grid.Column="1" Margin="0">
-                                                <StackPanel.Background>
-                                                    <SolidColorBrush Color="{Binding moduleColor}"/>
-                                                </StackPanel.Background>
-                                            </StackPanel>
-                                            <StackPanel Grid.Column="0" Orientation="Vertical" Height="100" Width="330" Margin='10,-2' Background="Teal">
-                                                <TextBlock Margin="20,0" Text="{Binding moduleCode}"  TextWrapping="NoWrap" Foreground="White" 
+                        <DataTemplate>-->
+                        <ListView x:Name="timetable" ItemsSource="{Binding Source={StaticResource dailyListView}}" SelectionMode="None" 
+                                      Background="Transparent" IsSwipeEnabled="false" IsItemClickEnabled="False" ScrollViewer.HorizontalScrollMode="Disabled"
+                                      ScrollViewer.VerticalScrollMode="Auto" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                            <ListView.Header>
+                                <StackPanel Orientation="Horizontal" Width="350">
+                                    <StackPanel.Style>
+                                        <Style TargetType="StackPanel">
+                                            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                                        </Style>
+                                    </StackPanel.Style>
+                                    <Button x:ConnectionId='5' Content="&lt;" Margin="5"                 FontSize="38" Foreground="Gray" Opacity="0.7"
+                                            HorizontalAlignment="Left" VerticalAlignment="Bottom" FontWeight="Light">
+                                        <Button.Background>
+                                            <SolidColorBrush Color="Transparent"/>
+                                        </Button.Background>
+                                    </Button>
+                                    <TextBlock Text="Today" FontSize="38" Foreground="LightSlateGray" HorizontalAlignment="Center" 
+                                               Margin="5" Opacity="0.7" VerticalAlignment="Bottom" FontWeight="Light"/>
+                                    <Button x:ConnectionId='6' Content=">" Margin="5"                 FontSize="38" Foreground="Gray" Opacity="0.7"
+                                            HorizontalAlignment="Right" VerticalAlignment="Bottom" FontWeight="Light">
+                                        <Button.Background>
+                                            <SolidColorBrush Color="Transparent"/>
+                                        </Button.Background>
+                                    </Button>
+                                </StackPanel>
+                            </ListView.Header>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Height="200" Width="350" Margin="0,-5">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="330"/>
+                                            <ColumnDefinition Width="20"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel Grid.Column="1" Margin="0">
+                                            <StackPanel.Background>
+                                                <SolidColorBrush Color="{Binding moduleColor}"/>
+                                            </StackPanel.Background>
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="0" Orientation="Vertical" Height="200" Width="330" Margin='0,-2' Background="Teal">
+                                            <TextBlock Margin="20,0" Text="{Binding moduleCode}"  TextWrapping="NoWrap" Foreground="White" 
                                                                            FontSize="36" HorizontalAlignment="Stretch"/>
-                                                <TextBlock Margin="20,0" Text="{Binding moduleName}" TextWrapping="NoWrap" Foreground="White" 
+                                            <TextBlock Margin="20,0" Text="{Binding moduleName}" TextWrapping="NoWrap" Foreground="White" 
                                                                            FontSize="18" HorizontalAlignment="Stretch" />
-                                                <TextBlock Margin="20,0" Text="UTown Auditorium" TextWrapping="NoWrap"  
+                                            <TextBlock Margin="20,0" Text="UTown Auditorium" TextWrapping="NoWrap"  
                                                                            HorizontalAlignment="Right" Foreground="White" FontSize="18" />
-                                            </StackPanel>
-                                        </Grid>
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
-                            </ListView>
-                        </DataTemplate>
+                                        </StackPanel>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                        <!--</DataTemplate>
                     </FlipView.ItemTemplate>
-                </FlipView>
-                <!--</StackPanel>-->
+                </FlipView>-->
+                        <!--</StackPanel>-->
                 </StackPanel>
                 </ScrollViewer>
 

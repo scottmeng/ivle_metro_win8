@@ -193,12 +193,15 @@ namespace icreate_test2
             }
         }
 
-        private void calendar_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
 
         }
+        private void prevDay(object sender, RoutedEventArgs e)
+        {
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        }
+        private void nextDay(object sender, RoutedEventArgs e)
         {
 
         }
