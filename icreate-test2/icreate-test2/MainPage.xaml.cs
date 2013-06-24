@@ -66,7 +66,7 @@ namespace icreate_test2
 
             this.recentAnnouncements.Sort(new AnnouncementTimeComparer());
 
-            moduleListView.ItemsSource = modules;
+            moduleGridView.Source = modules;
             announcementListView.ItemsSource = recentAnnouncements;
 
             //temp
