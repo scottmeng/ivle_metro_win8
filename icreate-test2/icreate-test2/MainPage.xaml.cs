@@ -209,10 +209,17 @@ namespace icreate_test2
             this.Frame.Navigate(typeof(LoginPage));
         }
 
-        private void annoucementListViewTapped(object sender, TappedRoutedEventArgs e)
+        private void AnnoucementListViewTapped(object sender, TappedRoutedEventArgs e)
         {
             if (this.Frame != null)
                 this.Frame.Navigate(typeof(ItemPage));
+        }
+
+        private void ModuleTileTapped(object sender, TappedRoutedEventArgs e)
+        {
+            // 
+            DataStructure.Module selectedModule = (e.OriginalSource as FrameworkElement).DataContext as DataStructure.Module;
+            this.Frame.Navigate(typeof(ItemPage));
         }
     }
 

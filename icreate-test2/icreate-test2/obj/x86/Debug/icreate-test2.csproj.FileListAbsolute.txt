@@ -187,3 +187,6 @@ C:\Users\Jiajianiu\Documents\GitHub\ivle_metro_win8\icreate-test2\icreate-test2\
 C:\Users\Jiajianiu\Documents\GitHub\ivle_metro_win8\icreate-test2\icreate-test2\obj\x86\Debug\pri.resfiles
 C:\Users\Jiajianiu\Documents\GitHub\ivle_metro_win8\icreate-test2\icreate-test2\obj\x86\Debug\LanguageQualifiers.txt
 C:\Users\Jiajianiu\Documents\GitHub\ivle_metro_win8\icreate-test2\icreate-test2\obj\x86\Debug\ProjectArchitectures.txt
+C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\obj\x86\Debug\ItemPage.g.i.cs
+C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\obj\x86\Debug\ItemPage.g.cs
+C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\obj\x86\Debug\ItemPage.xaml

@@ -46,7 +46,7 @@
             <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
         <Grid Margin="0,0,50,0">
-            <ListView x:ConnectionId='5' x:Name="announcementListView" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Hidden" 
+            <ListView x:ConnectionId='6' x:Name="announcementListView" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Hidden" 
           ItemsSource="{Binding Source={StaticResource newAnnouncementListView}}"                                                                                     >
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
@@ -119,7 +119,9 @@
                 </GridView>-->
 
 
-                        <ItemsControl x:Name="moduleListView" ItemsSource="{Binding Source={StaticResource moduleGridView}}"  Margin="20,20,50,20">
+                        <ItemsControl x:ConnectionId='4' x:Name="moduleListView" 
+                                      ItemsSource="{Binding Source={StaticResource moduleGridView}}"  
+                                      Margin="20,20,50,20"                          >
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
                                 <WrapGrid/>
@@ -142,7 +144,7 @@
                         </ItemsControl>
                         
 
-                            <FlipView x:ConnectionId='4' x:Name="calendar" Width="350" Margin="0,20" ItemsSource="{Binding Source={StaticResource calendarFlipView}}" 
+                            <FlipView x:ConnectionId='5' x:Name="calendar" Width="350" Margin="0,20" ItemsSource="{Binding Source={StaticResource calendarFlipView}}" 
                                                                                    >
                     <Style TargetType="FlipView">
                         <Setter Property="Background" Value="Transparent"/>

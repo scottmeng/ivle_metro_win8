@@ -46,8 +46,12 @@
             <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
         <Grid Margin="0,0,50,0">
-            <ListView x:Name="announcementListView" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Hidden" 
-          ItemsSource="{Binding Source={StaticResource newAnnouncementListView}}" SelectionChanged="ItemListView_SelectionChanged" Tapped="annoucementListViewTapped" >
+            <ListView x:Name="announcementListView" 
+                      ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                      ScrollViewer.VerticalScrollBarVisibility="Hidden" 
+                      ItemsSource="{Binding Source={StaticResource newAnnouncementListView}}" 
+                      SelectionChanged="ItemListView_SelectionChanged" 
+                      Tapped="AnnoucementListViewTapped" >
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -66,11 +70,23 @@
                                     <SolidColorBrush Color="{Binding annouceColor}" />
                                 </StackPanel.Background>
                             </StackPanel>
-                            <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="0" Orientation="Vertical">
-                                <TextBlock Margin="20,5,20,5" Text="{Binding announceName}"  TextWrapping="NoWrap" Foreground="White" FontSize="36"
+                            <StackPanel Grid.Column="1" 
+                                        VerticalAlignment="Top" 
+                                        Margin="0" 
+                                        Orientation="Vertical">
+                                <TextBlock Margin="20,5,20,5" 
+                                           Text="{Binding announceName}"  
+                                           TextWrapping="NoWrap" 
+                                           Foreground="White" 
+                                           FontSize="36"
                                            TextTrimming="WordEllipsis"/>
-                                <TextBlock Margin="20,5,20,5" Height="110" Text="{Binding announceContentPreview}" TextWrapping="Wrap" 
-                                           Foreground="White" FontSize="24" TextTrimming="WordEllipsis"/>
+                                <TextBlock Margin="20,5,20,5" 
+                                           Height="110" 
+                                           Text="{Binding announceContentPreview}" 
+                                           TextWrapping="Wrap" 
+                                           Foreground="White" 
+                                           FontSize="24" 
+                                           TextTrimming="WordEllipsis"/>
                             </StackPanel>
                         </Grid>
                     </DataTemplate>
@@ -89,15 +105,24 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Margin="20,0,0,20" x:Name="pageTitle" Grid.Column="1" Text="{StaticResource AppName}" 
-                           Style="{StaticResource PageHeaderTextStyle}" FontSize="89"/>
+                <TextBlock x:Name="pageTitle" 
+                           Margin="20,0,0,20" 
+                           Grid.Column="1" 
+                           Text="{StaticResource AppName}" 
+                           Style="{StaticResource PageHeaderTextStyle}" 
+                           FontSize="89"/>
             </Grid>
 
             
                 <Grid Grid.Row="1" Grid.RowSpan="2" HorizontalAlignment="Left">
-                <ScrollViewer x:Name="scrollViewer" HorizontalAlignment="Left" VerticalAlignment="Top"
-                      VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Hidden" VerticalScrollMode="Disabled" 
-                              HorizontalScrollMode="Auto" ZoomMode="Disabled">
+                <ScrollViewer x:Name="scrollViewer" 
+                              HorizontalAlignment="Left" 
+                              VerticalAlignment="Top"
+                              VerticalScrollBarVisibility="Disabled" 
+                              HorizontalScrollBarVisibility="Hidden" 
+                              VerticalScrollMode="Disabled" 
+                              HorizontalScrollMode="Auto" 
+                              ZoomMode="Disabled">
                     
                     <StackPanel Orientation="Horizontal">
 
@@ -119,7 +144,10 @@
                 </GridView>-->
 
 
-                        <ItemsControl x:Name="moduleListView" ItemsSource="{Binding Source={StaticResource moduleGridView}}"  Margin="20,20,50,20">
+                        <ItemsControl x:Name="moduleListView" 
+                                      ItemsSource="{Binding Source={StaticResource moduleGridView}}"  
+                                      Margin="20,20,50,20" 
+                                      Tapped="ModuleTileTapped">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
                                 <WrapGrid/>
@@ -127,14 +155,28 @@
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                <Grid Width="400" Height="200" Margin="10">
+                                <Grid Width="400" 
+                                      Height="200" 
+                                      Margin="10">
                                     <Grid.Background>
                                         <SolidColorBrush Color="{Binding moduleColor}" />
                                     </Grid.Background>
-                                    <TextBlock Text="{Binding moduleCode}" Margin="15" Foreground="White" FontSize="42" FontFamily="Segoe UI" FontWeight="Light"
-                                           VerticalAlignment="Top"  HorizontalAlignment="Left"/>
-                                    <TextBlock Text="{Binding moduleName}" Margin="15" Foreground="White" FontSize="24" FontFamily="Segoe UI" FontWeight="Light"
-                                           VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+                                    <TextBlock Text="{Binding moduleCode}" 
+                                               Margin="15" 
+                                               Foreground="White" 
+                                               FontSize="42" 
+                                               FontFamily="Segoe UI" 
+                                               FontWeight="Light"
+                                               VerticalAlignment="Top"  
+                                               HorizontalAlignment="Left"/>
+                                    <TextBlock Text="{Binding moduleName}" 
+                                               Margin="15" 
+                                               Foreground="White" 
+                                               FontSize="24" 
+                                               FontFamily="Segoe UI" 
+                                               FontWeight="Light"
+                                               VerticalAlignment="Bottom" 
+                                               HorizontalAlignment="Right"/>
                                 </Grid>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
