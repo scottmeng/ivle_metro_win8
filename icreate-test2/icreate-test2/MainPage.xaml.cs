@@ -29,7 +29,6 @@ namespace icreate_test2
         private List<DataStructure.Module> modules;
         private List<DataStructure.Announcement> recentAnnouncements;
         private List<DataStructure.Class> classes;
-
         private List<DataStructure.SemesterInfo> sems;
 
         //temp
@@ -73,8 +72,6 @@ namespace icreate_test2
             //temp
             calendarFlipView.Source = week;
             dailyListView.Source = modules;
-            
-
         }
 
         /// <summary>
@@ -210,6 +207,12 @@ namespace icreate_test2
         {
             Utils.TokenManager.RemoveToken();
             this.Frame.Navigate(typeof(LoginPage));
+        }
+
+        private void annoucementListViewTapped(object sender, TappedRoutedEventArgs e)
+        {
+            if (this.Frame != null)
+                this.Frame.Navigate(typeof(ItemPage));
         }
     }
 

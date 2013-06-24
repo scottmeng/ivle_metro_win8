@@ -1,59 +1,62 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <Machine>SCOTTMENG-PC</Machine>
-    <WindowsUser>Scott</WindowsUser>
+    <Machine>NINJA</Machine>
+    <WindowsUser>Jiajianiu</WindowsUser>
     <SolutionConfiguration>Debug|x86</SolutionConfiguration>
     <PackageArchitecture>x86</PackageArchitecture>
   </PropertyGroup>
   <ItemGroup>
-    <AppXManifest Include="C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\bin\x86\Debug\AppxManifest.xml">
+    <AppXManifest Include="C:\Users\Jiajianiu\Desktop\ivle_metro_win8-master\icreate-test2\icreate-test2\bin\x86\Debug\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
-    <AppxPackagedFile Include="C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\bin\x86\Debug\icreate-test2.exe">
+    <AppxPackagedFile Include="C:\Users\Jiajianiu\Desktop\ivle_metro_win8-master\icreate-test2\icreate-test2\bin\x86\Debug\icreate-test2.exe">
       <PackagePath>icreate-test2.exe</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\bin\x86\Debug\icreate-test2.pdb">
+    <AppxPackagedFile Include="C:\Users\Jiajianiu\Desktop\ivle_metro_win8-master\icreate-test2\icreate-test2\bin\x86\Debug\icreate-test2.pdb">
       <PackagePath>icreate-test2.pdb</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Scott\ivle_metro_win8\icreate-test2\Newtonsoft.Json.dll">
+    <AppxPackagedFile Include="C:\Users\Jiajianiu\Desktop\ivle_metro_win8-master\icreate-test2\Newtonsoft.Json.dll">
       <PackagePath>Newtonsoft.Json.dll</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\Assets\Logo.png">
+    <AppxPackagedFile Include="C:\Users\Jiajianiu\Desktop\ivle_metro_win8-master\icreate-test2\icreate-test2\Assets\Logo.png">
       <PackagePath>Assets\Logo.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\Assets\SmallLogo.png">
+    <AppxPackagedFile Include="C:\Users\Jiajianiu\Desktop\ivle_metro_win8-master\icreate-test2\icreate-test2\Assets\SmallLogo.png">
       <PackagePath>Assets\SmallLogo.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\Assets\SplashScreen.png">
+    <AppxPackagedFile Include="C:\Users\Jiajianiu\Desktop\ivle_metro_win8-master\icreate-test2\icreate-test2\Assets\SplashScreen.png">
       <PackagePath>Assets\SplashScreen.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\Assets\StoreLogo.png">
+    <AppxPackagedFile Include="C:\Users\Jiajianiu\Desktop\ivle_metro_win8-master\icreate-test2\icreate-test2\Assets\StoreLogo.png">
       <PackagePath>Assets\StoreLogo.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\Common\ReadMe.txt">
+    <AppxPackagedFile Include="C:\Users\Jiajianiu\Desktop\ivle_metro_win8-master\icreate-test2\icreate-test2\Common\ReadMe.txt">
       <PackagePath>Common\ReadMe.txt</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\bin\x86\Debug\App.xaml">
+    <AppxPackagedFile Include="C:\Users\Jiajianiu\Desktop\ivle_metro_win8-master\icreate-test2\icreate-test2\bin\x86\Debug\App.xaml">
       <PackagePath>App.xaml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\bin\x86\Debug\MainPage.xaml">
+    <AppxPackagedFile Include="C:\Users\Jiajianiu\Desktop\ivle_metro_win8-master\icreate-test2\icreate-test2\bin\x86\Debug\ItemPage.xaml">
+      <PackagePath>ItemPage.xaml</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Jiajianiu\Desktop\ivle_metro_win8-master\icreate-test2\icreate-test2\bin\x86\Debug\MainPage.xaml">
       <PackagePath>MainPage.xaml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\bin\x86\Debug\LoginPage.xaml">
+    <AppxPackagedFile Include="C:\Users\Jiajianiu\Desktop\ivle_metro_win8-master\icreate-test2\icreate-test2\bin\x86\Debug\LoginPage.xaml">
       <PackagePath>LoginPage.xaml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\bin\x86\Debug\Common\StandardStyles.xaml">
+    <AppxPackagedFile Include="C:\Users\Jiajianiu\Desktop\ivle_metro_win8-master\icreate-test2\icreate-test2\bin\x86\Debug\Common\StandardStyles.xaml">
       <PackagePath>Common\StandardStyles.xaml</PackagePath>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\bin\x86\Debug\resources.pri">
+    <AppxPackagedFile Include="C:\Users\Jiajianiu\Desktop\ivle_metro_win8-master\icreate-test2\icreate-test2\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
     </AppxPackagedFile>
   </ItemGroup>

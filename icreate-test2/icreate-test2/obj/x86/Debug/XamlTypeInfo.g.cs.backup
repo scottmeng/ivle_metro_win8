@@ -114,9 +114,11 @@ namespace icreate_test2.icreate_test2_XamlTypeInfo
 
         private object Activate_0_LayoutAwarePage() { return new global::icreate_test2.Common.LayoutAwarePage(); }
 
-        private object Activate_1_MainPage() { return new global::icreate_test2.MainPage(); }
+        private object Activate_1_ItemPage() { return new global::icreate_test2.ItemPage(); }
 
-        private object Activate_2_LoginPage() { return new global::icreate_test2.LoginPage(); }
+        private object Activate_2_MainPage() { return new global::icreate_test2.MainPage(); }
+
+        private object Activate_3_LoginPage() { return new global::icreate_test2.LoginPage(); }
 
 
         private global::Windows.UI.Xaml.Markup.IXamlType CreateXamlType(string typeName)
@@ -140,15 +142,21 @@ namespace icreate_test2.icreate_test2_XamlTypeInfo
                 xamlType = userType;
                 break;
 
+            case "icreate_test2.ItemPage":
+                userType = new global::icreate_test2.icreate_test2_XamlTypeInfo.XamlUserType(this, typeName, typeof(global::icreate_test2.ItemPage), GetXamlTypeByName("icreate_test2.Common.LayoutAwarePage"));
+                userType.Activator = Activate_1_ItemPage;
+                xamlType = userType;
+                break;
+
             case "icreate_test2.MainPage":
                 userType = new global::icreate_test2.icreate_test2_XamlTypeInfo.XamlUserType(this, typeName, typeof(global::icreate_test2.MainPage), GetXamlTypeByName("icreate_test2.Common.LayoutAwarePage"));
-                userType.Activator = Activate_1_MainPage;
+                userType.Activator = Activate_2_MainPage;
                 xamlType = userType;
                 break;
 
             case "icreate_test2.LoginPage":
                 userType = new global::icreate_test2.icreate_test2_XamlTypeInfo.XamlUserType(this, typeName, typeof(global::icreate_test2.LoginPage), GetXamlTypeByName("icreate_test2.Common.LayoutAwarePage"));
-                userType.Activator = Activate_2_LoginPage;
+                userType.Activator = Activate_3_LoginPage;
                 xamlType = userType;
                 break;
 

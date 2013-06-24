@@ -1,1 +1,1 @@
-C:\Users\Scott\ivle_metro_win8\icreate-test2\icreate-test2\icreate-test2.csproj;x86
+C:\Users\Jiajianiu\Desktop\ivle_metro_win8-master\icreate-test2\icreate-test2\icreate-test2.csproj;x86

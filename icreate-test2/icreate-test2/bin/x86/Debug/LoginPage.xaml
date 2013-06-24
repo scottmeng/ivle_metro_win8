@@ -67,17 +67,17 @@
                         <RowDefinition Height="60"/>
                         <RowDefinition Height="60"/>
                     </Grid.RowDefinitions>
-                    <TextBlock Text="UserID:" FontSize="28" Margin="5,5,5,5" 
+                    <TextBlock Text="UserID:" FontSize="28" Margin="5" 
                                Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                    <TextBox x:Name="UsernameTextBox" Margin="5,5,5,5"   Width="300" FontSize="24" 
+                    <TextBox x:Name="UsernameTextBox" Margin="5"   Width="300" FontSize="24" 
                              Grid.Column="1" Grid.Row="0"/>
-                    <TextBlock Text="Password:" FontSize="28" Margin="5,5,5,5" 
+                    <TextBlock Text="Password:" FontSize="28" Margin="5" 
                                Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                    <PasswordBox x:Name="PasswordBox" Margin="5,5,5,5" Width="300" FontSize="24" 
+                    <PasswordBox x:Name="PasswordBox" Margin="5" Width="300" FontSize="24" 
                                  PasswordChar="*" Grid.Column="1" Grid.Row="1"/>
-                    <TextBlock Text="Domain:" FontSize="28" Margin="5,5,5,5" 
+                    <TextBlock Text="Domain:" FontSize="28" Margin="5" 
                                Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                    <ComboBox x:Name="DomainComboBox" Margin="5,5,5,5" SelectedItem="domainItem"  
+                    <ComboBox x:Name="DomainComboBox" Margin="5" SelectedItem="domainItem"  
                               Width="300" FontSize="28" Grid.Column="1" Grid.Row="2" SelectedIndex="0">
                         <x:String>NUSSTU</x:String>
                         <x:String>NUSSTF</x:String>
