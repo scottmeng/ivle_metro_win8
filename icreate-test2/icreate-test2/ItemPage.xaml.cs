@@ -46,6 +46,10 @@ namespace icreate_test2
             List<itemNames> tempList = new List<itemNames>();
             tempList.Add(new itemNames() { itemName = "Announcement" }); tempList.Add(new itemNames() { itemName = "Workbin" });
             tempList.Add(new itemNames() { itemName = "MoutiMedia" }); tempList.Add(new itemNames() { itemName = "WebLink" });
+            tempList.Add(new itemNames() { itemName = "WebLink" }); tempList.Add(new itemNames() { itemName = "WebLink" });
+            tempList.Add(new itemNames() { itemName = "WebLink" }); tempList.Add(new itemNames() { itemName = "WebLink" }); tempList.Add(new itemNames() { itemName = "WebLink" });
+            tempList.Add(new itemNames() { itemName = "WebLink" });
+            tempList.Add(new itemNames() { itemName = "WebLink" });
             itemListView.Source = tempList;
         }
         public class itemNames

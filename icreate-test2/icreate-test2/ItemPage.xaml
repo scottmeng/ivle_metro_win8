@@ -38,8 +38,8 @@
                 <GridView.ItemTemplate>
                     <DataTemplate>
                         <Grid Width="200" Height="100">
-                            <TextBlock Text="{Binding moduleCode}" FontSize="31" FontFamily="Segoe UI" FontWeight="Light"
-                                           VerticalAlignment="Top"  HorizontalAlignment="Left"/>
+                            <TextBlock Text="{Binding moduleCode}" FontSize="31" FontFamily="Segoe UI" FontWeight="Light" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                          />
                         </Grid>
                     </DataTemplate>
                 </GridView.ItemTemplate>
@@ -61,9 +61,9 @@
                     </ListView.ItemContainerStyle>
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <Grid Height="180">
+                            <Grid Height="100">
                                 <StackPanel VerticalAlignment="Top" Margin="0" Orientation="Vertical">
-                                    <TextBlock Margin="20,5,20,5" Text="{Binding itemName}"  TextWrapping="NoWrap" FontSize="36"
+                                    <TextBlock Margin="20,5,20,5" Text="{Binding itemName}"  TextWrapping="NoWrap" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center"
                                            TextTrimming="WordEllipsis"/>
                                 </StackPanel>
                             </Grid>
