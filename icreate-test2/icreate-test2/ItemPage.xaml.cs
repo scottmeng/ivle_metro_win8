@@ -255,15 +255,5 @@ namespace icreate_test2
             }
         }
 
-        private void itemList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var radian = sender as ListView;
-            if (radian != null)
-            {
-                int index = Convert.ToInt32(radian.Tag);
-                flipView.SelectedIndex = 1-flipView.SelectedIndex;
-            }
-        }
-
     }
 }

@@ -73,9 +73,8 @@
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
                           ScrollViewer.VerticalScrollBarVisibility="Hidden" 
                           ItemsSource="{Binding Source={StaticResource itemListView}}" 
-                          SelectionChanged="itemList_SelectionChanged"
-                          Tapped="itemChanged_ListViewTapped" IsSwipeEnabled="True"
-                          >
+                          Tapped="itemChanged_ListViewTapped" 
+                          IsSwipeEnabled="True">
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
                             <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -205,6 +204,9 @@
                                 </ItemsControl>
                             </StackPanel>
                         </ScrollViewer>
+                    </FlipViewItem>
+                    <FlipViewItem>
+                        
                     </FlipViewItem>
                 </FlipView>
             </Grid>

@@ -22,11 +22,11 @@
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\Jiajianiu\Documents\GitHub\ivle_metro_win8\icreate-test2\icreate-test2\bin\x86\Debug\icreate-test2.exe">
       <PackagePath>icreate-test2.exe</PackagePath>
-      <Modified>2013-06-25T08:55:21.952</Modified>
+      <Modified>2013-06-25T12:41:20.152</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Jiajianiu\Documents\GitHub\ivle_metro_win8\icreate-test2\icreate-test2\bin\x86\Debug\icreate-test2.pdb">
       <PackagePath>icreate-test2.pdb</PackagePath>
-      <Modified>2013-06-25T08:55:21.930</Modified>
+      <Modified>2013-06-25T12:41:20.137</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Jiajianiu\Documents\GitHub\ivle_metro_win8\icreate-test2\Newtonsoft.Json.dll">
       <PackagePath>Newtonsoft.Json.dll</PackagePath>
@@ -62,7 +62,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Jiajianiu\Documents\GitHub\ivle_metro_win8\icreate-test2\icreate-test2\bin\x86\Debug\ItemPage.xaml">
       <PackagePath>ItemPage.xaml</PackagePath>
-      <Modified>2013-06-25T08:51:23.604</Modified>
+      <Modified>2013-06-25T09:02:27.767</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Jiajianiu\Documents\GitHub\ivle_metro_win8\icreate-test2\icreate-test2\bin\x86\Debug\MainPage.xaml">
       <PackagePath>MainPage.xaml</PackagePath>
