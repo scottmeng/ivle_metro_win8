@@ -16,7 +16,7 @@
         <x:String x:Key="AppName">My Application</x:String>
         <CollectionViewSource x:Name="moduleNameGridView" Source="{Binding Items}"/>
         <CollectionViewSource x:Name="itemListView" Source="{Binding Items}"/>
-        <CollectionViewSource x:Name="announcementListView" Source="{Binding Items}"/>
+        <CollectionViewSource x:Name="newAnnouncementListView" Source="{Binding Items}"/>
     </Page.Resources>
 
     <!--
@@ -73,7 +73,7 @@
                           ItemsSource="{Binding Source={StaticResource itemListView}}" 
                           IsSwipeEnabled="false" 
                           SelectionMode="None" 
-                          IsItemClickEnabled="False">
+                          IsItemClickEnabled="True">
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
                             <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -98,7 +98,54 @@
                 </ListView>
             </Grid>
             <Grid Grid.Column="1">
-                
+                <FlipView x:Name="announcementFlipView">
+                    <FlipViewItem>
+                        <ListView x:Name="announcementListView" 
+                                  ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                                  ScrollViewer.VerticalScrollBarVisibility="Hidden" 
+                                  ItemsSource="{Binding Source={StaticResource newAnnouncementListView}}" >
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                                    <Setter Property="Margin" Value="0,0,0,-6" />
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Height="auto" Background="LightGray">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="20"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel Grid.Column="0">
+                                            <StackPanel.Background>
+                                                <SolidColorBrush Color="{Binding annouceColor}" />
+                                            </StackPanel.Background>
+                                        </StackPanel>
+                                        <StackPanel Grid.Column="1" 
+                                                    VerticalAlignment="Top" 
+                                                    Margin="0" 
+                                                    Orientation="Vertical">
+                                            <TextBlock Margin="20,5,20,5" 
+                                                       Text="{Binding announceName}"  
+                                                       TextWrapping="NoWrap" 
+                                                       Foreground="White" 
+                                                       FontSize="36"
+                                                       TextTrimming="WordEllipsis"/>
+                                            <TextBlock Margin="20,5,20,5" 
+                                                       Height="auto" 
+                                                       Text="{Binding announceContentPreview}" 
+                                                       TextWrapping="Wrap" 
+                                                       Foreground="White" 
+                                                       FontSize="24" 
+                                                       TextTrimming="WordEllipsis"/>
+                                        </StackPanel>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </FlipViewItem>
+                </FlipView>
             </Grid>
         </Grid>
         <VisualStateManager.VisualStateGroups>
