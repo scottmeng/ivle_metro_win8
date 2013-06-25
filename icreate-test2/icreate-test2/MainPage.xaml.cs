@@ -26,22 +26,14 @@ namespace icreate_test2
     /// </summary>
     public sealed partial class MainPage : icreate_test2.Common.LayoutAwarePage
     {
-        private List<DataStructure.Module> modules;
-        private List<DataStructure.Announcement> recentAnnouncements;
-        private List<DataStructure.Class> classes;
-        private List<DataStructure.SemesterInfo> sems;
-
         //temp
         private List<object> week;
 
         public MainPage()
         {
             this.InitializeComponent();
-
-            modules = new List<DataStructure.Module>();
-            recentAnnouncements = new List<DataStructure.Announcement>();
-            classes = new List<DataStructure.Class>();
-            sems = new List<DataStructure.SemesterInfo>();
+          
+            Utils.DataManager.InitializeDataLists();
 
             //temp
             week = new List<object>();
@@ -64,14 +56,14 @@ namespace icreate_test2
             await GetModulesAsync();
             await GetClassesAsync();
 
-            this.recentAnnouncements.Sort(new AnnouncementTimeComparer());
+            Utils.DataManager.SortAnnouncementWrtTime();
 
-            moduleGridView.Source = modules;
-            announcementListView.ItemsSource = recentAnnouncements;
+            moduleGridView.Source = Utils.DataManager.GetModules();
+            announcementListView.ItemsSource = Utils.DataManager.GetAnnouncements();
 
             //temp
             calendarFlipView.Source = week;
-            dailyListView.Source = modules;
+            dailyListView.Source = Utils.DataManager.GetClasses();
         }
 
         /// <summary>
@@ -91,7 +83,7 @@ namespace icreate_test2
 
         private async Task GetClassesAsync()
         {
-            foreach (DataStructure.SemesterInfo sem in sems)
+            foreach (DataStructure.SemesterInfo sem in Utils.DataManager.GetSems())
             {
                 Dictionary<string, string> parameters = new Dictionary<string, string>();
                 parameters.Add("AcadYear", sem.AcademicYear);
@@ -105,7 +97,7 @@ namespace icreate_test2
                     foreach (DataStructure.Class mClass in classWrapper.classes)
                     {
                         mClass.GenerateDisplay();
-                        classes.Add(mClass);
+                        Utils.DataManager.AddClass(mClass);
                     }
                 }
 
@@ -130,25 +122,17 @@ namespace icreate_test2
                     foreach (DataStructure.Announcement announcement in module.moduleAnnouncements)
                     {
                         announcement.GenerateDisplayContent(module.moduleCode);
-                        this.recentAnnouncements.Add(announcement);
+                        Utils.DataManager.AddAnnouncement(announcement);
                     }
                     module.SetModuleColor(DataStructure.Colors.GetModuleColor(iterator));
 
                     DataStructure.SemesterInfo newSemInfo = new DataStructure.SemesterInfo(module.moduleAcadYear, 
                                                                                            module.moduleSemester.Replace("Semester ", String.Empty));
-                    if (!sems.Contains(newSemInfo, new SeminfoEqualityComparer()))
-                    {
-                        sems.Add(newSemInfo);
-                    }
 
-                    this.modules.Add(module);
+                    Utils.DataManager.AddSemInfo(newSemInfo);
+                    Utils.DataManager.AddModule(module);
                     iterator++;
                 }
-
-                //temp
-                week.Add(modules);
-                week.Add(modules);
-
             }
         }
 
