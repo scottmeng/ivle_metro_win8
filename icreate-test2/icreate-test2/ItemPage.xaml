@@ -16,6 +16,7 @@
         <x:String x:Key="AppName">My Application</x:String>
         <CollectionViewSource x:Name="moduleNameGridView" Source="{Binding Items}"/>
         <CollectionViewSource x:Name="itemListView" Source="{Binding Items}"/>
+        <CollectionViewSource x:Name="announcementListView" Source="{Binding Items}"/>
     </Page.Resources>
 
     <!--
@@ -30,16 +31,31 @@
         </Grid.RowDefinitions>
 
         <!-- Back button and page title -->
-        <StackPanel Orientation="Horizontal" Grid.Row="0">
-            <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/> 
-            <TextBlock VerticalAlignment="Center" x:Name="mainModuleName" FontSize="42" Style="{StaticResource TitleTextStyle}" />
-            <GridView x:Name="moduleListView" Margin="20,20,50,20"   ItemsSource="{Binding Source={StaticResource moduleNameGridView}}"  
-                          ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Disabled" IsSwipeEnabled="false" SelectionMode="None" IsItemClickEnabled="False">
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.ColumnSpan="2">
+            <Button x:Name="backButton" Click="GoBack" 
+                    IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" 
+                    Style="{StaticResource BackButtonStyle}"/> 
+            <TextBlock VerticalAlignment="Center" 
+                       x:Name="mainModuleName" 
+                       FontSize="42" 
+                       Style="{StaticResource TitleTextStyle}" />
+            <GridView x:Name="moduleListView" 
+                      Margin="20,20,50,20"   
+                      ItemsSource="{Binding Source={StaticResource moduleNameGridView}}"  
+                      ScrollViewer.HorizontalScrollBarVisibility="Hidden" 
+                      ScrollViewer.VerticalScrollBarVisibility="Disabled" 
+                      IsSwipeEnabled="false" 
+                      SelectionMode="None" 
+                      IsItemClickEnabled="False">
                 <GridView.ItemTemplate>
                     <DataTemplate>
                         <Grid Width="200" Height="100">
-                            <TextBlock Text="{Binding moduleCode}" FontSize="31" FontFamily="Segoe UI" FontWeight="Light" VerticalAlignment="Center" HorizontalAlignment="Center"
-                                          />
+                            <TextBlock Text="{Binding moduleCode}" 
+                                       FontSize="31" 
+                                       FontFamily="Segoe UI" 
+                                       FontWeight="Light" 
+                                       VerticalAlignment="Center" 
+                                       HorizontalAlignment="Center"/>
                         </Grid>
                     </DataTemplate>
                 </GridView.ItemTemplate>
@@ -50,9 +66,14 @@
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
-            <Grid>
-                <ListView x:Name="itemList" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Hidden" 
-          ItemsSource="{Binding Source={StaticResource itemListView}}" IsSwipeEnabled="false" SelectionMode="None" IsItemClickEnabled="False">
+            <Grid Grid.Column="0">
+                <ListView x:Name="itemList" 
+                          ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                          ScrollViewer.VerticalScrollBarVisibility="Hidden" 
+                          ItemsSource="{Binding Source={StaticResource itemListView}}" 
+                          IsSwipeEnabled="false" 
+                          SelectionMode="None" 
+                          IsItemClickEnabled="False">
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
                             <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -63,13 +84,21 @@
                         <DataTemplate>
                             <Grid Height="100">
                                 <StackPanel VerticalAlignment="Top" Margin="0" Orientation="Vertical">
-                                    <TextBlock Margin="20,5,20,5" Text="{Binding itemName}"  TextWrapping="NoWrap" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center"
-                                           TextTrimming="WordEllipsis"/>
+                                    <TextBlock Margin="20,5,20,5" 
+                                               Text="{Binding itemName}"  
+                                               TextWrapping="NoWrap" 
+                                               FontSize="36" 
+                                               HorizontalAlignment="Center" 
+                                               VerticalAlignment="Center"
+                                               TextTrimming="WordEllipsis"/>
                                 </StackPanel>
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
+            </Grid>
+            <Grid Grid.Column="1">
+                
             </Grid>
         </Grid>
         <VisualStateManager.VisualStateGroups>

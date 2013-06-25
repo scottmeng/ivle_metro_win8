@@ -125,25 +125,6 @@
                               ZoomMode="Disabled">
                     
                     <StackPanel Orientation="Horizontal">
-
-                <!--<GridView x:Name="moduleListView" Margin="20,20,50,20" ItemsSource="{Binding Source={StaticResource moduleGridView}}"  
-                          ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.IsHorizontalRailEnabled="False" ScrollViewer.VerticalScrollBarVisibility="Disabled" IsSwipeEnabled="false" SelectionMode="None" IsItemClickEnabled="False">
-                    <GridView.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Width="400" Height="200">
-                                <Grid.Background>
-                                    <SolidColorBrush Color="{Binding moduleColor}" />
-                                </Grid.Background>
-                                <TextBlock Text="{Binding moduleCode}" Margin="15" Foreground="White" FontSize="42" FontFamily="Segoe UI" FontWeight="Light"
-                                           VerticalAlignment="Top"  HorizontalAlignment="Left"/>
-                                <TextBlock Text="{Binding moduleName}" Margin="15" Foreground="White" FontSize="24" FontFamily="Segoe UI" FontWeight="Light"
-                                           VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
-                            </Grid>
-                        </DataTemplate>
-                    </GridView.ItemTemplate>
-                </GridView>-->
-
-
                         <ItemsControl x:ConnectionId='4' x:Name="moduleListView" 
                                       ItemsSource="{Binding Source={StaticResource moduleGridView}}"  
                                       Margin="20,20,50,20" 
@@ -205,9 +186,15 @@
                     </Style>
                     <FlipView.ItemTemplate>
                         <DataTemplate>-->
-                        <ListView x:Name="timetable" ItemsSource="{Binding Source={StaticResource dailyListView}}" SelectionMode="None" 
-                                      Background="Transparent" IsSwipeEnabled="false" IsItemClickEnabled="False" ScrollViewer.HorizontalScrollMode="Disabled"
-                                      ScrollViewer.VerticalScrollMode="Auto" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+                        <ListView x:Name="timetable" 
+                                  ItemsSource="{Binding Source={StaticResource dailyListView}}" 
+                                  SelectionMode="None" 
+                                  Background="Transparent" 
+                                  IsSwipeEnabled="false" 
+                                  IsItemClickEnabled="False" 
+                                  ScrollViewer.HorizontalScrollMode="Disabled"
+                                  ScrollViewer.VerticalScrollMode="Auto" 
+                                  ScrollViewer.VerticalScrollBarVisibility="Hidden">
                             <ListView.Header>
                                 <StackPanel Orientation="Horizontal" Width="350">
                                     <StackPanel.Style>
@@ -215,16 +202,36 @@
                                             <Setter Property="HorizontalAlignment" Value="Stretch"/>
                                         </Style>
                                     </StackPanel.Style>
-                                    <Button x:ConnectionId='5' Content="&lt;" Margin="5"                 FontSize="38" Foreground="Gray" Opacity="0.7"
-                                            HorizontalAlignment="Left" VerticalAlignment="Bottom" FontWeight="Light">
+                                    <Button x:ConnectionId='5' Content="&lt;" 
+                                            Margin="5" 
+                                                            
+                                            FontSize="38" 
+                                            Foreground="Gray" 
+                                            Opacity="0.7"
+                                            HorizontalAlignment="Left" 
+                                            VerticalAlignment="Bottom" 
+                                            FontWeight="Light">
                                         <Button.Background>
                                             <SolidColorBrush Color="Transparent"/>
                                         </Button.Background>
                                     </Button>
-                                    <TextBlock Text="Today" FontSize="38" Foreground="LightSlateGray" HorizontalAlignment="Center" 
-                                               Margin="5" Opacity="0.7" VerticalAlignment="Bottom" FontWeight="Light"/>
-                                    <Button x:ConnectionId='6' Content=">" Margin="5"                 FontSize="38" Foreground="Gray" Opacity="0.7"
-                                            HorizontalAlignment="Right" VerticalAlignment="Bottom" FontWeight="Light">
+                                    <TextBlock Text="Today" 
+                                               FontSize="38" 
+                                               Foreground="LightSlateGray" 
+                                               HorizontalAlignment="Center" 
+                                               Margin="5" 
+                                               Opacity="0.7" 
+                                               VerticalAlignment="Bottom" 
+                                               FontWeight="Light"/>
+                                    <Button x:ConnectionId='6' Content=">" 
+                                            Margin="5" 
+                                                            
+                                            FontSize="38" 
+                                            Foreground="Gray" 
+                                            Opacity="0.7"
+                                            HorizontalAlignment="Right" 
+                                            VerticalAlignment="Bottom" 
+                                            FontWeight="Light">
                                         <Button.Background>
                                             <SolidColorBrush Color="Transparent"/>
                                         </Button.Background>
@@ -243,13 +250,30 @@
                                                 <SolidColorBrush Color="{Binding moduleColor}"/>
                                             </StackPanel.Background>
                                         </StackPanel>
-                                        <StackPanel Grid.Column="0" Orientation="Vertical" Height="200" Width="330" Margin='0,-2' Background="Teal">
-                                            <TextBlock Margin="20,0" Text="{Binding moduleCode}"  TextWrapping="NoWrap" Foreground="White" 
-                                                                           FontSize="36" HorizontalAlignment="Stretch"/>
-                                            <TextBlock Margin="20,0" Text="{Binding moduleName}" TextWrapping="NoWrap" Foreground="White" 
-                                                                           FontSize="18" HorizontalAlignment="Stretch" />
-                                            <TextBlock Margin="20,0" Text="UTown Auditorium" TextWrapping="NoWrap"  
-                                                                           HorizontalAlignment="Right" Foreground="White" FontSize="18" />
+                                        <StackPanel Grid.Column="0" 
+                                                    Orientation="Vertical" 
+                                                    Height="200" 
+                                                    Width="330" 
+                                                    Margin='0,-2' 
+                                                    Background="Teal">
+                                            <TextBlock Margin="20,0" 
+                                                       Text="{Binding moduleCode}"  
+                                                       TextWrapping="NoWrap" 
+                                                       Foreground="White" 
+                                                       FontSize="36" 
+                                                       HorizontalAlignment="Stretch"/>
+                                            <TextBlock Margin="20,0" 
+                                                       Text="{Binding moduleName}" 
+                                                       TextWrapping="NoWrap" 
+                                                       Foreground="White" 
+                                                       FontSize="18" 
+                                                       HorizontalAlignment="Stretch" />
+                                            <TextBlock Margin="20,0" 
+                                                       Text="UTown Auditorium" 
+                                                       TextWrapping="NoWrap"  
+                                                       HorizontalAlignment="Right" 
+                                                       Foreground="White" 
+                                                       FontSize="18" />
                                         </StackPanel>
                                     </Grid>
                                 </DataTemplate>
