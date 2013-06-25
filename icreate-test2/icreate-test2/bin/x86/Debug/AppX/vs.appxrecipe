@@ -5,7 +5,7 @@
     <WindowsUser>Jiajianiu</WindowsUser>
     <SolutionConfiguration>Debug|x86</SolutionConfiguration>
     <PackageArchitecture>x86</PackageArchitecture>
-    <RegisteredManifestChecksum>11A17D7EA058B835BE4D1B4943D4D160DF3BB8AC67D4548D342589ED1B908171</RegisteredManifestChecksum>
+    <RegisteredManifestChecksum>724291122AB1897937DD93E91C8702CAD50703DDF7CA1F4EB356E20B1529B8B3</RegisteredManifestChecksum>
     <RegisteredPackageMoniker>ab2dcaa8-51d3-4385-9200-8615562bec1f_1.0.0.0_x86__fk5jq6zg85znw</RegisteredPackageMoniker>
     <RegisteredUserModeAppID>ab2dcaa8-51d3-4385-9200-8615562bec1f_fk5jq6zg85znw!App</RegisteredUserModeAppID>
     <RegisteredPackageID>ab2dcaa8-51d3-4385-9200-8615562bec1f</RegisteredPackageID>
@@ -16,17 +16,17 @@
     <AppXManifest Include="C:\Users\Jiajianiu\Documents\GitHub\ivle_metro_win8\icreate-test2\icreate-test2\bin\x86\Debug\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2013-06-24T18:32:13.551</Modified>
+      <Modified>2013-06-25T07:28:18.645</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\Jiajianiu\Documents\GitHub\ivle_metro_win8\icreate-test2\icreate-test2\bin\x86\Debug\icreate-test2.exe">
       <PackagePath>icreate-test2.exe</PackagePath>
-      <Modified>2013-06-25T06:00:25.769</Modified>
+      <Modified>2013-06-25T07:28:18.407</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Jiajianiu\Documents\GitHub\ivle_metro_win8\icreate-test2\icreate-test2\bin\x86\Debug\icreate-test2.pdb">
       <PackagePath>icreate-test2.pdb</PackagePath>
-      <Modified>2013-06-25T06:00:25.749</Modified>
+      <Modified>2013-06-25T07:28:18.384</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Jiajianiu\Documents\GitHub\ivle_metro_win8\icreate-test2\Newtonsoft.Json.dll">
       <PackagePath>Newtonsoft.Json.dll</PackagePath>
@@ -62,7 +62,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Jiajianiu\Documents\GitHub\ivle_metro_win8\icreate-test2\icreate-test2\bin\x86\Debug\ItemPage.xaml">
       <PackagePath>ItemPage.xaml</PackagePath>
-      <Modified>2013-06-25T06:00:24.096</Modified>
+      <Modified>2013-06-25T07:25:57.351</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Jiajianiu\Documents\GitHub\ivle_metro_win8\icreate-test2\icreate-test2\bin\x86\Debug\MainPage.xaml">
       <PackagePath>MainPage.xaml</PackagePath>

@@ -7,7 +7,7 @@
     <UseSimulator>True</UseSimulator>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
-    <UseSimulator>False</UseSimulator>
+    <UseSimulator>True</UseSimulator>
   </PropertyGroup>
   <PropertyGroup>
     <ProjectView>ProjectFiles</ProjectView>

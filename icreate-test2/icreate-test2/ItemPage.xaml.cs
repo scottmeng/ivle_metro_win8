@@ -29,7 +29,8 @@ namespace icreate_test2
         private List<DataStructure.Announcement> recentAnnouncements;
         private List<DataStructure.Class> classes;
         private List<DataStructure.SemesterInfo> sems;
-
+        private List<DataStructure.Folder> folders;
+        private List<DataStructure.File> files;
         //temp
         private List<object> week;
 
@@ -70,18 +71,54 @@ namespace icreate_test2
             tempList.Add(new itemNames() { itemName = "WebLink" }); tempList.Add(new itemNames() { itemName = "WebLink" }); tempList.Add(new itemNames() { itemName = "WebLink" });
             tempList.Add(new itemNames() { itemName = "WebLink" });
             itemListView.Source = tempList;
-            if (itemList.SelectedIndex == 1)
-            {
-                announcementFlipView.SelectedIndex = itemList.SelectedIndex;
-            }
+
 
             await GetModulesAsync();
             await GetClassesAsync();
 
             this.recentAnnouncements.Sort(new AnnouncementTimeComparer());
-
-
             announcementListView.ItemsSource = recentAnnouncements;
+
+            files = new List<DataStructure.File>();
+            folders = new List<DataStructure.Folder>();
+            files.Add(new DataStructure.File("1", "......", "filedescription1", 1000, "xlsx", false, new DateTime(), new DataStructure.Member("1", "2", "3", "4")));
+            files.Add(new DataStructure.File("2", "filename2", "filedescription2", 1000, "xlsx", false, new DateTime(), new DataStructure.Member("1", "2", "3", "4")));
+            files.Add(new DataStructure.File("3", "filename3", "filedescription3", 1000, "xlsx", false, new DateTime(), new DataStructure.Member("1", "2", "3", "4")));
+            folders.Add(new DataStructure.Folder("1", "foldername1", new DateTime(), new DateTime(), 1, null, null));
+            folders.Add(new DataStructure.Folder("2", "foldername2", new DateTime(), new DateTime(), 1, null, null));
+            folders.Add(new DataStructure.Folder("3", "foldername3", new DateTime(), new DateTime(), 1, null, null));
+            folders.Add(new DataStructure.Folder("3", "foldername3", new DateTime(), new DateTime(), 1, null, null));
+            folders.Add(new DataStructure.Folder("3", "foldername3", new DateTime(), new DateTime(), 1, null, null));
+            folders.Add(new DataStructure.Folder("3", "foldername3", new DateTime(), new DateTime(), 1, null, null));
+            folders.Add(new DataStructure.Folder("3", "foldername3", new DateTime(), new DateTime(), 1, null, null));
+            folders.Add(new DataStructure.Folder("3", "foldername3", new DateTime(), new DateTime(), 1, null, null));
+            folders.Add(new DataStructure.Folder("3", "foldername3", new DateTime(), new DateTime(), 1, null, null));
+            folders.Add(new DataStructure.Folder("3", "foldername3", new DateTime(), new DateTime(), 1, null, null));
+            folders.Add(new DataStructure.Folder("3", "foldername3", new DateTime(), new DateTime(), 1, null, null));
+            folders.Add(new DataStructure.Folder("1", "foldername1", new DateTime(), new DateTime(), 1, null, null));
+            folders.Add(new DataStructure.Folder("2", "foldername2", new DateTime(), new DateTime(), 1, null, null));
+            folders.Add(new DataStructure.Folder("3", "foldername3", new DateTime(), new DateTime(), 1, null, null));
+            folders.Add(new DataStructure.Folder("3", "foldername3", new DateTime(), new DateTime(), 1, null, null));
+            folders.Add(new DataStructure.Folder("3", "foldername3", new DateTime(), new DateTime(), 1, null, null));
+            folders.Add(new DataStructure.Folder("3", "foldername3", new DateTime(), new DateTime(), 1, null, null));
+            folders.Add(new DataStructure.Folder("3", "foldername3", new DateTime(), new DateTime(), 1, null, null));
+            folders.Add(new DataStructure.Folder("3", "foldername3", new DateTime(), new DateTime(), 1, null, null));
+            folders.Add(new DataStructure.Folder("3", "foldername3", new DateTime(), new DateTime(), 1, null, null));
+            folders.Add(new DataStructure.Folder("3", "foldername3", new DateTime(), new DateTime(), 1, null, null));
+            folders.Add(new DataStructure.Folder("3", "foldername3", new DateTime(), new DateTime(), 1, null, null));
+            folders.Add(new DataStructure.Folder("1", "foldername1", new DateTime(), new DateTime(), 1, null, null));
+            folders.Add(new DataStructure.Folder("2", "foldername2", new DateTime(), new DateTime(), 1, null, null));
+            folders.Add(new DataStructure.Folder("3", "foldername3", new DateTime(), new DateTime(), 1, null, null));
+            folders.Add(new DataStructure.Folder("3", "foldername3", new DateTime(), new DateTime(), 1, null, null));
+            folders.Add(new DataStructure.Folder("3", "foldername3", new DateTime(), new DateTime(), 1, null, null));
+            folders.Add(new DataStructure.Folder("3", "foldername3", new DateTime(), new DateTime(), 1, null, null));
+            folders.Add(new DataStructure.Folder("3", "foldername3", new DateTime(), new DateTime(), 1, null, null));
+            folders.Add(new DataStructure.Folder("3", "foldername3", new DateTime(), new DateTime(), 1, null, null));
+            folders.Add(new DataStructure.Folder("3", "foldername3", new DateTime(), new DateTime(), 1, null, null));
+            folders.Add(new DataStructure.Folder("3", "foldername3", new DateTime(), new DateTime(), 1, null, null));
+            folders.Add(new DataStructure.Folder("3", "foldername3", new DateTime(), new DateTime(), 1, null, null));
+            folder.Source = folders;
+            file.Source = files;
 
             //temp
             //dailyListView.Source = modules;
@@ -162,7 +199,6 @@ namespace icreate_test2
                         classes.Add(mClass);
                     }
                 }
-
             }
         }
         class AnnouncementTimeComparer : IComparer<DataStructure.Announcement>
@@ -203,6 +239,16 @@ namespace icreate_test2
                 int hCode = sem.AcademicYear.Length ^ sem.Semester.Length;
                 return hCode.GetHashCode();
             }
+        }
+
+        private void itemChanged_ListViewTapped(object sender, TappedRoutedEventArgs e)
+        {
+            flipView.SelectedIndex = itemList.SelectedIndex;
+        }
+
+        private void itemList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            flipView.SelectedItem = itemList.SelectedIndex;
         }
 
     }

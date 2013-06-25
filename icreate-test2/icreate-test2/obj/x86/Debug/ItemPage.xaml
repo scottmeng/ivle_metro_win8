@@ -17,6 +17,8 @@
         <CollectionViewSource x:Name="moduleNameGridView" Source="{Binding Items}"/>
         <CollectionViewSource x:Name="itemListView" Source="{Binding Items}"/>
         <CollectionViewSource x:Name="newAnnouncementListView" Source="{Binding Items}"/>
+        <CollectionViewSource x:Name="file" Source="{Binding Items}"/>
+        <CollectionViewSource x:Name="folder" Source="{Binding Items}"/>
     </Page.Resources>
 
     <!--
@@ -32,7 +34,7 @@
 
         <!-- Back button and page title -->
         <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.ColumnSpan="2">
-            <Button x:ConnectionId='1' x:Name="backButton"                
+            <Button x:ConnectionId='2' x:Name="backButton"                
                     IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" 
                     Style="{StaticResource BackButtonStyle}"/> 
             <TextBlock VerticalAlignment="Center" 
@@ -67,13 +69,15 @@
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
-                <ListView x:Name="itemList" 
+                <ListView x:ConnectionId='1' x:Name="itemList"
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
                           ScrollViewer.VerticalScrollBarVisibility="Hidden" 
                           ItemsSource="{Binding Source={StaticResource itemListView}}" 
-                          IsSwipeEnabled="false" 
-                          SelectionMode="None" 
-                          IsItemClickEnabled="True">
+                          IsSwipeEnabled="True" 
+                          SelectionMode="None"
+                          IsItemClickEnabled="True" 
+                                                                                                          
+                          >
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
                             <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -98,7 +102,7 @@
                 </ListView>
             </Grid>
             <Grid Grid.Column="1">
-                <FlipView x:Name="announcementFlipView">
+                <FlipView x:Name="flipView">
                     <FlipViewItem>
                         <ListView x:Name="announcementListView" 
                                   ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
@@ -113,17 +117,7 @@
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <Grid Height="auto" Background="LightGray">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="20"/>
-                                            <ColumnDefinition Width="*"/>
-                                        </Grid.ColumnDefinitions>
-                                        <StackPanel Grid.Column="0">
-                                            <StackPanel.Background>
-                                                <SolidColorBrush Color="{Binding annouceColor}" />
-                                            </StackPanel.Background>
-                                        </StackPanel>
-                                        <StackPanel Grid.Column="1" 
-                                                    VerticalAlignment="Top" 
+                                        <StackPanel VerticalAlignment="Top" 
                                                     Margin="0" 
                                                     Orientation="Vertical">
                                             <TextBlock Margin="20,5,20,5" 
@@ -144,6 +138,75 @@
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                         </ListView>
+                    </FlipViewItem>
+                    <FlipViewItem>
+                        <ScrollViewer x:Name="scrollViewer" 
+                              HorizontalAlignment="Left" 
+                              VerticalAlignment="Top"
+                              VerticalScrollBarVisibility="Disabled" 
+                              HorizontalScrollBarVisibility="Hidden" 
+                              VerticalScrollMode="Disabled" 
+                              HorizontalScrollMode="Auto" 
+                              ZoomMode="Disabled">
+                            <StackPanel Orientation="Horizontal">
+                                <ItemsControl x:Name="folderItemsControl" 
+                                                ItemsSource="{Binding Source={StaticResource folder}}"  
+                                                Margin="20,20,50,20" >
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapGrid/>
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid Width="300" 
+                                                    Height="100" 
+                                                    Margin="10">
+                                                <Grid.Background>
+                                                    <SolidColorBrush Color="Blue" />
+                                                </Grid.Background>
+                                                <TextBlock Text="{Binding folderName}" 
+                                                            Margin="15" 
+                                                            Foreground="White" 
+                                                            FontSize="30" 
+                                                            FontFamily="Segoe UI" 
+                                                            FontWeight="Light"
+                                                            VerticalAlignment="Top"  
+                                                            HorizontalAlignment="Left"/>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                                <ItemsControl x:Name="fileItemsControl" 
+                                                    ItemsSource="{Binding Source={StaticResource file}}"  
+                                                    Margin="20,20,50,20" >
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapGrid/>
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <Grid Width="300" 
+                                                    Height="100" 
+                                                    Margin="10">
+                                                <Grid.Background>
+                                                    <SolidColorBrush Color="Green" />
+                                                </Grid.Background>
+                                                <TextBlock Text="{Binding fileName}" 
+                                                            Margin="15" 
+                                                            Foreground="White" 
+                                                            FontSize="30" 
+                                                            FontFamily="Segoe UI" 
+                                                            FontWeight="Light"
+                                                            VerticalAlignment="Top"  
+                                                            HorizontalAlignment="Left"/>
+                                            </Grid>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </ScrollViewer>
                     </FlipViewItem>
                 </FlipView>
             </Grid>
