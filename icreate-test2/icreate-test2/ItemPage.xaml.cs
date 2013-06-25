@@ -1,11 +1,11 @@
 ﻿using System;
+using System.Net;
+using System.Text;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
-using System.Threading.Tasks;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -13,9 +13,15 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using Windows.UI;
+using Windows.UI.Popups;
+using System.Net.NetworkInformation;
+using System.Runtime.Serialization.Json;
+using Windows.Data.Json;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 using Newtonsoft.Json;
+
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
 namespace icreate_test2
@@ -241,14 +247,22 @@ namespace icreate_test2
             }
         }
 
-        private void itemChanged_ListViewTapped(object sender, TappedRoutedEventArgs e)
+        private async void itemChanged_ListViewTapped(object sender, TappedRoutedEventArgs e)
         {
-            flipView.SelectedIndex = itemList.SelectedIndex;
+            if (itemList.SelectedIndex < 2)
+            {
+                flipView.SelectedIndex = itemList.SelectedIndex;
+            }
         }
 
         private void itemList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            flipView.SelectedItem = itemList.SelectedIndex;
+            var radian = sender as ListView;
+            if (radian != null)
+            {
+                int index = Convert.ToInt32(radian.Tag);
+                flipView.SelectedIndex = 1-flipView.SelectedIndex;
+            }
         }
 
     }
