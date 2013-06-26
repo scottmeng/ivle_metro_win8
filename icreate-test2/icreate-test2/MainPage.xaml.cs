@@ -32,6 +32,10 @@ namespace icreate_test2
         public MainPage()
         {
             this.InitializeComponent();
+            
+            // cache the page for future usage
+            this.NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Enabled;
+
 
             //temp
             week = new List<object>();          
@@ -48,7 +52,7 @@ namespace icreate_test2
         /// </param>
         /// <param name="pageState">A dictionary of state preserved by this page during an earlier
         /// session.  This will be null the first time a page is visited.</param>
-        protected async override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
+        protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
             Utils.DataManager.SortAnnouncementWrtTime();
 
@@ -102,9 +106,11 @@ namespace icreate_test2
 
         private void ModuleTileTapped(object sender, TappedRoutedEventArgs e)
         {
-            // 
+            // find the selected module and get the index of this module in module list
+            // pass the index of the selected module as a parameter to module page
             DataStructure.Module selectedModule = (e.OriginalSource as FrameworkElement).DataContext as DataStructure.Module;
-            this.Frame.Navigate(typeof(ItemPage));
+            this.Frame.Navigate(typeof(ItemPage), Utils.DataManager.GetModuleIndex(selectedModule));
+            
         }
     }
 
