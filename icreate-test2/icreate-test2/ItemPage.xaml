@@ -19,6 +19,7 @@
         <CollectionViewSource x:Name="newAnnouncementListView" Source="{Binding Items}"/>
         <CollectionViewSource x:Name="file" Source="{Binding Items}"/>
         <CollectionViewSource x:Name="folder" Source="{Binding Items}"/>
+        <CollectionViewSource x:Name="moduleInfo" Source="{Binding Items}"/>
     </Page.Resources>
 
     <!--
@@ -146,15 +147,11 @@
                                       HorizontalScrollMode="Auto" 
                                       ZoomMode="Disabled">
                             <StackPanel Orientation="Horizontal">
-                                <ItemsControl x:Name="folderItemsControl" 
+                                <ListView x:Name="folderItemsControl" 
                                                 ItemsSource="{Binding Source={StaticResource folder}}"  
+                                                IsItemClickEnabled="True"
                                                 Margin="20,20,50,20" >
-                                    <ItemsControl.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                            <WrapGrid/>
-                                        </ItemsPanelTemplate>
-                                    </ItemsControl.ItemsPanel>
-                                    <ItemsControl.ItemTemplate>
+                                    <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <Grid Width="300" 
                                                     Height="100" 
@@ -172,8 +169,8 @@
                                                             HorizontalAlignment="Left"/>
                                             </Grid>
                                         </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-                                </ItemsControl>
+                                    </ListView.ItemTemplate>
+                                </ListView>
                                 <ItemsControl x:Name="fileItemsControl" 
                                                     ItemsSource="{Binding Source={StaticResource file}}"  
                                                     Margin="20,20,50,20" >
@@ -206,7 +203,54 @@
                         </ScrollViewer>
                     </FlipViewItem>
                     <FlipViewItem>
-                        
+                        <Grid>
+                            <ItemsControl x:Name="moduleGrid" ItemsSource="{Binding Source={StaticResource moduleInfo}}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="auto"/>
+                                                <RowDefinition Height="auto"/>
+                                                <RowDefinition Height="auto"/>
+                                                <RowDefinition Height="auto"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid Grid.Row="0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="1*"/>
+                                                    <ColumnDefinition Width="2*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Text="Module Code" Grid.Column="0"/>
+                                                <TextBlock Text="{Binding moduleCode}" Grid.Column="1"/>
+                                            </Grid>
+                                            <Grid Grid.Row="1">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="1*"/>
+                                                    <ColumnDefinition Width="2*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Text="Module Name" Grid.Column="0"/>
+                                                <TextBlock Text="{Binding moduleName}" Grid.Column="1"/>
+                                            </Grid>
+                                            <Grid Grid.Row="2">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="1*"/>
+                                                    <ColumnDefinition Width="2*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Text="Module Mc" Grid.Column="0"/>
+                                                <TextBlock Text="{Binding moduleMc}" Grid.Column="1"/>
+                                            </Grid>
+                                            <Grid Grid.Row="3">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="1*"/>
+                                                    <ColumnDefinition Width="2*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Text="Module Acad Year" Grid.Column="0"/>
+                                                <TextBlock Text="{Binding moduleAcadYear}" Grid.Column="1"/>
+                                            </Grid>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </Grid>
                     </FlipViewItem>
                 </FlipView>
             </Grid>

@@ -8,6 +8,7 @@ namespace icreate_test2.Utils
 {
     static class DataManager
     {
+        private static bool isLoaded;
         private static List<DataStructure.Module> _modules;
         private static List<DataStructure.Announcement> _announcements;
         private static List<DataStructure.Class> _classes;
@@ -19,6 +20,8 @@ namespace icreate_test2.Utils
             _announcements = new List<DataStructure.Announcement>();
             _classes = new List<DataStructure.Class>();
             _sems = new List<DataStructure.SemesterInfo>();
+
+            isLoaded = false;
         }
 
         public static List<DataStructure.Module> GetModules()
