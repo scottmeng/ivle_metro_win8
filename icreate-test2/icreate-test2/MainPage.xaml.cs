@@ -32,12 +32,9 @@ namespace icreate_test2
         public MainPage()
         {
             this.InitializeComponent();
-          
-            Utils.DataManager.InitializeDataLists();
 
             //temp
-            week = new List<object>();
-          
+            week = new List<object>();          
         }
 
       
@@ -53,9 +50,6 @@ namespace icreate_test2
         /// session.  This will be null the first time a page is visited.</param>
         protected async override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
-            await GetModulesAsync();
-            await GetClassesAsync();
-
             Utils.DataManager.SortAnnouncementWrtTime();
 
             moduleGridView.Source = Utils.DataManager.GetModules();
@@ -79,102 +73,6 @@ namespace icreate_test2
         private void ItemListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
-        }
-
-        private async Task GetClassesAsync()
-        {
-            foreach (DataStructure.SemesterInfo sem in Utils.DataManager.GetSems())
-            {
-                Dictionary<string, string> parameters = new Dictionary<string, string>();
-                parameters.Add("AcadYear", sem.AcademicYear);
-                parameters.Add("Semester", sem.Semester);
-
-                String classesResponse = await Utils.RequestSender.GetResponseStringAsync("Timetable_Student", parameters);
-                DataStructure.ClassWrapper classWrapper = JsonConvert.DeserializeObject<DataStructure.ClassWrapper>(classesResponse);
-
-                if (classWrapper.comments.Equals("Valid login!"))
-                {
-                    foreach (DataStructure.Class mClass in classWrapper.classes)
-                    {
-                        mClass.GenerateDisplay();
-                        Utils.DataManager.AddClass(mClass);
-                    }
-                }
-
-            }
-        }
-
-        private async Task GetModulesAsync()
-        {
-            int iterator = 0;
-
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
-            parameters.Add("Duration", "0");
-            parameters.Add("IncludeAllInfo", "true");
-
-            String modulesResponse = await Utils.RequestSender.GetResponseStringAsync("Modules", parameters);
-            DataStructure.ModuleInfoWrapper moduleWrapper = JsonConvert.DeserializeObject<DataStructure.ModuleInfoWrapper>(modulesResponse);
-
-            if (moduleWrapper.comments.Equals("Valid login!"))
-            {
-                foreach (DataStructure.Module module in moduleWrapper.modules)
-                {
-                    foreach (DataStructure.Announcement announcement in module.moduleAnnouncements)
-                    {
-                        announcement.GenerateDisplayContent(module.moduleCode);
-                        Utils.DataManager.AddAnnouncement(announcement);
-                    }
-                    module.SetModuleColor(DataStructure.Colors.GetModuleColor(iterator));
-
-                    DataStructure.SemesterInfo newSemInfo = new DataStructure.SemesterInfo(module.moduleAcadYear, 
-                                                                                           module.moduleSemester.Replace("Semester ", String.Empty));
-
-                    Utils.DataManager.AddSemInfo(newSemInfo);
-                    Utils.DataManager.AddModule(module);
-                    iterator++;
-                }
-            }
-        }
-
-        class SeminfoEqualityComparer : IEqualityComparer<DataStructure.SemesterInfo>
-        {
-            public bool Equals(DataStructure.SemesterInfo s1, DataStructure.SemesterInfo s2)
-            {
-                if (s1.Semester == s2.Semester && s1.AcademicYear == s2.AcademicYear)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-
-            public int GetHashCode(DataStructure.SemesterInfo sem)
-            {
-                int hCode = sem.AcademicYear.Length ^ sem.Semester.Length;
-                return hCode.GetHashCode();
-            }
-        }
-
-        class AnnouncementTimeComparer : IComparer<DataStructure.Announcement>
-        {
-            // Compares the published date of the announcement
-            public int Compare(DataStructure.Announcement announce1, DataStructure.Announcement announce2)
-            {
-                if (announce1.announceTime.CompareTo(announce2.announceTime) != 0)
-                {
-                    return announce1.announceTime.CompareTo(announce2.announceTime);
-                }
-                else if (announce1.announceIsRead.CompareTo(announce2.announceIsRead) != 0)
-                {
-                    return announce1.announceIsRead.CompareTo(announce2.announceIsRead);
-                }
-                else
-                {
-                    return announce1.announceName.CompareTo(announce2.announceName);
-                }
-            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

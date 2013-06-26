@@ -41,6 +41,8 @@ namespace icreate_test2
             hideUserInfo.Begin();
             myStoryboard.Begin();
             myStoryboard.Completed += myStoryboard_Completed;
+            Utils.DataManager.InitializeDataLists();
+
         }
 
         void myStoryboard_Completed(object sender, object e)
@@ -83,6 +85,10 @@ namespace icreate_test2
                     // check if token is valid
                     if (await Utils.TokenManager.IsTokenValid())
                     {
+                        // load data on modules and classes
+                        await GetModulesAsync();
+                        await GetClassesAsync();
+
                         // if so, hide progress circle
                         ProgressRing.IsActive = false;
                         // navigate to main menu page
@@ -139,6 +145,10 @@ namespace icreate_test2
                     // update token
                     Utils.TokenManager.StoreToken();
                     SaveUserCredentials();
+
+                    // load data on modules and classes
+                    await GetModulesAsync();
+                    await GetClassesAsync();
 
                     // navigate to the home page
                     this.Frame.Navigate(typeof(MainPage));
@@ -203,6 +213,61 @@ namespace icreate_test2
             PasswordBox.IsEnabled = true;
             DomainComboBox.IsEnabled = true;
             LoginButton.IsEnabled = true;
+        }
+
+        private async Task GetClassesAsync()
+        {
+            foreach (DataStructure.SemesterInfo sem in Utils.DataManager.GetSems())
+            {
+                Dictionary<string, string> parameters = new Dictionary<string, string>();
+                parameters.Add("AcadYear", sem.AcademicYear);
+                parameters.Add("Semester", sem.Semester);
+
+                String classesResponse = await Utils.RequestSender.GetResponseStringAsync("Timetable_Student", parameters);
+                DataStructure.ClassWrapper classWrapper = JsonConvert.DeserializeObject<DataStructure.ClassWrapper>(classesResponse);
+
+                if (classWrapper.comments.Equals("Valid login!"))
+                {
+                    foreach (DataStructure.Class mClass in classWrapper.classes)
+                    {
+                        mClass.GenerateDisplay();
+                        Utils.DataManager.AddClass(mClass);
+                    }
+                }
+
+            }
+        }
+
+        private async Task GetModulesAsync()
+        {
+            int iterator = 0;
+
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters.Add("Duration", "0");
+            parameters.Add("IncludeAllInfo", "true");
+
+            String modulesResponse = await Utils.RequestSender.GetResponseStringAsync("Modules", parameters);
+            DataStructure.ModuleInfoWrapper moduleWrapper = JsonConvert.DeserializeObject<DataStructure.ModuleInfoWrapper>(modulesResponse);
+
+            if (moduleWrapper.comments.Equals("Valid login!"))
+            {
+                foreach (DataStructure.Module module in moduleWrapper.modules)
+                {
+                    foreach (DataStructure.Announcement announcement in module.moduleAnnouncements)
+                    {
+                        announcement.GenerateDisplayContent(module.moduleCode);
+                        Utils.DataManager.AddAnnouncement(announcement);
+                    }
+                    module.SetModuleColor(DataStructure.Colors.GetModuleColor(iterator));
+
+                    DataStructure.SemesterInfo newSemInfo = new DataStructure.SemesterInfo(module.moduleAcadYear,
+                                                                                           module.moduleSemester.Replace("Semester ", String.Empty));
+
+                    Utils.DataManager.AddSemInfo(newSemInfo);
+                    Utils.DataManager.AddModule(module);
+                    iterator++;
+                }
+            }
         }
     }
 }
