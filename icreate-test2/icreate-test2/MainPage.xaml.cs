@@ -56,7 +56,6 @@ namespace icreate_test2
             announcementListView.ItemsSource = Utils.DataManager.GetAnnouncements();
 
             //temp
-            calendarFlipView.Source = week;
             dailyListView.Source = Utils.DataManager.GetClasses();
         }
 
