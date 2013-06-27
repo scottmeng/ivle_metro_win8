@@ -232,15 +232,15 @@
                                 </Button>
                             </StackPanel>
                             <ListView x:Name="timetable" Margin="10,0,0,20" Grid.Row="1"
-                                  ItemsSource="{Binding Source={StaticResource dailyListView}}" 
-                                  SelectionMode="None" 
-                                  Background="Transparent" 
-                                  IsSwipeEnabled="false" 
-                                  IsItemClickEnabled="False" 
-                                  ScrollViewer.HorizontalScrollMode="Disabled"
-                                  ScrollViewer.VerticalScrollMode="Enabled" 
-                                  ScrollViewer.VerticalScrollBarVisibility="Hidden"
-                                  ScrollViewer.IsVerticalRailEnabled="False">
+                                      ItemsSource="{Binding Source={StaticResource dailyListView}}" 
+                                      SelectionMode="None" 
+                                      Background="Transparent" 
+                                      IsSwipeEnabled="false" 
+                                      IsItemClickEnabled="False" 
+                                      ScrollViewer.HorizontalScrollMode="Disabled"
+                                      ScrollViewer.VerticalScrollMode="Enabled" 
+                                      ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                                      ScrollViewer.IsVerticalRailEnabled="False">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <Grid Height="200" Width="350" Margin="0,-4">

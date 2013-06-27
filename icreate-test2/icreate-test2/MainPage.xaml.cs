@@ -26,22 +26,14 @@ namespace icreate_test2
     /// </summary>
     public sealed partial class MainPage : icreate_test2.Common.LayoutAwarePage
     {
-        //temp
-        private List<object> week;
-
         public MainPage()
         {
             this.InitializeComponent();
             
             // cache the page for future usage
             this.NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Enabled;
-
-
-            //temp
-            week = new List<object>();          
+       
         }
-
-      
 
         /// <summary>
         /// Populates the page with content passed during navigation.  Any saved state is also
@@ -57,9 +49,8 @@ namespace icreate_test2
             Utils.DataManager.SortAnnouncementWrtTime();
 
             moduleGridView.Source = Utils.DataManager.GetModules();
-            announcementListView.ItemsSource = Utils.DataManager.GetAnnouncements();
+            newAnnouncementListView.Source = Utils.DataManager.GetAnnouncements();
 
-            //temp
             dailyListView.Source = Utils.DataManager.GetClasses();
         }
 

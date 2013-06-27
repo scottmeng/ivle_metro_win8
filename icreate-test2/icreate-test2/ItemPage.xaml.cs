@@ -65,7 +65,7 @@ namespace icreate_test2
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
             announcementListView.ItemsSource = currentModule.moduleAnnouncements;
-            folderItemsControl.ItemsSource = currentModule.moduleWorkbins[];
+            folderItemsControl.ItemsSource = currentModule.moduleWorkbins;
         }
 
         /// <summary>
