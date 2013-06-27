@@ -11,9 +11,6 @@
     mc:Ignorable="d">
 
     <Page.Resources>
-
-        <!-- TODO: Delete this line if the key AppName is declared in App.xaml -->
-        <x:String x:Key="AppName">My Application</x:String>
         <CollectionViewSource x:Name="moduleNameGridView" Source="{Binding Items}"/>
         <CollectionViewSource x:Name="itemListView" Source="{Binding Items}"/>
         <CollectionViewSource x:Name="newAnnouncementListView" Source="{Binding Items}"/>
@@ -213,6 +210,10 @@
                                                 <RowDefinition Height="auto"/>
                                                 <RowDefinition Height="auto"/>
                                                 <RowDefinition Height="auto"/>
+                                                <RowDefinition Height="auto"/>
+                                                <RowDefinition Height="auto"/>
+                                                <RowDefinition Height="auto"/>
+                                                <RowDefinition Height="auto"/>
                                             </Grid.RowDefinitions>
                                             <Grid Grid.Row="0">
                                                 <Grid.ColumnDefinitions>
@@ -245,6 +246,14 @@
                                                 </Grid.ColumnDefinitions>
                                                 <TextBlock Text="Module Acad Year" Grid.Column="0"/>
                                                 <TextBlock Text="{Binding moduleAcadYear}" Grid.Column="1"/>
+                                            </Grid>
+                                            <Grid Grid.Row="4">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="1*"/>
+                                                    <ColumnDefinition Width="2*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Text="Time Table" Grid.Column="0"/>
+                                                <TextBlock Text="{Binding timeTable}" Grid.Column="1"/>
                                             </Grid>
                                         </Grid>
                                     </DataTemplate>

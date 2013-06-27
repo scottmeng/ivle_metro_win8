@@ -18,7 +18,7 @@ using System.Net.NetworkInformation;
 using System.Runtime.Serialization.Json;
 using Windows.Data.Json;
 using System.Net.Http;
-using System.Threading.Tasks;
+using System.Threading.Tasks;     
 
 using Newtonsoft.Json;
 
@@ -34,19 +34,24 @@ namespace icreate_test2
         private static int moduleIndex;
 
         private DataStructure.Module currentModule;
+        private List<DataStructure.Workbin> _workbins;
 
         public ItemPage()
         {
             this.InitializeComponent();
+
+            _workbins = new List<DataStructure.Workbin>();
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             if (e.Parameter != null)
             {
                 moduleIndex = (int)e.Parameter;
                 currentModule = Utils.DataManager.GetModuleAt(moduleIndex);
             }
+
+            await GetWorkbinAsync();
 
             base.OnNavigatedTo(e);
         }
@@ -63,9 +68,9 @@ namespace icreate_test2
         /// session.  This will be null the first time a page is visited.</param>
 
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
-        {
+        {   
             announcementListView.ItemsSource = currentModule.moduleAnnouncements;
-            folderItemsControl.ItemsSource = currentModule.moduleWorkbins;
+            folderItemsControl.ItemsSource = _workbins[0].workbinFolders;
         }
 
         /// <summary>
@@ -86,5 +91,23 @@ namespace icreate_test2
             }
         }
 
+        private async Task GetWorkbinAsync()
+        {
+            int iterator = 0;
+
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters.Add("CourseID", currentModule.moduleId);
+            parameters.Add("Duration", "0");
+            parameters.Add("TitleOnly", "false");
+
+            String workbinsResponse = await Utils.RequestSender.GetResponseStringAsync("Workbins", parameters);
+            DataStructure.WorkbinWrapper workbinWrapper = JsonConvert.DeserializeObject<DataStructure.WorkbinWrapper>(workbinsResponse);
+
+            foreach (DataStructure.Workbin workbin in workbinWrapper.workbins)
+            {
+                _workbins.Add(workbin);
+            }
+
+        }
     }
 }

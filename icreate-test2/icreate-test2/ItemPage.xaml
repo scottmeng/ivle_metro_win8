@@ -11,9 +11,6 @@
     mc:Ignorable="d">
 
     <Page.Resources>
-
-        <!-- TODO: Delete this line if the key AppName is declared in App.xaml -->
-        <x:String x:Key="AppName">My Application</x:String>
         <CollectionViewSource x:Name="moduleNameGridView" Source="{Binding Items}"/>
         <CollectionViewSource x:Name="itemListView" Source="{Binding Items}"/>
         <CollectionViewSource x:Name="newAnnouncementListView" Source="{Binding Items}"/>

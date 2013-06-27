@@ -124,6 +124,7 @@
     <Compile Include="DataStructure\ModuleInfoWrapper.cs" />
     <Compile Include="DataStructure\SemesterInfo.cs" />
     <Compile Include="DataStructure\Workbin.cs" />
+    <Compile Include="DataStructure\WorkbinWrapper.cs" />
     <Compile Include="ItemPage.xaml.cs">
       <DependentUpon>ItemPage.xaml</DependentUpon>
     </Compile>
