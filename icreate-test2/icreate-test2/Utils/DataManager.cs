@@ -74,6 +74,27 @@ namespace icreate_test2.Utils
             return _modules.IndexOf(module);
         }
 
+        public static int GetModuleIndexByModuleCode(String moduleId)
+        {
+            int index = 0;
+            while (_modules[index].moduleId != moduleId)
+            {
+                index++;
+            }
+
+            return index;
+        }
+
+        public static int GetAnnouncementIndex(int moduleIndex, String announcementId)
+        {
+            int index = 0;
+            while (_modules[moduleIndex].moduleAnnouncements[index].announceID != announcementId)
+            {
+                index++;
+            }
+            return index;
+        }
+
         public static DataStructure.Module GetModuleAt(int index)
         {
             return _modules[index];

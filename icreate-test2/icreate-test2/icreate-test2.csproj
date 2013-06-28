@@ -118,10 +118,13 @@
     <Compile Include="DataStructure\ConstName.cs" />
     <Compile Include="DataStructure\File.cs" />
     <Compile Include="DataStructure\Folder.cs" />
+    <Compile Include="DataStructure\Grade.cs" />
+    <Compile Include="DataStructure\Gradebook.cs" />
     <Compile Include="DataStructure\Lecturer.cs" />
     <Compile Include="DataStructure\Member.cs" />
     <Compile Include="DataStructure\Module.cs" />
     <Compile Include="DataStructure\ModuleInfoWrapper.cs" />
+    <Compile Include="DataStructure\NavParams.cs" />
     <Compile Include="DataStructure\SemesterInfo.cs" />
     <Compile Include="DataStructure\Workbin.cs" />
     <Compile Include="DataStructure\WorkbinWrapper.cs" />

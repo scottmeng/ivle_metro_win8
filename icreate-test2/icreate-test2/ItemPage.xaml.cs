@@ -31,9 +31,10 @@ namespace icreate_test2
     /// </summary>
     public sealed partial class ItemPage : icreate_test2.Common.LayoutAwarePage
     {
-        private static int moduleIndex;
+        private int _moduleIndex;
+        private int _announcementIndex;
 
-        private DataStructure.Module currentModule;
+        private DataStructure.Module _currentModule;
         private List<DataStructure.Workbin> _workbins;
 
         public ItemPage()
@@ -47,8 +48,12 @@ namespace icreate_test2
         {
             if (e.Parameter != null)
             {
-                moduleIndex = (int)e.Parameter;
-                currentModule = Utils.DataManager.GetModuleAt(moduleIndex);
+                DataStructure.NavParams navParams = e.Parameter as DataStructure.NavParams;
+
+                _moduleIndex = navParams.moduleIndex;
+                _announcementIndex = navParams.announcementIndex;
+
+                _currentModule = Utils.DataManager.GetModuleAt(_moduleIndex);
             }
 
             await GetWorkbinAsync();
@@ -69,7 +74,7 @@ namespace icreate_test2
 
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {   
-            announcementListView.ItemsSource = currentModule.moduleAnnouncements;
+            announcementListView.ItemsSource = _currentModule.moduleAnnouncements;
             folderItemsControl.ItemsSource = _workbins[0].workbinFolders;
         }
 
@@ -96,7 +101,7 @@ namespace icreate_test2
             int iterator = 0;
 
             Dictionary<string, string> parameters = new Dictionary<string, string>();
-            parameters.Add("CourseID", currentModule.moduleId);
+            parameters.Add("CourseID", _currentModule.moduleId);
             parameters.Add("Duration", "0");
             parameters.Add("TitleOnly", "false");
 

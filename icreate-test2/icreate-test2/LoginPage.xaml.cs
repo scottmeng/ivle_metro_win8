@@ -266,7 +266,7 @@ namespace icreate_test2
                 {
                     foreach (DataStructure.Announcement announcement in module.moduleAnnouncements)
                     {
-                        announcement.GenerateDisplayContent(module.moduleCode);
+                        announcement.GenerateDisplayContent(module);
                         Utils.DataManager.AddAnnouncement(announcement);
                     }
                     module.SetModuleColor(DataStructure.Colors.GetModuleColor(iterator));

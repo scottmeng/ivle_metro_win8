@@ -90,8 +90,17 @@ namespace icreate_test2
 
         private void AnnoucementListViewTapped(object sender, TappedRoutedEventArgs e)
         {
+            DataStructure.Announcement selectedAnnouncement = (e.OriginalSource as FrameworkElement).DataContext as DataStructure.Announcement;
+
+            int moduleIndex = Utils.DataManager.GetModuleIndexByModuleCode(selectedAnnouncement.announceModuleId);
+            int announcementIndex = Utils.DataManager.GetAnnouncementIndex(moduleIndex, selectedAnnouncement.announceID);
+            
+            DataStructure.NavParams navParams = new DataStructure.NavParams(moduleIndex, announcementIndex);
+
             if (this.Frame != null)
-                this.Frame.Navigate(typeof(ItemPage));
+            {
+                this.Frame.Navigate(typeof(ItemPage), navParams);
+            }
         }
 
         private void ModuleTileTapped(object sender, TappedRoutedEventArgs e)
@@ -99,8 +108,15 @@ namespace icreate_test2
             // find the selected module and get the index of this module in module list
             // pass the index of the selected module as a parameter to module page
             DataStructure.Module selectedModule = (e.OriginalSource as FrameworkElement).DataContext as DataStructure.Module;
-            this.Frame.Navigate(typeof(ItemPage), Utils.DataManager.GetModuleIndex(selectedModule));
-            
+
+            int moduleIndex = Utils.DataManager.GetModuleIndex(selectedModule);
+
+            DataStructure.NavParams navParams = new DataStructure.NavParams(moduleIndex, -1);
+
+            if (this.Frame != null)
+            {
+                this.Frame.Navigate(typeof(ItemPage), navParams);
+            }
         }
     }
 

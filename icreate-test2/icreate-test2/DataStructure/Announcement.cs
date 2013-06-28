@@ -37,6 +37,7 @@ namespace icreate_test2.DataStructure
         public String announceNameDisplay { get; set; }
         public String announceCreatorDisplay { get; set; }
         public String announceModuleCode { get; set; }
+        public String announceModuleId { get; set; }
         public String announceTimeDisplay { get; set; }
 
         public Announcement(String id, String name, String content, DateTime time, Member creator)
@@ -49,7 +50,7 @@ namespace icreate_test2.DataStructure
 
         }
 
-        public void GenerateDisplayContent(String moduleCode)
+        public void GenerateDisplayContent(Module module)
         {
             announceContentDisplay = WebUtility.HtmlDecode(announceContent);
             announceContentDisplay = Regex.Replace(announceContentDisplay, "<.+?>", string.Empty);
@@ -63,10 +64,11 @@ namespace icreate_test2.DataStructure
 
             // remove the header
             announceNameDisplay = announceName.Replace("IVLE: ", string.Empty);
-            announceNameDisplay = announceNameDisplay.Replace(moduleCode + ": ", string.Empty);
+            announceNameDisplay = announceNameDisplay.Replace(module.moduleCode + ": ", string.Empty);
 
             announceCreatorDisplay = announceCreator.memberName;
-            announceModuleCode = moduleCode;
+            announceModuleCode = module.moduleCode;
+            announceModuleId = module.moduleId;
             announceTimeDisplay = announceTime.Day + "/" + announceTime.Month;
         }
     }
