@@ -18,7 +18,8 @@ using System.Net.NetworkInformation;
 using System.Runtime.Serialization.Json;
 using Windows.Data.Json;
 using System.Net.Http;
-using System.Threading.Tasks;     
+using System.Threading.Tasks;
+using Windows.Media;
 
 using Newtonsoft.Json;
 
@@ -31,6 +32,7 @@ namespace icreate_test2
     /// </summary>
     public sealed partial class ItemPage : icreate_test2.Common.LayoutAwarePage
     {
+        private MediaExtensionManager extensions = new MediaExtensionManager();
         private int _moduleIndex;
         private int _announcementIndex;
 
@@ -42,6 +44,9 @@ namespace icreate_test2
             this.InitializeComponent();
 
             _workbins = new List<DataStructure.Workbin>();
+            extensions.RegisterByteStreamHandler("Microsoft.Media.AdaptiveStreaming.SmoothByteStreamHandler", ".ism", "text/xml");
+            extensions.RegisterByteStreamHandler("Microsoft.Media.AdaptiveStreaming.SmoothByteStreamHandler", ".ism", "application/vnd.ms-sstr+xml");
+            mediaElement.Source = new Uri("http://ecn.channel9.msdn.com/o9/content/smf/smoothcontent/elephantsdream/Elephants_Dream_1024-h264-st-aac.ism/manifest");
         }
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)

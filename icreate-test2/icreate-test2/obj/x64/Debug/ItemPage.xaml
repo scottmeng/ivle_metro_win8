@@ -32,7 +32,7 @@
 
         <!-- Back button and page title -->
         <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.ColumnSpan="2">
-            <Button x:Name="backButton" Click="GoBack" 
+            <Button x:ConnectionId='2' x:Name="backButton"                
                     IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" 
                     Style="{StaticResource BackButtonStyle}"/>
             <TextBlock VerticalAlignment="Center"
@@ -67,11 +67,11 @@
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
-                <ListView x:Name="itemList"
+                <ListView x:ConnectionId='1' x:Name="itemList"
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
                           ScrollViewer.VerticalScrollBarVisibility="Hidden" 
                           ItemsSource="{Binding Source={StaticResource itemListView}}" 
-                          Tapped="itemChanged_ListViewTapped" 
+                                                              
                           IsSwipeEnabled="True">
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
@@ -313,3 +313,4 @@
         </VisualStateManager.VisualStateGroups>
     </Grid>
 </common:LayoutAwarePage>
+
