@@ -8,6 +8,9 @@ using Windows.UI;
 
 namespace icreate_test2.DataStructure
 {
+    // accessible to all data structures
+    enum ItemType { MODULE_INFO, ANNOUNCEMENT, WORKBIN, GRADEBOOK, WEBCAST}
+
     [DataContract]
     class Module
     {
@@ -16,6 +19,9 @@ namespace icreate_test2.DataStructure
 
         [DataMember(Name = "Workbins")]
         public Workbin[] moduleWorkbins { get; set; }
+
+        [DataMember(Name = "Webcasts")]
+        public Webcast[] moduleWebcasts { get; set; }
 
         [DataMember(Name = "Gradebooks")]
         public Gradebook[] moduleGradebooks { get; set; }
@@ -45,13 +51,14 @@ namespace icreate_test2.DataStructure
         public Lecturer[] moduleLecturers { get; set; }
 
         public Color moduleColor { get; set; }
-        public List<String> moduleItems { get; set; }
+        public List<ModuleItem> moduleItems { get; set; }
 
-        public Module(Announcement[] announces, Workbin[] workins, Gradebook[] gradebooks, String id, String code, String name, 
-                      String depart, String sem, String ay, String mc, Lecturer[] lecturers)
+        public Module(Announcement[] announces, Workbin[] workins, Webcast[] webcasts, Gradebook[] gradebooks, String id, String code, 
+                      String name, String depart, String sem, String ay, String mc, Lecturer[] lecturers)
         {
             moduleAnnouncements = announces;
             moduleWorkbins = workins;
+            moduleWebcasts = webcasts;
             moduleGradebooks = gradebooks;
             moduleId = id;
             moduleCode = code;
@@ -62,7 +69,7 @@ namespace icreate_test2.DataStructure
             moduleMc = mc;
             moduleLecturers = lecturers;
 
-            moduleItems = new List<string>();
+            moduleItems = new List<ModuleItem>();
         }
 
         // set the color of this module and every announcement in it
@@ -78,25 +85,39 @@ namespace icreate_test2.DataStructure
 
         public void GenerateModuleItemList()
         {
+            int index;
+
             // module info is always available
-            moduleItems.Add("Module Info");
+            moduleItems.Add(new ModuleItem("Module Info", ItemType.MODULE_INFO, 0));
 
             if (moduleAnnouncements != null)
             {
-                moduleItems.Add("Announcements");
+                moduleItems.Add(new ModuleItem("Announcements", ItemType.ANNOUNCEMENT, 0));
             }
 
             if (moduleWorkbins != null)
             {
+                index = 0;
                 foreach (Workbin workbin in moduleWorkbins)
                 {
-                    moduleItems.Add(workbin.workbinTitle);
+                    moduleItems.Add(new ModuleItem(workbin.workbinTitle, ItemType.WORKBIN, index));
+                    index++;
                 }
             }
 
             if (moduleGradebooks != null)
             {
-                moduleItems.Add("Gradebook");
+                moduleItems.Add(new ModuleItem("Gradebook", ItemType.GRADEBOOK, 0));
+            }
+
+            if (moduleWebcasts != null)
+            {
+                index = 0;
+                foreach (Webcast webcast in moduleWebcasts)
+                {
+                    moduleItems.Add(new ModuleItem(webcast.webcastTitle, ItemType.WEBCAST, index));
+                    index++;
+                }
             }
         }
     }

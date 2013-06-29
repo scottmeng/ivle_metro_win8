@@ -124,8 +124,10 @@
     <Compile Include="DataStructure\Member.cs" />
     <Compile Include="DataStructure\Module.cs" />
     <Compile Include="DataStructure\ModuleInfoWrapper.cs" />
+    <Compile Include="DataStructure\ModuleItem.cs" />
     <Compile Include="DataStructure\NavParams.cs" />
     <Compile Include="DataStructure\SemesterInfo.cs" />
+    <Compile Include="DataStructure\Webcast.cs" />
     <Compile Include="DataStructure\Workbin.cs" />
     <Compile Include="DataStructure\WorkbinWrapper.cs" />
     <Compile Include="ItemPage.xaml.cs">
