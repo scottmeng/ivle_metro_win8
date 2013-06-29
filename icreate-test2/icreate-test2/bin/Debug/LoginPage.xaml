@@ -26,9 +26,9 @@
             <Viewbox Height="768" Width="1366">
                 <Canvas Height="768" Width="1366" >
                     <Canvas.Resources>
-                        <Storyboard x:Name="myStoryboard"> 
+                    <Storyboard x:Name="myStoryboard" BeginTime="00:00:00"> 
                             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MyAnimatedTranslateTransform" 
-                                                           Storyboard.TargetProperty="X" Duration="0:0:3">
+                                                           Storyboard.TargetProperty="X" Duration="0:0:2">
                             <LinearDoubleKeyFrame Value="0" KeyTime="0:0:1" />
                             <LinearDoubleKeyFrame Value="-300" KeyTime="0:0:2" />
                             </DoubleAnimationUsingKeyFrames>
@@ -39,7 +39,7 @@
                             <TranslateTransform x:Name="MyAnimatedTranslateTransform" X="0" Y="0" />
                         </Image.RenderTransform>
                     </Image>
-                </Canvas>
+                </Canvas> 
             </Viewbox>
         <Viewbox Height="768" Width="1366">
             <StackPanel>
