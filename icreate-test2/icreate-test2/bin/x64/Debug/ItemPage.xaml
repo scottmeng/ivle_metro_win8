@@ -34,7 +34,7 @@
         <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.ColumnSpan="2">
             <Button x:ConnectionId='2' x:Name="backButton"                
                     IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" 
-                    Style="{StaticResource BackButtonStyle}"/> 
+                    Style="{StaticResource BackButtonStyle}"/>
             <TextBlock VerticalAlignment="Center"
                        x:Name="mainModuleName" 
                        FontSize="42" 
@@ -260,6 +260,24 @@
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
                         </Grid>
+                    </FlipViewItem>
+                    <FlipViewItem>
+                        <StackPanel Name="spMediaElement" Grid.Row="2" Height="435" Width="1072"
+                                    HorizontalAlignment="Center" VerticalAlignment="Center">    
+                            <MediaElement x:Name="mediaElement" Height="356" Width="924" MinHeight="225"
+                                          HorizontalAlignment="Center" VerticalAlignment="Center" 
+                                          AudioCategory="BackgroundCapableMedia" />
+                            <StackPanel Orientation="Horizontal">
+                                <Slider x:Name="sliderProgress" Width="924" Height="44"
+                                        HorizontalAlignment="Center" VerticalAlignment="Center"
+                                        />
+                                <Slider x:Name="sliderVolume" 
+                                        HorizontalAlignment="Right" VerticalAlignment="Center" Orientation="Vertical" 
+                                        Height="79" Width="148" Minimum="0" Maximum="1" StepFrequency="0.1" 
+                                        Value="{Binding Volume, ElementName=mediaElement, Mode=TwoWay}" 
+                                        ToolTipService.ToolTip="{Binding Value, RelativeSource={RelativeSource Mode=Self}}"/>
+                            </StackPanel>
+                        </StackPanel>
                     </FlipViewItem>
                 </FlipView>
             </Grid>
