@@ -59,6 +59,7 @@ namespace icreate_test2
                 _announcementIndex = navParams.announcementIndex;
 
                 _currentModule = Utils.DataManager.GetModuleAt(_moduleIndex);
+                _currentModule.GenerateModuleItemList();
             }
 
             await GetWorkbinAsync();
@@ -78,9 +79,10 @@ namespace icreate_test2
         /// session.  This will be null the first time a page is visited.</param>
 
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
-        {   
-            announcementListView.ItemsSource = _currentModule.moduleAnnouncements;
-            folderItemsControl.ItemsSource = _workbins[0].workbinFolders;
+        {
+            itemListView.Source = _currentModule.moduleItems;
+            newAnnouncementListView.Source = _currentModule.moduleAnnouncements;
+            folder.Source = _workbins[0].workbinFolders;
         }
 
         /// <summary>
@@ -93,18 +95,38 @@ namespace icreate_test2
         {
         }
 
-        private async void itemChanged_ListViewTapped(object sender, TappedRoutedEventArgs e)
+        private void itemChanged_ListViewTapped(object sender, TappedRoutedEventArgs e)
         {
+            DataStructure.ModuleItem selectedItem = (e.OriginalSource as FrameworkElement).DataContext as DataStructure.ModuleItem;
+
+            switch (selectedItem.itemType)
+            {
+                case DataStructure.ItemType.ANNOUNCEMENT:
+                    flipView.SelectedIndex = 0;
+                    break;
+                case DataStructure.ItemType.GRADEBOOK:
+                    break;
+                case DataStructure.ItemType.MODULE_INFO:
+                    flipView.SelectedIndex = 2;
+                    break;
+                case DataStructure.ItemType.WEBCAST:
+                    break;
+                case DataStructure.ItemType.WORKBIN:
+                    flipView.SelectedIndex = 1;
+                    break;
+                default:
+                    break;
+            }
+            /*
             if (itemList.SelectedIndex < 2)
             {
                 flipView.SelectedIndex = itemList.SelectedIndex;
             }
+             * */
         }
 
         private async Task GetWorkbinAsync()
         {
-            int iterator = 0;
-
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters.Add("CourseID", _currentModule.moduleId);
             parameters.Add("Duration", "0");
@@ -117,7 +139,14 @@ namespace icreate_test2
             {
                 _workbins.Add(workbin);
             }
+        }
 
+        private void onFolderSelected(object sender, TappedRoutedEventArgs e)
+        {
+            DataStructure.Folder selectedFolder = (e.OriginalSource as FrameworkElement).DataContext as DataStructure.Folder;
+
+            folder.Source = selectedFolder.folderInnerFolders;
+            file.Source = selectedFolder.folderFiles;
         }
     }
 }

@@ -147,6 +147,7 @@
                                 <ListView x:Name="folderItemsControl" 
                                                 ItemsSource="{Binding Source={StaticResource folder}}"  
                                                 IsItemClickEnabled="True"
+                                                Tapped="onFolderSelected"
                                                 Margin="20,20,50,20" >
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
