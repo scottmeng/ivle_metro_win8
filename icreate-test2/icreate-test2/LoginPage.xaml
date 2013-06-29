@@ -23,14 +23,15 @@
     -->
 
     <Grid Style="{StaticResource LayoutRootStyle}">
-            <Viewbox Height="768" Width="1366">
+        <Viewbox Height="768" Width="1366">
+            <Grid>
                 <Canvas Height="768" Width="1366" >
                     <Canvas.Resources>
-                    <Storyboard x:Name="myStoryboard" BeginTime="00:00:00"> 
+                        <Storyboard x:Name="myStoryboard" BeginTime="00:00:00">
                             <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MyAnimatedTranslateTransform" 
                                                            Storyboard.TargetProperty="X" Duration="0:0:2">
-                            <LinearDoubleKeyFrame Value="0" KeyTime="0:0:1" />
-                            <LinearDoubleKeyFrame Value="-300" KeyTime="0:0:2" />
+                                <LinearDoubleKeyFrame Value="0" KeyTime="0:0:1" />
+                                <LinearDoubleKeyFrame Value="-300" KeyTime="0:0:2" />
                             </DoubleAnimationUsingKeyFrames>
                         </Storyboard>
                     </Canvas.Resources>
@@ -39,8 +40,11 @@
                             <TranslateTransform x:Name="MyAnimatedTranslateTransform" X="0" Y="0" />
                         </Image.RenderTransform>
                     </Image>
-                </Canvas> 
-            </Viewbox>
+                </Canvas>
+                <ProgressRing x:Name="ProgressRingIfTokenExist" Margin="0,574,0,154" IsActive="False" Height="40" Width="40"
+                                  Grid.Column="0" Grid.Row="3" />
+            </Grid>
+        </Viewbox>
         <Viewbox Height="768" Width="1366">
             <StackPanel>
                 <StackPanel.Resources>
@@ -88,11 +92,6 @@
                     <Button x:Name="LoginButton" Margin="5,5,5,5" Content="Login" FontSize="28" Click="login_Click" 
                             Grid.Column="1"  Grid.Row="3" Width="200" HorizontalAlignment="Right"/>
                 </Grid>
-            </StackPanel>
-        </Viewbox>
-        <Viewbox Height="768" Width="1366">
-            <StackPanel Margin="0,50,0,400">
-                
             </StackPanel>
         </Viewbox>
         <VisualStateManager.VisualStateGroups>

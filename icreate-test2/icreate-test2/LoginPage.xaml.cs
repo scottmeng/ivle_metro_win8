@@ -39,8 +39,7 @@ namespace icreate_test2
         {
             this.InitializeComponent();
             hideUserInfo.Begin();
-            myStoryboard.Begin();
-            myStoryboard.Completed += myStoryboard_Completed;
+
             Utils.DataManager.InitializeDataLists();
 
         }
@@ -85,6 +84,9 @@ namespace icreate_test2
                     // check if token is valid
                     if (await Utils.TokenManager.IsTokenValid())
                     {
+                        //if so, active the progressring under splashscreen
+                        ProgressRingIfTokenExist.IsActive = true;
+
                         // load data on modules and classes
                         await GetModulesAsync();
                         await GetClassesAsync();
@@ -98,9 +100,18 @@ namespace icreate_test2
                     {
                         // if not, hide progress circle
                         // enable controls
+
+                        myStoryboard.Begin();
+                        myStoryboard.Completed += myStoryboard_Completed;
+
                         ProgressRing.IsActive = false;
                         EnableLoginControls();
                     }
+                }
+                else
+                {
+                    myStoryboard.Begin();
+                    myStoryboard.Completed += myStoryboard_Completed;
                 }
             }
         }
