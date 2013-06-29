@@ -215,43 +215,27 @@
                                                 <RowDefinition Height="auto"/>
                                                 <RowDefinition Height="auto"/>
                                             </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="1*"/>
+                                                <ColumnDefinition Width="2*"/>
+                                            </Grid.ColumnDefinitions>
                                             <Grid Grid.Row="0">
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="1*"/>
-                                                    <ColumnDefinition Width="2*"/>
-                                                </Grid.ColumnDefinitions>
                                                 <TextBlock Text="Module Code" Grid.Column="0"/>
                                                 <TextBlock Text="{Binding moduleCode}" Grid.Column="1"/>
                                             </Grid>
                                             <Grid Grid.Row="1">
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="1*"/>
-                                                    <ColumnDefinition Width="2*"/>
-                                                </Grid.ColumnDefinitions>
                                                 <TextBlock Text="Module Name" Grid.Column="0"/>
                                                 <TextBlock Text="{Binding moduleName}" Grid.Column="1"/>
                                             </Grid>
                                             <Grid Grid.Row="2">
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="1*"/>
-                                                    <ColumnDefinition Width="2*"/>
-                                                </Grid.ColumnDefinitions>
                                                 <TextBlock Text="Module Mc" Grid.Column="0"/>
                                                 <TextBlock Text="{Binding moduleMc}" Grid.Column="1"/>
                                             </Grid>
                                             <Grid Grid.Row="3">
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="1*"/>
-                                                    <ColumnDefinition Width="2*"/>
-                                                </Grid.ColumnDefinitions>
                                                 <TextBlock Text="Module Acad Year" Grid.Column="0"/>
                                                 <TextBlock Text="{Binding moduleAcadYear}" Grid.Column="1"/>
                                             </Grid>
                                             <Grid Grid.Row="4">
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="1*"/>
-                                                    <ColumnDefinition Width="2*"/>
-                                                </Grid.ColumnDefinitions>
                                                 <TextBlock Text="Time Table" Grid.Column="0"/>
                                                 <TextBlock Text="{Binding timeTable}" Grid.Column="1"/>
                                             </Grid>
