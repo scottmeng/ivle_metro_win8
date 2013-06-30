@@ -17,6 +17,7 @@
         <CollectionViewSource x:Name="file" Source="{Binding Items}"/>
         <CollectionViewSource x:Name="folder" Source="{Binding Items}"/>
         <CollectionViewSource x:Name="moduleInfo" Source="{Binding Items}"/>
+        <CollectionViewSource x:Name="grades" Source="{Binding Items}"/>
     </Page.Resources>
 
     <!--
@@ -262,6 +263,96 @@
                                         ToolTipService.ToolTip="{Binding Value, RelativeSource={RelativeSource Mode=Self}}"/>
                             </StackPanel>
                         </StackPanel>
+                    </FlipViewItem>
+                    <FlipViewItem x:Name="gradeBook">
+                        <ListView ItemsSource="{Binding Source={StaticResource grades}}">
+                            <ListView.Header>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="3*"/>
+                                        <ColumnDefinition Width="3*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="3*"/>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition Width="3*"/>
+                                        <ColumnDefinition Width="3*"/>
+                                        <ColumnDefinition Width="3*"/>
+                                        <ColumnDefinition Width="3*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" 
+                                               Text="category"
+                                               HorizontalAlignment="Center"/>
+                                    <TextBlock Grid.Column="1" 
+                                               Text="Item Name"
+                                               HorizontalAlignment="Center"/>
+                                    <TextBlock Grid.Column="2" 
+                                               Text="Marks Obtained"
+                                               HorizontalAlignment="Center"/>
+                                    <TextBlock Grid.Column="3" 
+                                               Text="Remarks"
+                                               HorizontalAlignment="Center"/>
+                                    <TextBlock Grid.Column="4" 
+                                               Text="Max Marks"
+                                               HorizontalAlignment="Center"/>
+                                    <TextBlock Grid.Column="5" 
+                                               Text="Highest-Lowest Marks"
+                                               HorizontalAlignment="Center"/>
+                                    <TextBlock Grid.Column="6" 
+                                               Text="Average-Median Marks"
+                                               HorizontalAlignment="Center"/>
+                                    <TextBlock Grid.Column="7" 
+                                               Text="25/75 Percentile"
+                                               HorizontalAlignment="Center"/>
+                                    <TextBlock Grid.Column="8" 
+                                               Text="Date Entered"
+                                               HorizontalAlignment="Center"/>
+                                </Grid>
+                            </ListView.Header>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" 
+                                               Text="{Binding gradeDescription}"
+                                               HorizontalAlignment="Center"/>
+                                        <TextBlock Grid.Column="1" 
+                                               Text="{Binding gradeName}"
+                                               HorizontalAlignment="Center"/>
+                                        <TextBlock Grid.Column="2" 
+                                               Text="{Binding gradeObtainedMarks}"
+                                               HorizontalAlignment="Center"/>
+                                        <TextBlock Grid.Column="3" 
+                                               Text="{Binding gradeRemark}"
+                                               HorizontalAlignment="Center"/>
+                                        <TextBlock Grid.Column="4" 
+                                               Text="{Binding gradeMaxMarks}"
+                                               HorizontalAlignment="Center"/>
+                                        <TextBlock Grid.Column="5" 
+                                               Text="{Binding gradeHighestLowestMarks}"
+                                               HorizontalAlignment="Center"/>
+                                        <TextBlock Grid.Column="6" 
+                                               Text="{Binding gradeAverageMedianMarks}"
+                                               HorizontalAlignment="Center"/>
+                                        <TextBlock Grid.Column="7" 
+                                               Text="{Binding gradePercentile}"
+                                               HorizontalAlignment="Center"/>
+                                        <TextBlock Grid.Column="8" 
+                                               Text="Date Entered"
+                                               HorizontalAlignment="Center"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
                     </FlipViewItem>
                 </FlipView>
             </Grid>
