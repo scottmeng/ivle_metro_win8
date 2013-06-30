@@ -20,7 +20,7 @@ using Windows.Data.Json;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Windows.Media;
-
+using Callisto.Controls;
 using Newtonsoft.Json;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
@@ -33,10 +33,12 @@ namespace icreate_test2
     public sealed partial class ItemPage : icreate_test2.Common.LayoutAwarePage
     {
         private MediaExtensionManager extensions = new MediaExtensionManager();
+        private int _moduleNum;
         private int _moduleIndex;
         private int _announcementIndex;
 
         private DataStructure.Module _currentModule;
+        private List<DataStructure.Module> _otherModules;
         private List<DataStructure.Workbin> _workbins;
 
         public ItemPage()
@@ -44,9 +46,6 @@ namespace icreate_test2
             this.InitializeComponent();
 
             _workbins = new List<DataStructure.Workbin>();
-            extensions.RegisterByteStreamHandler("Microsoft.Media.AdaptiveStreaming.SmoothByteStreamHandler", ".ism", "text/xml");
-            extensions.RegisterByteStreamHandler("Microsoft.Media.AdaptiveStreaming.SmoothByteStreamHandler", ".ism", "application/vnd.ms-sstr+xml");
-            mediaElement.Source = new Uri("http://ecn.channel9.msdn.com/o9/content/smf/smoothcontent/elephantsdream/Elephants_Dream_1024-h264-st-aac.ism/manifest");
         }
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
@@ -56,9 +55,18 @@ namespace icreate_test2
                 DataStructure.NavParams navParams = e.Parameter as DataStructure.NavParams;
 
                 _moduleIndex = navParams.moduleIndex;
+                _moduleNum = Utils.DataManager.GetModules().Count;
                 _announcementIndex = navParams.announcementIndex;
 
                 _currentModule = Utils.DataManager.GetModuleAt(_moduleIndex);
+                _currentModule.GenerateModuleItemList();
+
+                _otherModules = new List<DataStructure.Module>();
+                for (int i = 0; i < _moduleNum; i++)
+                {
+                    if(i!=_moduleIndex)
+                        _otherModules.Add(Utils.DataManager.GetModuleAt(i));
+                }
             }
 
             await GetWorkbinAsync();
@@ -78,9 +86,18 @@ namespace icreate_test2
         /// session.  This will be null the first time a page is visited.</param>
 
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
-        {   
-            announcementListView.ItemsSource = _currentModule.moduleAnnouncements;
-            folderItemsControl.ItemsSource = _workbins[0].workbinFolders;
+        {
+            itemListView.Source = _currentModule.moduleItems;
+            newAnnouncementListView.Source = _currentModule.moduleAnnouncements;
+            folder.Source = _workbins[0].workbinFolders;
+
+            //For Test Only
+            mainModuleName.Text = _currentModule.moduleCode;
+            List<string> modules = new List<string>();
+            modules.Add("PP0908");
+            modules.Add("BBBBBB");
+            modules.Add("BBBBBB");
+            modules.Add("BBBBBB");
         }
 
         /// <summary>
@@ -93,18 +110,38 @@ namespace icreate_test2
         {
         }
 
-        private async void itemChanged_ListViewTapped(object sender, TappedRoutedEventArgs e)
+        private void itemChanged_ListViewTapped(object sender, TappedRoutedEventArgs e)
         {
+            DataStructure.ModuleItem selectedItem = (e.OriginalSource as FrameworkElement).DataContext as DataStructure.ModuleItem;
+
+            switch (selectedItem.itemType)
+            {
+                case DataStructure.ItemType.ANNOUNCEMENT:
+                    flipView.SelectedIndex = 0;
+                    break;
+                case DataStructure.ItemType.GRADEBOOK:
+                    break;
+                case DataStructure.ItemType.MODULE_INFO:
+                    flipView.SelectedIndex = 2;
+                    break;
+                case DataStructure.ItemType.WEBCAST:
+                    break;
+                case DataStructure.ItemType.WORKBIN:
+                    flipView.SelectedIndex = 1;
+                    break;
+                default:
+                    break;
+            }
+            /*
             if (itemList.SelectedIndex < 2)
             {
                 flipView.SelectedIndex = itemList.SelectedIndex;
             }
+             * */
         }
 
         private async Task GetWorkbinAsync()
         {
-            int iterator = 0;
-
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters.Add("CourseID", _currentModule.moduleId);
             parameters.Add("Duration", "0");
@@ -117,7 +154,36 @@ namespace icreate_test2
             {
                 _workbins.Add(workbin);
             }
+        }
 
+        private void onFolderSelected(object sender, TappedRoutedEventArgs e)
+        {
+            DataStructure.Folder selectedFolder = (e.OriginalSource as FrameworkElement).DataContext as DataStructure.Folder;
+
+            folder.Source = selectedFolder.folderInnerFolders;
+            file.Source = selectedFolder.folderFiles;
+        }
+
+
+        
+        private void menuButtonClick(object sender, RoutedEventArgs e)
+        {
+            Flyout f = new Flyout();
+
+            f.Placement = PlacementMode.Top;
+            f.PlacementTarget = menuButton; // this is an UI element (usually the sender)
+
+            Menu m = new Menu();
+            MenuItem mi2 = new MenuItem();
+            mi2.Text = "Another Option Here";
+            for (int i = 0; i < _otherModules.Count; i++)
+            {
+                MenuItem mi = new MenuItem();
+                mi.Text = (_otherModules[i]).moduleCode + " " + (_otherModules[i]).moduleName;
+                m.Items.Add(mi);
+            }
+            f.Content = m;
+            f.IsOpen = true;
         }
     }
 }

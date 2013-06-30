@@ -140,6 +140,9 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SearchResultsPage.xaml.cs">
+      <DependentUpon>SearchResultsPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Utils\DataManager.cs" />
     <Compile Include="Utils\LAPI.cs" />
     <Compile Include="DataStructure\Token.cs" />
@@ -158,6 +161,10 @@
     <Content Include="Assets\SplashScreen.png" />
     <Content Include="Assets\StoreLogo.png" />
     <Content Include="Common\ReadMe.txt" />
+    <Page Include="SearchResultsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ItemPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -187,11 +194,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <SDKReference Include="Microsoft.Media.AdaptiveStreamingClient, Version=1.0">
-      <Name>Microsoft Smooth Streaming Client SDK for Windows 8</Name>
-    </SDKReference>
-    <SDKReference Include="Microsoft.VCLibs, Version=11.0">
-      <Name>Microsoft Visual C++ Runtime Package</Name>
+    <SDKReference Include="Callisto, Version=1.3.1">
+      <Name>Callisto</Name>
     </SDKReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
