@@ -4,7 +4,7 @@
   <Properties>
     <DisplayName>icreate-test2</DisplayName>
     <PublisherDisplayName>Jiajianiu</PublisherDisplayName>
-    <Logo>Assets\StoreLogo.png</Logo>
+    <Logo>Assets\Logo.png</Logo>
   </Properties>
   <Prerequisites>
     <OSMinVersion>6.2.1</OSMinVersion>
@@ -15,10 +15,13 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="icreate_test2.App">
-      <VisualElements DisplayName="icreate-test2" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="icreate-test2" ForegroundText="light" BackgroundColor="#464646">
-        <DefaultTile ShowName="allLogos" />
+      <VisualElements DisplayName="icreate-test2" Logo="Assets\Logo.png" SmallLogo="Assets\Logo.png" Description="icreate-test2" ForegroundText="light" BackgroundColor="#003399">
+        <DefaultTile ShowName="allLogos" WideLogo="Assets\Logo.png" />
         <SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#FFFFFF" />
       </VisualElements>
+      <Extensions>
+        <Extension Category="windows.search" />
+      </Extensions>
     </Application>
   </Applications>
   <Capabilities>

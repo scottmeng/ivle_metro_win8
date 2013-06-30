@@ -26,9 +26,12 @@ namespace icreate_test2
     /// </summary>
     public sealed partial class MainPage : icreate_test2.Common.LayoutAwarePage
     {
+        public static MainPage Current;
+
         public MainPage()
         {
             this.InitializeComponent();
+            Current = this;
             
             // cache the page for future usage
             this.NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Enabled;
@@ -117,6 +120,11 @@ namespace icreate_test2
             {
                 this.Frame.Navigate(typeof(ItemPage), navParams);
             }
+        }
+
+        internal void ProcessQueryText(string p)
+        {
+            throw new NotImplementedException();
         }
     }
 
