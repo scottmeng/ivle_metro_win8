@@ -20,9 +20,9 @@ namespace icreate_test2.DataStructure
         public Member workbinCreator { get; set; }
 
         [DataMember(Name = "Folders")]
-        public Folder[] workbinFolders { get; set; }
+        public List<Folder> workbinFolders { get; set; }
 
-        public Workbin(String id, String title, Member creator, Folder[] folders)
+        public Workbin(String id, String title, Member creator, List<Folder> folders)
         {
             workbinID = id;
             workbinTitle = title;

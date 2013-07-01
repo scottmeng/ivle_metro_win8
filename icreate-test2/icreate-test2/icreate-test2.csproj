@@ -119,6 +119,7 @@
     <Compile Include="DataStructure\File.cs" />
     <Compile Include="DataStructure\Folder.cs" />
     <Compile Include="DataStructure\Forum.cs" />
+    <Compile Include="DataStructure\ForumWrapper.cs" />
     <Compile Include="DataStructure\Grade.cs" />
     <Compile Include="DataStructure\Gradebook.cs" />
     <Compile Include="DataStructure\Heading.cs" />

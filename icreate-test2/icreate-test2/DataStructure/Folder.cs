@@ -26,14 +26,14 @@ namespace icreate_test2.DataStructure
         public int folderFileCount { get; set; }
 
         [DataMember(Name = "Folders")]
-        public Folder[] folderInnerFolders { get; set; }
+        public List<Folder> folderInnerFolders { get; set; }
 
         [DataMember(Name = "Files")]
-        public File[] folderFiles { get; set; }
+        public List<File> folderFiles { get; set; }
 
         public string folderModuleCode { get; set; }
 
-        public Folder(string id, string name, DateTime openDate, DateTime closeDate, int count, Folder[] folders, File[] files)
+        public Folder(string id, string name, DateTime openDate, DateTime closeDate, int count, List<Folder> folders, List<File> files)
         {
             folderId = id;
             folderName = name;

@@ -40,6 +40,8 @@ namespace icreate_test2
         private DataStructure.Module _currentModule;
         private List<DataStructure.Module> _otherModules;
         private List<DataStructure.Workbin> _workbins;
+        private List<DataStructure.Folder> _currentFolders;
+        private List<DataStructure.File> _currentFiles;
 
         public ItemPage()
         {
@@ -59,7 +61,6 @@ namespace icreate_test2
                 _announcementIndex = navParams.announcementIndex;
 
                 _currentModule = Utils.DataManager.GetModuleAt(_moduleIndex);
-                _currentModule.GenerateModuleItemList();
 
                 mainModuleName.Text = _currentModule.moduleCode;
                 _otherModules = new List<DataStructure.Module>();
@@ -71,6 +72,8 @@ namespace icreate_test2
             }
 
             await GetWorkbinAsync();
+            await GetForumAsync();
+            _currentModule.GenerateModuleItemList();
 
             base.OnNavigatedTo(e);
         }
@@ -90,7 +93,6 @@ namespace icreate_test2
         {
             itemListView.Source = _currentModule.moduleItems;
             newAnnouncementListView.Source = _currentModule.moduleAnnouncements;
-            folder.Source = _workbins[0].workbinFolders;
         }
 
         /// <summary>
@@ -121,16 +123,16 @@ namespace icreate_test2
                     break;
                 case DataStructure.ItemType.WORKBIN:
                     flipView.SelectedIndex = 1;
+                    
+                    _currentFolders = _currentModule.moduleWorkbins[selectedItem.itemIndex].workbinFolders;
+                    _currentFiles = new List<DataStructure.File>();
+
+                    folder.Source = _currentFolders;
+                    file.Source = _currentFiles;
                     break;
                 default:
                     break;
             }
-            /*
-            if (itemList.SelectedIndex < 2)
-            {
-                flipView.SelectedIndex = itemList.SelectedIndex;
-            }
-             * */
         }
 
         private async Task GetWorkbinAsync()
@@ -143,18 +145,31 @@ namespace icreate_test2
             String workbinsResponse = await Utils.RequestSender.GetResponseStringAsync("Workbins", parameters);
             DataStructure.WorkbinWrapper workbinWrapper = JsonConvert.DeserializeObject<DataStructure.WorkbinWrapper>(workbinsResponse);
 
-            foreach (DataStructure.Workbin workbin in workbinWrapper.workbins)
-            {
-                _workbins.Add(workbin);
-            }
+            _currentModule.moduleWorkbins = workbinWrapper.workbins;
+        }
+
+        private async Task GetForumAsync()
+        {
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters.Add("CourseID", _currentModule.moduleId);
+            parameters.Add("Duration", "0");
+            parameters.Add("IncludeThreads", "true");
+
+            String forumsResponse = await Utils.RequestSender.GetResponseStringAsync("Forums", parameters);
+            DataStructure.ForumWrapper forumWrapper = JsonConvert.DeserializeObject<DataStructure.ForumWrapper>(forumsResponse);
+
+            _currentModule.moduleForums = forumWrapper.forums;
         }
 
         private void onFolderSelected(object sender, TappedRoutedEventArgs e)
         {
             DataStructure.Folder selectedFolder = (e.OriginalSource as FrameworkElement).DataContext as DataStructure.Folder;
 
-            folder.Source = selectedFolder.folderInnerFolders;
-            file.Source = selectedFolder.folderFiles;
+            _currentFolders = selectedFolder.folderInnerFolders;
+            _currentFiles = selectedFolder.folderFiles;
+
+            folder.Source = _currentFolders;
+            file.Source = _currentFiles;
         }
 
 

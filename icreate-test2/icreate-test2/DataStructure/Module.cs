@@ -9,13 +9,16 @@ using Windows.UI;
 namespace icreate_test2.DataStructure
 {
     // accessible to all data structures
-    enum ItemType { MODULE_INFO, ANNOUNCEMENT, WORKBIN, GRADEBOOK, WEBCAST}
+    enum ItemType { MODULE_INFO, ANNOUNCEMENT, FORUM, WORKBIN, GRADEBOOK, WEBCAST}
 
     [DataContract]
     class Module
     {
         [DataMember(Name = "Announcements")]
         public Announcement[] moduleAnnouncements { get; set; }
+
+        [DataMember(Name = "Forums")]
+        public List<Forum> moduleForums { get; set; }
 
         [DataMember(Name = "Workbins")]
         public Workbin[] moduleWorkbins { get; set; }
@@ -53,10 +56,11 @@ namespace icreate_test2.DataStructure
         public Color moduleColor { get; set; }
         public List<ModuleItem> moduleItems { get; set; }
 
-        public Module(Announcement[] announces, Workbin[] workins, Webcast[] webcasts, Gradebook[] gradebooks, String id, String code, 
+        public Module(Announcement[] announces, List<Forum> forums, Workbin[] workins, Webcast[] webcasts, Gradebook[] gradebooks, String id, String code, 
                       String name, String depart, String sem, String ay, String mc, Lecturer[] lecturers)
         {
             moduleAnnouncements = announces;
+            moduleForums = forums;
             moduleWorkbins = workins;
             moduleWebcasts = webcasts;
             moduleGradebooks = gradebooks;
@@ -93,6 +97,16 @@ namespace icreate_test2.DataStructure
             if (moduleAnnouncements != null)
             {
                 moduleItems.Add(new ModuleItem("Announcements", ItemType.ANNOUNCEMENT, 0));
+            }
+
+            if (moduleForums != null)
+            {
+                index = 0;
+                foreach (Forum forum in moduleForums)
+                {
+                    moduleItems.Add(new ModuleItem(forum.forumTitle, ItemType.FORUM, index));
+                    index++;
+                }
             }
 
             if (moduleWorkbins != null)
