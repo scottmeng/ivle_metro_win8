@@ -9,7 +9,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-    
+
     <Page.Resources>
 
         <!-- TODO: Delete this line if the key AppName is declared in App.xaml -->
@@ -19,7 +19,7 @@
         <CollectionViewSource x:Name="moduleGridView" Source="{Binding Items}"/>
         <CollectionViewSource x:Name="calendarFlipView" />
         <CollectionViewSource x:Name="dailyListView" />
-       
+
     </Page.Resources>
 
     <Page.BottomAppBar>
@@ -113,8 +113,8 @@
                            FontSize="89"/>
             </Grid>
 
-            
-                <Grid Grid.Row="1" Grid.RowSpan="2" HorizontalAlignment="Left">
+
+            <Grid Grid.Row="1" Grid.RowSpan="2" HorizontalAlignment="Left">
                 <ScrollViewer x:Name="scrollViewer" 
                               HorizontalAlignment="Left" 
                               VerticalAlignment="Top"
@@ -123,7 +123,7 @@
                               VerticalScrollMode="Disabled" 
                               HorizontalScrollMode="Auto" 
                               ZoomMode="Disabled">
-                    
+
                     <StackPanel Orientation="Horizontal">
                         <ItemsControl x:Name="moduleListView" 
                                       ItemsSource="{Binding Source={StaticResource moduleGridView}}"  
@@ -131,18 +131,18 @@
                                       Tapped="ModuleTileTapped">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                <WrapGrid/>
+                                    <WrapGrid/>
                                 </ItemsPanelTemplate>
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                <Grid Width="360" 
+                                    <Grid Width="360" 
                                       Height="180" 
                                       Margin="10">
-                                    <Grid.Background>
-                                        <SolidColorBrush Color="{Binding moduleColor}" />
-                                    </Grid.Background>
-                                    <TextBlock Text="{Binding moduleCode}" 
+                                        <Grid.Background>
+                                            <SolidColorBrush Color="{Binding moduleColor}" />
+                                        </Grid.Background>
+                                        <TextBlock Text="{Binding moduleCode}" 
                                                Margin="15" 
                                                Foreground="White" 
                                                FontSize="42" 
@@ -150,7 +150,7 @@
                                                FontWeight="Light"
                                                VerticalAlignment="Top"  
                                                HorizontalAlignment="Left"/>
-                                    <TextBlock Text="{Binding moduleName}" 
+                                        <TextBlock Text="{Binding moduleName}" 
                                                Margin="15" 
                                                Foreground="White" 
                                                FontSize="24" 
@@ -158,13 +158,13 @@
                                                FontWeight="Light"
                                                VerticalAlignment="Bottom" 
                                                HorizontalAlignment="Right"/>
-                                </Grid>
+                                    </Grid>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
-                            
+
                         </ItemsControl>
 
-                        <Grid Margin="30,-25,0,0">
+                        <Grid Margin="20,-25,0,0">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="auto"/>
                                 <RowDefinition Height="*"/>
@@ -221,50 +221,67 @@
                                       ScrollViewer.IsVerticalRailEnabled="False">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
-                                        <Grid Height="200" Width="350" Margin="0,-4">
+                                        <Grid Height="120" Width="350" Margin="0,-4">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="330"/>
                                                 <ColumnDefinition Width="20"/>
-                                            </Grid.ColumnDefinitions>                                            
+                                            </Grid.ColumnDefinitions>
                                             <StackPanel Grid.Column="0" 
                                                     Orientation="Vertical" 
                                                     Height="200" 
-                                                    Width="330"  
-                                                    Background="Orange">
-                                                <TextBlock Margin="20,0" 
-                                                       Text="{Binding classModuleCode}"  
-                                                       TextWrapping="NoWrap" 
-                                                       Foreground="White" 
-                                                       FontSize="36" 
-                                                       HorizontalAlignment="Stretch"/>
-                                                <TextBlock Margin="20,0" 
-                                                       Text="{Binding classModuleName}"  
-                                                       TextWrapping="NoWrap" 
-                                                       Foreground="White" 
-                                                       FontSize="28" 
-                                                       HorizontalAlignment="Stretch"/>
-                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                                    Width="330">
+                                                <StackPanel.Background>
+                                                    <SolidColorBrush Color="Black" Opacity="0.8"/>
+                                                </StackPanel.Background>
+                                                <Grid Margin="0,0,5,0">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition />
+                                                        <ColumnDefinition />                                                        
+                                                    </Grid.ColumnDefinitions>
+                                                    <TextBlock Grid.Column="0"
+                                                               Margin="20,0"  
+                                                               Text="{Binding classModuleCode}" 
+                                                               TextWrapping="NoWrap" 
+                                                               Foreground="White"
+                                                               FontSize="24"
+                                                               FontWeight="Light"
+                                                               HorizontalAlignment="Left"
+                                                               VerticalAlignment="Bottom"/>
+                                                    <TextBlock Grid.Column="1"
+                                                               Margin="20,0" 
+                                                               Text="{Binding classLessonType}"
+                                                               TextWrapping="NoWrap"
+                                                               Foreground="White"
+                                                               FontSize="16"
+                                                               FontWeight="ExtraLight"
+                                                               HorizontalAlignment="Right"
+                                                               VerticalAlignment="Bottom"/>
+                                                </Grid>
+                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                                                     <TextBlock Margin="20,0,0,0" 
                                                        Text="{Binding classStartTime}" 
-                                                       Foreground="White" 
-                                                       FontSize="18"/>
+                                                       Foreground="WhiteSmoke" 
+                                                       FontWeight="Light"
+                                                       FontSize="36"/>
                                                     <TextBlock Margin="0" 
-                                                               Text=" -- " 
-                                                               FontSize="18" 
-                                                               Foreground="White"/>
+                                                               Text=" --  " 
+                                                               FontSize="36" 
+                                                               FontWeight="Light"
+                                                               Foreground="WhiteSmoke"/>
                                                     <TextBlock Margin="0,0,20,0" 
                                                        Text="{Binding classEndTime}" 
                                                        TextWrapping="NoWrap" 
-                                                       Foreground="White" 
-                                                       FontSize="18" 
-                                                       HorizontalAlignment="Stretch" />
+                                                       Foreground="WhiteSmoke" 
+                                                       FontSize="36" 
+                                                       FontWeight="Light" />
                                                 </StackPanel>
                                                 <TextBlock Margin="20,0" 
-                                                       Text="UTown Auditorium" 
+                                                       Text="{Binding classVenue}" 
                                                        TextWrapping="NoWrap"  
                                                        HorizontalAlignment="Right" 
-                                                       Foreground="White" 
-                                                       FontSize="18" />
+                                                       Foreground="Wheat" 
+                                                       FontWeight="Light"
+                                                       FontSize="16" />
                                             </StackPanel>
                                             <StackPanel Grid.Column="1" Margin="0">
                                                 <StackPanel.Background>
@@ -280,7 +297,7 @@
                     </FlipView.ItemTemplate>
                 </FlipView>-->
                         <!--</StackPanel>-->
-                </StackPanel>
+                    </StackPanel>
                 </ScrollViewer>
 
             </Grid>
