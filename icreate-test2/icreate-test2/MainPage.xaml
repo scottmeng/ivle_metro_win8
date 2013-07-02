@@ -42,10 +42,10 @@
     -->
     <Grid Style="{StaticResource LayoutRootStyle}">
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="2*"/>
-            <ColumnDefinition Width="5*"/>
         </Grid.ColumnDefinitions>
-        <Grid Margin="0,0,50,0">
+        <Grid Margin="0,0,20,0">
             <ListView x:Name="announcementListView" 
                       ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
                       ScrollViewer.VerticalScrollBarVisibility="Hidden" 
@@ -136,8 +136,8 @@
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                <Grid Width="400" 
-                                      Height="200" 
+                                <Grid Width="360" 
+                                      Height="180" 
                                       Margin="10">
                                     <Grid.Background>
                                         <SolidColorBrush Color="{Binding moduleColor}" />
@@ -164,28 +164,6 @@
                             
                         </ItemsControl>
 
-                        <!--<FlipView x:Name="calendar" Width="350" Margin="0,20" ItemsSource="{Binding Source={StaticResource calendarFlipView}}" 
-                                      SelectionChanged="calendar_SelectionChanged" >
-                    <Style TargetType="FlipView">
-                        <Setter Property="Background" Value="Transparent"/>
-                        <Setter Property="BorderThickness" Value="0"/>
-                        <Setter Property="TabNavigation" Value="Once"/>
-                        <Setter Property="IsTabStop" Value="False"/>
-                        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Hidden"/>
-                        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Hidden"/>
-                        <Setter Property="ScrollViewer.IsHorizontalScrollChainingEnabled" Value="True"/>
-                        <Setter Property="ScrollViewer.IsVerticalScrollChainingEnabled" Value="True"/>
-                        <Setter Property="ScrollViewer.ZoomMode" Value="Disabled"/>
-                        <Setter Property="ItemsPanel">
-                            <Setter.Value>
-                                <ItemsPanelTemplate>
-                                    <VirtualizingStackPanel AreScrollSnapPointsRegular="True" Orientation="Horizontal"/>
-                                </ItemsPanelTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                    <FlipView.ItemTemplate>
-                        <DataTemplate>-->
                         <Grid Margin="30,-25,0,0">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="auto"/>

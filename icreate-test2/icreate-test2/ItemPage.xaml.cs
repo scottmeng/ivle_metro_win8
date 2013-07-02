@@ -61,6 +61,7 @@ namespace icreate_test2
                 _currentModule = Utils.DataManager.GetModuleAt(_moduleIndex);
                 _currentModule.GenerateModuleItemList();
 
+                mainModuleName.Text = _currentModule.moduleCode;
                 _otherModules = new List<DataStructure.Module>();
                 for (int i = 0; i < _moduleNum; i++)
                 {
@@ -90,14 +91,6 @@ namespace icreate_test2
             itemListView.Source = _currentModule.moduleItems;
             newAnnouncementListView.Source = _currentModule.moduleAnnouncements;
             folder.Source = _workbins[0].workbinFolders;
-
-            //For Test Only
-            mainModuleName.Text = _currentModule.moduleCode;
-            List<string> modules = new List<string>();
-            modules.Add("PP0908");
-            modules.Add("BBBBBB");
-            modules.Add("BBBBBB");
-            modules.Add("BBBBBB");
         }
 
         /// <summary>
