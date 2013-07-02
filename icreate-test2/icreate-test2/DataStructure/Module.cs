@@ -55,6 +55,11 @@ namespace icreate_test2.DataStructure
 
         public Color moduleColor { get; set; }
         public List<ModuleItem> moduleItems { get; set; }
+        public bool isAnnouncementAvailable { get; set; }
+        public bool isWorkbinAvailable { get; set; }
+        public bool isGradebookAvailable { get; set; }
+        public bool isForumAvailable { get; set; }
+        public bool isWebcastAvailable { get; set; }
 
         public Module(Announcement[] announces, List<Forum> forums, Workbin[] workins, Webcast[] webcasts, Gradebook[] gradebooks, String id, String code, 
                       String name, String depart, String sem, String ay, String mc, Lecturer[] lecturers)
@@ -74,6 +79,11 @@ namespace icreate_test2.DataStructure
             moduleLecturers = lecturers;
 
             moduleItems = new List<ModuleItem>();
+            isAnnouncementAvailable = false;
+            isWorkbinAvailable = false;
+            isGradebookAvailable = false;
+            isForumAvailable = false;
+            isWebcastAvailable = false;
         }
 
         // set the color of this module and every announcement in it
@@ -94,12 +104,13 @@ namespace icreate_test2.DataStructure
             // module info is always available
             moduleItems.Add(new ModuleItem("Module Info", ItemType.MODULE_INFO, 0));
 
-            if (moduleAnnouncements != null)
+            if (moduleAnnouncements.Count() > 0)
             {
                 moduleItems.Add(new ModuleItem("Announcements", ItemType.ANNOUNCEMENT, 0));
+                isAnnouncementAvailable = true;
             }
 
-            if (moduleForums != null)
+            if (moduleForums.Count() > 0)
             {
                 index = 0;
                 foreach (Forum forum in moduleForums)
@@ -107,9 +118,10 @@ namespace icreate_test2.DataStructure
                     moduleItems.Add(new ModuleItem(forum.forumTitle, ItemType.FORUM, index));
                     index++;
                 }
+                isForumAvailable = true;
             }
 
-            if (moduleWorkbins != null)
+            if (moduleWorkbins.Count() > 0)
             {
                 index = 0;
                 foreach (Workbin workbin in moduleWorkbins)
@@ -117,14 +129,21 @@ namespace icreate_test2.DataStructure
                     moduleItems.Add(new ModuleItem(workbin.workbinTitle, ItemType.WORKBIN, index));
                     index++;
                 }
+                isWorkbinAvailable = true;
             }
 
-            if (moduleGradebooks != null)
+            if (moduleGradebooks.Count() > 0)
             {
-                moduleItems.Add(new ModuleItem("Gradebook", ItemType.GRADEBOOK, 0));
+                index = 0;
+                foreach (Gradebook gradebook in moduleGradebooks)
+                {
+                    moduleItems.Add(new ModuleItem("Gradebook", ItemType.GRADEBOOK, index));
+                    index++;
+                }
+                isGradebookAvailable = true;
             }
 
-            if (moduleWebcasts != null)
+            if (moduleWebcasts.Count() > 0)
             {
                 index = 0;
                 foreach (Webcast webcast in moduleWebcasts)
@@ -132,6 +151,7 @@ namespace icreate_test2.DataStructure
                     moduleItems.Add(new ModuleItem(webcast.webcastTitle, ItemType.WEBCAST, index));
                     index++;
                 }
+                isWebcastAvailable = true;
             }
         }
     }
