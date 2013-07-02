@@ -79,14 +79,49 @@
             </Grid>
             <Grid Grid.Column="1">
                 <FlipView x:Name="flipView">
+                    <!-- First item is module information -->
+                    <FlipViewItem>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Module Code" Grid.Column="0" Grid.Row="0" FontSize="32"/>
+                            <TextBlock x:Name="moduleCode_textblock" Grid.Column="1" Grid.Row="0" FontSize="32"/>
+                            <TextBlock Text="Module Name" Grid.Column="0" Grid.Row="1" FontSize="32"/>
+                            <TextBlock x:Name="moduleName_textblock" Grid.Column="1" Grid.Row="1" FontSize="32"/>
+                            <TextBlock Text="Module Mc" Grid.Column="0" Grid.Row="2" FontSize="32"/>
+                            <TextBlock x:Name="moduleMc_textblock" Grid.Column="1" Grid.Row="2" FontSize="32"/>
+                            <TextBlock Text="Module Acad Year" Grid.Column="0" Grid.Row="3" FontSize="32"/>
+                            <TextBlock x:Name="moduleAcadYear_textblock" Grid.Column="1" Grid.Row="3" FontSize="32"/>
+                            <TextBlock Text="Time Table" Grid.Column="0" Grid.Row="4" FontSize="32"/>
+                            <TextBlock x:Name="moduleTimetable_textblock" Grid.Column="1" Grid.Row="4" FontSize="32"/>
+                            <TextBlock Text="Exam time" Grid.Column="0" Grid.Row="5" FontSize="32"/>
+                            <TextBlock x:Name="moduleExamtime_textblock" Grid.Column="1" Grid.Row="5" FontSize="32"/>
+                            <TextBlock Text="Lecturers" Grid.Column="0" Grid.Row="6" FontSize="32"/>
+                        </Grid>
+                    </FlipViewItem>
+                    <!-- First item is module information -->
+
+                    <!-- Second item is announcements -->
                     <FlipViewItem>
                         <ListView x:Name="announcementListView" 
-                                  ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
-                                  ScrollViewer.VerticalScrollBarVisibility="Hidden"
-                                  ItemsSource="{Binding Source={StaticResource newAnnouncementListView}}" 
-                                  IsItemClickEnabled="True"
-                                  SelectionMode="None"
-                                  >
+                                      ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                                      ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                                      ItemsSource="{Binding Source={StaticResource newAnnouncementListView}}" 
+                                      IsItemClickEnabled="True"
+                                      SelectionMode="None"
+                                      >
                             <ListView.ItemContainerStyle>
                                 <Style TargetType="ListViewItem">
                                     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -97,36 +132,39 @@
                                 <DataTemplate>
                                     <Grid Height="auto" Background="LightGray">
                                         <StackPanel VerticalAlignment="Top" 
-                                                    Margin="0" 
-                                                    Orientation="Vertical">
+                                                        Margin="0" 
+                                                        Orientation="Vertical">
                                             <TextBlock Margin="20,5,20,5" 
-                                                       Text="{Binding announceName}"  
-                                                       TextWrapping="NoWrap" 
-                                                       Foreground="White" 
-                                                       FontSize="36"
-                                                       TextTrimming="WordEllipsis"/>
+                                                           Text="{Binding announceName}"  
+                                                           TextWrapping="NoWrap" 
+                                                           Foreground="White" 
+                                                           FontSize="36"
+                                                           TextTrimming="WordEllipsis"/>
                                             <TextBlock Margin="20,5,20,5" 
-                                                       Height="auto" 
-                                                       Text="{Binding announceContentPreview}" 
-                                                       TextWrapping="Wrap" 
-                                                       Foreground="White" 
-                                                       FontSize="24" 
-                                                       TextTrimming="WordEllipsis"/>
+                                                           Height="auto" 
+                                                           Text="{Binding announceContentPreview}" 
+                                                           TextWrapping="Wrap" 
+                                                           Foreground="White" 
+                                                           FontSize="24" 
+                                                           TextTrimming="WordEllipsis"/>
                                         </StackPanel>
                                     </Grid>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                         </ListView>
                     </FlipViewItem>
+                    <!-- Second item is announcements -->
+
+                    <!-- Third item is workbin -->
                     <FlipViewItem>
                         <ScrollViewer x:Name="scrollViewer" 
-                                      HorizontalAlignment="Left" 
-                                      VerticalAlignment="Top"
-                                      VerticalScrollBarVisibility="Disabled" 
-                                      HorizontalScrollBarVisibility="Hidden" 
-                                      VerticalScrollMode="Disabled" 
-                                      HorizontalScrollMode="Auto" 
-                                      ZoomMode="Disabled">
+                                        HorizontalAlignment="Left" 
+                                        VerticalAlignment="Top"
+                                        VerticalScrollBarVisibility="Disabled" 
+                                        HorizontalScrollBarVisibility="Hidden" 
+                                        VerticalScrollMode="Disabled" 
+                                        HorizontalScrollMode="Auto" 
+                                        ZoomMode="Disabled">
                             <StackPanel Orientation="Horizontal">
                                 <ListView x:Name="folderItemsControl" 
                                                 ItemsSource="{Binding Source={StaticResource folder}}"  
@@ -184,52 +222,9 @@
                             </StackPanel>
                         </ScrollViewer>
                     </FlipViewItem>
-                    <FlipViewItem>
-                        <Grid>
-                            <ItemsControl x:Name="moduleGrid" ItemsSource="{Binding Source={StaticResource moduleInfo}}">
-                                <ItemsControl.ItemTemplate>
-                                    <DataTemplate>
-                                        <Grid>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="auto"/>
-                                                <RowDefinition Height="auto"/>
-                                                <RowDefinition Height="auto"/>
-                                                <RowDefinition Height="auto"/>
-                                                <RowDefinition Height="auto"/>
-                                                <RowDefinition Height="auto"/>
-                                                <RowDefinition Height="auto"/>
-                                                <RowDefinition Height="auto"/>
-                                            </Grid.RowDefinitions>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="1*"/>
-                                                <ColumnDefinition Width="2*"/>
-                                            </Grid.ColumnDefinitions>
-                                            <Grid Grid.Row="0">
-                                                <TextBlock Text="Module Code" Grid.Column="0"/>
-                                                <TextBlock Text="{Binding moduleCode}" Grid.Column="1"/>
-                                            </Grid>
-                                            <Grid Grid.Row="1">
-                                                <TextBlock Text="Module Name" Grid.Column="0"/>
-                                                <TextBlock Text="{Binding moduleName}" Grid.Column="1"/>
-                                            </Grid>
-                                            <Grid Grid.Row="2">
-                                                <TextBlock Text="Module Mc" Grid.Column="0"/>
-                                                <TextBlock Text="{Binding moduleMc}" Grid.Column="1"/>
-                                            </Grid>
-                                            <Grid Grid.Row="3">
-                                                <TextBlock Text="Module Acad Year" Grid.Column="0"/>
-                                                <TextBlock Text="{Binding moduleAcadYear}" Grid.Column="1"/>
-                                            </Grid>
-                                            <Grid Grid.Row="4">
-                                                <TextBlock Text="Time Table" Grid.Column="0"/>
-                                                <TextBlock Text="{Binding timeTable}" Grid.Column="1"/>
-                                            </Grid>
-                                        </Grid>
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                            </ItemsControl>
-                        </Grid>
-                    </FlipViewItem>
+                    <!-- Third item is workbin -->
+
+                    <!-- Fourth item is gradebook -->
                     <FlipViewItem x:Name="gradeBook">
                         <ListView ItemsSource="{Binding Source={StaticResource grades}}">
                             <ListView.Header>
@@ -320,6 +315,14 @@
                             </ListView.ItemTemplate>
                         </ListView>
                     </FlipViewItem>
+                    <!-- Fourth item is gradebook -->
+
+                    <!-- Fifth item is forum -->
+                    <!-- Fifth item is forum -->
+
+                    <!-- Sixth item is webcast -->
+                    <!-- Sixth item is webcast -->
+                    
                 </FlipView>
             </Grid>
         </Grid>

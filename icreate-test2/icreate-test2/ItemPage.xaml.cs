@@ -91,8 +91,18 @@ namespace icreate_test2
 
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
-            itemListView.Source = _currentModule.moduleItems;
-            newAnnouncementListView.Source = _currentModule.moduleAnnouncements;
+            try
+            {
+                moduleName_textblock.Text = _currentModule.moduleName;
+                moduleCode_textblock.Text = _currentModule.moduleCode;
+                moduleCode_textblock.Text = _currentModule.moduleAcadYear + _currentModule.moduleSemester;
+                moduleMc_textblock.Text = _currentModule.moduleMc;
+                itemListView.Source = _currentModule.moduleItems;
+                newAnnouncementListView.Source = _currentModule.moduleAnnouncements;
+            }
+            catch
+            {
+            }
         }
 
         /// <summary>
