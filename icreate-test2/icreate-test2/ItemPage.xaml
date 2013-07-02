@@ -227,94 +227,221 @@
 
                     <!-- Fourth item is gradebook -->
                     <FlipViewItem x:Name="gradeBook">
-                        <ListView ItemsSource="{Binding Source={StaticResource grades}}">
-                            <ListView.Header>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="3*"/>
-                                        <ColumnDefinition Width="3*"/>
-                                        <ColumnDefinition Width="2*"/>
-                                        <ColumnDefinition Width="3*"/>
-                                        <ColumnDefinition Width="2*"/>
-                                        <ColumnDefinition Width="3*"/>
-                                        <ColumnDefinition Width="3*"/>
-                                        <ColumnDefinition Width="3*"/>
-                                        <ColumnDefinition Width="3*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock Grid.Column="0" 
-                                               Text="category"
+
+                        <StackPanel Orientation="Horizontal">
+                            <ListView ItemsSource="{Binding Source={StaticResource grades}}"
+                                      SelectionMode="None">
+                                <ListView.Header>
+                                    <Border BorderBrush="#BBBBBB" 
+                                            BorderThickness="1" >
+                                        <TextBlock Text="category"
+                                                   FontSize="16"
+                                                   Margin="10,5"
+                                                   TextWrapping="Wrap"
+                                                   HorizontalAlignment="Center"/>
+                                    </Border>
+                                </ListView.Header>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding gradeDescription}"
+                                                   HorizontalAlignment="Center"/>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                            <ListView ItemsSource="{Binding Source={StaticResource grades}}"
+                                      SelectionMode="None">
+                                <ListView.Header>
+                                    <Border BorderBrush="#BBBBBB" 
+                                            BorderThickness="1" >
+                                        <TextBlock Text="Item Name"
+                                                   FontSize="16"
+                                                   Margin="10,5"
+                                                   TextWrapping="Wrap"
+                                                   HorizontalAlignment="Center"/>
+                                    </Border>
+                                </ListView.Header>
+                                <ListView.Style>
+                                    <Style TargetType="ListView">
+                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    </Style>
+                                </ListView.Style>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding gradeName}"
+                                                   HorizontalAlignment="Center"/>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                            <ListView ItemsSource="{Binding Source={StaticResource grades}}"
+                                      SelectionMode="None">
+                                <ListView.Header>
+                                    <Border BorderBrush="#BBBBBB" 
+                                            BorderThickness="1" >
+                                        <TextBlock Text="Marks Obtained"                                                   
+                                                   FontSize="16"
+                                                   Margin="10,5"
+                                                   TextWrapping="Wrap"
+                                                   HorizontalAlignment="Center"/>
+                                    </Border>
+                                </ListView.Header>
+                                <ListView.Style>
+                                    <Style TargetType="ListView">
+                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    </Style>
+                                </ListView.Style>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding gradeObtainedMarks}"
+                                                   HorizontalAlignment="Center"/>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                            <ListView ItemsSource="{Binding Source={StaticResource grades}}"
+                                      SelectionMode="None">
+                                <ListView.Header>
+                                    <Border BorderBrush="#BBBBBB" 
+                                            BorderThickness="1" >
+                                        <TextBlock Text="Remarks"
+                                                   FontSize="16"
+                                                   Margin="10,5"
+                                                   TextWrapping="Wrap"
+                                                   HorizontalAlignment="Center"/>
+                                    </Border>
+                                </ListView.Header>
+                                <ListView.Style>
+                                    <Style TargetType="ListView">
+                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    </Style>
+                                </ListView.Style>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding gradeRemark}"
+                                                   HorizontalAlignment="Center"/>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                            <ListView ItemsSource="{Binding Source={StaticResource grades}}"
+                                      SelectionMode="None">
+                                <ListView.Header>
+                                    <Border BorderBrush="#BBBBBB" 
+                                            BorderThickness="1" >
+                                        <TextBlock Text="Max Marks"
+                                                   FontSize="16"
+                                                   Margin="10,5"
+                                                   TextWrapping="Wrap"
+                                                   HorizontalAlignment="Center"/>
+                                    </Border>
+                                </ListView.Header>
+                                <ListView.Style>
+                                    <Style TargetType="ListView">
+                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    </Style>
+                                </ListView.Style>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding gradeMaxMarks}"
+                                                   HorizontalAlignment="Center"/>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                            <ListView ItemsSource="{Binding Source={StaticResource grades}}"
+                                      SelectionMode="None">
+                                <ListView.Header>
+                                    <Border BorderBrush="#BBBBBB" 
+                                            BorderThickness="1" >
+                                        <TextBlock Text="Highest-Lowest Marks"
+                                                   FontSize="16"
+                                                   Margin="10,5"
+                                                   TextWrapping="Wrap"
+                                                   HorizontalAlignment="Center"/>
+                                    </Border>
+                                </ListView.Header>
+                                <ListView.Style>
+                                    <Style TargetType="ListView">
+                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    </Style>
+                                </ListView.Style>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding gradeHighestLowestMarks}"
+                                                   HorizontalAlignment="Center"/>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                            <ListView ItemsSource="{Binding Source={StaticResource grades}}"
+                                      SelectionMode="None">
+                                <ListView.Header>
+                                    <Border BorderBrush="#BBBBBB" 
+                                            BorderThickness="1" >
+                                        <TextBlock Text="Average-Median Marks"
+                                                   FontSize="16"
+                                                   Margin="10,5"
+                                                   TextWrapping="Wrap"
+                                                   HorizontalAlignment="Center"/>
+                                    </Border>
+                                </ListView.Header>
+                                <ListView.Style>
+                                    <Style TargetType="ListView">
+                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    </Style>
+                                </ListView.Style>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding gradeAverageMedianMarks}"
                                                HorizontalAlignment="Center"/>
-                                    <TextBlock Grid.Column="1" 
-                                               Text="Item Name"
-                                               HorizontalAlignment="Center"/>
-                                    <TextBlock Grid.Column="2" 
-                                               Text="Marks Obtained"
-                                               HorizontalAlignment="Center"/>
-                                    <TextBlock Grid.Column="3" 
-                                               Text="Remarks"
-                                               HorizontalAlignment="Center"/>
-                                    <TextBlock Grid.Column="4" 
-                                               Text="Max Marks"
-                                               HorizontalAlignment="Center"/>
-                                    <TextBlock Grid.Column="5" 
-                                               Text="Highest-Lowest Marks"
-                                               HorizontalAlignment="Center"/>
-                                    <TextBlock Grid.Column="6" 
-                                               Text="Average-Median Marks"
-                                               HorizontalAlignment="Center"/>
-                                    <TextBlock Grid.Column="7" 
-                                               Text="25/75 Percentile"
-                                               HorizontalAlignment="Center"/>
-                                    <TextBlock Grid.Column="8" 
-                                               Text="Date Entered"
-                                               HorizontalAlignment="Center"/>
-                                </Grid>
-                            </ListView.Header>
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="*"/>
-                                        </Grid.ColumnDefinitions>
-                                        <TextBlock Grid.Column="0" 
-                                               Text="{Binding gradeDescription}"
-                                               HorizontalAlignment="Center"/>
-                                        <TextBlock Grid.Column="1" 
-                                               Text="{Binding gradeName}"
-                                               HorizontalAlignment="Center"/>
-                                        <TextBlock Grid.Column="2" 
-                                               Text="{Binding gradeObtainedMarks}"
-                                               HorizontalAlignment="Center"/>
-                                        <TextBlock Grid.Column="3" 
-                                               Text="{Binding gradeRemark}"
-                                               HorizontalAlignment="Center"/>
-                                        <TextBlock Grid.Column="4" 
-                                               Text="{Binding gradeMaxMarks}"
-                                               HorizontalAlignment="Center"/>
-                                        <TextBlock Grid.Column="5" 
-                                               Text="{Binding gradeHighestLowestMarks}"
-                                               HorizontalAlignment="Center"/>
-                                        <TextBlock Grid.Column="6" 
-                                               Text="{Binding gradeAverageMedianMarks}"
-                                               HorizontalAlignment="Center"/>
-                                        <TextBlock Grid.Column="7" 
-                                               Text="{Binding gradePercentile}"
-                                               HorizontalAlignment="Center"/>
-                                        <TextBlock Grid.Column="8" 
-                                               Text="Date Entered"
-                                               HorizontalAlignment="Center"/>
-                                    </Grid>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                            <ListView ItemsSource="{Binding Source={StaticResource grades}}"
+                                      SelectionMode="None">
+                                <ListView.Header>
+                                    <Border BorderBrush="#BBBBBB" 
+                                            BorderThickness="1" >
+                                        <TextBlock Text="25/75 Percentile"
+                                                   FontSize="16"
+                                                   Margin="10,5"
+                                                   TextWrapping="Wrap"
+                                                   HorizontalAlignment="Center"/>
+                                    </Border>
+                                </ListView.Header>
+                                <ListView.Style>
+                                    <Style TargetType="ListView">
+                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    </Style>
+                                </ListView.Style>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding gradePercentile}"
+                                                   HorizontalAlignment="Center"/>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                            <ListView ItemsSource="{Binding Source={StaticResource grades}}"
+                                      SelectionMode="None">
+                                <ListView.Header>
+                                    <Border BorderBrush="#BBBBBB" 
+                                            BorderThickness="1" >
+                                        <TextBlock Text="Date Entered"
+                                                   FontSize="16"
+                                                   Margin="10,5"
+                                                   TextWrapping="Wrap"
+                                                   HorizontalAlignment="Center"/>
+                                    </Border>
+                                </ListView.Header>
+                                <ListView.Style>
+                                    <Style TargetType="ListView">
+                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                    </Style>
+                                </ListView.Style>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="date"
+                                                   HorizontalAlignment="Center"/>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackPanel>
+
                     </FlipViewItem>
                     <!-- Fourth item is gradebook -->
 
@@ -323,7 +450,7 @@
 
                     <!-- Sixth item is webcast -->
                     <!-- Sixth item is webcast -->
-                    
+
                 </FlipView>
             </Grid>
         </Grid>
