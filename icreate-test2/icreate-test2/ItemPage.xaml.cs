@@ -22,6 +22,9 @@ using System.Threading.Tasks;
 using Windows.Media;
 using Callisto.Controls;
 using Newtonsoft.Json;
+using Windows.Storage;
+using Windows.Storage.Streams;
+using System.IO;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
@@ -91,18 +94,32 @@ namespace icreate_test2
 
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
+            // display tabs
+            itemListView.Source = _currentModule.moduleItems;
+
             try
             {
+                // display module information
                 moduleName_textblock.Text = _currentModule.moduleName;
                 moduleCode_textblock.Text = _currentModule.moduleCode;
                 moduleCode_textblock.Text = _currentModule.moduleAcadYear + _currentModule.moduleSemester;
                 moduleMc_textblock.Text = _currentModule.moduleMc;
-                itemListView.Source = _currentModule.moduleItems;
-                newAnnouncementListView.Source = _currentModule.moduleAnnouncements;
             }
             catch
             {
             }
+
+            // display gradebook
+            if(_currentModule.isGradebookAvailable)
+            {
+                grades.Source = _currentModule.moduleGradebooks[0].gradebookGrades;
+            }
+
+            // display announcements
+            if (_currentModule.isAnnouncementAvailable)
+            {
+                newAnnouncementListView.Source = _currentModule.moduleAnnouncements;
+            }           
         }
 
         /// <summary>
@@ -122,17 +139,18 @@ namespace icreate_test2
             switch (selectedItem.itemType)
             {
                 case DataStructure.ItemType.ANNOUNCEMENT:
-                    flipView.SelectedIndex = 0;
+                    flipView.SelectedIndex = 1;
                     break;
                 case DataStructure.ItemType.GRADEBOOK:
+                    flipView.SelectedIndex = 3;
                     break;
                 case DataStructure.ItemType.MODULE_INFO:
-                    flipView.SelectedIndex = 2;
+                    flipView.SelectedIndex = 0;
                     break;
                 case DataStructure.ItemType.WEBCAST:
                     break;
                 case DataStructure.ItemType.WORKBIN:
-                    flipView.SelectedIndex = 1;
+                    flipView.SelectedIndex = 2;
                     
                     _currentFolders = _currentModule.moduleWorkbins[selectedItem.itemIndex].workbinFolders;
                     _currentFiles = new List<DataStructure.File>();
@@ -202,6 +220,62 @@ namespace icreate_test2
             }
             f.Content = m;
             f.IsOpen = true;
+        }
+
+
+        /* TODO
+         * Move this to data manager?
+         * make it cleaner
+         * */
+
+        private async void onFileSelected(object sender, TappedRoutedEventArgs e)
+        {
+            DataStructure.File selectedFile = (e.OriginalSource as FrameworkElement).DataContext as DataStructure.File;
+
+
+            HttpClient client = new HttpClient();
+
+            // http get request to validate token
+            HttpResponseMessage response = await client.GetAsync(Utils.LAPI.GenerateDownloadURL(selectedFile.fileId));
+
+            // make sure the http reponse is successful
+            response.EnsureSuccessStatusCode();
+
+
+            StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
+            String moduleFolderName = _currentModule.moduleCode.Replace("/", "_");
+            StorageFolder moduleFolder = await storageFolder.CreateFolderAsync(moduleFolderName, CreationCollisionOption.OpenIfExists);
+            StorageFile storageFile = await moduleFolder.CreateFileAsync("test.pdf", CreationCollisionOption.GenerateUniqueName);
+
+            using (Stream outputStream = await storageFile.OpenStreamForWriteAsync())
+            using (Stream inputStream = await response.Content.ReadAsStreamAsync())
+            {
+                inputStream.CopyTo(outputStream);
+            }
+
+            //var file = await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFileAsync("test.pdf");
+
+            if (storageFile != null)
+            {
+                // Set the option to show the picker
+                var options = new Windows.System.LauncherOptions();
+                options.DisplayApplicationPicker = true;
+
+                // Launch the retrieved file
+                bool success = await Windows.System.Launcher.LaunchFileAsync(storageFile, options);
+                if (success)
+                {
+                    // File launched
+                }
+                else
+                {
+                    // File launch failed
+                }
+            }
+            else
+            {
+                // Could not find file
+            }
         }
     }
 }

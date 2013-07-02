@@ -193,7 +193,8 @@
                                 </ListView>
                                 <ItemsControl x:Name="fileItemsControl" 
                                                     ItemsSource="{Binding Source={StaticResource file}}"  
-                                                    Margin="20,20,50,20" >
+                                                    Margin="20,20,50,20"
+                                                    Tapped="onFileSelected">
                                     <ItemsControl.ItemsPanel>
                                         <ItemsPanelTemplate>
                                             <WrapGrid/>
