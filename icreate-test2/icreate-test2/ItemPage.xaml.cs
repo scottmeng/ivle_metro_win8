@@ -293,5 +293,14 @@ namespace icreate_test2
                 // Could not find file
             }
         }
+
+        private void thread_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            DataStructure.Thread selectedThread = (e.OriginalSource as FrameworkElement).DataContext as DataStructure.Thread;
+            if (selectedThread.threadInnerThreads.Length > 0)
+                innerThreads.Source = selectedThread.threadInnerThreads;
+            else
+                innerThreads.Source = null;
+        }
     }
 }

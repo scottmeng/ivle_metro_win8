@@ -475,7 +475,8 @@
                                                           Grid.Column="0"
                                                             ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
                                                             ItemsSource="{Binding Source={StaticResource threads}}" 
-                                                            ItemContainerStyle="{StaticResource WithoutTick}">
+                                                            ItemContainerStyle="{StaticResource WithoutTick}" Tapped="thread_Tapped"
+                                                            >
                                                     <ListView.ItemTemplate>
                                                         <DataTemplate>
                                                             <Grid Height="auto" Background="LightGray">
