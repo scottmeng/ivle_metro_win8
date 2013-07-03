@@ -41,6 +41,11 @@
                        FontSize="42" 
                        Style="{StaticResource TitleTextStyle}" />
             <Button x:Name="menuButton" Content=">>>" Click="menuButtonClick" />
+            <ListView x:Name="test" ItemContainerStyle="{StaticResource WithoutTick}">
+                <TextBlock Text="test1"/>
+                <TextBlock Text="test2"/>
+                <TextBlock Text="test3"/>
+            </ListView>
         </StackPanel>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
@@ -49,17 +54,12 @@
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
                 <ListView x:Name="itemList"
+                          ItemContainerStyle="{StaticResource WithoutTick}"
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
                           ScrollViewer.VerticalScrollBarVisibility="Hidden" 
                           ItemsSource="{Binding Source={StaticResource itemListView}}" 
                           Tapped="itemChanged_ListViewTapped" 
                           IsSwipeEnabled="True">
-                    <ListView.ItemContainerStyle>
-                        <Style TargetType="ListViewItem">
-                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                            <Setter Property="Margin" Value="0,0,0,-8" />
-                        </Style>
-                    </ListView.ItemContainerStyle>
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Grid Height="100">
