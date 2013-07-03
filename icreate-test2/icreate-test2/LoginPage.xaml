@@ -78,7 +78,7 @@
                     <TextBlock Text="Password:" FontSize="28" Margin="5" 
                                Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                     <PasswordBox x:Name="PasswordBox" Margin="5" Width="300" FontSize="24" 
-                                 PasswordChar="*" Grid.Column="1" Grid.Row="1"/>
+                                 PasswordChar="*" Grid.Column="1" Grid.Row="1" />
                     <TextBlock Text="Domain:" FontSize="28" Margin="5" 
                                Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                     <ComboBox x:Name="DomainComboBox" Margin="5" SelectedItem="domainItem"  
@@ -87,10 +87,17 @@
                         <x:String>NUSSTF</x:String>
                         <x:String>NUSSSS</x:String>
                     </ComboBox>
-                    <ProgressRing x:Name="ProgressRing" Margin="5,5,5,5" IsActive="False" Height="40" Width="40"
-                                  Grid.Column="0" Grid.Row="3" />
                     <Button x:Name="LoginButton" Margin="5,5,5,5" Content="Login" FontSize="28" Click="login_Click" 
                             Grid.Column="1"  Grid.Row="3" Width="200" HorizontalAlignment="Right"/>
+                </Grid>
+            </StackPanel>
+
+        </Viewbox>
+        <Viewbox Height="768" Width="1366">
+            <StackPanel>
+                <Grid Margin="1000,234,100,234" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <ProgressRing x:Name="ProgressRing" Margin="5,5,5,5" IsActive="False" Height="100" Width="100"
+                                  Grid.Column="0" Grid.Row="3" />
                 </Grid>
             </StackPanel>
         </Viewbox>

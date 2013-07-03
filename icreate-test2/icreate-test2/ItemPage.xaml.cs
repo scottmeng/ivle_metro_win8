@@ -128,9 +128,13 @@ namespace icreate_test2
                 if (_currentModule.moduleForums[0].forumHeadings.Length > 0)
                 {
                     threads.Source = _currentModule.moduleForums[0].forumHeadings[0].headingThreads;
-                    for (int i = 0; i < _currentModule.moduleForums[0].forumHeadings[0].headingThreads.Length; i++)
-                        if (_currentModule.moduleForums[0].forumHeadings[0].headingThreads[i].threadInnerThreads.Length>1)
-                            innerThreads.Source = _currentModule.moduleForums[0].forumHeadings[0].headingThreads[i].threadInnerThreads;
+                    if (_currentModule.moduleForums[0].forumHeadings[0].headingThreads.Length > 0)
+                    {
+                        if (_currentModule.moduleForums[0].forumHeadings[0].headingThreads[0].threadInnerThreads.Length > 0)
+                            innerThreads.Source = _currentModule.moduleForums[0].forumHeadings[0].headingThreads[0].threadInnerThreads;
+                    }
+                    else
+                        innerThreads.Source = null;
                 }
             }
         }

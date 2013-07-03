@@ -79,7 +79,7 @@ namespace icreate_test2
                     DisableLoginControls();
 
                     // display progress circle
-                    ProgressRing.IsActive = true;
+                    ProgressRing.IsActive = false;
 
                     // check if token is valid
                     if (await Utils.TokenManager.IsTokenValid())
@@ -140,7 +140,7 @@ namespace icreate_test2
                 DisableLoginControls();
 
                 // display progress ring
-                ProgressRing.IsActive = true;
+                ProgressRing.IsActive = false;
 
                 username = UsernameTextBox.Text;
                 password = PasswordBox.Password;
@@ -150,8 +150,10 @@ namespace icreate_test2
                 
                 if (await Utils.TokenManager.LoginAsync(postString))
                 {
+                    //hide everything
+                    HideLoginControls();
                     // hide progress ring
-                    ProgressRing.IsActive = false;
+                    ProgressRing.IsActive = true;
 
                     // update token
                     Utils.TokenManager.StoreToken();
@@ -224,6 +226,10 @@ namespace icreate_test2
             PasswordBox.IsEnabled = true;
             DomainComboBox.IsEnabled = true;
             LoginButton.IsEnabled = true;
+        }
+        private void HideLoginControls()
+        {
+            userInfo.Opacity = 0;
         }
 
         private async Task GetClassesAsync()
