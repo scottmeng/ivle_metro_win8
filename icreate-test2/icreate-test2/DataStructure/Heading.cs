@@ -22,7 +22,7 @@ namespace icreate_test2.DataStructure
         [DataMember(Name = "Threads")]
         public Thread[] headingThreads { get; set; }
 
-        public List<PostTitle> headingPostTile { get; set; }
+        public List<PostTitle> headingAllTiles { get; set; }
 
         public Heading(String id, String title, int badge, Thread[] threads)
         {
@@ -31,12 +31,17 @@ namespace icreate_test2.DataStructure
             headingBadge = badge;
             headingThreads = threads;
 
-            headingPostTile = new List<PostTitle>();
+            headingAllTiles = new List<PostTitle>();
         }
 
-        public void GeneratePostTitle()
+        public void GenerateAllTitles()
         {
-                
+            headingAllTiles.Add(new PostTitle(headingTitle, true, null));
+
+            foreach (Thread thread in headingThreads)
+            {
+                headingAllTiles.Add(new PostTitle(thread.threadTitle, false, thread.threadId));
+            }
         }
     }
 }

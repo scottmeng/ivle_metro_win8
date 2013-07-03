@@ -40,6 +40,8 @@ namespace icreate_test2
         private int _moduleIndex;
         private int _announcementIndex;
 
+        private int _currentForumIndex;
+        
         private DataStructure.Module _currentModule;
         private List<DataStructure.Module> _otherModules;
         private List<DataStructure.Workbin> _workbins;
@@ -74,11 +76,12 @@ namespace icreate_test2
                 }
             }
 
-            await GetWorkbinAsync();
-            await GetForumAsync();
+
             _currentModule.GenerateModuleItemList();
 
             base.OnNavigatedTo(e);
+            await GetWorkbinAsync();
+            await GetForumAsync();
         }
 
 
@@ -102,7 +105,7 @@ namespace icreate_test2
                 // display module information
                 moduleName_textblock.Text = _currentModule.moduleName;
                 moduleCode_textblock.Text = _currentModule.moduleCode;
-                moduleCode_textblock.Text = _currentModule.moduleAcadYear + _currentModule.moduleSemester;
+                moduleAcadYear_textblock.Text = _currentModule.moduleAcadYear + _currentModule.moduleSemester;
                 moduleMc_textblock.Text = _currentModule.moduleMc;
             }
             catch
@@ -124,6 +127,8 @@ namespace icreate_test2
             // display forum
             if (_currentModule.isForumAvailable)
             {
+                _currentModule.moduleForums[0].GenerateAllTitles();
+                /*
                 headers.Source = _currentModule.moduleForums[0].forumHeadings;
                 if (_currentModule.moduleForums[0].forumHeadings.Length > 0)
                 {
@@ -140,6 +145,7 @@ namespace icreate_test2
                         innerThreads.Source = null;
                     }
                 }
+                */
             }
         }
 
@@ -157,33 +163,38 @@ namespace icreate_test2
         {
             DataStructure.ModuleItem selectedItem = (e.OriginalSource as FrameworkElement).DataContext as DataStructure.ModuleItem;
 
-            switch (selectedItem.itemType)
+            // make sure the tap event occurs on list items
+            if (selectedItem != null)
             {
-                case DataStructure.ItemType.ANNOUNCEMENT:
-                    flipView.SelectedIndex = 1;
-                    break;
-                case DataStructure.ItemType.GRADEBOOK:
-                    flipView.SelectedIndex = 3;
-                    break;
-                case DataStructure.ItemType.MODULE_INFO:
-                    flipView.SelectedIndex = 0;
-                    break;
-                case DataStructure.ItemType.WEBCAST:
-                    break;
-                case DataStructure.ItemType.WORKBIN:
-                    flipView.SelectedIndex = 2;
-                    
-                    _currentFolders = _currentModule.moduleWorkbins[selectedItem.itemIndex].workbinFolders;
-                    _currentFiles = new List<DataStructure.File>();
+                switch (selectedItem.itemType)
+                {
+                    case DataStructure.ItemType.ANNOUNCEMENT:
+                        flipView.SelectedIndex = 1;
+                        break;
+                    case DataStructure.ItemType.GRADEBOOK:
+                        flipView.SelectedIndex = 3;
+                        break;
+                    case DataStructure.ItemType.MODULE_INFO:
+                        flipView.SelectedIndex = 0;
+                        break;
+                    case DataStructure.ItemType.WEBCAST:
+                        break;
+                    case DataStructure.ItemType.WORKBIN:
+                        flipView.SelectedIndex = 2;
 
-                    folder.Source = _currentFolders;
-                    file.Source = _currentFiles;
-                    break;
-                case DataStructure.ItemType.FORUM:
-                    flipView.SelectedIndex = 4;
-                    break;
-                default:
-                    break;
+                        _currentFolders = _currentModule.moduleWorkbins[selectedItem.itemIndex].workbinFolders;
+                        _currentFiles = new List<DataStructure.File>();
+
+                        folder.Source = _currentFolders;
+                        file.Source = _currentFiles;
+                        break;
+                    case DataStructure.ItemType.FORUM:
+                        flipView.SelectedIndex = 4;
+                        _currentForumIndex = selectedItem.itemIndex;
+                        break;
+                    default:
+                        break;
+                }
             }
         }
 
@@ -304,11 +315,22 @@ namespace icreate_test2
 
         private void thread_Tapped(object sender, TappedRoutedEventArgs e)
         {
-            DataStructure.Thread selectedThread = (e.OriginalSource as FrameworkElement).DataContext as DataStructure.Thread;
-            if (selectedThread.threadInnerThreads.Length > 0)
-                innerThreads.Source = selectedThread.threadInnerThreads;
-            else
-                innerThreads.Source = null;
+            DataStructure.PostTitle selectedPostTitle = (e.OriginalSource as FrameworkElement).DataContext as DataStructure.PostTitle;
+
+            if (selectedPostTitle != null && !selectedPostTitle.isPostHeading)
+            {
+                foreach (DataStructure.Heading heading in _currentModule.moduleForums[_currentForumIndex].forumHeadings)
+                {
+                    foreach (DataStructure.Thread thread in heading.headingThreads)
+                    {
+                        if (thread.threadId == selectedPostTitle.threadId)
+                        {
+                            thread.GenerateAllThread();
+                            innerThreads.Source = thread.threadAllThreads;
+                        }
+                    }
+                }
+            }
         }
     }
 }

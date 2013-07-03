@@ -10,11 +10,13 @@ namespace icreate_test2.DataStructure
     {
         public String postTitle { get; set; }
         public bool isPostHeading { get; set; }
+        public String threadId { get; set; }
 
-        public PostTitle(String title, bool isHeading)
+        public PostTitle(String title, bool isHeading, String id)
         {
             postTitle = title;
             isPostHeading = isHeading;
+            threadId = id;
         }
     }
 }

@@ -25,6 +25,8 @@ namespace icreate_test2.DataStructure
         [DataMember(Name = "Headings")]
         public Heading[] forumHeadings { get; set; }
 
+        public List<PostTitle> forumAllTitles { get; set; }
+
         public Forum(String id, String title, String message, int badge, Heading[] headings)
         {
             forumId = id;
@@ -32,6 +34,18 @@ namespace icreate_test2.DataStructure
             forumMessage = message;
             forumBadge = badge;
             forumHeadings = headings;
+
+            forumAllTitles = new List<PostTitle>();
+        }
+
+        // generate the title list to be displayed on the left-
+        public void GenerateAllTitles()
+        {
+            foreach (Heading heading in forumHeadings)
+            {
+                heading.GenerateAllTitles();
+                forumAllTitles = forumAllTitles.Concat(heading.headingAllTiles).ToList();
+            }
         }
     }
 }
