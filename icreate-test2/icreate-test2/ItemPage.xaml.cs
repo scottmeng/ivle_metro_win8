@@ -120,6 +120,19 @@ namespace icreate_test2
             {
                 newAnnouncementListView.Source = _currentModule.moduleAnnouncements;
             }           
+
+            // display forum
+            if (_currentModule.isForumAvailable)
+            {
+                headers.Source = _currentModule.moduleForums[0].forumHeadings;
+                if (_currentModule.moduleForums[0].forumHeadings.Length > 0)
+                {
+                    threads.Source = _currentModule.moduleForums[0].forumHeadings[0].headingThreads;
+                    for (int i = 0; i < _currentModule.moduleForums[0].forumHeadings[0].headingThreads.Length; i++)
+                        if (_currentModule.moduleForums[0].forumHeadings[0].headingThreads[i].threadInnerThreads.Length>1)
+                            innerThreads.Source = _currentModule.moduleForums[0].forumHeadings[0].headingThreads[i].threadInnerThreads;
+                }
+            }
         }
 
         /// <summary>
@@ -157,6 +170,9 @@ namespace icreate_test2
 
                     folder.Source = _currentFolders;
                     file.Source = _currentFiles;
+                    break;
+                case DataStructure.ItemType.FORUM:
+                    flipView.SelectedIndex = 4;
                     break;
                 default:
                     break;
