@@ -22,12 +22,21 @@ namespace icreate_test2.DataStructure
         [DataMember(Name = "Threads")]
         public Thread[] headingThreads { get; set; }
 
+        public List<PostTitle> headingPostTile { get; set; }
+
         public Heading(String id, String title, int badge, Thread[] threads)
         {
             headingId = id;
             headingTitle = title;
             headingBadge = badge;
             headingThreads = threads;
+
+            headingPostTile = new List<PostTitle>();
+        }
+
+        public void GeneratePostTitle()
+        {
+                
         }
     }
 }

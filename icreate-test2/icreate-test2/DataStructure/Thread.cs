@@ -26,7 +26,7 @@ namespace icreate_test2.DataStructure
         public Member threadPoster { get; set; }
 
         [DataMember(Name = "Threads")]
-        public Thread[] threadInnerThreads { get; set; }
+        public List<Thread> threadInnerThreads { get; set; }
 
         [DataMember(Name = "isPosterStaff")]
         public bool threadIsPosterStaff { get; set; }
@@ -34,7 +34,10 @@ namespace icreate_test2.DataStructure
         [DataMember(Name = "isRead")]
         public bool threadIsRead { get; set; }
 
-        public Thread(String id, String title, String body, DateTime date, Member poster, Thread[] innerThreads, bool isPosterStaff, bool isRead)
+        // hold all threads data
+        public List<Thread> threadAllThreads { get; set; }
+
+        public Thread(String id, String title, String body, DateTime date, Member poster, List<Thread> innerThreads, bool isPosterStaff, bool isRead)
         {
             threadId = id;
             threadTitle = title;
@@ -44,6 +47,13 @@ namespace icreate_test2.DataStructure
             threadInnerThreads = innerThreads;
             threadIsPosterStaff = isPosterStaff;
             threadIsRead = isRead;
+
+            threadAllThreads = threadInnerThreads;
+        }
+
+        public void GenerateAllThread()
+        {
+            threadAllThreads.Insert(0, new Thread(threadId, threadTitle, threadBody, threadDate, threadPoster, null, threadIsPosterStaff, threadIsRead));
         }
     }
 }

@@ -131,10 +131,14 @@ namespace icreate_test2
                     if (_currentModule.moduleForums[0].forumHeadings[0].headingThreads.Length > 0)
                     {
                         if (_currentModule.moduleForums[0].forumHeadings[0].headingThreads[0].threadInnerThreads.Length > 0)
+                        {
                             innerThreads.Source = _currentModule.moduleForums[0].forumHeadings[0].headingThreads[0].threadInnerThreads;
+                        }
                     }
                     else
+                    {
                         innerThreads.Source = null;
+                    }
                 }
             }
         }
