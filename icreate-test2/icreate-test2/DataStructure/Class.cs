@@ -37,6 +37,7 @@ namespace icreate_test2.DataStructure
         [DataMember(Name = "WeekText")]
         public string classWeek { get; set; }
 
+        public int classDayCodeInt { get; set; }
         public int classTimePoint { get; set; }
 
         public Class(string startTime, string endTime, string moduleCode, string number, string lessonType, string venue, string dayCode, string dayText, string week)
@@ -50,10 +51,7 @@ namespace icreate_test2.DataStructure
             classDayCode = dayCode;
             classDayText = dayText;
             classWeek = week;
-        }
 
-        public void GenerateDisplay()
-        {
             if (classStartTime.Length == 3)
             {
                 classStartTime = "0" + classStartTime;
@@ -65,6 +63,7 @@ namespace icreate_test2.DataStructure
             }
 
             classTimePoint = Int32.Parse(classStartTime) + 10000 * Int32.Parse(classDayCode);
+            classDayCodeInt = Int32.Parse(classDayCode);
         }
     }
 }

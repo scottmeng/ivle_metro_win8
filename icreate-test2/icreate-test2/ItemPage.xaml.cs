@@ -24,7 +24,6 @@ using Callisto.Controls;
 using Newtonsoft.Json;
 using Windows.Storage;
 using Windows.Storage.Streams;
-using System.IO;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 

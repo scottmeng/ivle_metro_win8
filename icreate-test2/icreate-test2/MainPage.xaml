@@ -17,7 +17,6 @@
         <!-- Collection of items displayed by this page -->
         <CollectionViewSource x:Name="newAnnouncementListView" Source="{Binding Items}"/>
         <CollectionViewSource x:Name="moduleGridView" Source="{Binding Items}"/>
-        <CollectionViewSource x:Name="calendarFlipView" />
         <CollectionViewSource x:Name="dailyListView" />
 
     </Page.Resources>
@@ -26,8 +25,7 @@
         <AppBar x:Name="bottomAppBar" Padding="10,0,10,0">
             <Grid>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                    <Button Style="{StaticResource EditAppBarButtonStyle}" Click="Button_Click"/>
-                    <Button Style="{StaticResource LogOffAppBarButtonStyle}" Click="Logoff_Button_Click"/>
+                    <!-- add more controls here if needed -->
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                     <Button Style="{StaticResource LogOffAppBarButtonStyle}" Click="Logoff_Button_Click"/>
@@ -50,7 +48,6 @@
                       ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
                       ScrollViewer.VerticalScrollBarVisibility="Hidden" 
                       ItemsSource="{Binding Source={StaticResource newAnnouncementListView}}" 
-                      SelectionChanged="ItemListView_SelectionChanged" 
                       Tapped="AnnoucementListViewTapped" 
                       ItemContainerStyle="{StaticResource WithoutTick}">
                 <ListView.ItemTemplate>
@@ -169,20 +166,21 @@
                                         Width="350" 
                                         HorizontalAlignment="Center"
                                         Margin="0">
-                                <Button Content="&lt;" 
-                                            Margin="35,5,5,5" 
-                                            Click="prevDay" 
-                                            FontSize="38" 
-                                            Foreground="Gray" 
-                                            Opacity="0.7"
-                                            HorizontalAlignment="Left" 
-                                            VerticalAlignment="Bottom" 
-                                            FontWeight="Light">
+                                <Button x:Name="prevDay_btn" 
+                                        Content="&lt;" 
+                                        Margin="35,5,5,5" 
+                                        Tapped="onPrevDaySelected"
+                                        FontSize="38" 
+                                        Foreground="Gray" 
+                                        Opacity="0.7"
+                                        HorizontalAlignment="Left" 
+                                        VerticalAlignment="Bottom" 
+                                        FontWeight="Light">
                                     <Button.Background>
                                         <SolidColorBrush Color="Transparent"/>
                                     </Button.Background>
                                 </Button>
-                                <TextBlock Text="Today" 
+                                <TextBlock x:Name="date_textblock"
                                                FontSize="38" 
                                                Foreground="LightSlateGray" 
                                                HorizontalAlignment="Center" 
@@ -190,15 +188,16 @@
                                                Opacity="0.7" 
                                                VerticalAlignment="Bottom" 
                                                FontWeight="Light"/>
-                                <Button Content=">" 
-                                            Margin="5" 
-                                            Click="nextDay" 
-                                            FontSize="38" 
-                                            Foreground="Gray" 
-                                            Opacity="0.7"
-                                            HorizontalAlignment="Right" 
-                                            VerticalAlignment="Bottom" 
-                                            FontWeight="Light">
+                                <Button x:Name="nextDay_btn" 
+                                        Content=">" 
+                                        Margin="5" 
+                                        Tapped="onNextDaySelected"
+                                        FontSize="38" 
+                                        Foreground="Gray" 
+                                        Opacity="0.7"
+                                        HorizontalAlignment="Right" 
+                                        VerticalAlignment="Bottom" 
+                                        FontWeight="Light">
                                     <Button.Background>
                                         <SolidColorBrush Color="Transparent"/>
                                     </Button.Background>

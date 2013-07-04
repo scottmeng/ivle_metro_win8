@@ -4,6 +4,7 @@ using System.Text;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Windows.System;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -14,11 +15,11 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Popups;
-using System.Net.NetworkInformation;
 using System.Runtime.Serialization.Json;
 using Windows.Data.Json;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Windows.Networking.Connectivity;
 
 using Newtonsoft.Json;
 
@@ -64,7 +65,7 @@ namespace icreate_test2
             this.LoadUserCredentials();
 
             // make sure network connection is available
-            if (!NetworkInterface.GetIsNetworkAvailable())
+            if (!IsInternet())
             {
                 MessageDialog noInternetDialog = new MessageDialog("There is currently no internet connection..", "Oops");
                 noInternetDialog.ShowAsync();
@@ -127,9 +128,15 @@ namespace icreate_test2
             base.SaveState(pageState);
         }
 
-        private async void login_Click(object sender, RoutedEventArgs e)
+        private void login_Click(object sender, RoutedEventArgs e)
         {
-            if (!NetworkInterface.GetIsNetworkAvailable())
+            Login();
+        }
+
+
+        private async void Login()
+        {
+            if (!IsInternet())
             {
                 MessageDialog noInternetDialog = new MessageDialog("There is currently no internet connection..", "Oops");
                 await noInternetDialog.ShowAsync();
@@ -147,7 +154,7 @@ namespace icreate_test2
                 domain = DomainComboBox.SelectedValue.ToString();
 
                 postString = Utils.LAPI.GeneratePostString(username, password, domain);
-                
+
                 if (await Utils.TokenManager.LoginAsync(postString))
                 {
                     //hide everything
@@ -173,13 +180,11 @@ namespace icreate_test2
                     ProgressRing.IsActive = false;
                     EnableLoginControls();
 
-                    MessageDialog noInternetDialog = new MessageDialog("Log in failed. Please check your userId and password", "Oops");
-                    noInternetDialog.ShowAsync();
+                    MessageDialog loginFailDialog = new MessageDialog("Log in failed. Please check your userId and password", "Oops");
+                    await loginFailDialog.ShowAsync();
                 }
             }
-
         }
-
 
         // loading user credential from application data settings
         private void LoadUserCredentials()
@@ -247,7 +252,6 @@ namespace icreate_test2
                 {
                     foreach (DataStructure.Class mClass in classWrapper.classes)
                     {
-                        mClass.GenerateDisplay();
                         Utils.DataManager.AddClass(mClass);
                     }
                 }
@@ -285,6 +289,22 @@ namespace icreate_test2
                     iterator++;
                 }
             }
+        }
+
+        private void onPasswordKeyDown(object sender, KeyRoutedEventArgs e)
+        {
+            if (e.Key == VirtualKey.Enter)
+            {
+                Login();
+            }
+        }
+
+        // to check internet availability
+        public static bool IsInternet()
+        {
+            ConnectionProfile connections = NetworkInformation.GetInternetConnectionProfile();
+            bool internet = connections != null && connections.GetNetworkConnectivityLevel() == NetworkConnectivityLevel.InternetAccess;
+            return internet;
         }
     }
 }

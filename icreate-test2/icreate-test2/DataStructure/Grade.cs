@@ -11,34 +11,37 @@ namespace icreate_test2.DataStructure
     class Grade
     {
         [DataMember(Name = "ID")]
-        public String gradeId { get; set; }
+        public string gradeId { get; set; }
 
         [DataMember(Name = "ItemName")]
-        public String gradeName { get; set; }
+        public string gradeName { get; set; }
 
         [DataMember(Name = "ItemDescription")]
-        public String gradeDescription { get; set; }
+        public string gradeDescription { get; set; }
 
         [DataMember(Name = "MarksObtained")]
-        public String gradeObtainedMarks { get; set; }
+        public string gradeObtainedMarks { get; set; }
 
         [DataMember(Name = "Remark")]
-        public String gradeRemark { get; set; }
+        public string gradeRemark { get; set; }
 
         [DataMember(Name = "MaxMarks")]
         public int gradeMaxMarks { get; set; }
 
         [DataMember(Name = "HighestLowestMarks")]
-        public String gradeHighestLowestMarks { get; set; }
+        public string gradeHighestLowestMarks { get; set; }
 
         [DataMember(Name = "AverageMedianMarks")]
-        public String gradeAverageMedianMarks { get; set; }
+        public string gradeAverageMedianMarks { get; set; }
 
         [DataMember(Name = "Percentile")]
-        public String gradePercentile { get; set; }
+        public string gradePercentile { get; set; }
 
-        public Grade(String id, String name, String description, String obtainedMarks, String remark, int maxMarks, String highestLowestMarks, String averageMedianMarks,
-                     String percentile)
+        [DataMember(Name = "DateEntered")]
+        public string gradeEnteredDate { get; set; }
+
+        public Grade(string id, string name, string description, string obtainedMarks, string remark, int maxMarks, string highestLowestMarks, string averageMedianMarks,
+                     string percentile, string enteredDate)
         {
             gradeId = id;
             gradeName = name;
@@ -49,6 +52,7 @@ namespace icreate_test2.DataStructure
             gradeHighestLowestMarks = highestLowestMarks;
             gradeAverageMedianMarks = averageMedianMarks;
             gradePercentile = percentile;
+            gradeEnteredDate = enteredDate;
         }
     }
 }

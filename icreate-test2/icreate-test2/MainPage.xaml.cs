@@ -27,15 +27,52 @@ namespace icreate_test2
     public sealed partial class MainPage : icreate_test2.Common.LayoutAwarePage
     {
         public static MainPage Current;
+        private static List<String> dayList;
+        private static int todayCode;
+        private static int dayListIndex;
 
         public MainPage()
         {
             this.InitializeComponent();
             Current = this;
-            
+
+            dayListIndex = 2;
+            switch (DateTime.Now.DayOfWeek)
+            {
+                case DayOfWeek.Friday:
+                    todayCode = 4;
+                    dayList = new List<string> { "Wednesday", "Thursday", "Today", "Saturday", "Monday", "Tuesday" };
+                    break;
+                case DayOfWeek.Monday:
+                    todayCode = 0;
+                    dayList = new List<string> { "Friday", "Saturday", "Today", "Tuesday", "Wednesday", "Thursday" };
+                    break;
+                case DayOfWeek.Tuesday:
+                    todayCode = 1;
+                    dayList = new List<string> { "Saturday", "Monday", "Today", "Wednesday", "Thursday", "Friday" };
+                    break;
+                case DayOfWeek.Wednesday:
+                    todayCode = 2;
+                    dayList = new List<string> { "Monday", "Tuesday", "Today", "Thursday", "Friday", "Saturday" };
+                    break;
+                case DayOfWeek.Thursday:
+                    todayCode = 3;
+                    dayList = new List<string> { "Tuesday", "Wednesday", "Today", "Friday", "Saturday", "Monday" };
+                    break;
+                case DayOfWeek.Saturday:
+                    todayCode = 5;
+                    dayList = new List<string> { "Thursday", "Friday", "Today", "Monday", "Tuesday", "Wednesday" };
+                    break;
+                case DayOfWeek.Sunday:
+                    todayCode = 0;
+                    dayList = new List<string> { "Friday", "Saturday", "Monday", "Tuesday", "Wednesday", "Thursday" };
+                    break;
+                default:
+                    break;
+            }
+
             // cache the page for future usage
             this.NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Enabled;
-       
         }
 
         /// <summary>
@@ -54,7 +91,10 @@ namespace icreate_test2
             moduleGridView.Source = Utils.DataManager.GetModules();
             newAnnouncementListView.Source = Utils.DataManager.GetAnnouncements();
 
-            dailyListView.Source = Utils.DataManager.GetClasses();
+            // let data manager populates class list for each weekday
+            Utils.DataManager.GenerateDailyClassList();
+            date_textblock.Text = dayList[dayListIndex];
+            dailyListView.Source = Utils.DataManager.GetDailyClassList(todayCode);
         }
 
         /// <summary>
@@ -65,24 +105,6 @@ namespace icreate_test2
         /// <param name="pageState">An empty dictionary to be populated with serializable state.</param>
         protected override void SaveState(Dictionary<String, Object> pageState)
         {
-        }
-
-        private void ItemListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-        private void prevDay(object sender, RoutedEventArgs e)
-        {
-
-        }
-        private void nextDay(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private void Logoff_Button_Click(object sender, RoutedEventArgs e)
@@ -125,6 +147,44 @@ namespace icreate_test2
         internal void ProcessQueryText(string p)
         {
             throw new NotImplementedException();
+        }
+
+        private void onNextDaySelected(object sender, TappedRoutedEventArgs e)
+        {
+            if (dayListIndex < 5)
+            {
+                prevDay_btn.IsEnabled = true;
+
+                if (dayListIndex == 4)  
+                {
+                    nextDay_btn.IsEnabled = false;
+                }
+
+                dayListIndex++;
+
+                date_textblock.Text = dayList[dayListIndex];
+
+                dailyListView.Source = Utils.DataManager.GetDailyClassList((todayCode + dayListIndex - 2) % 6);
+            }
+        }
+
+        private void onPrevDaySelected(object sender, TappedRoutedEventArgs e)
+        {
+            if (dayListIndex > 0)
+            {
+                nextDay_btn.IsEnabled = true;
+
+                if (dayListIndex == 1)
+                {
+                    prevDay_btn.IsEnabled = false;
+                }
+
+                dayListIndex--;
+
+                date_textblock.Text = dayList[dayListIndex];
+
+                dailyListView.Source = Utils.DataManager.GetDailyClassList((todayCode + dayListIndex - 2) % 6);
+            }
         }
     }
 

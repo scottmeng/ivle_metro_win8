@@ -10,15 +10,20 @@ namespace icreate_test2.Utils
     {
         private static List<DataStructure.Module> _modules;
         private static List<DataStructure.Announcement> _announcements;
-        private static List<DataStructure.Class> _classes;
+        private static List<DataStructure.Class> _allClasses;
+        private static List<DataStructure.Class>[] _classesForEachDay;
         private static List<DataStructure.SemesterInfo> _sems;
 
         public static void InitializeDataLists()
         {
             _modules = new List<DataStructure.Module>();
             _announcements = new List<DataStructure.Announcement>();
-            _classes = new List<DataStructure.Class>();
+            _allClasses = new List<DataStructure.Class>();
             _sems = new List<DataStructure.SemesterInfo>();
+
+            _classesForEachDay = new List<DataStructure.Class>[6] { new List<DataStructure.Class>(), new List<DataStructure.Class>(), 
+                                                                    new List<DataStructure.Class>(), new List<DataStructure.Class>(), 
+                                                                    new List<DataStructure.Class>(), new List<DataStructure.Class>()};
         }
 
         public static List<DataStructure.Module> GetModules()
@@ -33,7 +38,7 @@ namespace icreate_test2.Utils
 
         public static List<DataStructure.Class> GetClasses()
         {
-            return _classes;
+            return _allClasses;
         }
 
         public static List<DataStructure.SemesterInfo> GetSems()
@@ -53,7 +58,7 @@ namespace icreate_test2.Utils
 
         public static void AddClass(DataStructure.Class newClass)
         {
-            _classes.Add(newClass);
+            _allClasses.Add(newClass);
         }
 
         public static void AddSemInfo(DataStructure.SemesterInfo sem)
@@ -99,7 +104,49 @@ namespace icreate_test2.Utils
         {
             return _modules[index];
         }
+
+        public static List<DataStructure.Class> GetDailyClassList(int dayCode)
+        {
+            return _classesForEachDay[dayCode];
+        }
+
+        public static void GenerateDailyClassList()
+        {
+            // catogorize all classes according to week day 
+            foreach(DataStructure.Class mClass in _allClasses)
+            {
+                switch (mClass.classDayCodeInt)
+                {
+                    case 1:
+                        _classesForEachDay[0].Add(mClass);
+                        break;
+                    case 2:
+                        _classesForEachDay[1].Add(mClass);
+                        break;
+                    case 3:
+                        _classesForEachDay[2].Add(mClass);
+                        break;
+                    case 4:
+                        _classesForEachDay[3].Add(mClass);
+                        break;
+                    case 5:
+                        _classesForEachDay[4].Add(mClass);
+                        break;
+                    case 6:
+                        _classesForEachDay[5].Add(mClass);
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+         foreach (List<DataStructure.Class> classes in _classesForEachDay)
+            {
+                classes.Sort(new ClassTimeComparer());
+            }
+        }
     }
+
 
     class SeminfoEqualityComparer : IEqualityComparer<DataStructure.SemesterInfo>
     {
@@ -142,6 +189,13 @@ namespace icreate_test2.Utils
         }
     }
 
-
+    class ClassTimeComparer : IComparer<DataStructure.Class>
+    {
+        // Compares the starting time of classes
+        public int Compare(DataStructure.Class class1, DataStructure.Class class2)
+        {
+            return class1.classTimePoint.CompareTo(class2.classTimePoint);
+        }
+    }
 
 }

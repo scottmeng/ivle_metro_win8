@@ -231,6 +231,20 @@
                     <!-- Fourth item is gradebook -->
                     <FlipViewItem x:Name="gradeBook">
 
+                        <Grid Width="auto">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="1" Text="test"/>
+                            <TextBlock Grid.Column="2" Text="test"/>
+                            <TextBlock Grid.Column="5" Text="test"/>
+                        </Grid>
+                        <!--
                         <StackPanel Orientation="Horizontal">
                             <ListView ItemsSource="{Binding Source={StaticResource grades}}"
                                       SelectionMode="None">
@@ -444,7 +458,7 @@
                                 </ListView.ItemTemplate>
                             </ListView>
                         </StackPanel>
-
+                        -->
                     </FlipViewItem>
                     <!-- Fifth item is forum -->
                     <!-- Fifth item is forum -->
