@@ -21,6 +21,212 @@
         <CollectionViewSource x:Name="headers" Source="{Binding Items}"/>
         <CollectionViewSource x:Name="threads" Source="{Binding Items}"/>
         <CollectionViewSource x:Name="innerThreads" Source="{Binding Items}"/>
+        <Style x:Key="FlipViewStyle1" TargetType="FlipView">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="TabNavigation" Value="Once"/>
+            <Setter Property="IsTabStop" Value="False"/>
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Hidden"/>
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Hidden"/>
+            <Setter Property="ScrollViewer.IsHorizontalRailEnabled" Value="False"/>
+            <Setter Property="ScrollViewer.IsVerticalRailEnabled" Value="False"/>
+            <Setter Property="ScrollViewer.IsHorizontalScrollChainingEnabled" Value="True"/>
+            <Setter Property="ScrollViewer.IsVerticalScrollChainingEnabled" Value="True"/>
+            <Setter Property="ScrollViewer.IsDeferredScrollingEnabled" Value="False"/>
+            <Setter Property="ScrollViewer.BringIntoViewOnFocusChange" Value="True"/>
+            <Setter Property="ItemsPanel">
+                <Setter.Value>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel AreScrollSnapPointsRegular="True" Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="FlipView">
+                        <Grid>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="FocusStates">
+                                    <VisualState x:Name="Focused">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="FocusVisualWhite"/>
+                                            <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="FocusVisualBlack"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Unfocused"/>
+                                    <VisualState x:Name="PointerFocused"/>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Margin="3">
+                                <Border.Resources>
+                                    <ControlTemplate x:Key="HorizontalNextTemplate" TargetType="Button">
+                                        <Border x:Name="Root" BorderBrush="{StaticResource FlipViewButtonBorderThemeBrush}" BorderThickness="{StaticResource FlipViewButtonBorderThemeThickness}" Background="{StaticResource FlipViewButtonBackgroundThemeBrush}">
+                                            <VisualStateManager.VisualStateGroups>
+                                                <VisualStateGroup x:Name="CommonStates">
+                                                    <VisualState x:Name="Normal"/>
+                                                    <VisualState x:Name="PointerOver">
+                                                        <Storyboard>
+                                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="Root">
+                                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource FlipViewButtonPointerOverBackgroundThemeBrush}"/>
+                                                            </ObjectAnimationUsingKeyFrames>
+                                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="Root">
+                                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource FlipViewButtonPointerOverBorderThemeBrush}"/>
+                                                            </ObjectAnimationUsingKeyFrames>
+                                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="Arrow">
+                                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource FlipViewButtonPointerOverForegroundThemeBrush}"/>
+                                                            </ObjectAnimationUsingKeyFrames>
+                                                        </Storyboard>
+                                                    </VisualState>
+                                                    <VisualState x:Name="Pressed">
+                                                        <Storyboard>
+                                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="Root">
+                                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource FlipViewButtonPressedBackgroundThemeBrush}"/>
+                                                            </ObjectAnimationUsingKeyFrames>
+                                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="Root">
+                                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource FlipViewButtonPressedBorderThemeBrush}"/>
+                                                            </ObjectAnimationUsingKeyFrames>
+                                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="Arrow">
+                                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource FlipViewButtonPressedForegroundThemeBrush}"/>
+                                                            </ObjectAnimationUsingKeyFrames>
+                                                        </Storyboard>
+                                                    </VisualState>
+                                                </VisualStateGroup>
+                                            </VisualStateManager.VisualStateGroups>
+                                            <Path x:Name="Arrow" Data="M4.12,0 L9.67,5.47 L4.12,10.94 L0,10.88 L5.56,5.47 L0,0.06 z" Fill="{StaticResource FlipViewButtonForegroundThemeBrush}" HorizontalAlignment="Center" Height="10.94" Stretch="Fill" UseLayoutRounding="False" VerticalAlignment="Center" Width="9.67"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                    <ControlTemplate x:Key="HorizontalPreviousTemplate" TargetType="Button">
+                                        <Border x:Name="Root" BorderBrush="{StaticResource FlipViewButtonBorderThemeBrush}" BorderThickness="{StaticResource FlipViewButtonBorderThemeThickness}" Background="{StaticResource FlipViewButtonBackgroundThemeBrush}">
+                                            <VisualStateManager.VisualStateGroups>
+                                                <VisualStateGroup x:Name="CommonStates">
+                                                    <VisualState x:Name="Normal"/>
+                                                    <VisualState x:Name="PointerOver">
+                                                        <Storyboard>
+                                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="Root">
+                                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource FlipViewButtonPointerOverBackgroundThemeBrush}"/>
+                                                            </ObjectAnimationUsingKeyFrames>
+                                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="Root">
+                                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource FlipViewButtonPointerOverBorderThemeBrush}"/>
+                                                            </ObjectAnimationUsingKeyFrames>
+                                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="Arrow">
+                                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource FlipViewButtonPointerOverForegroundThemeBrush}"/>
+                                                            </ObjectAnimationUsingKeyFrames>
+                                                        </Storyboard>
+                                                    </VisualState>
+                                                    <VisualState x:Name="Pressed">
+                                                        <Storyboard>
+                                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="Root">
+                                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource FlipViewButtonPressedBackgroundThemeBrush}"/>
+                                                            </ObjectAnimationUsingKeyFrames>
+                                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="Root">
+                                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource FlipViewButtonPressedBorderThemeBrush}"/>
+                                                            </ObjectAnimationUsingKeyFrames>
+                                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="Arrow">
+                                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource FlipViewButtonPressedForegroundThemeBrush}"/>
+                                                            </ObjectAnimationUsingKeyFrames>
+                                                        </Storyboard>
+                                                    </VisualState>
+                                                </VisualStateGroup>
+                                            </VisualStateManager.VisualStateGroups>
+                                            <Path x:Name="Arrow" Data="M5.55,0 L9.67,0.06 L4.12,5.47 L9.67,10.88 L5.55,10.94 L0,5.48 z" Fill="{StaticResource FlipViewButtonForegroundThemeBrush}" HorizontalAlignment="Center" Height="10.94" Stretch="Fill" UseLayoutRounding="False" VerticalAlignment="Center" Width="9.67"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                    <ControlTemplate x:Key="VerticalNextTemplate" TargetType="Button">
+                                        <Border x:Name="Root" BorderBrush="{StaticResource FlipViewButtonBorderThemeBrush}" BorderThickness="{StaticResource FlipViewButtonBorderThemeThickness}" Background="{StaticResource FlipViewButtonBackgroundThemeBrush}">
+                                            <VisualStateManager.VisualStateGroups>
+                                                <VisualStateGroup x:Name="CommonStates">
+                                                    <VisualState x:Name="Normal"/>
+                                                    <VisualState x:Name="PointerOver">
+                                                        <Storyboard>
+                                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="Root">
+                                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource FlipViewButtonPointerOverBackgroundThemeBrush}"/>
+                                                            </ObjectAnimationUsingKeyFrames>
+                                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="Root">
+                                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource FlipViewButtonPointerOverBorderThemeBrush}"/>
+                                                            </ObjectAnimationUsingKeyFrames>
+                                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="Arrow">
+                                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource FlipViewButtonPointerOverForegroundThemeBrush}"/>
+                                                            </ObjectAnimationUsingKeyFrames>
+                                                        </Storyboard>
+                                                    </VisualState>
+                                                    <VisualState x:Name="Pressed">
+                                                        <Storyboard>
+                                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="Root">
+                                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource FlipViewButtonPressedBackgroundThemeBrush}"/>
+                                                            </ObjectAnimationUsingKeyFrames>
+                                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="Root">
+                                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource FlipViewButtonPressedBorderThemeBrush}"/>
+                                                            </ObjectAnimationUsingKeyFrames>
+                                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="Arrow">
+                                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource FlipViewButtonPressedForegroundThemeBrush}"/>
+                                                            </ObjectAnimationUsingKeyFrames>
+                                                        </Storyboard>
+                                                    </VisualState>
+                                                </VisualStateGroup>
+                                            </VisualStateManager.VisualStateGroups>
+                                            <Path x:Name="Arrow" Data="M0.06,0 L5.47,5.56 L10.88,0 L10.94,4.12 L5.48,9.67 L0,4.12 z" Fill="{StaticResource FlipViewButtonForegroundThemeBrush}" HorizontalAlignment="Center" Height="9.67" Stretch="Fill" UseLayoutRounding="False" VerticalAlignment="Center" Width="10.94"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                    <ControlTemplate x:Key="VerticalPreviousTemplate" TargetType="Button">
+                                        <Border x:Name="Root" BorderBrush="{StaticResource FlipViewButtonBorderThemeBrush}" BorderThickness="{StaticResource FlipViewButtonBorderThemeThickness}" Background="{StaticResource FlipViewButtonBackgroundThemeBrush}">
+                                            <VisualStateManager.VisualStateGroups>
+                                                <VisualStateGroup x:Name="CommonStates">
+                                                    <VisualState x:Name="Normal"/>
+                                                    <VisualState x:Name="PointerOver">
+                                                        <Storyboard>
+                                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="Root">
+                                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource FlipViewButtonPointerOverBackgroundThemeBrush}"/>
+                                                            </ObjectAnimationUsingKeyFrames>
+                                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="Root">
+                                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource FlipViewButtonPointerOverBorderThemeBrush}"/>
+                                                            </ObjectAnimationUsingKeyFrames>
+                                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="Arrow">
+                                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource FlipViewButtonPointerOverForegroundThemeBrush}"/>
+                                                            </ObjectAnimationUsingKeyFrames>
+                                                        </Storyboard>
+                                                    </VisualState>
+                                                    <VisualState x:Name="Pressed">
+                                                        <Storyboard>
+                                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="Root">
+                                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource FlipViewButtonPressedBackgroundThemeBrush}"/>
+                                                            </ObjectAnimationUsingKeyFrames>
+                                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush" Storyboard.TargetName="Root">
+                                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource FlipViewButtonPressedBorderThemeBrush}"/>
+                                                            </ObjectAnimationUsingKeyFrames>
+                                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="Arrow">
+                                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource FlipViewButtonPressedForegroundThemeBrush}"/>
+                                                            </ObjectAnimationUsingKeyFrames>
+                                                        </Storyboard>
+                                                    </VisualState>
+                                                </VisualStateGroup>
+                                            </VisualStateManager.VisualStateGroups>
+                                            <Path x:Name="Arrow" Data="M5.63,0 L11.11,5.55 L11.05,9.67 L5.64,4.12 L0.23,9.67 L0.17,5.55 z" Fill="{StaticResource FlipViewButtonForegroundThemeBrush}" HorizontalAlignment="Center" Height="9.67" Stretch="Fill" UseLayoutRounding="False" VerticalAlignment="Center" Width="10.94"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Border.Resources>
+                                <Grid>
+                                    <ScrollViewer x:Name="ScrollingHost" BringIntoViewOnFocusChange="{TemplateBinding ScrollViewer.BringIntoViewOnFocusChange}" HorizontalScrollMode="{TemplateBinding ScrollViewer.HorizontalScrollMode}" HorizontalSnapPointsType="MandatorySingle" HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}" IsTabStop="False" IsHorizontalRailEnabled="{TemplateBinding ScrollViewer.IsHorizontalRailEnabled}" IsHorizontalScrollChainingEnabled="{TemplateBinding ScrollViewer.IsHorizontalScrollChainingEnabled}" IsVerticalScrollChainingEnabled="{TemplateBinding ScrollViewer.IsVerticalScrollChainingEnabled}" IsVerticalRailEnabled="{TemplateBinding ScrollViewer.IsVerticalRailEnabled}" IsDeferredScrollingEnabled="{TemplateBinding ScrollViewer.IsDeferredScrollingEnabled}" Padding="{TemplateBinding Padding}" TabNavigation="{TemplateBinding TabNavigation}" VerticalSnapPointsType="MandatorySingle" VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}" VerticalScrollMode="{TemplateBinding ScrollViewer.VerticalScrollMode}" ZoomMode="Disabled">
+                                        <ItemsPresenter/>
+                                    </ScrollViewer>
+                                    <Button x:Name="PreviousButtonHorizontal" HorizontalAlignment="Left" Height="0" IsTabStop="False" Template="{StaticResource HorizontalPreviousTemplate}" VerticalAlignment="Center" Width="70"/>
+                                    <Button x:Name="NextButtonHorizontal" HorizontalAlignment="Right" Height="0" IsTabStop="False" Template="{StaticResource HorizontalNextTemplate}" VerticalAlignment="Center" Width="70"/>
+                                    <Button x:Name="PreviousButtonVertical" HorizontalAlignment="Center" Height="0" IsTabStop="False" Template="{StaticResource VerticalPreviousTemplate}" VerticalAlignment="Top" Width="70"/>
+                                    <Button x:Name="NextButtonVertical" HorizontalAlignment="Center" Height="0" IsTabStop="False" Template="{StaticResource VerticalNextTemplate}" VerticalAlignment="Bottom" Width="70"/>
+                                </Grid>
+                            </Border>
+                            <Rectangle x:Name="FocusVisualWhite" IsHitTestVisible="False" Opacity="0" StrokeDashOffset="1.5" StrokeEndLineCap="Square" Stroke="{StaticResource FocusVisualWhiteStrokeThemeBrush}" StrokeDashArray="1,1"/>
+                            <Rectangle x:Name="FocusVisualBlack" IsHitTestVisible="False" Opacity="0" StrokeDashOffset="0.5" StrokeEndLineCap="Square" Stroke="{StaticResource FocusVisualBlackStrokeThemeBrush}" StrokeDashArray="1,1"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="gradebookText" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Margin" Value="10,5"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
     </Page.Resources>
 
     <!--
@@ -81,7 +287,7 @@
                 </ListView>
             </Grid>
             <Grid Grid.Column="1">
-                <FlipView x:Name="flipView">
+                <FlipView x:Name="flipView" ManipulationMode="None" Style="{StaticResource FlipViewStyle1}">
                     <!-- First item is module information -->
                     <FlipViewItem>
                         <Grid>
@@ -96,21 +302,23 @@
                                 <RowDefinition Height="auto"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="340*"/>
+                                <ColumnDefinition Width="18*"/>
+                                <ColumnDefinition Width="54*"/>
+                                <ColumnDefinition Width="607*"/>
                             </Grid.ColumnDefinitions>
                             <TextBlock Text="Module Code" Grid.Column="0" Grid.Row="0" FontSize="32"/>
-                            <TextBlock x:Name="moduleCode_textblock" Grid.Column="1" Grid.Row="0" FontSize="32"/>
+                            <TextBlock x:Name="moduleCode_textblock" Grid.Column="1" Grid.Row="0" FontSize="32" Grid.ColumnSpan="3"/>
                             <TextBlock Text="Module Name" Grid.Column="0" Grid.Row="1" FontSize="32"/>
-                            <TextBlock x:Name="moduleName_textblock" Grid.Column="1" Grid.Row="1" FontSize="32"/>
+                            <TextBlock x:Name="moduleName_textblock" Grid.Column="1" Grid.Row="1" FontSize="32" Grid.ColumnSpan="3"/>
                             <TextBlock Text="Module Mc" Grid.Column="0" Grid.Row="2" FontSize="32"/>
-                            <TextBlock x:Name="moduleMc_textblock" Grid.Column="1" Grid.Row="2" FontSize="32"/>
+                            <TextBlock x:Name="moduleMc_textblock" Grid.Column="1" Grid.Row="2" FontSize="32" Grid.ColumnSpan="3"/>
                             <TextBlock Text="Module Acad Year" Grid.Column="0" Grid.Row="3" FontSize="32"/>
-                            <TextBlock x:Name="moduleAcadYear_textblock" Grid.Column="1" Grid.Row="3" FontSize="32"/>
+                            <TextBlock x:Name="moduleAcadYear_textblock" Grid.Column="1" Grid.Row="3" FontSize="32" Grid.ColumnSpan="3"/>
                             <TextBlock Text="Time Table" Grid.Column="0" Grid.Row="4" FontSize="32"/>
-                            <TextBlock x:Name="moduleTimetable_textblock" Grid.Column="1" Grid.Row="4" FontSize="32"/>
+                            <TextBlock x:Name="moduleTimetable_textblock" Grid.Column="1" Grid.Row="4" FontSize="32" Grid.ColumnSpan="3"/>
                             <TextBlock Text="Exam time" Grid.Column="0" Grid.Row="5" FontSize="32"/>
-                            <TextBlock x:Name="moduleExamtime_textblock" Grid.Column="1" Grid.Row="5" FontSize="32"/>
+                            <TextBlock x:Name="moduleExamtime_textblock" Grid.Column="1" Grid.Row="5" FontSize="32" Grid.ColumnSpan="3"/>
                             <TextBlock Text="Lecturers" Grid.Column="0" Grid.Row="6" FontSize="32"/>
                         </Grid>
                     </FlipViewItem>
@@ -159,7 +367,7 @@
                     <!-- Second item is announcements -->
 
                     <!-- Third item is workbin -->
-                    <FlipViewItem>
+                    <FlipViewItem x:Name="workbin">
                         <ScrollViewer x:Name="scrollViewer" 
                                         HorizontalAlignment="Left" 
                                         VerticalAlignment="Top"
@@ -230,221 +438,125 @@
 
                     <!-- Fourth item is gradebook -->
                     <FlipViewItem x:Name="gradeBook">
+                        <ListView ItemsSource="{Binding Source={StaticResource grades}}"
+                                      SelectionMode="None">
+                            <ListView.Style>
+                                <Style TargetType="ListView">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                </Style>
+                            </ListView.Style>
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                </Style>
+                            </ListView.ItemContainerStyle>
 
-                        <StackPanel Orientation="Horizontal">
-                            <ListView ItemsSource="{Binding Source={StaticResource grades}}"
-                                      SelectionMode="None">
-                                <ListView.Header>
+                            <ListView.Header>                               
+                                <Grid Width="auto" HorizontalAlignment="Stretch">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
                                     <Border BorderBrush="#BBBBBB" 
+                                            Grid.Column="0"
                                             BorderThickness="1" >
-                                        <TextBlock Text="category"
-                                                   FontSize="16"
-                                                   Margin="10,5"
-                                                   TextWrapping="Wrap"
-                                                   HorizontalAlignment="Center"/>
+                                        <TextBlock Text="Category"
+                                                   Style="{StaticResource gradebookText}"/>
                                     </Border>
-                                </ListView.Header>
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding gradeDescription}"
-                                                   HorizontalAlignment="Center"/>
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
-                            </ListView>
-                            <ListView ItemsSource="{Binding Source={StaticResource grades}}"
-                                      SelectionMode="None">
-                                <ListView.Header>
-                                    <Border BorderBrush="#BBBBBB" 
+                                    <Border BorderBrush="#BBBBBB"
+                                            Grid.Column="1"
                                             BorderThickness="1" >
                                         <TextBlock Text="Item Name"
-                                                   FontSize="16"
-                                                   Margin="10,5"
-                                                   TextWrapping="Wrap"
-                                                   HorizontalAlignment="Center"/>
+                                                   Style="{StaticResource gradebookText}"/>
                                     </Border>
-                                </ListView.Header>
-                                <ListView.Style>
-                                    <Style TargetType="ListView">
-                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                                    </Style>
-                                </ListView.Style>
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding gradeName}"
-                                                   HorizontalAlignment="Center"/>
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
-                            </ListView>
-                            <ListView ItemsSource="{Binding Source={StaticResource grades}}"
-                                      SelectionMode="None">
-                                <ListView.Header>
-                                    <Border BorderBrush="#BBBBBB" 
+                                    <Border BorderBrush="#BBBBBB"    
+                                            Grid.Column="2"
                                             BorderThickness="1" >
-                                        <TextBlock Text="Marks Obtained"                                                   
-                                                   FontSize="16"
-                                                   Margin="10,5"
-                                                   TextWrapping="Wrap"
-                                                   HorizontalAlignment="Center"/>
+                                        <TextBlock Text="Marks Obtained"
+                                                   Style="{StaticResource gradebookText}"/>
                                     </Border>
-                                </ListView.Header>
-                                <ListView.Style>
-                                    <Style TargetType="ListView">
-                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                                    </Style>
-                                </ListView.Style>
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding gradeObtainedMarks}"
-                                                   HorizontalAlignment="Center"/>
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
-                            </ListView>
-                            <ListView ItemsSource="{Binding Source={StaticResource grades}}"
-                                      SelectionMode="None">
-                                <ListView.Header>
-                                    <Border BorderBrush="#BBBBBB" 
+                                    <Border BorderBrush="#BBBBBB"
+                                            Grid.Column="3" 
                                             BorderThickness="1" >
                                         <TextBlock Text="Remarks"
-                                                   FontSize="16"
-                                                   Margin="10,5"
-                                                   TextWrapping="Wrap"
-                                                   HorizontalAlignment="Center"/>
+                                                   Style="{StaticResource gradebookText}"/>
                                     </Border>
-                                </ListView.Header>
-                                <ListView.Style>
-                                    <Style TargetType="ListView">
-                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                                    </Style>
-                                </ListView.Style>
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding gradeRemark}"
-                                                   HorizontalAlignment="Center"/>
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
-                            </ListView>
-                            <ListView ItemsSource="{Binding Source={StaticResource grades}}"
-                                      SelectionMode="None">
-                                <ListView.Header>
                                     <Border BorderBrush="#BBBBBB" 
+                                            Grid.Column="4"
                                             BorderThickness="1" >
                                         <TextBlock Text="Max Marks"
-                                                   FontSize="16"
-                                                   Margin="10,5"
-                                                   TextWrapping="Wrap"
-                                                   HorizontalAlignment="Center"/>
+                                                   Style="{StaticResource gradebookText}"/>
                                     </Border>
-                                </ListView.Header>
-                                <ListView.Style>
-                                    <Style TargetType="ListView">
-                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                                    </Style>
-                                </ListView.Style>
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding gradeMaxMarks}"
-                                                   HorizontalAlignment="Center"/>
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
-                            </ListView>
-                            <ListView ItemsSource="{Binding Source={StaticResource grades}}"
-                                      SelectionMode="None">
-                                <ListView.Header>
                                     <Border BorderBrush="#BBBBBB" 
+                                             Grid.Column="5"
                                             BorderThickness="1" >
                                         <TextBlock Text="Highest-Lowest Marks"
-                                                   FontSize="16"
-                                                   Margin="10,5"
-                                                   TextWrapping="Wrap"
-                                                   HorizontalAlignment="Center"/>
+                                                   Style="{StaticResource gradebookText}"/>
                                     </Border>
-                                </ListView.Header>
-                                <ListView.Style>
-                                    <Style TargetType="ListView">
-                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                                    </Style>
-                                </ListView.Style>
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding gradeHighestLowestMarks}"
-                                                   HorizontalAlignment="Center"/>
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
-                            </ListView>
-                            <ListView ItemsSource="{Binding Source={StaticResource grades}}"
-                                      SelectionMode="None">
-                                <ListView.Header>
                                     <Border BorderBrush="#BBBBBB" 
+                                                   Grid.Column="6"
                                             BorderThickness="1" >
                                         <TextBlock Text="Average-Median Marks"
-                                                   FontSize="16"
-                                                   Margin="10,5"
-                                                   TextWrapping="Wrap"
-                                                   HorizontalAlignment="Center"/>
+                                                   Style="{StaticResource gradebookText}"/>
                                     </Border>
-                                </ListView.Header>
-                                <ListView.Style>
-                                    <Style TargetType="ListView">
-                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                                    </Style>
-                                </ListView.Style>
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding gradeAverageMedianMarks}"
-                                               HorizontalAlignment="Center"/>
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
-                            </ListView>
-                            <ListView ItemsSource="{Binding Source={StaticResource grades}}"
-                                      SelectionMode="None">
-                                <ListView.Header>
                                     <Border BorderBrush="#BBBBBB" 
+                                                   Grid.Column="7"
                                             BorderThickness="1" >
                                         <TextBlock Text="25/75 Percentile"
-                                                   FontSize="16"
-                                                   Margin="10,5"
-                                                   TextWrapping="Wrap"
-                                                   HorizontalAlignment="Center"/>
+                                                   Style="{StaticResource gradebookText}"/>
                                     </Border>
-                                </ListView.Header>
-                                <ListView.Style>
-                                    <Style TargetType="ListView">
-                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                                    </Style>
-                                </ListView.Style>
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding gradePercentile}"
-                                                   HorizontalAlignment="Center"/>
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
-                            </ListView>
-                            <ListView ItemsSource="{Binding Source={StaticResource grades}}"
-                                      SelectionMode="None">
-                                <ListView.Header>
                                     <Border BorderBrush="#BBBBBB" 
+                                            Grid.Column="8"
                                             BorderThickness="1" >
                                         <TextBlock Text="Date Entered"
-                                                   FontSize="16"
-                                                   Margin="10,5"
-                                                   TextWrapping="Wrap"
-                                                   HorizontalAlignment="Center"/>
+                                                   Style="{StaticResource gradebookText}"/>
                                     </Border>
-                                </ListView.Header>
-                                <ListView.Style>
-                                    <Style TargetType="ListView">
-                                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                                    </Style>
-                                </ListView.Style>
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
+                                </Grid>
+                            </ListView.Header>
+                           
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Width="auto" HorizontalAlignment="Stretch">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Text="{Binding gradeDescription}"
+                                                   Grid.Column="0"/>
+                                        <TextBlock Text="{Binding gradeName}"
+                                                   Grid.Column="1"/>
+                                        <TextBlock Text="{Binding gradeObtainedMarks}"
+                                                   Grid.Column="2"/>
+                                        <TextBlock Text="{Binding gradeRemark}"
+                                                   Grid.Column="3"/>
+                                        <TextBlock Text="{Binding gradeMaxMarks}"
+                                                   Grid.Column="4"/>
+                                        <TextBlock Text="{Binding gradeHighestLowestMarks}"
+                                                   Grid.Column="5"/>
+                                        <TextBlock Text="{Binding gradeAverageMedianMarks}"
+                                                   Grid.Column="6"/>
+                                        <TextBlock Text="{Binding gradePercentile}"
+                                                   Grid.Column="7"/>
                                         <TextBlock Text="date"
-                                                   HorizontalAlignment="Center"/>
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
-                            </ListView>
-                        </StackPanel>
-
+                                                   Grid.Column="8"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
                     </FlipViewItem>
                     <!-- Fifth item is forum -->
                     <!-- Fifth item is forum -->
@@ -538,7 +650,7 @@
                             </ListView>
                         </Grid>
                     </FlipViewItem>
-                    
+
                     <!-- Sixth item is webcast -->
                     <!-- Sixth item is webcast -->
 
