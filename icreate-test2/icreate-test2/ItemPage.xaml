@@ -438,6 +438,74 @@
 
                     <!-- Fourth item is gradebook -->
                     <FlipViewItem x:Name="gradeBook">
+                        <StackPanel>
+                        <Grid Width="auto" HorizontalAlignment="Stretch">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Border BorderBrush="#BBBBBB" 
+                                            Grid.Column="0"
+                                            BorderThickness="1" >
+                                <TextBlock Text="Category"
+                                                   Style="{StaticResource gradebookText}"/>
+                            </Border>
+                            <Border BorderBrush="#BBBBBB"
+                                            Grid.Column="1"
+                                            BorderThickness="1" >
+                                <TextBlock Text="Item Name"
+                                                   Style="{StaticResource gradebookText}"/>
+                            </Border>
+                            <Border BorderBrush="#BBBBBB"    
+                                            Grid.Column="2"
+                                            BorderThickness="1" >
+                                <TextBlock Text="Marks Obtained"
+                                                   Style="{StaticResource gradebookText}"/>
+                            </Border>
+                            <Border BorderBrush="#BBBBBB"
+                                            Grid.Column="3" 
+                                            BorderThickness="1" >
+                                <TextBlock Text="Remarks"
+                                                   Style="{StaticResource gradebookText}"/>
+                            </Border>
+                            <Border BorderBrush="#BBBBBB" 
+                                            Grid.Column="4"
+                                            BorderThickness="1" >
+                                <TextBlock Text="Max Marks"
+                                                   Style="{StaticResource gradebookText}"/>
+                            </Border>
+                            <Border BorderBrush="#BBBBBB" 
+                                             Grid.Column="5"
+                                            BorderThickness="1" >
+                                <TextBlock Text="Highest-Lowest Marks"
+                                                   Style="{StaticResource gradebookText}"/>
+                            </Border>
+                            <Border BorderBrush="#BBBBBB" 
+                                                   Grid.Column="6"
+                                            BorderThickness="1" >
+                                <TextBlock Text="Average-Median Marks"
+                                                   Style="{StaticResource gradebookText}"/>
+                            </Border>
+                            <Border BorderBrush="#BBBBBB" 
+                                                   Grid.Column="7"
+                                            BorderThickness="1" >
+                                <TextBlock Text="25/75 Percentile"
+                                                   Style="{StaticResource gradebookText}"/>
+                            </Border>
+                            <Border BorderBrush="#BBBBBB" 
+                                            Grid.Column="8"
+                                            BorderThickness="1" >
+                                <TextBlock Text="Date Entered"
+                                                   Style="{StaticResource gradebookText}"/>
+                            </Border>
+                        </Grid>
                         <ListView ItemsSource="{Binding Source={StaticResource grades}}"
                                       SelectionMode="None">
                             <ListView.Style>
@@ -450,77 +518,7 @@
                                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                                 </Style>
                             </ListView.ItemContainerStyle>
-
-                            <ListView.Header>                               
-                                <Grid Width="auto" HorizontalAlignment="Stretch">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Border BorderBrush="#BBBBBB" 
-                                            Grid.Column="0"
-                                            BorderThickness="1" >
-                                        <TextBlock Text="Category"
-                                                   Style="{StaticResource gradebookText}"/>
-                                    </Border>
-                                    <Border BorderBrush="#BBBBBB"
-                                            Grid.Column="1"
-                                            BorderThickness="1" >
-                                        <TextBlock Text="Item Name"
-                                                   Style="{StaticResource gradebookText}"/>
-                                    </Border>
-                                    <Border BorderBrush="#BBBBBB"    
-                                            Grid.Column="2"
-                                            BorderThickness="1" >
-                                        <TextBlock Text="Marks Obtained"
-                                                   Style="{StaticResource gradebookText}"/>
-                                    </Border>
-                                    <Border BorderBrush="#BBBBBB"
-                                            Grid.Column="3" 
-                                            BorderThickness="1" >
-                                        <TextBlock Text="Remarks"
-                                                   Style="{StaticResource gradebookText}"/>
-                                    </Border>
-                                    <Border BorderBrush="#BBBBBB" 
-                                            Grid.Column="4"
-                                            BorderThickness="1" >
-                                        <TextBlock Text="Max Marks"
-                                                   Style="{StaticResource gradebookText}"/>
-                                    </Border>
-                                    <Border BorderBrush="#BBBBBB" 
-                                             Grid.Column="5"
-                                            BorderThickness="1" >
-                                        <TextBlock Text="Highest-Lowest Marks"
-                                                   Style="{StaticResource gradebookText}"/>
-                                    </Border>
-                                    <Border BorderBrush="#BBBBBB" 
-                                                   Grid.Column="6"
-                                            BorderThickness="1" >
-                                        <TextBlock Text="Average-Median Marks"
-                                                   Style="{StaticResource gradebookText}"/>
-                                    </Border>
-                                    <Border BorderBrush="#BBBBBB" 
-                                                   Grid.Column="7"
-                                            BorderThickness="1" >
-                                        <TextBlock Text="25/75 Percentile"
-                                                   Style="{StaticResource gradebookText}"/>
-                                    </Border>
-                                    <Border BorderBrush="#BBBBBB" 
-                                            Grid.Column="8"
-                                            BorderThickness="1" >
-                                        <TextBlock Text="Date Entered"
-                                                   Style="{StaticResource gradebookText}"/>
-                                    </Border>
-                                </Grid>
-                            </ListView.Header>
-                           
+                          
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <Grid Width="auto" HorizontalAlignment="Stretch">
@@ -536,27 +534,37 @@
                                             <ColumnDefinition Width="*"/>
                                         </Grid.ColumnDefinitions>
                                         <TextBlock Text="{Binding gradeDescription}"
-                                                   Grid.Column="0"/>
+                                                   Grid.Column="0"
+                                                   HorizontalAlignment="Center"/>
                                         <TextBlock Text="{Binding gradeName}"
-                                                   Grid.Column="1"/>
+                                                   Grid.Column="1"
+                                                   HorizontalAlignment="Center"/>
                                         <TextBlock Text="{Binding gradeObtainedMarks}"
-                                                   Grid.Column="2"/>
+                                                   Grid.Column="2"
+                                                   HorizontalAlignment="Center"/>
                                         <TextBlock Text="{Binding gradeRemark}"
-                                                   Grid.Column="3"/>
+                                                   Grid.Column="3"
+                                                   HorizontalAlignment="Center"/>
                                         <TextBlock Text="{Binding gradeMaxMarks}"
-                                                   Grid.Column="4"/>
+                                                   Grid.Column="4"
+                                                   HorizontalAlignment="Center"/>
                                         <TextBlock Text="{Binding gradeHighestLowestMarks}"
-                                                   Grid.Column="5"/>
+                                                   Grid.Column="5"
+                                                   HorizontalAlignment="Center"/>
                                         <TextBlock Text="{Binding gradeAverageMedianMarks}"
-                                                   Grid.Column="6"/>
+                                                   Grid.Column="6"
+                                                   HorizontalAlignment="Center"/>
                                         <TextBlock Text="{Binding gradePercentile}"
-                                                   Grid.Column="7"/>
+                                                   Grid.Column="7"
+                                                   HorizontalAlignment="Center"/>
                                         <TextBlock Text="date"
-                                                   Grid.Column="8"/>
+                                                   Grid.Column="8"
+                                                   HorizontalAlignment="Center"/>
                                     </Grid>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                         </ListView>
+                        </StackPanel>
                     </FlipViewItem>
                     <!-- Fifth item is forum -->
                     <!-- Fifth item is forum -->
