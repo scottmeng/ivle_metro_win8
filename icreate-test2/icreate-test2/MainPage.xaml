@@ -163,17 +163,14 @@
                             </Grid.RowDefinitions>
                             <StackPanel Grid.Row="0" 
                                         Orientation="Horizontal" 
-                                        Width="350" 
-                                        HorizontalAlignment="Center"
-                                        Margin="0">
+                                        Width="350">
                                 <Button x:Name="prevDay_btn" 
                                         Content="&lt;" 
-                                        Margin="35,5,5,5" 
+                                        Margin="10" 
                                         Tapped="onPrevDaySelected"
                                         FontSize="38" 
                                         Foreground="Gray" 
                                         Opacity="0.7"
-                                        HorizontalAlignment="Left" 
                                         VerticalAlignment="Bottom" 
                                         FontWeight="Light">
                                     <Button.Background>
@@ -181,21 +178,26 @@
                                     </Button.Background>
                                 </Button>
                                 <TextBlock x:Name="date_textblock"
-                                               FontSize="38" 
-                                               Foreground="LightSlateGray" 
-                                               HorizontalAlignment="Center" 
-                                               Margin="5" 
-                                               Opacity="0.7" 
-                                               VerticalAlignment="Bottom" 
-                                               FontWeight="Light"/>
+                                           Width='190'
+                                           FontSize="38" 
+                                           Foreground="LightSlateGray" 
+                                           Margin="10" 
+                                           Opacity="0.7" 
+                                           VerticalAlignment="Bottom" 
+                                           FontWeight="Light">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="TextAlignment" Value="Center"/>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
                                 <Button x:Name="nextDay_btn" 
                                         Content=">" 
-                                        Margin="5" 
+                                        Margin="10" 
                                         Tapped="onNextDaySelected"
                                         FontSize="38" 
                                         Foreground="Gray" 
                                         Opacity="0.7"
-                                        HorizontalAlignment="Right" 
                                         VerticalAlignment="Bottom" 
                                         FontWeight="Light">
                                     <Button.Background>

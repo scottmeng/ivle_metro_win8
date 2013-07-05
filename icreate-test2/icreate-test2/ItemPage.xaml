@@ -222,10 +222,20 @@
             </Setter>
         </Style>
         <Style x:Key="gradebookText" TargetType="TextBlock">
-            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Padding" Value="5"/>
             <Setter Property="Margin" Value="10,5"/>
             <Setter Property="TextWrapping" Value="Wrap"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Bottom"/>
+        </Style>
+        <Style x:Key="grade_textblock" TargetType="TextBlock">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Margin" Value="10,5"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Bottom"/>
         </Style>
     </Page.Resources>
 
@@ -243,29 +253,31 @@
         <!-- Back button and page title -->
         <StackPanel Orientation="Horizontal" Grid.Row="0">
             <Button x:Name="backButton" Click="GoBack" 
-                    Margin="10,5"
+                    Margin="50,2,20,5"
                     VerticalAlignment="Center"
                     IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" 
                     Style="{StaticResource BackButtonStyle}"/>
             <TextBlock VerticalAlignment="Center"
                        Margin="10,5"
                        x:Name="mainModuleName" 
-                       FontSize="42" 
+                       FontSize="40" 
+                       FontWeight="Normal"
                        Style="{StaticResource TitleTextStyle}" />
             <Button x:Name="menuButton" Content=">>>" Click="menuButtonClick" />
-            <ListView x:Name="test" ItemContainerStyle="{StaticResource WithoutTick}">
+            <!--<ListView x:Name="test" ItemContainerStyle="{StaticResource WithoutTick}">
                 <TextBlock Text="test1"/>
                 <TextBlock Text="test2"/>
                 <TextBlock Text="test3"/>
-            </ListView>
+            </ListView>-->
         </StackPanel>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="7*"/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
                 <ListView x:Name="itemList"
+                          Margin="20,0"
                           ItemContainerStyle="{StaticResource WithoutTick}"
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
                           ScrollViewer.VerticalScrollBarVisibility="Hidden" 
@@ -274,84 +286,86 @@
                           IsSwipeEnabled="True">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <Grid Height="100">
-                                <StackPanel VerticalAlignment="Top" Margin="0" Orientation="Vertical">
-                                    <TextBlock Margin="20,5,20,5" 
-                                               Text="{Binding itemName}"  
-                                               TextWrapping="NoWrap" 
-                                               FontSize="36" 
-                                               HorizontalAlignment="Center" 
-                                               VerticalAlignment="Center"
-                                               TextTrimming="WordEllipsis"/>
-                                </StackPanel>
-                            </Grid>
+                            <TextBlock Margin="20,10" 
+                                       Padding="10"
+                                       Text="{Binding itemName}"  
+                                       TextWrapping="NoWrap" 
+                                       FontSize="28" 
+                                       HorizontalAlignment="Left" 
+                                       VerticalAlignment="Center"
+                                       TextTrimming="WordEllipsis"
+                                       FontWeight="Thin"/>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
             </Grid>
             <Grid Grid.Column="1">
-                <FlipView x:Name="flipView" ManipulationMode="None" Style="{StaticResource FlipViewStyle1}">
+                <FlipView x:Name="flipView" 
+                          ManipulationMode="None" 
+                          Margin="20,0"
+                          Style="{StaticResource FlipViewStyle1}">
                     <!-- First item is module information -->
                     <FlipViewItem x:Name="moduleInfomation">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="auto"/>
-                                <RowDefinition Height="auto"/>
-                                <RowDefinition Height="auto"/>
-                                <RowDefinition Height="auto"/>
-                                <RowDefinition Height="auto"/>
-                                <RowDefinition Height="auto"/>
-                                <RowDefinition Height="auto"/>
-                                <RowDefinition Height="auto"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="3*"/>
-                            </Grid.ColumnDefinitions>
-                            <Line Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" 
-                                  X1="20" Y1="0" X2="800" Y2="0" 
-                                  Stroke="DarkGray" StrokeThickness="3"/>
+                        <Border BorderBrush="DarkGray" 
+                                BorderThickness="2" 
+                                Margin="0,0,50,50"
+                                Padding="20">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                    <RowDefinition Height="auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*"/>
+                                    <ColumnDefinition Width="7*"/>
+                                </Grid.ColumnDefinitions>
 
-                            <TextBlock Text="Module Code" Grid.Column="0" Grid.Row="0" 
+                                <TextBlock Text="Module Code" Grid.Column="0" Grid.Row="0" 
                                        FontSize="26" Padding="5,10" Margin="5" HorizontalAlignment="Right"/>
-                            <TextBlock Text="Module Name" Grid.Column="0" Grid.Row="1" 
+                                <TextBlock Text="Module Name" Grid.Column="0" Grid.Row="1" 
                                        FontSize="26" Padding="5,10" Margin="5" HorizontalAlignment="Right"/>
-                            <TextBlock Text="Module Mc" Grid.Column="0" Grid.Row="2" 
+                                <TextBlock Text="Module Mc" Grid.Column="0" Grid.Row="2" 
                                        FontSize="26" Padding="5,10" Margin="5" HorizontalAlignment="Right"/>
-                            <TextBlock Text="Module Acad Year" Grid.Column="0" Grid.Row="3" 
+                                <TextBlock Text="Module Acad Year" Grid.Column="0" Grid.Row="3" 
                                        FontSize="26" Padding="5,10" Margin="5" HorizontalAlignment="Right"/>
-                            <TextBlock Text="Time Table" Grid.Column="0" Grid.Row="4" 
+                                <TextBlock Text="Time Table" Grid.Column="0" Grid.Row="4" 
                                        FontSize="26" Padding="5,10" Margin="5" HorizontalAlignment="Right"/>
-                            <TextBlock Text="Exam time" Grid.Column="0" Grid.Row="5" 
+                                <TextBlock Text="Exam time" Grid.Column="0" Grid.Row="5" 
                                        FontSize="26" Padding="5,10" Margin="5" HorizontalAlignment="Right"/>
-                            <TextBlock Text="Lecturers" Grid.Column="0" Grid.Row="6" 
+                                <TextBlock Text="Lecturers" Grid.Column="0" Grid.Row="6" 
                                        FontSize="26" Padding="5,10" Margin="5" HorizontalAlignment="Right"/>
 
-
-                            <TextBlock x:Name="moduleCode_textblock" 
+                                <TextBlock x:Name="moduleCode_textblock" 
                                        Grid.Column="1" Grid.Row="0" FontSize="26"
                                        Margin="20,5" Padding="5,10" FontWeight="Light"/>
-                            <TextBlock x:Name="moduleName_textblock" 
+                                <TextBlock x:Name="moduleName_textblock" 
                                        Grid.Column="1" Grid.Row="1" FontSize="26"
                                        Margin="20,5" Padding="5,10" FontWeight="Light"/>
-                            <TextBlock x:Name="moduleMc_textblock" 
+                                <TextBlock x:Name="moduleMc_textblock" 
                                        Grid.Column="1" Grid.Row="2" FontSize="26"
                                        Margin="20,5" Padding="5,10" FontWeight="Light"/>
-                            <TextBlock x:Name="moduleAcadYear_textblock" 
+                                <TextBlock x:Name="moduleAcadYear_textblock" 
                                        Grid.Column="1" Grid.Row="3" FontSize="26"
                                        Margin="20,5" Padding="5,10" FontWeight="Light"/>
-                            <TextBlock x:Name="moduleTimetable_textblock" 
+                                <TextBlock x:Name="moduleTimetable_textblock" 
                                        Grid.Column="1" Grid.Row="4" FontSize="26"
                                        Margin="20,5" Padding="5,10" FontWeight="Light"/>
-                            <TextBlock x:Name="moduleExamtime_textblock" 
+                                <TextBlock x:Name="moduleExamtime_textblock" 
                                        Grid.Column="1" Grid.Row="5" FontSize="26"
                                        Margin="20,5" Padding="5,10" FontWeight="Light"/>
-                        </Grid>
+                            </Grid>
+                        </Border>
                     </FlipViewItem>
                     <!-- First item is module information -->
 
                     <!-- Second item is announcements -->
-                    <FlipViewItem>
+                    <FlipViewItem x:Name="announ">
                         <ListView x:Name="announcementListView" 
                                       ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
                                       ScrollViewer.VerticalScrollBarVisibility="Hidden"
@@ -470,7 +484,7 @@
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="2*"/>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
@@ -481,55 +495,55 @@
                                             Grid.Column="0"
                                             BorderThickness="1" >
                                     <TextBlock Text="Category"
-                                                   Style="{StaticResource gradebookText}"/>
+                                               Style="{StaticResource gradebookText}"/>
                                 </Border>
                                 <Border BorderBrush="#BBBBBB"
                                             Grid.Column="1"
                                             BorderThickness="1" >
                                     <TextBlock Text="Item Name"
-                                                   Style="{StaticResource gradebookText}"/>
+                                               Style="{StaticResource gradebookText}"/>
                                 </Border>
                                 <Border BorderBrush="#BBBBBB"    
                                             Grid.Column="2"
                                             BorderThickness="1" >
                                     <TextBlock Text="Marks Obtained"
-                                                   Style="{StaticResource gradebookText}"/>
+                                               Style="{StaticResource gradebookText}"/>
                                 </Border>
                                 <Border BorderBrush="#BBBBBB"
                                             Grid.Column="3" 
                                             BorderThickness="1" >
                                     <TextBlock Text="Remarks"
-                                                   Style="{StaticResource gradebookText}"/>
+                                               Style="{StaticResource gradebookText}"/>
                                 </Border>
                                 <Border BorderBrush="#BBBBBB" 
                                             Grid.Column="4"
                                             BorderThickness="1" >
                                     <TextBlock Text="Max Marks"
-                                                   Style="{StaticResource gradebookText}"/>
+                                               Style="{StaticResource gradebookText}"/>
                                 </Border>
                                 <Border BorderBrush="#BBBBBB" 
                                              Grid.Column="5"
                                             BorderThickness="1" >
                                     <TextBlock Text="Highest-Lowest Marks"
-                                                   Style="{StaticResource gradebookText}"/>
+                                               Style="{StaticResource gradebookText}"/>
                                 </Border>
                                 <Border BorderBrush="#BBBBBB" 
                                                    Grid.Column="6"
                                             BorderThickness="1" >
                                     <TextBlock Text="Average-Median Marks"
-                                                   Style="{StaticResource gradebookText}"/>
+                                               Style="{StaticResource gradebookText}"/>
                                 </Border>
                                 <Border BorderBrush="#BBBBBB" 
                                                    Grid.Column="7"
                                             BorderThickness="1" >
                                     <TextBlock Text="25/75 Percentile"
-                                                   Style="{StaticResource gradebookText}"/>
+                                               Style="{StaticResource gradebookText}"/>
                                 </Border>
                                 <Border BorderBrush="#BBBBBB" 
                                             Grid.Column="8"
                                             BorderThickness="1" >
                                     <TextBlock Text="Date Entered"
-                                                   Style="{StaticResource gradebookText}"/>
+                                               Style="{StaticResource gradebookText}"/>
                                 </Border>
                             </Grid>
                             <ListView ItemsSource="{Binding Source={StaticResource grades}}"
@@ -552,7 +566,7 @@
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="*"/>
-                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="2*"/>
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="*"/>
@@ -560,32 +574,32 @@
                                                 <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
                                             <TextBlock Text="{Binding gradeDescription}"
-                                                   Grid.Column="0"
-                                                   HorizontalAlignment="Center"/>
+                                                       Grid.Column="0"
+                                                       Style="{StaticResource grade_textblock}"/>
                                             <TextBlock Text="{Binding gradeName}"
-                                                   Grid.Column="1"
-                                                   HorizontalAlignment="Center"/>
+                                                       Grid.Column="1"
+                                                       Style="{StaticResource grade_textblock}"/>
                                             <TextBlock Text="{Binding gradeObtainedMarks}"
-                                                   Grid.Column="2"
-                                                   HorizontalAlignment="Center"/>
+                                                       Grid.Column="2"
+                                                       Style="{StaticResource grade_textblock}"/>
                                             <TextBlock Text="{Binding gradeRemark}"
-                                                   Grid.Column="3"
-                                                   HorizontalAlignment="Center"/>
+                                                       Grid.Column="3"
+                                                       Style="{StaticResource grade_textblock}"/>
                                             <TextBlock Text="{Binding gradeMaxMarks}"
-                                                   Grid.Column="4"
-                                                   HorizontalAlignment="Center"/>
+                                                       Grid.Column="4"
+                                                       Style="{StaticResource grade_textblock}"/>
                                             <TextBlock Text="{Binding gradeHighestLowestMarks}"
-                                                   Grid.Column="5"
-                                                   HorizontalAlignment="Center"/>
+                                                       Grid.Column="5"
+                                                       Style="{StaticResource grade_textblock}"/>
                                             <TextBlock Text="{Binding gradeAverageMedianMarks}"
-                                                   Grid.Column="6"
-                                                   HorizontalAlignment="Center"/>
+                                                       Grid.Column="6"
+                                                       Style="{StaticResource grade_textblock}"/>
                                             <TextBlock Text="{Binding gradePercentile}"
-                                                   Grid.Column="7"
-                                                   HorizontalAlignment="Center"/>
+                                                       Grid.Column="7"
+                                                       Style="{StaticResource grade_textblock}"/>
                                             <TextBlock Text="date"
-                                                   Grid.Column="8"
-                                                   HorizontalAlignment="Center"/>
+                                                       Grid.Column="8"
+                                                       Style="{StaticResource grade_textblock}"/>
                                         </Grid>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
@@ -593,7 +607,7 @@
                         </StackPanel>
                     </FlipViewItem>
                     <!-- Fourth item is gradebook -->
-                    
+
                     <!-- Fifth item is forum -->
                     <FlipViewItem x:Name="forum">
                         <Grid>
@@ -685,7 +699,7 @@
                             </ListView>
                         </Grid>
                     </FlipViewItem>
-                    <!-- Fifth item is forum --> 
+                    <!-- Fifth item is forum -->
 
                     <!-- Sixth item is webcast -->
                     <!-- Sixth item is webcast -->
