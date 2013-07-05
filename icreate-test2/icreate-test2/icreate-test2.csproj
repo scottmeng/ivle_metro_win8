@@ -116,6 +116,8 @@
     <Compile Include="DataStructure\ClassWrapper.cs" />
     <Compile Include="DataStructure\Colors.cs" />
     <Compile Include="DataStructure\ConstName.cs" />
+    <Compile Include="DataStructure\ExamInfo.cs" />
+    <Compile Include="DataStructure\ExamInfoWrapper.cs" />
     <Compile Include="DataStructure\File.cs" />
     <Compile Include="DataStructure\Folder.cs" />
     <Compile Include="DataStructure\Forum.cs" />
