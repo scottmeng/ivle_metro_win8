@@ -241,11 +241,14 @@
         </Grid.RowDefinitions>
 
         <!-- Back button and page title -->
-        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.ColumnSpan="2">
+        <StackPanel Orientation="Horizontal" Grid.Row="0">
             <Button x:Name="backButton" Click="GoBack" 
+                    Margin="10,5"
+                    VerticalAlignment="Center"
                     IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" 
                     Style="{StaticResource BackButtonStyle}"/>
             <TextBlock VerticalAlignment="Center"
+                       Margin="10,5"
                        x:Name="mainModuleName" 
                        FontSize="42" 
                        Style="{StaticResource TitleTextStyle}" />
@@ -289,7 +292,7 @@
             <Grid Grid.Column="1">
                 <FlipView x:Name="flipView" ManipulationMode="None" Style="{StaticResource FlipViewStyle1}">
                     <!-- First item is module information -->
-                    <FlipViewItem>
+                    <FlipViewItem x:Name="moduleInfomation">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="auto"/>
@@ -302,24 +305,47 @@
                                 <RowDefinition Height="auto"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="340*"/>
-                                <ColumnDefinition Width="18*"/>
-                                <ColumnDefinition Width="54*"/>
-                                <ColumnDefinition Width="607*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="3*"/>
                             </Grid.ColumnDefinitions>
-                            <TextBlock Text="Module Code" Grid.Column="0" Grid.Row="0" FontSize="32"/>
-                            <TextBlock x:Name="moduleCode_textblock" Grid.Column="1" Grid.Row="0" FontSize="32" Grid.ColumnSpan="3"/>
-                            <TextBlock Text="Module Name" Grid.Column="0" Grid.Row="1" FontSize="32"/>
-                            <TextBlock x:Name="moduleName_textblock" Grid.Column="1" Grid.Row="1" FontSize="32" Grid.ColumnSpan="3"/>
-                            <TextBlock Text="Module Mc" Grid.Column="0" Grid.Row="2" FontSize="32"/>
-                            <TextBlock x:Name="moduleMc_textblock" Grid.Column="1" Grid.Row="2" FontSize="32" Grid.ColumnSpan="3"/>
-                            <TextBlock Text="Module Acad Year" Grid.Column="0" Grid.Row="3" FontSize="32"/>
-                            <TextBlock x:Name="moduleAcadYear_textblock" Grid.Column="1" Grid.Row="3" FontSize="32" Grid.ColumnSpan="3"/>
-                            <TextBlock Text="Time Table" Grid.Column="0" Grid.Row="4" FontSize="32"/>
-                            <TextBlock x:Name="moduleTimetable_textblock" Grid.Column="1" Grid.Row="4" FontSize="32" Grid.ColumnSpan="3"/>
-                            <TextBlock Text="Exam time" Grid.Column="0" Grid.Row="5" FontSize="32"/>
-                            <TextBlock x:Name="moduleExamtime_textblock" Grid.Column="1" Grid.Row="5" FontSize="32" Grid.ColumnSpan="3"/>
-                            <TextBlock Text="Lecturers" Grid.Column="0" Grid.Row="6" FontSize="32"/>
+                            <Line Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" 
+                                  X1="20" Y1="0" X2="800" Y2="0" 
+                                  Stroke="DarkGray" StrokeThickness="3"/>
+
+                            <TextBlock Text="Module Code" Grid.Column="0" Grid.Row="0" 
+                                       FontSize="26" Padding="5,10" Margin="5" HorizontalAlignment="Right"/>
+                            <TextBlock Text="Module Name" Grid.Column="0" Grid.Row="1" 
+                                       FontSize="26" Padding="5,10" Margin="5" HorizontalAlignment="Right"/>
+                            <TextBlock Text="Module Mc" Grid.Column="0" Grid.Row="2" 
+                                       FontSize="26" Padding="5,10" Margin="5" HorizontalAlignment="Right"/>
+                            <TextBlock Text="Module Acad Year" Grid.Column="0" Grid.Row="3" 
+                                       FontSize="26" Padding="5,10" Margin="5" HorizontalAlignment="Right"/>
+                            <TextBlock Text="Time Table" Grid.Column="0" Grid.Row="4" 
+                                       FontSize="26" Padding="5,10" Margin="5" HorizontalAlignment="Right"/>
+                            <TextBlock Text="Exam time" Grid.Column="0" Grid.Row="5" 
+                                       FontSize="26" Padding="5,10" Margin="5" HorizontalAlignment="Right"/>
+                            <TextBlock Text="Lecturers" Grid.Column="0" Grid.Row="6" 
+                                       FontSize="26" Padding="5,10" Margin="5" HorizontalAlignment="Right"/>
+
+
+                            <TextBlock x:Name="moduleCode_textblock" 
+                                       Grid.Column="1" Grid.Row="0" FontSize="26"
+                                       Margin="20,5" Padding="5,10" FontWeight="Light"/>
+                            <TextBlock x:Name="moduleName_textblock" 
+                                       Grid.Column="1" Grid.Row="1" FontSize="26"
+                                       Margin="20,5" Padding="5,10" FontWeight="Light"/>
+                            <TextBlock x:Name="moduleMc_textblock" 
+                                       Grid.Column="1" Grid.Row="2" FontSize="26"
+                                       Margin="20,5" Padding="5,10" FontWeight="Light"/>
+                            <TextBlock x:Name="moduleAcadYear_textblock" 
+                                       Grid.Column="1" Grid.Row="3" FontSize="26"
+                                       Margin="20,5" Padding="5,10" FontWeight="Light"/>
+                            <TextBlock x:Name="moduleTimetable_textblock" 
+                                       Grid.Column="1" Grid.Row="4" FontSize="26"
+                                       Margin="20,5" Padding="5,10" FontWeight="Light"/>
+                            <TextBlock x:Name="moduleExamtime_textblock" 
+                                       Grid.Column="1" Grid.Row="5" FontSize="26"
+                                       Margin="20,5" Padding="5,10" FontWeight="Light"/>
                         </Grid>
                     </FlipViewItem>
                     <!-- First item is module information -->
