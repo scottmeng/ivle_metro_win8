@@ -53,6 +53,7 @@ namespace icreate_test2.DataStructure
         [DataMember(Name = "Lecturers")]
         public Lecturer[] moduleLecturers { get; set; }
 
+        public ExamInfo[] moduleExamInfos { get; set; }
         public Color moduleColor { get; set; }
         public List<ModuleItem> moduleItems { get; set; }
         public bool isAnnouncementAvailable { get; set; }

@@ -35,7 +35,8 @@ namespace icreate_test2
     public sealed partial class ItemPage : icreate_test2.Common.LayoutAwarePage
     {
         private MediaExtensionManager extensions = new MediaExtensionManager();
-        private int _moduleNum;
+
+        // parameters passed from main page
         private int _moduleIndex;
         private int _announcementIndex;
 
@@ -56,6 +57,7 @@ namespace icreate_test2
 
             _folderTree = new List<DataStructure.Folder>();
             _workbins = new List<DataStructure.Workbin>();
+            _otherModules = new List<DataStructure.Module>();
         }
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
@@ -65,24 +67,27 @@ namespace icreate_test2
                 DataStructure.NavParams navParams = e.Parameter as DataStructure.NavParams;
 
                 _moduleIndex = navParams.moduleIndex;
-                _moduleNum = Utils.DataManager.GetModules().Count;
                 _announcementIndex = navParams.announcementIndex;
 
                 _currentModule = Utils.DataManager.GetModuleAt(_moduleIndex);
 
                 mainModuleName.Text = _currentModule.moduleCode;
-                _otherModules = new List<DataStructure.Module>();
-                for (int i = 0; i < _moduleNum; i++)
+
+                foreach (DataStructure.Module module in Utils.DataManager.GetModules())
                 {
-                    if(i!=_moduleIndex)
-                        _otherModules.Add(Utils.DataManager.GetModuleAt(i));
+                    if (module.moduleId != _currentModule.moduleId)
+                    {
+                        _otherModules.Add(module);
+                    }
                 }
             }
 
+            await GetExamAsync();
 
             _currentModule.GenerateModuleItemList();
 
             base.OnNavigatedTo(e);
+
             await GetWorkbinAsync();
             await GetForumAsync();
         }
@@ -110,6 +115,7 @@ namespace icreate_test2
                 moduleCode_textblock.Text = _currentModule.moduleCode;
                 moduleAcadYear_textblock.Text = _currentModule.moduleAcadYear + _currentModule.moduleSemester;
                 moduleMc_textblock.Text = _currentModule.moduleMc;
+                moduleExamtime_textblock.Text = _currentModule.moduleExamInfos[0].examInfo;
             }
             catch
             {
@@ -127,28 +133,22 @@ namespace icreate_test2
                 newAnnouncementListView.Source = _currentModule.moduleAnnouncements;
             }           
 
-            // display forum
+            // create forum title for display
             if (_currentModule.isForumAvailable)
             {
-                _currentModule.moduleForums[0].GenerateAllTitles();
-                /*
-                headers.Source = _currentModule.moduleForums[0].forumHeadings;
-                if (_currentModule.moduleForums[0].forumHeadings.Length > 0)
+                foreach (DataStructure.Forum forum in _currentModule.moduleForums)
                 {
-                    threads.Source = _currentModule.moduleForums[0].forumHeadings[0].headingThreads;
-                    if (_currentModule.moduleForums[0].forumHeadings[0].headingThreads.Length > 0)
-                    {
-                        if (_currentModule.moduleForums[0].forumHeadings[0].headingThreads[0].threadInnerThreads.Length > 0)
-                        {
-                            innerThreads.Source = _currentModule.moduleForums[0].forumHeadings[0].headingThreads[0].threadInnerThreads;
-                        }
-                    }
-                    else
-                    {
-                        innerThreads.Source = null;
-                    }
+                    forum.GenerateAllTitles();
                 }
-                */
+            }
+
+            // if announcement index passed from main page is valid
+            if (_announcementIndex >= 0)
+            {
+                itemList.SelectedIndex = 1;
+                flipView.SelectedIndex = 1;
+
+                announcementListView.SelectedIndex = _announcementIndex;
             }
         }
 
@@ -194,6 +194,9 @@ namespace icreate_test2
                     case DataStructure.ItemType.FORUM:
                         flipView.SelectedIndex = 4;
                         _currentForumIndex = selectedItem.itemIndex;
+
+                        // binding of forum heading + thread titles
+
                         break;
                     default:
                         break;
@@ -225,6 +228,17 @@ namespace icreate_test2
             DataStructure.ForumWrapper forumWrapper = JsonConvert.DeserializeObject<DataStructure.ForumWrapper>(forumsResponse);
 
             _currentModule.moduleForums = forumWrapper.forums;
+        }
+
+        private async Task GetExamAsync()
+        {
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters.Add("CourseID", _currentModule.moduleId);
+
+            String examResponse = await Utils.RequestSender.GetResponseStringAsync("Timetable_ModuleExam", parameters);
+            DataStructure.ExamInfoWrapper examInfoWrapper = JsonConvert.DeserializeObject<DataStructure.ExamInfoWrapper>(examResponse);
+
+            _currentModule.moduleExamInfos = examInfoWrapper.examInfos;
         }
 
         private void onFolderSelected(object sender, TappedRoutedEventArgs e)

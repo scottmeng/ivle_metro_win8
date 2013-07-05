@@ -11,10 +11,10 @@ namespace icreate_test2.DataStructure
     class Heading
     {
         [DataMember(Name = "ID")]
-        public String headingId { get; set; }
+        public string headingId { get; set; }
 
         [DataMember(Name = "Title")]
-        public String headingTitle { get; set; }
+        public string headingTitle { get; set; }
 
         [DataMember(Name = "BadgeHeading")]
         public int headingBadge { get; set; }
@@ -24,7 +24,7 @@ namespace icreate_test2.DataStructure
 
         public List<PostTitle> headingAllTiles { get; set; }
 
-        public Heading(String id, String title, int badge, Thread[] threads)
+        public Heading(string id, string title, int badge, Thread[] threads)
         {
             headingId = id;
             headingTitle = title;
