@@ -47,10 +47,14 @@ namespace icreate_test2
         private List<DataStructure.Folder> _currentFolders;
         private List<DataStructure.File> _currentFiles;
 
+        // store parent/child folders in hierachy 
+        private List<DataStructure.Folder> _folderTree;
+
         public ItemPage()
         {
             this.InitializeComponent();
 
+            _folderTree = new List<DataStructure.Folder>();
             _workbins = new List<DataStructure.Workbin>();
         }
 
@@ -232,10 +236,10 @@ namespace icreate_test2
 
             folder.Source = _currentFolders;
             file.Source = _currentFiles;
+
+            _folderTree.Add(selectedFolder);
         }
-
-
-        
+                
         private void menuButtonClick(object sender, RoutedEventArgs e)
         {
             Flyout f = new Flyout();
@@ -256,12 +260,6 @@ namespace icreate_test2
             f.IsOpen = true;
         }
 
-
-        /* TODO
-         * Move this to data manager?
-         * make it cleaner
-         * */
-
         private async void onFileSelected(object sender, TappedRoutedEventArgs e)
         {
             DataStructure.File selectedFile = (e.OriginalSource as FrameworkElement).DataContext as DataStructure.File;
@@ -275,20 +273,30 @@ namespace icreate_test2
             // make sure the http reponse is successful
             response.EnsureSuccessStatusCode();
 
-
-            StorageFolder storageFolder = ApplicationData.Current.LocalFolder;
+            // open (or create if non-existing) the base folder under documents library
+            StorageFolder appFolder = await KnownFolders.DocumentsLibrary.CreateFolderAsync("IVLE_Metro", CreationCollisionOption.OpenIfExists);
+            
+            // open/create module folder
             String moduleFolderName = _currentModule.moduleCode.Replace("/", "_");
-            StorageFolder moduleFolder = await storageFolder.CreateFolderAsync(moduleFolderName, CreationCollisionOption.OpenIfExists);
-            StorageFile storageFile = await moduleFolder.CreateFileAsync("test.pdf", CreationCollisionOption.GenerateUniqueName);
+            StorageFolder currentFolder = await appFolder.CreateFolderAsync(moduleFolderName, CreationCollisionOption.OpenIfExists);
 
+            
+            foreach (DataStructure.Folder folder in _folderTree)
+            {
+                currentFolder = await currentFolder.CreateFolderAsync(folder.folderName, CreationCollisionOption.OpenIfExists);
+            }
+
+            // create the file
+            StorageFile storageFile = await currentFolder.CreateFileAsync(selectedFile.fileName, CreationCollisionOption.OpenIfExists);
+
+            // store data in the file
             using (Stream outputStream = await storageFile.OpenStreamForWriteAsync())
             using (Stream inputStream = await response.Content.ReadAsStreamAsync())
             {
                 inputStream.CopyTo(outputStream);
             }
 
-            //var file = await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFileAsync("test.pdf");
-
+            // if file is sucessfully created and stored
             if (storageFile != null)
             {
                 // Set the option to show the picker

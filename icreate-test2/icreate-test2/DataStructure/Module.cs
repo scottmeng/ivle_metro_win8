@@ -101,57 +101,60 @@ namespace icreate_test2.DataStructure
         {
             int index;
 
-            // module info is always available
-            moduleItems.Add(new ModuleItem("Module Info", ItemType.MODULE_INFO, 0));
-
-            if (moduleAnnouncements.Count() > 0)
+            if (moduleItems.Count == 0)
             {
-                moduleItems.Add(new ModuleItem("Announcements", ItemType.ANNOUNCEMENT, 0));
-                isAnnouncementAvailable = true;
-            }
+                // module info is always available
+                moduleItems.Add(new ModuleItem("Module Info", ItemType.MODULE_INFO, 0));
 
-            if (moduleForums.Count() > 0)
-            {
-                index = 0;
-                foreach (Forum forum in moduleForums)
+                if (moduleAnnouncements.Count() > 0)
                 {
-                    moduleItems.Add(new ModuleItem(forum.forumTitle, ItemType.FORUM, index));
-                    index++;
+                    moduleItems.Add(new ModuleItem("Announcements", ItemType.ANNOUNCEMENT, 0));
+                    isAnnouncementAvailable = true;
                 }
-                isForumAvailable = true;
-            }
 
-            if (moduleWorkbins.Count() > 0)
-            {
-                index = 0;
-                foreach (Workbin workbin in moduleWorkbins)
+                if (moduleForums.Count() > 0)
                 {
-                    moduleItems.Add(new ModuleItem(workbin.workbinTitle, ItemType.WORKBIN, index));
-                    index++;
+                    index = 0;
+                    foreach (Forum forum in moduleForums)
+                    {
+                        moduleItems.Add(new ModuleItem(forum.forumTitle, ItemType.FORUM, index));
+                        index++;
+                    }
+                    isForumAvailable = true;
                 }
-                isWorkbinAvailable = true;
-            }
 
-            if (moduleGradebooks.Count() > 0)
-            {
-                index = 0;
-                foreach (Gradebook gradebook in moduleGradebooks)
+                if (moduleWorkbins.Count() > 0)
                 {
-                    moduleItems.Add(new ModuleItem("Gradebook", ItemType.GRADEBOOK, index));
-                    index++;
+                    index = 0;
+                    foreach (Workbin workbin in moduleWorkbins)
+                    {
+                        moduleItems.Add(new ModuleItem(workbin.workbinTitle, ItemType.WORKBIN, index));
+                        index++;
+                    }
+                    isWorkbinAvailable = true;
                 }
-                isGradebookAvailable = true;
-            }
 
-            if (moduleWebcasts.Count() > 0)
-            {
-                index = 0;
-                foreach (Webcast webcast in moduleWebcasts)
+                if (moduleGradebooks.Count() > 0)
                 {
-                    moduleItems.Add(new ModuleItem(webcast.webcastTitle, ItemType.WEBCAST, index));
-                    index++;
+                    index = 0;
+                    foreach (Gradebook gradebook in moduleGradebooks)
+                    {
+                        moduleItems.Add(new ModuleItem("Gradebook", ItemType.GRADEBOOK, index));
+                        index++;
+                    }
+                    isGradebookAvailable = true;
                 }
-                isWebcastAvailable = true;
+
+                if (moduleWebcasts.Count() > 0)
+                {
+                    index = 0;
+                    foreach (Webcast webcast in moduleWebcasts)
+                    {
+                        moduleItems.Add(new ModuleItem(webcast.webcastTitle, ItemType.WEBCAST, index));
+                        index++;
+                    }
+                    isWebcastAvailable = true;
+                }
             }
         }
     }

@@ -566,7 +566,8 @@
                             </ListView>
                         </StackPanel>
                     </FlipViewItem>
-                    <!-- Fifth item is forum -->
+                    <!-- Fourth item is gradebook -->
+                    
                     <!-- Fifth item is forum -->
                     <FlipViewItem x:Name="forum">
                         <Grid>
@@ -658,6 +659,7 @@
                             </ListView>
                         </Grid>
                     </FlipViewItem>
+                    <!-- Fifth item is forum --> 
 
                     <!-- Sixth item is webcast -->
                     <!-- Sixth item is webcast -->

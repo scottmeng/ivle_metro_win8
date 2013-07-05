@@ -21,10 +21,21 @@
       </VisualElements>
       <Extensions>
         <Extension Category="windows.search" />
+        <Extension Category="windows.fileTypeAssociation">
+          <FileTypeAssociation Name="pdf">
+            <DisplayName>PDF</DisplayName>
+            <SupportedFileTypes>
+              <FileType>.doc</FileType>
+              <FileType>.ppt</FileType>
+              <FileType>.pdf</FileType>
+            </SupportedFileTypes>
+          </FileTypeAssociation>
+        </Extension>
       </Extensions>
     </Application>
   </Applications>
   <Capabilities>
+    <Capability Name="documentsLibrary" />
     <Capability Name="internetClient" />
   </Capabilities>
 </Package>
