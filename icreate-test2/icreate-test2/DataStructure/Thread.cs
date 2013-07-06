@@ -57,7 +57,6 @@ namespace icreate_test2.DataStructure
                 thread.GenerateAllThread();
                 threadAllThreads = threadAllThreads.Concat(thread.threadAllThreads).ToList();
             }
-                
             threadAllThreads.Insert(0, new Thread(threadId, threadTitle, threadBody, threadDate, threadPoster, null, threadIsPosterStaff, threadIsRead));
         }
     }

@@ -305,7 +305,7 @@
                           ManipulationMode="None" 
                           Margin="20,0"
                           Style="{StaticResource FlipViewStyle1}">
-                    
+
                     <!-- First item is module information -->
                     <FlipViewItem x:Name="moduleInfomation">
                         <Border BorderBrush="DarkGray" 
@@ -410,14 +410,11 @@
 
                     <!-- Third item is workbin -->
                     <FlipViewItem x:Name="workbin">
-                        <ScrollViewer x:Name="scrollViewer" 
-                                        HorizontalAlignment="Left" 
-                                        VerticalAlignment="Top"
-                                        VerticalScrollBarVisibility="Disabled" 
-                                        HorizontalScrollBarVisibility="Hidden" 
-                                        VerticalScrollMode="Disabled" 
-                                        HorizontalScrollMode="Auto" 
-                                        ZoomMode="Disabled">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
                             <StackPanel Orientation="Vertical">
                                 <Button Background="Blue" Width="300" Height="100" Margin="35,35,65,35"  Content="..."/>
                                 <ListView x:Name="folderItemsControl" 
@@ -446,6 +443,16 @@
                                         </DataTemplate>
                                     </ListView.ItemTemplate>
                                 </ListView>
+                            </StackPanel>
+                            <ScrollViewer x:Name="scrollViewer" 
+                                        HorizontalAlignment="Left" 
+                                        VerticalAlignment="Top"
+                                        VerticalScrollBarVisibility="Disabled" 
+                                        HorizontalScrollBarVisibility="Hidden" 
+                                        VerticalScrollMode="Disabled" 
+                                        HorizontalScrollMode="Auto" 
+                                          Grid.Column="1"
+                                        ZoomMode="Disabled">
                                 <ItemsControl x:Name="fileItemsControl" 
                                                     ItemsSource="{Binding Source={StaticResource file}}"  
                                                     Margin="20,20,50,20"
@@ -475,8 +482,8 @@
                                         </DataTemplate>
                                     </ItemsControl.ItemTemplate>
                                 </ItemsControl>
-                            </StackPanel>
-                        </ScrollViewer>
+                            </ScrollViewer>
+                        </Grid>
                     </FlipViewItem>
                     <!-- Third item is workbin -->
 
