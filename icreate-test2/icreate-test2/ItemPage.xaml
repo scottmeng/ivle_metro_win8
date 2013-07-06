@@ -418,12 +418,13 @@
                                         HorizontalScrollMode="Auto" 
                                         ZoomMode="Disabled">
                             <StackPanel Orientation="Vertical">
-                                <Button Background="Blue" Width="300" Height="100" Margin="10" Content="..."/>
+                                <Button Background="Blue" Width="300" Height="100" Margin="35,35,65,35"  Content="..."/>
                                 <ListView x:Name="folderItemsControl" 
                                             ItemsSource="{Binding Source={StaticResource folder}}"  
                                             IsItemClickEnabled="True"
                                             Tapped="onFolderSelected"
-                                            Margin="20,20,50,20" >
+                                            Margin="20,20,50,20" 
+                                            ItemContainerStyle="{StaticResource WithoutTick}">
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <Grid Width="300" 
@@ -654,7 +655,7 @@
                                     ItemContainerStyle="{StaticResource WithoutTick}">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
-                                        <Grid Height="auto" Background="LightGray">
+                                        <Grid Height="auto" Background="Gray">
                                             <StackPanel VerticalAlignment="Top" 
                                                         Margin="0" 
                                                         Orientation="Vertical">

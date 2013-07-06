@@ -90,6 +90,7 @@ namespace icreate_test2
 
             await GetWorkbinAsync();
             await GetForumAsync();
+            updateForum();
         }
 
 
@@ -194,17 +195,6 @@ namespace icreate_test2
                         file.Source = _currentFiles;
                         break;
                     case DataStructure.ItemType.FORUM:
-                        foreach (DataStructure.Forum forum in _currentModule.moduleForums)
-                        {
-                            forum.GenerateAllTitles();
-                        }
-                        foreach (DataStructure.Heading heading in _currentModule.moduleForums[_currentForumIndex].forumHeadings)
-                        {
-                            foreach (DataStructure.Thread thread in heading.headingThreads)
-                            {
-                                thread.GenerateAllThread();
-                            }
-                        }
                         flipView.SelectedIndex = 4;
                         headers.Source = _currentModule.moduleForums[selectedItem.itemIndex].forumAllTitles;
 
@@ -385,6 +375,20 @@ namespace icreate_test2
         {
             this.Frame.Navigate(typeof(MainPage));
         }
+        private void updateForum()
+        {
+            foreach (DataStructure.Forum forum in _currentModule.moduleForums)
+            {
+                forum.GenerateAllTitles();
+            }
+            foreach (DataStructure.Heading heading in _currentModule.moduleForums[_currentForumIndex].forumHeadings)
+            {
+                foreach (DataStructure.Thread thread in heading.headingThreads)
+                {
+                    thread.GenerateAllThread();
+                }
+            }
+        }
     }
     public class BackgroundConverter : IValueConverter
     {
@@ -392,9 +396,9 @@ namespace icreate_test2
         {
             bool _value = (bool)value;
             if (_value)
-                return "#FF00FF";
+                return "#990033";
             else
-                return "#00FF00";
+                return "#CC3366";
         }
 
         // No need to implement converting back on a one-way binding 
