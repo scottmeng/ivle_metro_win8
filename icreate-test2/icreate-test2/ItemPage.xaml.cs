@@ -391,10 +391,27 @@ namespace icreate_test2
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             bool _value = (bool)value;
-            if(_value)
+            if (_value)
                 return "#FF00FF";
             else
-               return "#00FF00";
+                return "#00FF00";
+        }
+
+        // No need to implement converting back on a one-way binding 
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    public class MarginConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            bool _value = (bool)value;
+            if (_value)
+                return "0,0,0,0";
+            else
+                return "20,0,0,0";
         }
 
         // No need to implement converting back on a one-way binding 

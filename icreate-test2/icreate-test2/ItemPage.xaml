@@ -615,6 +615,7 @@
                         <Grid>
                             <Grid.Resources>
                                 <local:BackgroundConverter x:Key="BackgroundConverter" />
+                                <local:MarginConverter x:Key="MarginConverter"/>
                             </Grid.Resources>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*"/>
@@ -628,7 +629,9 @@
                                         Tapped="thread_Tapped">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
-                                        <Grid Height="auto" Background="{Binding Path=isPostHeading,Mode=OneWay,Converter={StaticResource BackgroundConverter}}">
+                                        <Grid Height="auto" Background="{Binding Path=isPostHeading,
+                                            Mode=OneWay,Converter={StaticResource BackgroundConverter}}"
+                                              Margin="{Binding Path=isPostHeading,Mode=OneWay,Converter={StaticResource MarginConverter}}">
                                             <StackPanel VerticalAlignment="Top" 
                                                         Margin="0" 
                                                         Orientation="Vertical">
