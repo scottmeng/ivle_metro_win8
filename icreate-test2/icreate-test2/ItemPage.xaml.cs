@@ -375,6 +375,7 @@ namespace icreate_test2
         {
             this.Frame.Navigate(typeof(MainPage));
         }
+
         private void updateForum()
         {
             foreach (DataStructure.Forum forum in _currentModule.moduleForums)
@@ -390,6 +391,7 @@ namespace icreate_test2
             }
         }
     }
+
     public class BackgroundConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
@@ -407,6 +409,7 @@ namespace icreate_test2
             throw new NotImplementedException();
         }
     }
+
     public class MarginConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)

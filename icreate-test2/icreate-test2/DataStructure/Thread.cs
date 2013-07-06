@@ -46,18 +46,17 @@ namespace icreate_test2.DataStructure
             threadPoster = poster;
             threadInnerThreads = innerThreads;
             threadIsPosterStaff = isPosterStaff;
-            threadIsRead = isRead;
-
-            
+            threadIsRead = isRead;           
         }
 
         public void GenerateAllThread()
         {
             threadAllThreads = new List<Thread>();
-            foreach (Thread tempThread in threadInnerThreads)
-                    tempThread.GenerateAllThread();
-            foreach (Thread tempThread in threadInnerThreads)
-                threadAllThreads =  threadAllThreads.Concat(tempThread.threadAllThreads).ToList();                
+            foreach (Thread thread in threadInnerThreads)
+            {
+                thread.GenerateAllThread();
+                threadAllThreads = threadAllThreads.Concat(thread.threadAllThreads).ToList();
+            }
                 
             threadAllThreads.Insert(0, new Thread(threadId, threadTitle, threadBody, threadDate, threadPoster, null, threadIsPosterStaff, threadIsRead));
         }
