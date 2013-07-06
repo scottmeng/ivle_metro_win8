@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
+using System.Net;
+using Windows.UI;
+using System.Text.RegularExpressions;
 
 namespace icreate_test2.DataStructure
 {
@@ -51,6 +54,10 @@ namespace icreate_test2.DataStructure
 
         public void GenerateAllThread()
         {
+            threadBody = WebUtility.HtmlDecode(threadBody);
+            threadBody = Regex.Replace(threadBody, "<.+?>", string.Empty);
+            threadBody = Regex.Replace(threadBody, "&nbsp;", string.Empty);
+
             threadAllThreads = new List<Thread>();
             foreach (Thread thread in threadInnerThreads)
             {

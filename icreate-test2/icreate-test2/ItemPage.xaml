@@ -395,7 +395,7 @@
                                                            TextTrimming="WordEllipsis"/>
                                             <TextBlock Margin="20,5,20,5" 
                                                            Height="auto" 
-                                                           Text="{Binding announceContentPreview}" 
+                                                           Text="{Binding announceContentDisplay}" 
                                                            TextWrapping="Wrap" 
                                                            Foreground="White" 
                                                            FontSize="24" 
@@ -416,7 +416,14 @@
                                 <ColumnDefinition Width="2*"/>
                             </Grid.ColumnDefinitions>
                             <StackPanel Orientation="Vertical">
-                                <Button Background="Blue" Width="300" Height="100" Margin="35,35,65,35"  Content="..."/>
+                                <Button x:Name="upFolderButton" 
+                                        Background="Blue" 
+                                        Width="300" 
+                                        Height="100" 
+                                        Margin="35,35,65,35"  
+                                        Content="..."
+                                        Tapped="onUpButtonTapped"
+                                        Visibility="Collapsed"/>
                                 <ListView x:Name="folderItemsControl" 
                                             ItemsSource="{Binding Source={StaticResource folder}}"  
                                             IsItemClickEnabled="True"
@@ -451,7 +458,7 @@
                                         HorizontalScrollBarVisibility="Hidden" 
                                         VerticalScrollMode="Disabled" 
                                         HorizontalScrollMode="Auto" 
-                                          Grid.Column="1"
+                                        Grid.Column="1"
                                         ZoomMode="Disabled">
                                 <ItemsControl x:Name="fileItemsControl" 
                                                     ItemsSource="{Binding Source={StaticResource file}}"  
@@ -584,7 +591,7 @@
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
-                                            <TextBlock Text="{Binding gradeDescription}"
+                                            <TextBlock Text="{Binding gradeCategory}"
                                                        Grid.Column="0"
                                                        Style="{StaticResource grade_textblock}"/>
                                             <TextBlock Text="{Binding gradeName}"
@@ -608,7 +615,7 @@
                                             <TextBlock Text="{Binding gradePercentile}"
                                                        Grid.Column="7"
                                                        Style="{StaticResource grade_textblock}"/>
-                                            <TextBlock Text="date"
+                                            <TextBlock Text="{Binding gradeEnteredDate}"
                                                        Grid.Column="8"
                                                        Style="{StaticResource grade_textblock}"/>
                                         </Grid>
@@ -660,8 +667,14 @@
                                     Grid.Column="1"
                                     ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
                                     ItemsSource="{Binding Source={StaticResource threads}}" 
-                                    ItemContainerStyle="{StaticResource WithoutTick}"
-                                      SelectionMode="None">
+                                    SelectionMode="None">
+                                
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="ListViewItem">
+                                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                    </Style>
+                                </ListView.ItemContainerStyle>
+                                
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <Grid Height="auto" Background="Gray">

@@ -25,5 +25,13 @@ namespace icreate_test2.DataStructure
             gradebookTitle = title;
             gradebookGrades = grades;
         }
+
+        public void GenerateGradebookCategoryDisplay()
+        {
+            foreach (Grade grade in gradebookGrades)
+            {
+                grade.SetGradeCategory(gradebookTitle);
+            }
+        }
     }
 }

@@ -44,9 +44,9 @@ namespace icreate_test2
         
         private DataStructure.Module _currentModule;
         private List<DataStructure.Module> _otherModules;
-        private List<DataStructure.Workbin> _workbins;
-        private List<DataStructure.Folder> _currentFolders;
-        private List<DataStructure.File> _currentFiles;
+        private DataStructure.Workbin _currentWorkbin;
+        private DataStructure.Folder _currentFolder;
+        private List<DataStructure.Grade> _allGrades;
 
         // store parent/child folders in hierachy 
         private List<DataStructure.Folder> _folderTree;
@@ -56,8 +56,8 @@ namespace icreate_test2
             this.InitializeComponent();
 
             _folderTree = new List<DataStructure.Folder>();
-            _workbins = new List<DataStructure.Workbin>();
             _otherModules = new List<DataStructure.Module>();
+            _allGrades = new List<DataStructure.Grade>();
         }
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
@@ -125,7 +125,13 @@ namespace icreate_test2
             // display gradebook
             if(_currentModule.isGradebookAvailable)
             {
-                grades.Source = _currentModule.moduleGradebooks[0].gradebookGrades;
+                foreach (DataStructure.Gradebook gradebook in _currentModule.moduleGradebooks)
+                {
+                    gradebook.GenerateGradebookCategoryDisplay();
+                    _allGrades = _allGrades.Concat<DataStructure.Grade>(gradebook.gradebookGrades).ToList<DataStructure.Grade>();
+                }
+
+                grades.Source = _allGrades;
             }
 
             // display announcements
@@ -188,11 +194,11 @@ namespace icreate_test2
                     case DataStructure.ItemType.WORKBIN:
                         flipView.SelectedIndex = 2;
 
-                        _currentFolders = _currentModule.moduleWorkbins[selectedItem.itemIndex].workbinFolders;
-                        _currentFiles = new List<DataStructure.File>();
+                        _currentWorkbin = _currentModule.moduleWorkbins[selectedItem.itemIndex];
 
-                        folder.Source = _currentFolders;
-                        file.Source = _currentFiles;
+                        folder.Source = _currentWorkbin.workbinFolders;
+                        file.Source = new List<DataStructure.File>();
+
                         break;
                     case DataStructure.ItemType.FORUM:
                         flipView.SelectedIndex = 4;
@@ -244,15 +250,17 @@ namespace icreate_test2
 
         private void onFolderSelected(object sender, TappedRoutedEventArgs e)
         {
-            DataStructure.Folder selectedFolder = (e.OriginalSource as FrameworkElement).DataContext as DataStructure.Folder;
+            if (_currentFolder != null)
+            {
+                _folderTree.Add(_currentFolder);
+            }
 
-            _currentFolders = selectedFolder.folderInnerFolders;
-            _currentFiles = selectedFolder.folderFiles;
+            _currentFolder = (e.OriginalSource as FrameworkElement).DataContext as DataStructure.Folder;
 
-            folder.Source = _currentFolders;
-            file.Source = _currentFiles;
+            folder.Source = _currentFolder.folderInnerFolders;
+            file.Source = _currentFolder.folderFiles;
 
-            _folderTree.Add(selectedFolder);
+            upFolderButton.Visibility = Visibility.Visible;
         }
                 
         private void menuButtonClick(object sender, RoutedEventArgs e)
@@ -318,25 +326,45 @@ namespace icreate_test2
                 currentFolder = await currentFolder.CreateFolderAsync(folder.folderName, CreationCollisionOption.OpenIfExists);
             }
 
-            // create the file
-            StorageFile storageFile = await currentFolder.CreateFileAsync(selectedFile.fileName, CreationCollisionOption.OpenIfExists);
+            StorageFile targetFile = await currentFolder.GetFileAsync(selectedFile.fileName);
 
-            // store data in the file
-            using (Stream outputStream = await storageFile.OpenStreamForWriteAsync())
-            using (Stream inputStream = await response.Content.ReadAsStreamAsync())
+            // if file has not been downloaded before
+            // download it
+            if (targetFile == null)
             {
-                inputStream.CopyTo(outputStream);
-            }
+                // create the file
+                targetFile = await currentFolder.CreateFileAsync(selectedFile.fileName, CreationCollisionOption.OpenIfExists);
 
+                // store data in the file
+                using (Stream outputStream = await targetFile.OpenStreamForWriteAsync())
+                using (Stream inputStream = await response.Content.ReadAsStreamAsync())
+                {
+                    inputStream.CopyTo(outputStream);
+                }
+            }
+            // if file does exist
+            // check the creation date and the file upload time
+            // if creation date is prior to upload date, there must have been
+            // a newer version of the file
+            else if (targetFile.DateCreated.CompareTo(selectedFile.fileUploadTime) < 0)
+            {
+                // store data in the file
+                using (Stream outputStream = await targetFile.OpenStreamForWriteAsync())
+                using (Stream inputStream = await response.Content.ReadAsStreamAsync())
+                {
+                    inputStream.CopyTo(outputStream);
+                }
+            }
+            
             // if file is sucessfully created and stored
-            if (storageFile != null)
+            if (targetFile != null)
             {
                 // Set the option to show the picker
                 var options = new Windows.System.LauncherOptions();
                 options.DisplayApplicationPicker = true;
 
                 // Launch the retrieved file
-                bool success = await Windows.System.Launcher.LaunchFileAsync(storageFile, options);
+                bool success = await Windows.System.Launcher.LaunchFileAsync(targetFile, options);
                 if (success)
                 {
                     // File launched
@@ -388,6 +416,28 @@ namespace icreate_test2
                 {
                     thread.GenerateAllThread();
                 }
+            }
+        }
+
+        private void onUpButtonTapped(object sender, TappedRoutedEventArgs e)
+        {
+            if (_folderTree.Count > 0)
+            {
+                _currentFolder = _folderTree.Last<DataStructure.Folder>();
+
+                folder.Source = _currentFolder.folderInnerFolders;
+                file.Source = _currentFolder.folderFiles;
+
+                _folderTree.RemoveAt(_folderTree.Count - 1);
+            }
+            else
+            {
+                _currentFolder = null;
+
+                folder.Source = _currentWorkbin.workbinFolders;
+                file.Source = new List<DataStructure.File>();
+
+                upFolderButton.Visibility = Visibility.Collapsed;
             }
         }
     }

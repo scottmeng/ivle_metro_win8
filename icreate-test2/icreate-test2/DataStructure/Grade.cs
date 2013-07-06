@@ -40,6 +40,8 @@ namespace icreate_test2.DataStructure
         [DataMember(Name = "DateEntered")]
         public string gradeEnteredDate { get; set; }
 
+        public string gradeCategory { get; set; }
+
         public Grade(string id, string name, string description, string obtainedMarks, string remark, int maxMarks, string highestLowestMarks, string averageMedianMarks,
                      string percentile, string enteredDate)
         {
@@ -53,6 +55,11 @@ namespace icreate_test2.DataStructure
             gradeAverageMedianMarks = averageMedianMarks;
             gradePercentile = percentile;
             gradeEnteredDate = enteredDate;
+        }
+
+        public void SetGradeCategory(string category)
+        {
+            gradeCategory = category;
         }
     }
 }
