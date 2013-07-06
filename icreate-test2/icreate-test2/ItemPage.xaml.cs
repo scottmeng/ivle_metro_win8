@@ -136,12 +136,7 @@ namespace icreate_test2
             // create forum title for display
             if (_currentModule.isForumAvailable)
             {
-                foreach (DataStructure.Forum forum in _currentModule.moduleForums)
-                {
-                    forum.GenerateAllTitles();
-                    headers.Source = forum.forumAllTitles;
-                    //threads.Source = forum.forumHeadings;
-                }
+
             }
 
             // if announcement index passed from main page is valid
@@ -199,10 +194,19 @@ namespace icreate_test2
                         file.Source = _currentFiles;
                         break;
                     case DataStructure.ItemType.FORUM:
+                        foreach (DataStructure.Forum forum in _currentModule.moduleForums)
+                        {
+                            forum.GenerateAllTitles();
+                        }
+                        foreach (DataStructure.Heading heading in _currentModule.moduleForums[_currentForumIndex].forumHeadings)
+                        {
+                            foreach (DataStructure.Thread thread in heading.headingThreads)
+                            {
+                                thread.GenerateAllThread();
+                            }
+                        }
                         flipView.SelectedIndex = 4;
-                        _currentForumIndex = selectedItem.itemIndex;
-
-                        // binding of forum heading + thread titles
+                        headers.Source = _currentModule.moduleForums[selectedItem.itemIndex].forumAllTitles;
 
                         break;
                     default:
@@ -370,8 +374,7 @@ namespace icreate_test2
                     {
                         if (thread.threadId == selectedPostTitle.threadId)
                         {
-                            thread.GenerateAllThread();
-                            innerThreads.Source = thread.threadAllThreads;
+                            threads.Source = thread.threadAllThreads;
                         }
                     }
                 }
@@ -384,9 +387,9 @@ namespace icreate_test2
         {
             bool _value = (bool)value;
             if(_value)
-                return "#FFFFFF";
+                return "#FF00FF";
             else
-               return "#000000";
+               return "#00FF00";
         }
 
         // No need to implement converting back on a one-way binding 

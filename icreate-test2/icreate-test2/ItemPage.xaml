@@ -304,6 +304,7 @@
                           ManipulationMode="None" 
                           Margin="20,0"
                           Style="{StaticResource FlipViewStyle1}">
+                    
                     <!-- First item is module information -->
                     <FlipViewItem x:Name="moduleInfomation">
                         <Border BorderBrush="DarkGray" 
@@ -416,17 +417,18 @@
                                         VerticalScrollMode="Disabled" 
                                         HorizontalScrollMode="Auto" 
                                         ZoomMode="Disabled">
-                            <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Vertical">
+                                <Button Background="Blue" Width="300" Height="100" Margin="10" Content="..."/>
                                 <ListView x:Name="folderItemsControl" 
-                                                ItemsSource="{Binding Source={StaticResource folder}}"  
-                                                IsItemClickEnabled="True"
-                                                Tapped="onFolderSelected"
-                                                Margin="20,20,50,20" >
+                                            ItemsSource="{Binding Source={StaticResource folder}}"  
+                                            IsItemClickEnabled="True"
+                                            Tapped="onFolderSelected"
+                                            Margin="20,20,50,20" >
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <Grid Width="300" 
-                                                    Height="100" 
-                                                    Margin="10">
+                                                Height="100" 
+                                                Margin="10">
                                                 <Grid.Background>
                                                     <SolidColorBrush Color="Blue" />
                                                 </Grid.Background>
@@ -622,7 +624,8 @@
                                       Grid.Column="0"
                                         ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
                                         ItemsSource="{Binding Source={StaticResource headers}}"
-                                        SelectionMode="None">
+                                        SelectionMode="None"
+                                        Tapped="thread_Tapped">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <Grid Height="auto" Background="{Binding Path=isPostHeading,Mode=OneWay,Converter={StaticResource BackgroundConverter}}">
