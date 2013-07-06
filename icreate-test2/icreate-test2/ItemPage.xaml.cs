@@ -150,6 +150,11 @@ namespace icreate_test2
 
                 announcementListView.SelectedIndex = _announcementIndex;
             }
+            else
+            {
+                itemList.SelectedIndex = 0;
+                flipView.SelectedIndex = 0;
+            }
         }
 
         /// <summary>
@@ -262,16 +267,33 @@ namespace icreate_test2
             f.PlacementTarget = menuButton; // this is an UI element (usually the sender)
 
             Menu m = new Menu();
-            MenuItem mi2 = new MenuItem();
-            mi2.Text = "Another Option Here";
+
             for (int i = 0; i < _otherModules.Count; i++)
             {
                 MenuItem mi = new MenuItem();
                 mi.Text = (_otherModules[i]).moduleCode + " " + (_otherModules[i]).moduleName;
+                mi.Tag = _otherModules[i].moduleId;
+                mi.Tapped += otherModule_Tapped;
                 m.Items.Add(mi);
             }
             f.Content = m;
             f.IsOpen = true;
+        }
+
+        private void otherModule_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            MenuItem selectedModule = sender as MenuItem;
+
+            string selectedModuleId = selectedModule.Tag as string;
+
+            int moduleIndex = Utils.DataManager.GetModuleIndexByModuleId(selectedModule.Tag as string);
+
+            DataStructure.NavParams navParams = new DataStructure.NavParams(moduleIndex, -1);
+
+            if (this.Frame != null)
+            {
+                this.Frame.Navigate(typeof(ItemPage), navParams);
+            }
         }
 
         private async void onFileSelected(object sender, TappedRoutedEventArgs e)

@@ -117,7 +117,7 @@ namespace icreate_test2
         {
             DataStructure.Announcement selectedAnnouncement = (e.OriginalSource as FrameworkElement).DataContext as DataStructure.Announcement;
 
-            int moduleIndex = Utils.DataManager.GetModuleIndexByModuleCode(selectedAnnouncement.announceModuleId);
+            int moduleIndex = Utils.DataManager.GetModuleIndexByModuleId(selectedAnnouncement.announceModuleId);
             int announcementIndex = Utils.DataManager.GetAnnouncementIndex(moduleIndex, selectedAnnouncement.announceID);
             
             DataStructure.NavParams navParams = new DataStructure.NavParams(moduleIndex, announcementIndex);

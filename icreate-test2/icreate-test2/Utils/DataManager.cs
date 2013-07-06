@@ -78,8 +78,8 @@ namespace icreate_test2.Utils
         {
             return _modules.IndexOf(module);
         }
-
-        public static int GetModuleIndexByModuleCode(String moduleId)
+        
+        public static int GetModuleIndexByModuleId(string moduleId)
         {
             int index = 0;
             while (_modules[index].moduleId != moduleId)
