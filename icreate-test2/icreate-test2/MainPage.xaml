@@ -52,7 +52,7 @@
                       ItemContainerStyle="{StaticResource WithoutTick}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Grid Height="180" Background="LightGray">
+                        <Grid Height="180" Background="Gray" Margin="5,0,5,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="20"/>
                                 <ColumnDefinition Width="*"/>
@@ -70,14 +70,14 @@
                                            Text="{Binding announceName}"  
                                            TextWrapping="NoWrap" 
                                            Foreground="White" 
-                                           FontSize="36"
+                                           FontSize="32"
                                            TextTrimming="WordEllipsis"/>
                                 <TextBlock Margin="20,5,20,5" 
                                            Height="110" 
                                            Text="{Binding announceContentPreview}" 
                                            TextWrapping="Wrap" 
                                            Foreground="White" 
-                                           FontSize="24" 
+                                           FontSize="20" 
                                            TextTrimming="WordEllipsis"/>
                             </StackPanel>
                         </Grid>
@@ -129,7 +129,7 @@
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <Grid Width="360" 
-                                      Height="180" 
+                                      Height="175" 
                                       Margin="10">
                                         <Grid.Background>
                                             <SolidColorBrush Color="{Binding moduleColor}" />

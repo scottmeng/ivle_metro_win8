@@ -252,7 +252,7 @@
 
         <!-- Back button and page title -->
         <StackPanel Orientation="Horizontal" Grid.Row="0">
-            <Button x:Name="backButton" Click="GoBack" 
+            <Button x:Name="backButton" Click="backButton_Click" 
                     Margin="50,2,20,5"
                     VerticalAlignment="Center"
                     IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" 
@@ -382,7 +382,7 @@
                             </ListView.ItemContainerStyle>
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <Grid Height="auto" Background="LightGray">
+                                    <Grid Height="auto" Background="Gray">
                                         <StackPanel VerticalAlignment="Top" 
                                                         Margin="0" 
                                                         Orientation="Vertical">
