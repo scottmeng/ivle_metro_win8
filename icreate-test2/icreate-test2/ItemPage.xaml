@@ -611,6 +611,9 @@
                     <!-- Fifth item is forum -->
                     <FlipViewItem x:Name="forum">
                         <Grid>
+                            <Grid.Resources>
+                                <local:BackgroundConverter x:Key="BackgroundConverter" />
+                            </Grid.Resources>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*"/>
                                 <ColumnDefinition Width="2*"/>
@@ -622,56 +625,26 @@
                                         SelectionMode="None">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
-                                        <Grid Height="auto" Background="LightGray">
+                                        <Grid Height="auto" Background="{Binding Path=isPostHeading,Mode=OneWay,Converter={StaticResource BackgroundConverter}}">
                                             <StackPanel VerticalAlignment="Top" 
                                                         Margin="0" 
                                                         Orientation="Vertical">
                                                 <TextBlock Margin="20,5,20,5" 
-                                                           Text="{Binding headingTitle}"  
+                                                           Text="{Binding postTitle}"  
                                                            TextWrapping="NoWrap" 
                                                            Foreground="White" 
                                                            FontSize="36"
                                                            TextTrimming="WordEllipsis"/>
-                                                <ListView x:Name="thread"
-                                                          Grid.Column="0"
-                                                            ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
-                                                            ItemsSource="{Binding Source={StaticResource threads}}" 
-                                                            ItemContainerStyle="{StaticResource WithoutTick}" Tapped="thread_Tapped"
-                                                            >
-                                                    <ListView.ItemTemplate>
-                                                        <DataTemplate>
-                                                            <Grid Height="auto" Background="LightGray">
-                                                                <StackPanel VerticalAlignment="Top" 
-                                                                            Margin="0" 
-                                                                            Orientation="Vertical">
-                                                                    <TextBlock Margin="20,5,20,5" 
-                                                                               Text="{Binding threadTitle}"  
-                                                                               TextWrapping="NoWrap" 
-                                                                               Foreground="White" 
-                                                                               FontSize="36"
-                                                                               TextTrimming="WordEllipsis"/>
-                                                                    <TextBlock Margin="20,5,20,5" 
-                                                                               Height="auto" 
-                                                                               Text="{Binding threadBody}" 
-                                                                               TextWrapping="Wrap" 
-                                                                               Foreground="White" 
-                                                                               FontSize="24" 
-                                                                               TextTrimming="WordEllipsis"/>
-                                                                </StackPanel>
-                                                            </Grid>
-                                                        </DataTemplate>
-                                                    </ListView.ItemTemplate>
-                                                </ListView>
                                             </StackPanel>
                                         </Grid>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>
 
-                            <ListView x:Name="innerThread"
+                            <ListView x:Name="thread"
                                     Grid.Column="1"
                                     ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
-                                    ItemsSource="{Binding Source={StaticResource innerThreads}}" 
+                                    ItemsSource="{Binding Source={StaticResource threads}}" 
                                     ItemContainerStyle="{StaticResource WithoutTick}">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>

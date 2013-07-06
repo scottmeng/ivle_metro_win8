@@ -139,6 +139,8 @@ namespace icreate_test2
                 foreach (DataStructure.Forum forum in _currentModule.moduleForums)
                 {
                     forum.GenerateAllTitles();
+                    headers.Source = forum.forumAllTitles;
+                    //threads.Source = forum.forumHeadings;
                 }
             }
 
@@ -374,6 +376,23 @@ namespace icreate_test2
                     }
                 }
             }
+        }
+    }
+    public class BackgroundConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            bool _value = (bool)value;
+            if(_value)
+                return "#FFFFFF";
+            else
+               return "#000000";
+        }
+
+        // No need to implement converting back on a one-way binding 
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
         }
     }
 }
