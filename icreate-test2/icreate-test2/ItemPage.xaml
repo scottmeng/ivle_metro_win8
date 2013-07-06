@@ -283,6 +283,7 @@
                           ScrollViewer.VerticalScrollBarVisibility="Hidden" 
                           ItemsSource="{Binding Source={StaticResource itemListView}}" 
                           Tapped="itemChanged_ListViewTapped" 
+                          SelectionMode="None"
                           IsSwipeEnabled="True">
                     <ListView.ItemTemplate>
                         <DataTemplate>
@@ -652,7 +653,8 @@
                                     Grid.Column="1"
                                     ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
                                     ItemsSource="{Binding Source={StaticResource threads}}" 
-                                    ItemContainerStyle="{StaticResource WithoutTick}">
+                                    ItemContainerStyle="{StaticResource WithoutTick}"
+                                      SelectionMode="None">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <Grid Height="auto" Background="Gray">
