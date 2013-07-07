@@ -132,6 +132,7 @@
     <Compile Include="DataStructure\ModuleItem.cs" />
     <Compile Include="DataStructure\NavParams.cs" />
     <Compile Include="DataStructure\PostTitle.cs" />
+    <Compile Include="DataStructure\SearchResult.cs" />
     <Compile Include="DataStructure\SemesterInfo.cs" />
     <Compile Include="DataStructure\Thread.cs" />
     <Compile Include="DataStructure\Webcast.cs" />

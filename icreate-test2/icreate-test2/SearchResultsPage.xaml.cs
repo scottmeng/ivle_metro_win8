@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.ApplicationModel.Search;
 
 // The Search Contract item template is documented at http://go.microsoft.com/fwlink/?LinkId=234240
 
@@ -23,11 +24,16 @@ namespace icreate_test2
     /// </summary>
     public sealed partial class SearchResultsPage : icreate_test2.Common.LayoutAwarePage
     {
+        SearchPane searchPane;
+        string searchString;
 
         public SearchResultsPage()
         {
             this.InitializeComponent();
+
+            searchPane = SearchPane.GetForCurrentView();
         }
+
 
         /// <summary>
         /// Populates the page with content passed during navigation.  Any saved state is also
@@ -40,7 +46,7 @@ namespace icreate_test2
         /// session.  This will be null the first time a page is visited.</param>
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
-            var queryText = navigationParameter as String;
+            searchString = (navigationParameter as String).ToLower();
 
             // TODO: Application-specific searching logic.  The search process is responsible for
             //       creating a list of user-selectable result categories:
@@ -55,7 +61,7 @@ namespace icreate_test2
             filterList.Add(new Filter("All", 0, true));
 
             // Communicate results through the view model
-            this.DefaultViewModel["QueryText"] = '\u201c' + queryText + '\u201d';
+            this.DefaultViewModel["QueryText"] = '\u201c' + searchString + '\u201d';
             this.DefaultViewModel["Filters"] = filterList;
             this.DefaultViewModel["ShowFilters"] = filterList.Count > 1;
         }
@@ -75,15 +81,24 @@ namespace icreate_test2
                 // RadioButton representation used when not snapped to reflect the change
                 selectedFilter.Active = true;
 
+                IEnumerable<DataStructure.SearchResult> searchResults = from result in Utils.DataManager.searchResults
+                                                                        where result.resultTitle.ToLower().Contains(searchString) ||
+                                                                              result.resultContent.ToLower().Contains(searchString)
+                                                                        orderby result.resultTitle ascending
+                                                                        select result;
+
+                this.DefaultViewModel["Results"] = searchResults;
+
                 // TODO: Respond to the change in active filter by setting this.DefaultViewModel["Results"]
                 //       to a collection of items with bindable Image, Title, Subtitle, and Description properties
 
                 // Ensure results are found
                 object results;
-                ICollection resultsCollection;
+                IEnumerable<DataStructure.SearchResult> resultsCollection;
+
                 if (this.DefaultViewModel.TryGetValue("Results", out results) &&
-                    (resultsCollection = results as ICollection) != null &&
-                    resultsCollection.Count != 0)
+                    (resultsCollection = results as IEnumerable<DataStructure.SearchResult>) != null &&
+                    resultsCollection.Count() != 0)
                 {
                     VisualStateManager.GoToState(this, "ResultsFound", true);
                     return;
@@ -108,6 +123,26 @@ namespace icreate_test2
                 var filter = (sender as FrameworkElement).DataContext;
                 filtersViewSource.View.MoveCurrentTo(filter);
             }
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            searchPane.SuggestionsRequested += searchPane_SuggestionsRequested;
+        }
+
+        protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
+        {
+            base.OnNavigatingFrom(e);
+            searchPane.SuggestionsRequested -= searchPane_SuggestionsRequested;
+        }
+
+        public static void searchPane_SuggestionsRequested(SearchPane sender, SearchPaneSuggestionsRequestedEventArgs args)
+        {
+            args.Request.SearchSuggestionCollection.AppendQuerySuggestions((from result in Utils.DataManager.searchResults
+                                                                            where result.resultTitle.ToLower().StartsWith(args.QueryText.ToLower())
+                                                                            orderby result.resultTitle ascending
+                                                                            select result.resultTitle).Take(5));
         }
 
         /// <summary>

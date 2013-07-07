@@ -135,22 +135,6 @@ namespace icreate_test2
             Window.Current.Activate();
         }
 
-        private void OnQuerySubmitted(object sender, SearchPaneQuerySubmittedEventArgs args)
-        {
-            if (MainPage.Current != null)
-            {
-                MainPage.Current.ProcessQueryText(args.QueryText);
-            }
-        }
-
-        private void OnQueryChanged(object sender, SearchPaneSuggestionsRequestedEventArgs args)
-        {
-            if (MainPage.Current != null)
-            {
-                MainPage.Current.ProcessQueryText(args.QueryText);
-            }
-        }
-
         protected override void OnWindowCreated(WindowCreatedEventArgs args)
         {
             // At window creation time, access the SearchPane object and register SearchPane events
@@ -163,9 +147,9 @@ namespace icreate_test2
             // Register event handlers for SearchPane events
 
             // Register QuerySubmitted event handler
-            searchPane.QuerySubmitted += new TypedEventHandler<SearchPane, SearchPaneQuerySubmittedEventArgs>(OnQuerySubmitted);
+            //searchPane.QuerySubmitted += new TypedEventHandler<SearchPane, SearchPaneQuerySubmittedEventArgs>(OnQuerySubmitted);
 
-            searchPane.SuggestionsRequested += new TypedEventHandler<SearchPane, SearchPaneSuggestionsRequestedEventArgs>(OnQueryChanged);
+            //searchPane.SuggestionsRequested += new TypedEventHandler<SearchPane, SearchPaneSuggestionsRequestedEventArgs>(OnQueryChanged);
             // Register a SuggestionsRequested if your app displays its own suggestions in the search pane (like from a web service)
             // Register a ResultSuggestionChosen if your app uses result suggestions in the search pane    
         }

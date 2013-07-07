@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI;
+using Windows.ApplicationModel.Search;
 
 using Newtonsoft.Json;
 
@@ -73,6 +74,12 @@ namespace icreate_test2
 
             // cache the page for future usage
             this.NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Enabled;
+
+            Utils.DataManager.GenerateSearchResults();
+
+            // enable type to search
+            SearchPane.GetForCurrentView().ShowOnKeyboardInput = true;
+            SearchPane.GetForCurrentView().SuggestionsRequested += SearchResultsPage.searchPane_SuggestionsRequested;
         }
 
         /// <summary>
@@ -146,7 +153,6 @@ namespace icreate_test2
 
         internal void ProcessQueryText(string p)
         {
-            throw new NotImplementedException();
         }
 
         private void onNextDaySelected(object sender, TappedRoutedEventArgs e)

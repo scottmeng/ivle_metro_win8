@@ -13,6 +13,7 @@ namespace icreate_test2.Utils
         private static List<DataStructure.Class> _allClasses;
         private static List<DataStructure.Class>[] _classesForEachDay;
         private static List<DataStructure.SemesterInfo> _sems;
+        public static List<DataStructure.SearchResult> searchResults;
 
         public static void InitializeDataLists()
         {
@@ -24,6 +25,8 @@ namespace icreate_test2.Utils
             _classesForEachDay = new List<DataStructure.Class>[6] { new List<DataStructure.Class>(), new List<DataStructure.Class>(), 
                                                                     new List<DataStructure.Class>(), new List<DataStructure.Class>(), 
                                                                     new List<DataStructure.Class>(), new List<DataStructure.Class>()};
+
+            searchResults = new List<DataStructure.SearchResult>();
         }
 
         public static List<DataStructure.Module> GetModules()
@@ -143,6 +146,21 @@ namespace icreate_test2.Utils
          foreach (List<DataStructure.Class> classes in _classesForEachDay)
             {
                 classes.Sort(new ClassTimeComparer());
+            }
+        }
+
+
+        // generate search results from available modules and announcements
+        public static void GenerateSearchResults()
+        {
+            foreach (DataStructure.Module module in Utils.DataManager.GetModules())
+            {
+                searchResults.Add(new DataStructure.SearchResult(module.moduleCode, module.moduleName));
+
+                foreach (DataStructure.Announcement announcement in module.moduleAnnouncements)
+                {
+                    searchResults.Add(new DataStructure.SearchResult(announcement.announceName, announcement.announceContent));
+                }
             }
         }
     }
