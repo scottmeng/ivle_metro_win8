@@ -705,8 +705,12 @@
                                     </ListView.ItemTemplate>
                                 </ListView>
                                 <StackPanel x:Name="replyStackPanel" Orientation="Vertical" Visibility="Collapsed" VerticalAlignment="Bottom" Grid.Row="1">
-                                    <TextBlock x:Name="replyTextBlock" Height="40"/>
-                                    <TextBox x:Name="replyTextBox" Height="200"/>
+                                    <TextBlock x:Name="replyTextBlock" Height="40" FontSize="32"/>
+                                    <Grid>
+                                        <TextBox x:Name="replyTextBox" Height="200"/>
+                                        <Button x:Name="replyButton" HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                                                Content="Submit" FontSize="40"/>
+                                    </Grid>
                                 </StackPanel>
                             </Grid>
                         </Grid>
