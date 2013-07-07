@@ -237,6 +237,11 @@
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="VerticalAlignment" Value="Bottom"/>
         </Style>
+        <Style x:Key="grade_border" TargetType="Border">
+            <Setter Property="BorderBrush" Value="#BBBBBB"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Background" Value="LightGray"/>
+        </Style>
     </Page.Resources>
 
     <!--
@@ -272,13 +277,18 @@
         </StackPanel>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="7*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="4*"/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="6*"/>
+                </Grid.RowDefinitions>
                 <ListView x:Name="itemList"
-                          Margin="20,0"
-                          ItemContainerStyle="{StaticResource WithoutTick}"
+                          Grid.Row="1"
+                          Margin="30,0,10,0"
+                          HorizontalContentAlignment="Left"
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
                           ScrollViewer.VerticalScrollBarVisibility="Hidden" 
                           ItemsSource="{Binding Source={StaticResource itemListView}}" 
@@ -287,15 +297,15 @@
                           IsSwipeEnabled="True">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <TextBlock Margin="20,10" 
-                                       Padding="10"
+                            <TextBlock Margin="5" 
+                                       Padding="5"
+                                       HorizontalAlignment="Right"
                                        Text="{Binding itemName}"  
                                        TextWrapping="NoWrap" 
-                                       FontSize="28" 
-                                       HorizontalAlignment="Left" 
+                                       FontSize="24" 
                                        VerticalAlignment="Center"
-                                       TextTrimming="WordEllipsis"
-                                       FontWeight="Thin"/>
+                                       FontWeight="Thin">
+                            </TextBlock>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
@@ -303,7 +313,7 @@
             <Grid Grid.Column="1">
                 <FlipView x:Name="flipView" 
                           ManipulationMode="None" 
-                          Margin="20,0"
+                          Margin="10,0"
                           Style="{StaticResource FlipViewStyle1}">
 
                     <!-- First item is module information -->
@@ -497,75 +507,67 @@
                     <!-- Fourth item is gradebook -->
                     <FlipViewItem x:Name="gradeBook">
                         <StackPanel>
-                            <Grid Width="auto" HorizontalAlignment="Stretch">
+                            <Grid Width="auto" HorizontalAlignment="Stretch" Margin="0">
                                 <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1.3*"/>
+                                    <ColumnDefinition Width="1.3*"/>
                                     <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="1.5*"/>
                                     <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="2*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="1.2*"/>
+                                    <ColumnDefinition Width="1.2*"/>
+                                    <ColumnDefinition Width="1.1*"/>
+                                    <ColumnDefinition Width="1.2*"/>
                                 </Grid.ColumnDefinitions>
-                                <Border BorderBrush="#BBBBBB" 
-                                            Grid.Column="0"
-                                            BorderThickness="1" >
+                                <Border Grid.Column="0"
+                                        Style="{StaticResource grade_border}">
                                     <TextBlock Text="Category"
                                                Style="{StaticResource gradebookText}"/>
                                 </Border>
-                                <Border BorderBrush="#BBBBBB"
-                                            Grid.Column="1"
-                                            BorderThickness="1" >
+                                <Border Grid.Column="1"
+                                        Style="{StaticResource grade_border}">
                                     <TextBlock Text="Item Name"
                                                Style="{StaticResource gradebookText}"/>
                                 </Border>
-                                <Border BorderBrush="#BBBBBB"    
-                                            Grid.Column="2"
-                                            BorderThickness="1" >
+                                <Border Grid.Column="2"
+                                        Style="{StaticResource grade_border}">
                                     <TextBlock Text="Marks Obtained"
-                                               Style="{StaticResource gradebookText}"/>
+                                               Style="{StaticResource gradebookText}"
+                                               FontStretch="SemiCondensed"/>
                                 </Border>
-                                <Border BorderBrush="#BBBBBB"
-                                            Grid.Column="3" 
-                                            BorderThickness="1" >
+                                <Border Grid.Column="3" 
+                                        Style="{StaticResource grade_border}">
                                     <TextBlock Text="Remarks"
                                                Style="{StaticResource gradebookText}"/>
                                 </Border>
-                                <Border BorderBrush="#BBBBBB" 
-                                            Grid.Column="4"
-                                            BorderThickness="1" >
+                                <Border Grid.Column="4"
+                                        Style="{StaticResource grade_border}">
                                     <TextBlock Text="Max Marks"
                                                Style="{StaticResource gradebookText}"/>
                                 </Border>
-                                <Border BorderBrush="#BBBBBB" 
-                                             Grid.Column="5"
-                                            BorderThickness="1" >
+                                <Border Grid.Column="5"
+                                        Style="{StaticResource grade_border}">
                                     <TextBlock Text="Highest-Lowest Marks"
                                                Style="{StaticResource gradebookText}"/>
                                 </Border>
-                                <Border BorderBrush="#BBBBBB" 
-                                                   Grid.Column="6"
-                                            BorderThickness="1" >
+                                <Border Grid.Column="6"
+                                        Style="{StaticResource grade_border}">
                                     <TextBlock Text="Average-Median Marks"
                                                Style="{StaticResource gradebookText}"/>
                                 </Border>
-                                <Border BorderBrush="#BBBBBB" 
-                                                   Grid.Column="7"
-                                            BorderThickness="1" >
+                                <Border Grid.Column="7"
+                                        Style="{StaticResource grade_border}">
                                     <TextBlock Text="25/75 Percentile"
                                                Style="{StaticResource gradebookText}"/>
                                 </Border>
-                                <Border BorderBrush="#BBBBBB" 
-                                            Grid.Column="8"
-                                            BorderThickness="1" >
+                                <Border Grid.Column="8"
+                                        Style="{StaticResource grade_border}">
                                     <TextBlock Text="Date Entered"
                                                Style="{StaticResource gradebookText}"/>
                                 </Border>
                             </Grid>
                             <ListView ItemsSource="{Binding Source={StaticResource grades}}"
-                                      SelectionMode="None">
+                                      SelectionMode="None" Width="auto">
                                 <ListView.Style>
                                     <Style TargetType="ListView">
                                         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -581,15 +583,15 @@
                                     <DataTemplate>
                                         <Grid Width="auto" HorizontalAlignment="Stretch">
                                             <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="1.3*"/>
+                                                <ColumnDefinition Width="1.3*"/>
                                                 <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="1.5*"/>
                                                 <ColumnDefinition Width="*"/>
-                                                <ColumnDefinition Width="*"/>
-                                                <ColumnDefinition Width="2*"/>
-                                                <ColumnDefinition Width="*"/>
-                                                <ColumnDefinition Width="*"/>
-                                                <ColumnDefinition Width="*"/>
-                                                <ColumnDefinition Width="*"/>
-                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="1.2*"/>
+                                                <ColumnDefinition Width="1.2*"/>
+                                                <ColumnDefinition Width="1.1*"/>
+                                                <ColumnDefinition Width="1.2*"/>
                                             </Grid.ColumnDefinitions>
                                             <TextBlock Text="{Binding gradeCategory}"
                                                        Grid.Column="0"
@@ -647,7 +649,8 @@
                                     <DataTemplate>
                                         <Grid Height="auto" Background="{Binding Path=isPostHeading,
                                             Mode=OneWay,Converter={StaticResource BackgroundConverter}}"
-                                              Margin="{Binding Path=isPostHeading,Mode=OneWay,Converter={StaticResource MarginConverter}}">
+                                              Margin="{Binding Path=isPostHeading,Mode=OneWay,
+                                                        Converter={StaticResource MarginConverter}}">
                                             <StackPanel VerticalAlignment="Top" 
                                                         Margin="0" 
                                                         Orientation="Vertical">
@@ -723,24 +726,24 @@
                 </FlipView>
             </Grid>
         </Grid>
-        <VisualStateManager.VisualStateGroups>
-
+        
+      <!-- <VisualStateManager.VisualStateGroups> -->
             <!-- Visual states reflect the application's view state -->
-            <VisualStateGroup x:Name="ApplicationViewStates">
+            <!--<VisualStateGroup x:Name="ApplicationViewStates">
                 <VisualState x:Name="FullScreenLandscape"/>
-                <VisualState x:Name="Filled"/>
+                <VisualState x:Name="Filled"/> -->
 
-                <!-- The entire page respects the narrower 100-pixel margin convention for portrait -->
-                <VisualState x:Name="FullScreenPortrait">
+               <!-- The entire page respects the narrower 100-pixel margin convention for portrait -->
+                <!--<VisualState x:Name="FullScreenPortrait">
                     <Storyboard>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="backButton" Storyboard.TargetProperty="Style">
                             <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PortraitBackButtonStyle}"/>
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
-                </VisualState>
+                </VisualState> -->
 
-                <!-- The back button and title have different styles when snapped -->
-                <VisualState x:Name="Snapped">
+               <!-- The back button and title have different styles when snapped -->
+                <!--<VisualState x:Name="Snapped">
                     <Storyboard>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetName="backButton" Storyboard.TargetProperty="Style">
                             <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource SnappedBackButtonStyle}"/>
@@ -751,6 +754,34 @@
                     </Storyboard>
                 </VisualState>
             </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
+        </VisualStateManager.VisualStateGroups>-->
+
+        <VisualStateManager.VisualStateGroups>
+        <VisualStateGroup x:Name="ApplicationViewStates">
+            <VisualState x:Name="FullScreenLandscape"/>
+            <VisualState x:Name="Filled"/>
+
+            <!-- The entire page respects the narrower 100-pixel margin convention for portrait -->
+            <VisualState x:Name="FullScreenPortrait">
+                <Storyboard>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="backButton" Storyboard.TargetProperty="Style">
+                        <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PortraitBackButtonStyle}"/>
+                    </ObjectAnimationUsingKeyFrames>
+                </Storyboard>
+            </VisualState>
+
+            <!-- The back button and title have different styles when snapped -->
+            <VisualState x:Name="Snapped">
+                <Storyboard>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="backButton" Storyboard.TargetProperty="Style">
+                        <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource SnappedBackButtonStyle}"/>
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="pageTitle" Storyboard.TargetProperty="Style">
+                        <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource SnappedPageHeaderTextStyle}"/>
+                    </ObjectAnimationUsingKeyFrames>
+                </Storyboard>
+            </VisualState>
+        </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups> 
     </Grid>
 </common:LayoutAwarePage>

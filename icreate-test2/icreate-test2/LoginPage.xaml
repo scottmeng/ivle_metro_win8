@@ -23,29 +23,25 @@
     -->
 
     <Grid Style="{StaticResource LayoutRootStyle}">
-        <Viewbox Height="768" Width="1366">
-            <Grid>
-                <Canvas Height="768" Width="1366" >
-                    <Canvas.Resources>
-                        <Storyboard x:Name="myStoryboard" BeginTime="00:00:00">
-                            <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MyAnimatedTranslateTransform" 
+        <Canvas x:Name="defaultLogin" Height="768" Width="1366" Visibility="Visible">
+            <Canvas.Resources>
+                <Storyboard x:Name="myStoryboard" BeginTime="00:00:00">
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MyAnimatedTranslateTransform" 
                                                            Storyboard.TargetProperty="X" Duration="0:0:2">
-                                <LinearDoubleKeyFrame Value="0" KeyTime="0:0:1" />
-                                <LinearDoubleKeyFrame Value="-300" KeyTime="0:0:2" />
-                            </DoubleAnimationUsingKeyFrames>
-                        </Storyboard>
-                    </Canvas.Resources>
-                    <Image Source="Assets/SplashScreen.png"  Margin="373,234,202,373">
-                        <Image.RenderTransform>
-                            <TranslateTransform x:Name="MyAnimatedTranslateTransform" X="0" Y="0" />
-                        </Image.RenderTransform>
-                    </Image>
-                </Canvas>
-                <ProgressRing x:Name="ProgressRingIfTokenExist" Margin="0,574,0,154" IsActive="False" Height="40" Width="40"
+                        <LinearDoubleKeyFrame Value="0" KeyTime="0:0:1" />
+                        <LinearDoubleKeyFrame Value="-300" KeyTime="0:0:2" />
+                    </DoubleAnimationUsingKeyFrames>
+                </Storyboard>
+            </Canvas.Resources>
+            <Image Source="Assets/LionSquare.png"  Margin="500,220,0,373">
+                <Image.RenderTransform>
+                    <TranslateTransform x:Name="MyAnimatedTranslateTransform" X="0" Y="0" />
+                </Image.RenderTransform>
+            </Image>
+            <ProgressRing x:Name="ProgressRingIfTokenExist" Margin="640,574,0,154" IsActive="False" Height="40" Width="40"
                                   Grid.Column="0" Grid.Row="3" />
-            </Grid>
-        </Viewbox>
-        <Viewbox Height="768" Width="1366">
+            <ProgressRing x:Name="ProgressRing" Margin="1000,330,100,5" IsActive="False" Height="80" Width="80"
+                                  Grid.Column="0" Grid.Row="3" />
             <StackPanel>
                 <StackPanel.Resources>
                     <Storyboard x:Name="showUserInfo">
@@ -60,7 +56,7 @@
                                          From="0.0" To="1.0" Duration="0:0:0.5" />
                     </Storyboard>
                 </StackPanel.Resources>
-                <Grid Name="userInfo" Margin="1000,234,100,234" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid Name="userInfo" Margin="600,250,100,234" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto"/>
                         <ColumnDefinition Width="*"/>
@@ -87,49 +83,64 @@
                         <x:String>NUSSTF</x:String>
                         <x:String>NUSSSS</x:String>
                     </ComboBox>
-                    <Button x:Name="LoginButton" Margin="5,5,5,5" Content="Login" FontSize="28" Click="login_Click" 
+                    <Button x:Name="LoginButton" Height="70" Margin="5" Padding="5" Content="Login" 
+                            FontSize="28" Click="login_Click" Background="#003399" Foreground="White"
                             Grid.Column="1"  Grid.Row="3" Width="200" HorizontalAlignment="Right"/>
                 </Grid>
             </StackPanel>
-
-        </Viewbox>
-        <Viewbox Height="768" Width="1366">
+        </Canvas>
+        <Grid x:Name="snappedLogin" Width="320" Visibility="Collapsed">
             <StackPanel>
-                <Grid Margin="1000,234,100,234" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <ProgressRing x:Name="ProgressRing" Margin="5,5,5,5" IsActive="False" Height="100" Width="100"
-                                  Grid.Column="0" Grid.Row="3" />
+                <Image x:Name="snapLoginImg" Source="Assets/LionSquare.png" 
+                       Width="150" Height="150" HorizontalAlignment="Center"
+                       VerticalAlignment="Top"/>
+                <Grid Margin="20,50,20,50" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="60"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="UserID:" FontSize="20" Margin="5" 
+                               Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                    <TextBox x:Name="UsernameTextBox_snapped" Margin="5"   Width="180" FontSize="18" 
+                             Grid.Column="1" Grid.Row="0"/>
+                    <TextBlock Text="Password:" FontSize="20" Margin="5" 
+                               Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                    <PasswordBox x:Name="PasswordBox_snapped" Margin="5" Width="180" FontSize="18" 
+                                 PasswordChar="*" Grid.Column="1" Grid.Row="1" KeyDown="onPasswordKeyDown"/>
+                    <TextBlock Text="Domain:" FontSize="20" Margin="5" 
+                               Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                    <ComboBox x:Name="DomainComboBox_snapped" Margin="5" SelectedItem="domainItem"  
+                              Width="180" FontSize="20" Grid.Column="1" Grid.Row="2" SelectedIndex="0">
+                        <x:String>NUSSTU</x:String>
+                        <x:String>NUSSTF</x:String>
+                        <x:String>NUSSSS</x:String>
+                    </ComboBox>
+                    <Button x:Name="LoginButton_snapped" Height="50" Margin="5" Padding="5" Content="Login" 
+                            FontSize="22" Click="login_Click" Background="#003399" Foreground="White"
+                            Grid.Column="1"  Grid.Row="3" Width="100" HorizontalAlignment="Right"/>
                 </Grid>
             </StackPanel>
-        </Viewbox>
+        </Grid>
+
+
         <VisualStateManager.VisualStateGroups>
-
             <!-- Visual states reflect the application's view state -->
-            <VisualStateGroup x:Name="ApplicationViewStates">
-                <VisualState x:Name="FullScreenLandscape"/>
-                <VisualState x:Name="Filled"/>
-
-                <!-- The entire page respects the narrower 100-pixel margin convention for portrait -->
-                <VisualState x:Name="FullScreenPortrait">
+            <VisualStateGroup>
+                <VisualState x:Name="DefaultLayout"/>
+                <VisualState x:Name="SnappedLayout">
                     <Storyboard>
-                        <!--
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="backButton" Storyboard.TargetProperty="Style">
-                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PortraitBackButtonStyle}"/>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="defaultLogin" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
                         </ObjectAnimationUsingKeyFrames>
-                        -->
-                    </Storyboard>
-                </VisualState>
-
-                <!-- The back button and title have different styles when snapped -->
-                <VisualState x:Name="Snapped">
-                    <Storyboard>
-                        <!--
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="backButton" Storyboard.TargetProperty="Style">
-                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource SnappedBackButtonStyle}"/>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="snappedLogin" Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
                         </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="pageTitle" Storyboard.TargetProperty="Style">
-                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource SnappedPageHeaderTextStyle}"/>
-                        </ObjectAnimationUsingKeyFrames>
-                        -->
                     </Storyboard>
                 </VisualState>
             </VisualStateGroup>
