@@ -24,6 +24,7 @@ using Callisto.Controls;
 using Newtonsoft.Json;
 using Windows.Storage;
 using Windows.Storage.Streams;
+using Windows.ApplicationModel.Search;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
@@ -88,9 +89,19 @@ namespace icreate_test2
 
             base.OnNavigatedTo(e);
 
-            await GetWorkbinAsync();
-            await GetForumAsync();
-            updateForum();
+            if (_currentModule.isWorkbinAvailable)
+            {
+                await GetWorkbinAsync();
+            }
+
+            if (_currentModule.isForumAvailable)
+            {
+                await GetForumAsync();
+                updateForum();
+            }
+
+            // disable type to search
+            SearchPane.GetForCurrentView().ShowOnKeyboardInput = false;
         }
 
 
@@ -183,14 +194,18 @@ namespace icreate_test2
                     case DataStructure.ItemType.ANNOUNCEMENT:
                         flipView.SelectedIndex = 1;
                         break;
+
                     case DataStructure.ItemType.GRADEBOOK:
                         flipView.SelectedIndex = 3;
                         break;
+
                     case DataStructure.ItemType.MODULE_INFO:
                         flipView.SelectedIndex = 0;
                         break;
+
                     case DataStructure.ItemType.WEBCAST:
                         break;
+
                     case DataStructure.ItemType.WORKBIN:
                         flipView.SelectedIndex = 2;
 
@@ -200,11 +215,13 @@ namespace icreate_test2
                         file.Source = new List<DataStructure.File>();
 
                         break;
+
                     case DataStructure.ItemType.FORUM:
                         flipView.SelectedIndex = 4;
                         headers.Source = _currentModule.moduleForums[selectedItem.itemIndex].forumAllTitles;
 
                         break;
+
                     default:
                         break;
                 }
@@ -404,6 +421,7 @@ namespace icreate_test2
             this.Frame.Navigate(typeof(MainPage));
         }
 
+        // generate forum post titles and all sub-threads
         private void updateForum()
         {
             foreach (DataStructure.Forum forum in _currentModule.moduleForums)

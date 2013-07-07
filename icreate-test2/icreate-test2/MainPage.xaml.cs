@@ -77,8 +77,6 @@ namespace icreate_test2
 
             Utils.DataManager.GenerateSearchResults();
 
-            // enable type to search
-            SearchPane.GetForCurrentView().ShowOnKeyboardInput = true;
             SearchPane.GetForCurrentView().SuggestionsRequested += SearchResultsPage.searchPane_SuggestionsRequested;
         }
 
@@ -102,6 +100,9 @@ namespace icreate_test2
             Utils.DataManager.GenerateDailyClassList();
             date_textblock.Text = dayList[dayListIndex];
             dailyListView.Source = Utils.DataManager.GetDailyClassList(todayCode);
+
+            // enable type to search
+            SearchPane.GetForCurrentView().ShowOnKeyboardInput = true;
         }
 
         /// <summary>
@@ -170,7 +171,7 @@ namespace icreate_test2
 
                 date_textblock.Text = dayList[dayListIndex];
 
-                dailyListView.Source = Utils.DataManager.GetDailyClassList((todayCode + dayListIndex - 2) % 6);
+                dailyListView.Source = Utils.DataManager.GetDailyClassList((todayCode + dayListIndex + 4) % 6);
             }
         }
 
@@ -189,7 +190,7 @@ namespace icreate_test2
 
                 date_textblock.Text = dayList[dayListIndex];
 
-                dailyListView.Source = Utils.DataManager.GetDailyClassList((todayCode + dayListIndex - 2) % 6);
+                dailyListView.Source = Utils.DataManager.GetDailyClassList((todayCode + dayListIndex + 4) % 6);
             }
         }
     }

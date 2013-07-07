@@ -129,12 +129,14 @@ namespace icreate_test2
         {
             base.OnNavigatedTo(e);
             searchPane.SuggestionsRequested += searchPane_SuggestionsRequested;
+            searchPane.ShowOnKeyboardInput = true;
         }
 
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
             base.OnNavigatingFrom(e);
             searchPane.SuggestionsRequested -= searchPane_SuggestionsRequested;
+            searchPane.ShowOnKeyboardInput = false;
         }
 
         public static void searchPane_SuggestionsRequested(SearchPane sender, SearchPaneSuggestionsRequestedEventArgs args)
