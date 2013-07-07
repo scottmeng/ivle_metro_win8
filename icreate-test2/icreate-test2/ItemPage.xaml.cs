@@ -440,6 +440,35 @@ namespace icreate_test2
                 upFolderButton.Visibility = Visibility.Collapsed;
             }
         }
+
+        private void innerThread_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            DataStructure.Thread tappedThread = (e.OriginalSource as FrameworkElement).DataContext as DataStructure.Thread;
+
+            if (tappedThread != null)
+            {
+                string tappedThreadID = tappedThread.threadId;
+                foreach (DataStructure.Heading heading in _currentModule.moduleForums[_currentForumIndex].forumHeadings)
+                {
+                    foreach (DataStructure.Thread thread in heading.headingThreads)
+                    {
+                        foreach (DataStructure.Thread innerThread in thread.threadAllThreads)
+                        {
+                            if (tappedThreadID == innerThread.threadId)
+                            {
+                                if (replyTextBlock.Text == innerThread.threadTitle && replyStackPanel.Visibility == Visibility.Visible)
+                                    replyStackPanel.Visibility = Visibility.Collapsed;
+                                else
+                                {
+                                    replyStackPanel.Visibility = Visibility.Visible;
+                                    replyTextBlock.Text = innerThread.threadTitle;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     public class BackgroundConverter : IValueConverter
