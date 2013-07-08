@@ -34,6 +34,7 @@
             <Setter Property="ScrollViewer.IsVerticalScrollChainingEnabled" Value="True"/>
             <Setter Property="ScrollViewer.IsDeferredScrollingEnabled" Value="False"/>
             <Setter Property="ScrollViewer.BringIntoViewOnFocusChange" Value="True"/>
+            <Setter Property="ManipulationMode" Value="None"/>
             <Setter Property="ItemsPanel">
                 <Setter.Value>
                     <ItemsPanelTemplate>
@@ -311,8 +312,7 @@
                 </ListView>
             </Grid>
             <Grid Grid.Column="1">
-                <FlipView x:Name="flipView" 
-                          ManipulationMode="None" 
+                <FlipView x:Name="flipView"  
                           Margin="10,0"
                           Style="{StaticResource FlipViewStyle1}">
 
