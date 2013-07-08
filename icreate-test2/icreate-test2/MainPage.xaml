@@ -49,8 +49,13 @@
                       ScrollViewer.VerticalScrollBarVisibility="Hidden" 
                       ItemsSource="{Binding Source={StaticResource newAnnouncementListView}}" 
                       Tapped="AnnoucementListViewTapped" 
-                      SelectionMode="None"
-                      ItemContainerStyle="{StaticResource WithoutTick}">
+                      SelectionMode="None"     >
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        <Setter Property="Margin" Value="0,0,0,-6" />
+                    </Style>
+                </ListView.ItemContainerStyle>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Grid Height="180"  Margin="5,0,5,0" Background="Gray">
