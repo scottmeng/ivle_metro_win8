@@ -40,9 +40,9 @@
                 </Image.RenderTransform>
             </Image>
             <ProgressRing x:Name="ProgressRingIfTokenExist" Margin="640,574,0,154" IsActive="False" Height="40" Width="40"
-                                  Grid.Column="0" Grid.Row="3" Background="#003399" />
+                                  Grid.Column="0" Grid.Row="3" Foreground="White" />
             <ProgressRing x:Name="ProgressRing" Margin="1000,330,100,5" IsActive="False" Height="80" Width="80"
-                                  Grid.Column="0" Grid.Row="3" Background="#003399" />
+                                  Grid.Column="0" Grid.Row="3" Foreground="White" />
             <StackPanel>
                 <StackPanel.Resources>
                     <Storyboard x:Name="showUserInfo">
@@ -92,7 +92,7 @@
         </Canvas>
         <Grid x:Name="snappedLogin" Width="320" Visibility="Collapsed">
             <StackPanel>
-                <Image x:Name="snapLoginImg" Source="Assets/LionSquare.png" 
+                <Image x:Name="snapLoginImg" Source="Assets/Login.png" 
                        Width="150" Height="150" HorizontalAlignment="Center"
                        VerticalAlignment="Top"/>
                 <Grid Margin="20,50,20,50" HorizontalAlignment="Center" VerticalAlignment="Center">
