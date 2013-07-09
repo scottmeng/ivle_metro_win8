@@ -269,7 +269,7 @@
                        FontSize="40" 
                        FontWeight="Normal"
                        Style="{StaticResource TitleTextStyle}" />
-            <Button x:Name="menuButton" Content=">>>" Click="menuButtonClick" />
+            <Button x:Name="menuButton" Content="..." Click="menuButtonClick" />
             <!--<ListView x:Name="test" ItemContainerStyle="{StaticResource WithoutTick}">
                 <TextBlock Text="test1"/>
                 <TextBlock Text="test2"/>
@@ -331,7 +331,11 @@
             <Grid Grid.Column="1">
                 <FlipView x:Name="flipView"  
                           Margin="10,0"
-                          Style="{StaticResource FlipViewStyle1}">
+                          Style="{StaticResource FlipViewStyle1}"
+                          ScrollViewer.IsVerticalRailEnabled="True"
+                          ScrollViewer.IsHorizontalRailEnabled="True"
+                          ScrollViewer.VerticalScrollMode="Disabled"
+                          ScrollViewer.HorizontalScrollMode="Disabled">
 
                     <!-- First item is module information -->
                     <FlipViewItem x:Name="moduleInfomation">
@@ -399,8 +403,7 @@
                                       ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
                                       ScrollViewer.VerticalScrollBarVisibility="Hidden"
                                       ItemsSource="{Binding Source={StaticResource newAnnouncementListView}}" 
-                                      IsItemClickEnabled="True"
-                                      SelectionMode="None"
+                                      SelectionMode="None" CanDragItems="True"
                                       >
                             <ListView.ItemContainerStyle>
                                 <Style TargetType="ListViewItem">

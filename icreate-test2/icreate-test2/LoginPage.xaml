@@ -57,7 +57,7 @@
                                          From="0.0" To="1.0" Duration="0:0:0.5" />
                     </Storyboard>
                 </StackPanel.Resources>
-                <Grid Name="userInfo" Margin="700,270,100,234" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid Name="userInfo" Opacity="0" Margin="700,270,100,234" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto"/>
                         <ColumnDefinition Width="*"/>
