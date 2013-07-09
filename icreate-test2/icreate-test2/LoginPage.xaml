@@ -30,18 +30,18 @@
                     <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MyAnimatedTranslateTransform" 
                                                            Storyboard.TargetProperty="X" Duration="0:0:2">
                         <LinearDoubleKeyFrame Value="0" KeyTime="0:0:1" />
-                        <LinearDoubleKeyFrame Value="-300" KeyTime="0:0:2" />
+                        <LinearDoubleKeyFrame Value="-230" KeyTime="0:0:2" />
                     </DoubleAnimationUsingKeyFrames>
                 </Storyboard>
             </Canvas.Resources>
-            <Image Source="Assets/Login.png"  Margin="500,220,0,373">
+            <Image Source="Assets/SplashScreen.scale-100.png"  Margin="373,234,373,234">
                 <Image.RenderTransform>
                     <TranslateTransform x:Name="MyAnimatedTranslateTransform" X="0" Y="0" />
                 </Image.RenderTransform>
             </Image>
-            <ProgressRing x:Name="ProgressRingIfTokenExist" Margin="640,574,0,154" IsActive="False" Height="40" Width="40"
+            <ProgressRing x:Name="ProgressRingIfTokenExist" Margin="663,544,0,154" IsActive="False" Height="40" Width="40"
                                   Grid.Column="0" Grid.Row="3" Foreground="White" />
-            <ProgressRing x:Name="ProgressRing" Margin="1000,330,100,5" IsActive="False" Height="80" Width="80"
+            <ProgressRing x:Name="ProgressRing" Margin="850,330,100,5" IsActive="False" Height="80" Width="80"
                                   Grid.Column="0" Grid.Row="3" Foreground="White" />
             <StackPanel>
                 <StackPanel.Resources>
@@ -57,7 +57,7 @@
                                          From="0.0" To="1.0" Duration="0:0:0.5" />
                     </Storyboard>
                 </StackPanel.Resources>
-                <Grid Name="userInfo" Margin="600,270,100,234" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid Name="userInfo" Margin="700,270,100,234" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto"/>
                         <ColumnDefinition Width="*"/>
