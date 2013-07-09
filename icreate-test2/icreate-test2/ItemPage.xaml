@@ -1,4 +1,4 @@
-<common:LayoutAwarePage
+﻿<common:LayoutAwarePage
     x:Name="pageRoot"
     x:Class="icreate_test2.ItemPage"
     DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
@@ -293,19 +293,36 @@
                           ScrollViewer.VerticalScrollBarVisibility="Hidden" 
                           ItemsSource="{Binding Source={StaticResource itemListView}}" 
                           Tapped="itemChanged_ListViewTapped" 
-                          SelectionMode="None"
+                          ItemContainerStyle="{StaticResource noTickNew}"
                           IsSwipeEnabled="True">
                     <ListView.ItemTemplate>
                         <DataTemplate>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                <RowDefinition Height="2*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
                             <TextBlock Margin="5" 
                                        Padding="5"
+                                       Grid.Row="0"
+                                       HorizontalAlignment="Left"
+                                       Text="{Binding itemType}"  
+                                       TextWrapping="NoWrap" 
+                                       FontSize="24" 
+                                       VerticalAlignment="Bottom"
+                                       FontWeight="Thin">
+                            </TextBlock>
+                            <TextBlock Margin="5" 
+                                       Padding="5"
+                                       Grid.Row="1"
                                        HorizontalAlignment="Right"
                                        Text="{Binding itemName}"  
                                        TextWrapping="NoWrap" 
-                                       FontSize="24" 
-                                       VerticalAlignment="Center"
+                                       FontSize="14" 
+                                       VerticalAlignment="Bottom"
                                        FontWeight="Thin">
                             </TextBlock>
+                            </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
