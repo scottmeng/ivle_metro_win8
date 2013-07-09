@@ -306,5 +306,20 @@ namespace icreate_test2
             bool internet = connections != null && connections.GetNetworkConnectivityLevel() == NetworkConnectivityLevel.InternetAccess;
             return internet;
         }
+
+        void LoginPage_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if (e.NewSize.Width < 500)
+            {
+                VisualStateManager.GoToState(this, "SnappedLayout", true);
+            }
+           
+            else
+            {
+                VisualStateManager.GoToState(this, "DefaultLayout", true);
+            }
+        } 
+
+
     }
 }
