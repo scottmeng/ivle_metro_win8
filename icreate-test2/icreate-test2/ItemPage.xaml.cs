@@ -48,6 +48,7 @@ namespace icreate_test2
         private DataStructure.Workbin _currentWorkbin;
         private DataStructure.Folder _currentFolder;
         private List<DataStructure.Grade> _allGrades;
+        private DataStructure.Thread _currentThread;
 
         // store parent/child folders in hierachy 
         private List<DataStructure.Folder> _folderTree;
@@ -404,7 +405,7 @@ namespace icreate_test2
             if (selectedPostTitle != null && !selectedPostTitle.isPostHeading)
             {
                 foreach (DataStructure.Heading heading in _currentModule.moduleForums[_currentForumIndex].forumHeadings)
-                {
+                { 
                     foreach (DataStructure.Thread thread in heading.headingThreads)
                     {
                         if (thread.threadId == selectedPostTitle.threadId)
@@ -463,32 +464,40 @@ namespace icreate_test2
         {
             DataStructure.Thread tappedThread = (e.OriginalSource as FrameworkElement).DataContext as DataStructure.Thread;
 
-            if (tappedThread != null)
+            if (_currentThread != null && tappedThread.threadId == _currentThread.threadId && replyStackPanel.Visibility == Visibility.Visible)
             {
-                string tappedThreadID = tappedThread.threadId;
-                foreach (DataStructure.Heading heading in _currentModule.moduleForums[_currentForumIndex].forumHeadings)
-                {
-                    foreach (DataStructure.Thread thread in heading.headingThreads)
-                    {
-                        foreach (DataStructure.Thread innerThread in thread.threadAllThreads)
-                        {
-                            if (tappedThreadID == innerThread.threadId)
-                            {
-                                if (replyTextBlock.Text == innerThread.threadTitle && replyStackPanel.Visibility == Visibility.Visible)
-                                    replyStackPanel.Visibility = Visibility.Collapsed;
-                                else
-                                {
-                                    replyStackPanel.Visibility = Visibility.Visible;
-                                    replyTextBlock.Text = innerThread.threadTitle;
-                                }
-                            }
-                        }
-                    }
-                }
+                replyStackPanel.Visibility = Visibility.Collapsed;
             }
+            else
+            {
+                _currentThread = tappedThread;
+                replyStackPanel.Visibility = Visibility.Visible;
+                replyTextBlock.Text = "Re: " + tappedThread.threadTitle;
+            }
+        }
+
+        private async void replyButton_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters.Add("ThreadID", _currentThread.threadId);
+            parameters.Add("Title", "Re: " + _currentThread.threadTitle);
+            parameters.Add("Reply", replyTextBox.Text);
+
+            string state = await Utils.RequestSender.SendHttpPostRequestAsync("Forum_ReplyThread_JSON", parameters);
+
+            // if there is valid reply
+            // close reply textbox
+            if (state != null)
+            {
+                replyStackPanel.Visibility = Visibility.Collapsed;
+            }
+
+            // TO-DO 
+            // refresh the thread list
         }
     }
 
+    // converter for thread title background color binding
     public class BackgroundConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)
@@ -507,6 +516,7 @@ namespace icreate_test2
         }
     }
 
+    // converter for thread title margin binding
     public class MarginConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)

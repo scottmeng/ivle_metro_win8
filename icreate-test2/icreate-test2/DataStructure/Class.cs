@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
+using Windows.UI;
 
 namespace icreate_test2.DataStructure
 {
@@ -39,6 +40,7 @@ namespace icreate_test2.DataStructure
 
         public int classDayCodeInt { get; set; }
         public int classTimePoint { get; set; }
+        public Color classModuleColor { get; set; }
 
         public Class(string startTime, string endTime, string moduleCode, string number, string lessonType, string venue, string dayCode, string dayText, string week)
         {

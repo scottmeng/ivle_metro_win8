@@ -730,9 +730,9 @@
                                 <StackPanel x:Name="replyStackPanel" Orientation="Vertical" Visibility="Collapsed" VerticalAlignment="Bottom" Grid.Row="1">
                                     <TextBlock x:Name="replyTextBlock" Height="40" FontSize="32"/>
                                     <Grid>
-                                        <TextBox TextWrapping="Wrap" x:Name="replyTextBox" Height="200"/>
+                                        <TextBox x:Name="replyTextBox" TextWrapping="Wrap" Height="150"/>
                                         <Button x:Name="replyButton" HorizontalAlignment="Right" VerticalAlignment="Bottom"
-                                                Content="Submit" FontSize="40"/>
+                                                Content="Submit" FontSize="32" Tapped="replyButton_Tapped"/>
                                     </Grid>
                                 </StackPanel>
                             </Grid>

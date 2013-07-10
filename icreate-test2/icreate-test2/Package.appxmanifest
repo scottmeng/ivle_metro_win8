@@ -15,7 +15,7 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="icreate_test2.App">
-      <VisualElements DisplayName="icreate-test2" Logo="Assets\Logo.scale-100.png" SmallLogo="Assets\SmallLogo.scale-100.png" Description="icreate-test2" ForegroundText="light" BackgroundColor="#003399">
+      <VisualElements DisplayName="IVLE Metro" Logo="Assets\Logo.scale-100.png" SmallLogo="Assets\SmallLogo.scale-100.png" Description="icreate-test2" ForegroundText="light" BackgroundColor="#003399">
         <DefaultTile ShowName="allLogos" WideLogo="Assets\WideLogo.scale-100.png" />
         <SplashScreen Image="Assets\SplashScreen.scale-100.png" BackgroundColor="#003399" />
       </VisualElements>

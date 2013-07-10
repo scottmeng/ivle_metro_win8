@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI;
 
 namespace icreate_test2.Utils
 {
@@ -108,6 +109,21 @@ namespace icreate_test2.Utils
             return _modules[index];
         }
 
+        public static Color GetModuleColorByCode(string moduleCode)
+        {
+            Color moduleColor = new Color();
+            
+            foreach (DataStructure.Module module in _modules)
+            {
+                if (module.moduleCode.Equals(moduleCode))
+                {
+                    moduleColor = module.moduleColor;
+                }
+            }
+
+            return moduleColor;
+        }
+
         public static List<DataStructure.Class> GetDailyClassList(int dayCode)
         {
             return _classesForEachDay[dayCode];
@@ -118,6 +134,9 @@ namespace icreate_test2.Utils
             // catogorize all classes according to week day 
             foreach(DataStructure.Class mClass in _allClasses)
             {
+                // link module color with class
+                mClass.classModuleColor = GetModuleColorByCode(mClass.classModuleCode);
+
                 switch (mClass.classDayCodeInt)
                 {
                     case 1:
@@ -143,7 +162,7 @@ namespace icreate_test2.Utils
                 }
             }
 
-         foreach (List<DataStructure.Class> classes in _classesForEachDay)
+            foreach (List<DataStructure.Class> classes in _classesForEachDay)
             {
                 classes.Sort(new ClassTimeComparer());
             }

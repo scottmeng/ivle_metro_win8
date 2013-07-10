@@ -27,7 +27,7 @@ namespace icreate_test2.Utils
         }
 
         // get the request url with API item and parameters
-        public static string GenerateGetURL(string item, Dictionary<String,String> parameters)
+        public static string GenerateGetURL(string item, Dictionary<string, string> parameters)
         {
             string url = domain + "api/Lapi.svc/" + item + "?APIKey=" + key + "&AuthToken=" + Utils.TokenManager.GetTokenValue();
 
@@ -35,6 +35,13 @@ namespace icreate_test2.Utils
             {
                 url += "&" + parameter.Key+ "=" + parameter.Value;
             }
+
+            return url;
+        }
+
+        public static string GeneratePostURL(string item)
+        {
+            string url = domain + "api/Lapi.svc/" + item;
 
             return url;
         }
@@ -53,6 +60,20 @@ namespace icreate_test2.Utils
             string url = domain + "api/downloadfile.ashx?APIKey=" + key + "&AuthToken=" + Utils.TokenManager.GetTokenValue() + "&ID=" + id + "&target=workbin";
 
             return url;
+        }
+
+        public static string GenerateJSONString(Dictionary<string, string> parameters)
+        {
+            string jsonString = "{\"APIKey\":\"" + key + "\",\"AuthToken\":\"" + Utils.TokenManager.GetTokenValue() + "\"";
+
+            foreach (KeyValuePair<String, String> parameter in parameters)
+            {
+                jsonString += ",\"" + parameter.Key + "\":\"" + parameter.Value + "\"";
+            }
+
+            jsonString += "}";
+
+            return jsonString;
         }
     }
 }

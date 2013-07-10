@@ -33,5 +33,25 @@ namespace icreate_test2.Utils
 
             return responseString;
         }
+
+        public static async Task<String> SendHttpPostRequestAsync(string field, Dictionary<string, string> dataPairs)
+        {
+            HttpClient client = new HttpClient();
+
+            StringContent content = new StringContent(Utils.LAPI.GenerateJSONString(dataPairs), Encoding.UTF8, "text/json");
+
+            HttpResponseMessage response = await client.PostAsync(Utils.LAPI.GeneratePostURL(field), content);
+
+            // make sure the http reponse is successful
+            response.EnsureSuccessStatusCode();
+
+            // convert http response to string
+            string responseString = await response.Content.ReadAsStringAsync();
+
+            response.Dispose();
+            client.Dispose();
+
+            return responseString;
+        }
     }
 }
