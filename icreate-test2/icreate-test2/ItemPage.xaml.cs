@@ -219,8 +219,9 @@ namespace icreate_test2
 
                     case DataStructure.ItemType.FORUM:
                         flipView.SelectedIndex = 4;
-                        headers.Source = _currentModule.moduleForums[selectedItem.itemIndex].forumAllTitles;
 
+                        headers.Source = _currentModule.moduleForums[selectedItem.itemIndex].forumAllTitles;
+                        
                         break;
 
                     default:

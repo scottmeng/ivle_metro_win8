@@ -104,26 +104,23 @@ namespace icreate_test2.DataStructure
 
             if (moduleItems.Count == 0)
             {
-                // module info is always available
+                /*
+                 * No.1 Module info (always visible)
+                 */
                 moduleItems.Add(new ModuleItem("Module Info", ItemType.MODULE_INFO, 0));
 
+                /*
+                 * No.2 Announcement (invisible or one)
+                 */
                 if (moduleAnnouncements.Count() > 0)
                 {
                     moduleItems.Add(new ModuleItem("Announcements", ItemType.ANNOUNCEMENT, 0));
                     isAnnouncementAvailable = true;
                 }
 
-                if (moduleForums.Count() > 0)
-                {
-                    index = 0;
-                    foreach (Forum forum in moduleForums)
-                    {
-                        moduleItems.Add(new ModuleItem(forum.forumTitle, ItemType.FORUM, index));
-                        index++;
-                    }
-                    isForumAvailable = true;
-                }
-
+                /*
+                 * No.3 Workbin (invisible or multiple)
+                 */
                 if (moduleWorkbins.Count() > 0)
                 {
                     index = 0;
@@ -135,17 +132,32 @@ namespace icreate_test2.DataStructure
                     isWorkbinAvailable = true;
                 }
 
+                /*
+                 * No.4 Gradebook (invisible or one)
+                 */
                 if (moduleGradebooks.Count() > 0)
                 {
-                    index = 0;
-                    foreach (Gradebook gradebook in moduleGradebooks)
-                    {
-                        moduleItems.Add(new ModuleItem("Gradebook", ItemType.GRADEBOOK, index));
-                        index++;
-                    }
+                    moduleItems.Add(new ModuleItem("Gradebook", ItemType.GRADEBOOK, 0));
                     isGradebookAvailable = true;
                 }
 
+                /*
+                 * No.5 Forum (invisible or multiple)
+                 */
+                if (moduleForums.Count() > 0)
+                {
+                    index = 0;
+                    foreach (Forum forum in moduleForums)
+                    {
+                        moduleItems.Add(new ModuleItem(forum.forumTitle, ItemType.FORUM, index));
+                        index++;
+                    }
+                    isForumAvailable = true;
+                }
+
+                /*
+                 * No.6 Webcast (invisible or multiple)
+                 */
                 if (moduleWebcasts.Count() > 0)
                 {
                     index = 0;

@@ -363,7 +363,7 @@
                                        FontSize="26" Padding="5,10" Margin="5" HorizontalAlignment="Right"/>
                                 <TextBlock Text="Module Name" Grid.Column="0" Grid.Row="1" 
                                        FontSize="26" Padding="5,10" Margin="5" HorizontalAlignment="Right"/>
-                                <TextBlock Text="Module Mc" Grid.Column="0" Grid.Row="2" 
+                                <TextBlock Text="Module Credits" Grid.Column="0" Grid.Row="2" 
                                        FontSize="26" Padding="5,10" Margin="5" HorizontalAlignment="Right"/>
                                 <TextBlock Text="Module Acad Year" Grid.Column="0" Grid.Row="3" 
                                        FontSize="26" Padding="5,10" Margin="5" HorizontalAlignment="Right"/>
