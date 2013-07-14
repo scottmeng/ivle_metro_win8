@@ -39,6 +39,9 @@ namespace icreate_test2.DataStructure
         public string classWeek { get; set; }
 
         public int classDayCodeInt { get; set; }
+        public int classStartTimeInt { get; set; }
+        public int classEndTimeInt { get; set; }
+        public int classDurationInt { get; set; }
         public int classTimePoint { get; set; }
         public Color classModuleColor { get; set; }
 
@@ -64,8 +67,11 @@ namespace icreate_test2.DataStructure
                 classEndTime = "0" + classEndTime;
             }
 
-            classTimePoint = Int32.Parse(classStartTime) + 10000 * Int32.Parse(classDayCode);
+            classStartTimeInt = Int32.Parse(classStartTime);
+            classEndTimeInt = Int32.Parse(classEndTime);
+            classDurationInt = classEndTimeInt - classStartTimeInt;
             classDayCodeInt = Int32.Parse(classDayCode);
+            classTimePoint = classStartTimeInt + 10000 * classDayCodeInt;
         }
     }
 }

@@ -220,7 +220,8 @@
                                       ScrollViewer.HorizontalScrollMode="Disabled"
                                       ScrollViewer.VerticalScrollMode="Enabled" 
                                       ScrollViewer.VerticalScrollBarVisibility="Hidden"
-                                      ScrollViewer.IsVerticalRailEnabled="False">
+                                      ScrollViewer.IsVerticalRailEnabled="False"
+                                      Tapped="timetableItemTapped">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <Grid Height="120" Width="350" Margin="0,-4">

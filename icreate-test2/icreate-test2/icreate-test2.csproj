@@ -151,6 +151,9 @@
     <Compile Include="SearchResultsPage.xaml.cs">
       <DependentUpon>SearchResultsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TimetablePage.xaml.cs">
+      <DependentUpon>TimetablePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Utils\DataManager.cs" />
     <Compile Include="Utils\LAPI.cs" />
     <Compile Include="DataStructure\Token.cs" />
@@ -191,6 +194,10 @@
     <Content Include="Assets\WideLogo.scale-180.png" />
     <Content Include="Assets\WideLogo.scale-80.png" />
     <Content Include="Common\ReadMe.txt" />
+    <Page Include="TimetablePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SearchResultsPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

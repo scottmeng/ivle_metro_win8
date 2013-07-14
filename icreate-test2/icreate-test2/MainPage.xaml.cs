@@ -193,6 +193,11 @@ namespace icreate_test2
                 dailyListView.Source = Utils.DataManager.GetDailyClassList((todayCode + dayListIndex + 4) % 6);
             }
         }
+
+        private void timetableItemTapped(object sender, TappedRoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(TimetablePage));
+        }
     }
 
    
