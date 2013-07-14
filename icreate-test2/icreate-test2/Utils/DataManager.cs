@@ -134,9 +134,6 @@ namespace icreate_test2.Utils
             // catogorize all classes according to week day 
             foreach(DataStructure.Class mClass in _allClasses)
             {
-                // link module color with class
-                mClass.classModuleColor = GetModuleColorByCode(mClass.classModuleCode);
-
                 switch (mClass.classDayCodeInt)
                 {
                     case 1:

@@ -45,6 +45,7 @@ namespace icreate_test2
         
         private DataStructure.Module _currentModule;
         private List<DataStructure.Module> _otherModules;
+        private DataStructure.ModuleItem _currentItem;
         private DataStructure.Workbin _currentWorkbin;
         private DataStructure.Folder _currentFolder;
         private List<DataStructure.Grade> _allGrades;
@@ -163,6 +164,7 @@ namespace icreate_test2
             {
                 itemList.SelectedIndex = 1;
                 flipView.SelectedIndex = 1;
+                _currentItem = _currentModule.moduleItems[1];
 
                 announcementListView.SelectedIndex = _announcementIndex;
             }
@@ -170,6 +172,7 @@ namespace icreate_test2
             {
                 itemList.SelectedIndex = 0;
                 flipView.SelectedIndex = 0;
+                _currentItem = _currentModule.moduleItems[0];
             }
         }
 
@@ -188,7 +191,7 @@ namespace icreate_test2
             DataStructure.ModuleItem selectedItem = (e.OriginalSource as FrameworkElement).DataContext as DataStructure.ModuleItem;
 
             // make sure the tap event occurs on list items
-            if (selectedItem != null)
+            if (selectedItem != null && selectedItem != _currentItem)
             {
                 switch (selectedItem.itemType)
                 {
@@ -215,6 +218,9 @@ namespace icreate_test2
                         folder.Source = _currentWorkbin.workbinFolders;
                         file.Source = new List<DataStructure.File>();
 
+                        _folderTree.Clear();
+                        upFolderButton.Visibility = Visibility.Collapsed;
+
                         break;
 
                     case DataStructure.ItemType.FORUM:
@@ -227,6 +233,8 @@ namespace icreate_test2
                     default:
                         break;
                 }
+
+                _currentItem = selectedItem;
             }
         }
 
@@ -321,6 +329,8 @@ namespace icreate_test2
 
         private async void onFileSelected(object sender, TappedRoutedEventArgs e)
         {
+            StorageFile targetFile;
+
             DataStructure.File selectedFile = (e.OriginalSource as FrameworkElement).DataContext as DataStructure.File;
 
 
@@ -345,8 +355,14 @@ namespace icreate_test2
                 currentFolder = await currentFolder.CreateFolderAsync(folder.folderName, CreationCollisionOption.OpenIfExists);
             }
 
-            StorageFile targetFile = await currentFolder.GetFileAsync(selectedFile.fileName);
-
+            try
+            {
+                targetFile = await currentFolder.GetFileAsync(selectedFile.fileName);
+            }
+            catch
+            {
+                targetFile = null;
+            }
             // if file has not been downloaded before
             // download it
             if (targetFile == null)

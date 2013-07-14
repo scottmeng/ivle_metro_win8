@@ -338,7 +338,7 @@
                           ScrollViewer.HorizontalScrollMode="Disabled">
 
                     <!-- First item is module information -->
-                    <FlipViewItem x:Name="moduleInfomation">
+                    <FlipViewItem x:Name="moduleInfomation" ManipulationMode="None">
                         <Border BorderBrush="DarkGray" 
                                 BorderThickness="2" 
                                 Margin="0,0,50,50"
@@ -398,7 +398,7 @@
                     <!-- First item is module information -->
 
                     <!-- Second item is announcements -->
-                    <FlipViewItem x:Name="announ">
+                    <FlipViewItem x:Name="announ" ManipulationMode="None">
                         <ListView x:Name="announcementListView" 
                                       ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
                                       ScrollViewer.VerticalScrollBarVisibility="Hidden"
@@ -439,7 +439,7 @@
                     <!-- Second item is announcements -->
 
                     <!-- Third item is workbin -->
-                    <FlipViewItem x:Name="workbin">
+                    <FlipViewItem x:Name="workbin" ManipulationMode="None">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -525,7 +525,7 @@
                     <!-- Third item is workbin -->
 
                     <!-- Fourth item is gradebook -->
-                    <FlipViewItem x:Name="gradeBook">
+                    <FlipViewItem x:Name="gradeBook" ManipulationMode="None">
                         <StackPanel>
                             <Grid Width="auto" HorizontalAlignment="Stretch" Margin="0">
                                 <Grid.ColumnDefinitions>
@@ -649,7 +649,7 @@
                     <!-- Fourth item is gradebook -->
 
                     <!-- Fifth item is forum -->
-                    <FlipViewItem x:Name="forum">
+                    <FlipViewItem x:Name="forum" ManipulationMode="None">
                         <Grid>
                             <Grid.Resources>
                                 <local:BackgroundConverter x:Key="BackgroundConverter" />

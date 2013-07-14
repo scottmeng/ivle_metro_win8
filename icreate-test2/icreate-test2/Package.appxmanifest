@@ -15,19 +15,31 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="icreate_test2.App">
-      <VisualElements DisplayName="IVLE Metro" Logo="Assets\Logo.scale-100.png" SmallLogo="Assets\SmallLogo.scale-100.png" Description="icreate-test2" ForegroundText="light" BackgroundColor="#003399">
-        <DefaultTile ShowName="allLogos" WideLogo="Assets\WideLogo.scale-100.png" />
-        <SplashScreen Image="Assets\SplashScreen.scale-100.png" BackgroundColor="#003399" />
+      <VisualElements DisplayName="IVLE Metro" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="icreate-test2" ForegroundText="light" BackgroundColor="#003399">
+        <DefaultTile ShowName="allLogos" WideLogo="Assets\WideLogo.png" />
+        <SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#003399" />
+        <InitialRotationPreference>
+          <Rotation Preference="landscape" />
+          <Rotation Preference="landscapeFlipped" />
+        </InitialRotationPreference>
       </VisualElements>
       <Extensions>
         <Extension Category="windows.search" />
         <Extension Category="windows.fileTypeAssociation">
-          <FileTypeAssociation Name="pdf">
-            <DisplayName>PDF</DisplayName>
+          <FileTypeAssociation Name="IVLE Metro">
+            <DisplayName>IVLE Metro</DisplayName>
             <SupportedFileTypes>
               <FileType>.doc</FileType>
               <FileType>.ppt</FileType>
               <FileType>.pdf</FileType>
+              <FileType>.docx</FileType>
+              <FileType>.pptx</FileType>
+              <FileType>.xlxs</FileType>
+              <FileType>.xls</FileType>
+              <FileType>.txt</FileType>
+              <FileType>.jpeg</FileType>
+              <FileType>.jpg</FileType>
+              <FileType>.png</FileType>
             </SupportedFileTypes>
           </FileTypeAssociation>
         </Extension>

@@ -90,7 +90,7 @@ namespace icreate_test2
 
                         // load data on modules and classes
                         await GetModulesAsync();
-                        await GetClassesAsync();
+                        await GetTimetableAsync();
 
                         // if so, hide progress circle
                         ProgressRing.IsActive = false;
@@ -168,7 +168,7 @@ namespace icreate_test2
 
                     // load data on modules and classes
                     await GetModulesAsync();
-                    await GetClassesAsync();
+                    await GetTimetableAsync();
 
                     // navigate to the home page
                     this.Frame.Navigate(typeof(MainPage));
@@ -245,7 +245,7 @@ namespace icreate_test2
                 parameters.Add("AcadYear", sem.AcademicYear);
                 parameters.Add("Semester", sem.Semester);
 
-                String classesResponse = await Utils.RequestSender.GetResponseStringAsync("Timetable_Student", parameters);
+                string classesResponse = await Utils.RequestSender.GetResponseStringAsync("Timetable_Student", parameters);
                 DataStructure.ClassWrapper classWrapper = JsonConvert.DeserializeObject<DataStructure.ClassWrapper>(classesResponse);
 
                 if (classWrapper.comments.Equals("Valid login!"))
@@ -258,6 +258,32 @@ namespace icreate_test2
 
             }
         }
+
+        private async Task GetTimetableAsync()
+        {
+            int[] ids = new[] { 0, 1, 2, 3, 4, 5 };
+
+            await Task.WhenAll(ids.Select(i => GetTimetableForOneModuleAsync(Utils.DataManager.GetModuleAt(i))));
+        }
+
+        private async Task GetTimetableForOneModuleAsync(DataStructure.Module module)
+        {
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters.Add("CourseId", module.moduleId);
+
+            string timetableResponse = await Utils.RequestSender.GetResponseStringAsync("Timetable_Student_Module", parameters);
+            DataStructure.ClassWrapper classWrapper = JsonConvert.DeserializeObject<DataStructure.ClassWrapper>(timetableResponse);
+
+            if (classWrapper.comments.Equals("Valid login!"))
+            {
+                foreach (DataStructure.Class mClass in classWrapper.classes)
+                {
+                    mClass.classModuleColor = module.moduleColor;
+                    Utils.DataManager.AddClass(mClass);
+                }
+            }
+        }
+
 
         private async Task GetModulesAsync()
         {
