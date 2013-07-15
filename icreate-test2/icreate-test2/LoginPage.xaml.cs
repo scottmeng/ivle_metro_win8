@@ -261,7 +261,13 @@ namespace icreate_test2
 
         private async Task GetTimetableAsync()
         {
-            int[] ids = new[] { 0, 1, 2, 3, 4, 5 };
+            List<int> ids = new List<int>();
+            int count = Utils.DataManager.GetModules().Count;
+
+            for(int i=0; i<count; i++)
+            {
+                ids.Add(i);
+            }
 
             await Task.WhenAll(ids.Select(i => GetTimetableForOneModuleAsync(Utils.DataManager.GetModuleAt(i))));
         }
