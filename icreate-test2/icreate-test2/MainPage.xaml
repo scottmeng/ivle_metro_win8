@@ -138,7 +138,7 @@
                                       Height="175" 
                                       Margin="10">
                                         <Grid.Background>
-                                            <SolidColorBrush Color="{Binding moduleColor}" />
+                                            <SolidColorBrush Color="{Binding modulePrimaryColor}" />
                                         </Grid.Background>
                                         <TextBlock Text="{Binding moduleCode}" 
                                                Margin="15" 

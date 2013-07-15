@@ -109,21 +109,6 @@ namespace icreate_test2.Utils
             return _modules[index];
         }
 
-        public static Color GetModuleColorByCode(string moduleCode)
-        {
-            Color moduleColor = new Color();
-            
-            foreach (DataStructure.Module module in _modules)
-            {
-                if (module.moduleCode.Equals(moduleCode))
-                {
-                    moduleColor = module.moduleColor;
-                }
-            }
-
-            return moduleColor;
-        }
-
         public static List<DataStructure.Class> GetDailyClassList(int dayCode)
         {
             return _classesForEachDay[dayCode];

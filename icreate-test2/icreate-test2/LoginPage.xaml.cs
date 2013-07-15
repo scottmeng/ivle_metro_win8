@@ -284,7 +284,7 @@ namespace icreate_test2
             {
                 foreach (DataStructure.Class mClass in classWrapper.classes)
                 {
-                    mClass.classModuleColor = module.moduleColor;
+                    mClass.classModuleColor = module.modulePrimaryColor;
                     Utils.DataManager.AddClass(mClass);
                 }
             }
@@ -311,7 +311,7 @@ namespace icreate_test2
                         announcement.GenerateDisplayContent(module);
                         Utils.DataManager.AddAnnouncement(announcement);
                     }
-                    module.SetModuleColor(DataStructure.Colors.GetModuleColor(iterator));
+                    module.SetModuleColor(DataStructure.Colors.GetModuleColor(iterator), DataStructure.Colors.GetSecondaryColor(iterator));
 
                     DataStructure.SemesterInfo newSemInfo = new DataStructure.SemesterInfo(module.moduleAcadYear,
                                                                                            module.moduleSemester.Replace("Semester ", String.Empty));
@@ -351,7 +351,5 @@ namespace icreate_test2
                 VisualStateManager.GoToState(this, "DefaultLayout", true);
             }
         } 
-
-
     }
 }

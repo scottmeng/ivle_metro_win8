@@ -54,7 +54,8 @@ namespace icreate_test2.DataStructure
         public Lecturer[] moduleLecturers { get; set; }
 
         public ExamInfo[] moduleExamInfos { get; set; }
-        public Color moduleColor { get; set; }
+        public Color modulePrimaryColor { get; set; }
+        public Color moduleSecondaryColor { get; set; }
         public List<ModuleItem> moduleItems { get; set; }
         public bool isAnnouncementAvailable { get; set; }
         public bool isWorkbinAvailable { get; set; }
@@ -88,13 +89,14 @@ namespace icreate_test2.DataStructure
         }
 
         // set the color of this module and every announcement in it
-        public void SetModuleColor(Color color)
+        public void SetModuleColor(Color primaryColor, Color secondaryColor)
         {
-            this.moduleColor = color;
+            this.modulePrimaryColor = primaryColor;
+            this.moduleSecondaryColor = secondaryColor;
 
             foreach (Announcement announcement in this.moduleAnnouncements)
             {
-                announcement.annouceColor = this.moduleColor;
+                announcement.annouceColor = this.modulePrimaryColor;
             }
         }
 
