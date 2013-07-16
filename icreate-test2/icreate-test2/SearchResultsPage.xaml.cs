@@ -191,5 +191,10 @@ namespace icreate_test2
                 get { return String.Format("{0} ({1})", _name, _count); }
             }
         }
+
+        private void GoBack_click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(MainPage));
+        }
     }
 }

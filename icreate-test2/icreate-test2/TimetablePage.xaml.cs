@@ -62,7 +62,7 @@ namespace icreate_test2
                 // set timetable item row span
                 int durationInHours = mClass.classDurationInt / 100 * 100 + (mClass.classDurationInt % 100) * 100 / 60;
                 Grid.SetRowSpan(classBorder, durationInHours / 50);
-
+                
                 timetableGrid.Children.Add(classBorder);
             }
         }
@@ -75,6 +75,11 @@ namespace icreate_test2
         /// <param name="pageState">An empty dictionary to be populated with serializable state.</param>
         protected override void SaveState(Dictionary<String, Object> pageState)
         {
+        }
+
+        private void GoBack_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(MainPage));
         }
     }
 }
