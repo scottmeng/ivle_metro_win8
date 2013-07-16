@@ -6,6 +6,7 @@ using System.IO;
 using System.Linq;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -511,6 +512,24 @@ namespace icreate_test2
 
             // TO-DO 
             // refresh the thread list
+        }
+
+        private void FolderPointerEntered(object sender, PointerRoutedEventArgs e)
+        {
+        }
+
+        private void FolderButtonEntered(object sender, PointerRoutedEventArgs e)
+        {
+            SolidColorBrush brush = new SolidColorBrush(Color.FromArgb(255,211,211,211));
+            SolidColorBrush brushBlue = new SolidColorBrush(Color.FromArgb(255,0,0,255));
+            FolderGrid.Background = brush;
+            
+        }
+
+        private void FolderButtonExited(object sender, PointerRoutedEventArgs e)
+        {
+            SolidColorBrush brush = new SolidColorBrush(Color.FromArgb(255, 255, 255, 255));
+            FolderGrid.Background = brush;
         }
     }
 
