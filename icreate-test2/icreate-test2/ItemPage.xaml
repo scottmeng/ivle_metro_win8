@@ -243,6 +243,289 @@
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="Background" Value="LightGray"/>
         </Style>
+        <Style x:Key="AnnouncementStyle" TargetType="ListViewItem">
+        	<Setter Property="FontFamily" Value="{StaticResource ContentControlThemeFontFamily}"/>
+        	<Setter Property="FontSize" Value="{StaticResource ControlContentThemeFontSize}"/>
+        	<Setter Property="Background" Value="Transparent"/>
+        	<Setter Property="TabNavigation" Value="Local"/>
+        	<Setter Property="IsHoldingEnabled" Value="True"/>
+        	<Setter Property="Margin" Value="0,0,18,2"/>
+        	<Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        	<Setter Property="VerticalContentAlignment" Value="Top"/>
+        	<Setter Property="Template">
+        		<Setter.Value>
+        			<ControlTemplate TargetType="ListViewItem">
+        				<Border x:Name="OuterContainer" RenderTransformOrigin="0.5,0.5">
+        					<Border.RenderTransform>
+        						<CompositeTransform/>
+        					</Border.RenderTransform>
+        					<VisualStateManager.VisualStateGroups>
+        						<VisualStateGroup x:Name="CommonStates">
+        							<VisualStateGroup.Transitions>
+        							</VisualStateGroup.Transitions>
+        							<VisualState x:Name="Normal"/>
+        							<VisualState x:Name="PointerOver">
+        								<Storyboard>
+        									<DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PointerOverBorder"/>
+        									<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="SelectionBackground">
+        										<DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ListViewItemSelectedPointerOverBackgroundThemeBrush}"/>
+        									</ObjectAnimationUsingKeyFrames>
+        									<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Stroke" Storyboard.TargetName="SelectedBorder">
+        										<DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ListViewItemSelectedPointerOverBorderThemeBrush}"/>
+        									</ObjectAnimationUsingKeyFrames>
+        									<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="SelectedEarmark">
+        										<DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ListViewItemSelectedPointerOverBackgroundThemeBrush}"/>
+        									</ObjectAnimationUsingKeyFrames>
+        								</Storyboard>
+        							</VisualState>
+        							<VisualState x:Name="Pressed">
+        								<Storyboard>
+        									<DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" />
+        								</Storyboard>
+        							</VisualState>
+        							<VisualState x:Name="PointerOverPressed">
+        								<Storyboard>
+        									<PointerDownThemeAnimation TargetName="ContentContainer"/>
+        									<DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="PointerOverBorder"/>
+        									<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="SelectionBackground">
+        										<DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ListViewItemSelectedPointerOverBackgroundThemeBrush}"/>
+        									</ObjectAnimationUsingKeyFrames>
+        									<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Stroke" Storyboard.TargetName="SelectedBorder">
+        										<DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ListViewItemSelectedPointerOverBorderThemeBrush}"/>
+        									</ObjectAnimationUsingKeyFrames>
+        									<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Fill" Storyboard.TargetName="SelectedEarmark">
+        										<DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ListViewItemSelectedPointerOverBackgroundThemeBrush}"/>
+        									</ObjectAnimationUsingKeyFrames>
+        									<DoubleAnimation Duration="0" To="1.024" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)" Storyboard.TargetName="ContentContainer" d:IsOptimized="True"/>
+        									<DoubleAnimation Duration="0" To="1.032" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)" Storyboard.TargetName="ContentContainer" d:IsOptimized="True"/>
+        									<DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="ContentContainer" d:IsOptimized="True"/>
+        									<DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="ContentContainer" d:IsOptimized="True"/>
+        								</Storyboard>
+        							</VisualState>
+        							<VisualState x:Name="Disabled">
+        								<Storyboard>
+        									<DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="contentPresenter"/>
+        								</Storyboard>
+        							</VisualState>
+        						</VisualStateGroup>
+        						<VisualStateGroup x:Name="FocusStates">
+        							<VisualState x:Name="Focused">
+        								<Storyboard>
+        									<DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="FocusVisual"/>
+        								</Storyboard>
+        							</VisualState>
+        							<VisualState x:Name="Unfocused"/>
+        							<VisualState x:Name="PointerFocused"/>
+        						</VisualStateGroup>
+        						<VisualStateGroup x:Name="SelectionHintStates">
+        							<VisualStateGroup.Transitions>
+        								<VisualTransition GeneratedDuration="0:0:0.65" To="NoSelectionHint"/>
+        							</VisualStateGroup.Transitions>
+        							<VisualState x:Name="VerticalSelectionHint">
+        								<Storyboard>
+        									<SwipeHintThemeAnimation ToHorizontalOffset="0" TargetName="SelectionBackground" ToVerticalOffset="15"/>
+        									<SwipeHintThemeAnimation ToHorizontalOffset="0" TargetName="ContentBorder" ToVerticalOffset="15"/>
+        									<SwipeHintThemeAnimation ToHorizontalOffset="0" TargetName="SelectedBorder" ToVerticalOffset="15"/>
+        									<SwipeHintThemeAnimation ToHorizontalOffset="0" TargetName="SelectedCheckMark" ToVerticalOffset="15"/>
+        								</Storyboard>
+        							</VisualState>
+        							<VisualState x:Name="HorizontalSelectionHint">
+        								<Storyboard>
+        									<SwipeHintThemeAnimation ToHorizontalOffset="-23" TargetName="SelectionBackground" ToVerticalOffset="0"/>
+        									<SwipeHintThemeAnimation ToHorizontalOffset="-23" TargetName="ContentBorder" ToVerticalOffset="0"/>
+        									<SwipeHintThemeAnimation ToHorizontalOffset="-23" TargetName="SelectedBorder" ToVerticalOffset="0"/>
+        									<SwipeHintThemeAnimation ToHorizontalOffset="-23" TargetName="SelectedCheckMark" ToVerticalOffset="0"/>
+        								</Storyboard>
+        							</VisualState>
+        							<VisualState x:Name="NoSelectionHint"/>
+        						</VisualStateGroup>
+        						<VisualStateGroup x:Name="SelectionStates">
+        							<VisualState x:Name="Unselecting"/>
+        							<VisualState x:Name="Unselected"/>
+        							<VisualState x:Name="UnselectedPointerOver">
+        								<Storyboard>
+        									<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="contentPresenter">
+        										<DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ListViewItemSelectedForegroundThemeBrush}"/>
+        									</ObjectAnimationUsingKeyFrames>
+        								</Storyboard>
+        							</VisualState>
+        							<VisualState x:Name="UnselectedSwiping"/>
+        							<VisualState x:Name="Selecting">
+        								<Storyboard>
+        									<DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="SelectionBackground"/>
+        									<DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="SelectedBorder"/>
+        									<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="contentPresenter">
+        										<DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ListViewItemSelectedForegroundThemeBrush}"/>
+        									</ObjectAnimationUsingKeyFrames>
+        								</Storyboard>
+        							</VisualState>
+        							<VisualState x:Name="Selected">
+        								<Storyboard>
+        									<DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="SelectionBackground"/>
+        									<DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="SelectedBorder"/>
+        									<DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="SelectedCheckMark"/>
+        									<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="contentPresenter">
+        										<DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ListViewItemSelectedForegroundThemeBrush}"/>
+        									</ObjectAnimationUsingKeyFrames>
+        								</Storyboard>
+        							</VisualState>
+        							<VisualState x:Name="SelectedSwiping">
+        								<Storyboard>
+        									<DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="SelectionBackground"/>
+        									<DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="SelectedBorder"/>
+        									<DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="SelectedCheckMark"/>
+        									<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="contentPresenter">
+        										<DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ListViewItemSelectedForegroundThemeBrush}"/>
+        									</ObjectAnimationUsingKeyFrames>
+        								</Storyboard>
+        							</VisualState>
+        							<VisualState x:Name="SelectedUnfocused">
+        								<Storyboard>
+        									<DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="SelectionBackground"/>
+        									<DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="SelectedBorder"/>
+        									<DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="SelectedCheckMark"/>
+        									<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="contentPresenter">
+        										<DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ListViewItemSelectedForegroundThemeBrush}"/>
+        									</ObjectAnimationUsingKeyFrames>
+        								</Storyboard>
+        							</VisualState>
+        						</VisualStateGroup>
+        						<VisualStateGroup x:Name="DragStates">
+        							<VisualStateGroup.Transitions>
+        								<VisualTransition GeneratedDuration="0" To="NotDragging"/>
+        							</VisualStateGroup.Transitions>
+        							<VisualState x:Name="NotDragging"/>
+        							<VisualState x:Name="Dragging">
+        								<Storyboard>
+        									<DoubleAnimation Duration="0" To="{StaticResource ListViewItemDragThemeOpacity}" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="InnerDragContent"/>
+        									<DragItemThemeAnimation TargetName="InnerDragContent"/>
+        									<FadeOutThemeAnimation TargetName="SelectedCheckMarkOuter"/>
+        									<FadeOutThemeAnimation TargetName="SelectedBorder"/>
+        									<DoubleAnimation Duration="0" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)" Storyboard.TargetName="InnerDragContent" d:IsOptimized="True" To="0.954"/>
+        									<DoubleAnimation Duration="0" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="InnerDragContent" d:IsOptimized="True" To="0"/>
+        									<DoubleAnimation Duration="0" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)" Storyboard.TargetName="InnerDragContent" d:IsOptimized="True" To="0.95"/>
+        									<DoubleAnimation Duration="0" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="InnerDragContent" d:IsOptimized="True" To="0"/>
+        								</Storyboard>
+        							</VisualState>
+        							<VisualState x:Name="DraggingTarget">
+        								<Storyboard>
+        									<DropTargetItemThemeAnimation TargetName="OuterContainer"/>
+        									<DoubleAnimation Duration="0" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)" Storyboard.TargetName="ContentContainer" d:IsOptimized="True" To="1.052"/>
+        									<DoubleAnimation Duration="0" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="ContentContainer" d:IsOptimized="True" To="0"/>
+        									<DoubleAnimation Duration="0" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)" Storyboard.TargetName="ContentContainer" d:IsOptimized="True" To="1.06"/>
+        									<DoubleAnimation Duration="0" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="ContentContainer" d:IsOptimized="True" To="0"/>
+        									<DoubleAnimation Duration="0" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)" Storyboard.TargetName="InnerDragContent" d:IsOptimized="True" To="0.998"/>
+        									<DoubleAnimation Duration="0" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="InnerDragContent" d:IsOptimized="True" To="0.125"/>
+        									<DoubleAnimation Duration="0" To="1.054" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)" Storyboard.TargetName="OuterContainer" d:IsOptimized="True"/>
+        									<DoubleAnimation Duration="0" To="1.054" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)" Storyboard.TargetName="OuterContainer" d:IsOptimized="True"/>
+        									<DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="OuterContainer" d:IsOptimized="True"/>
+        									<DoubleAnimation Duration="0" To="0" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="OuterContainer" d:IsOptimized="True"/>
+        								</Storyboard>
+        							</VisualState>
+        							<VisualState x:Name="MultipleDraggingPrimary">
+        								<Storyboard>
+        									<DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="MultiArrangeOverlayBackground"/>
+        									<DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="MultiArrangeOverlayText"/>
+        									<DoubleAnimation Duration="0" To="{StaticResource ListViewItemDragThemeOpacity}" Storyboard.TargetProperty="Opacity" Storyboard.TargetName="ContentBorder"/>
+        									<FadeInThemeAnimation TargetName="MultiArrangeOverlayBackground"/>
+        									<FadeInThemeAnimation TargetName="MultiArrangeOverlayText"/>
+        									<DragItemThemeAnimation TargetName="ContentBorder"/>
+        									<FadeOutThemeAnimation TargetName="SelectionBackground"/>
+        									<FadeOutThemeAnimation TargetName="SelectedCheckMarkOuter"/>
+        									<FadeOutThemeAnimation TargetName="SelectedBorder"/>
+        									<FadeOutThemeAnimation TargetName="PointerOverBorder"/>
+        								</Storyboard>
+        							</VisualState>
+        							<VisualState x:Name="MultipleDraggingSecondary">
+        								<Storyboard>
+        									<FadeOutThemeAnimation TargetName="ContentContainer"/>
+        								</Storyboard>
+        							</VisualState>
+        						</VisualStateGroup>
+        						<VisualStateGroup x:Name="ReorderHintStates">
+        							<VisualStateGroup.Transitions>
+        								<VisualTransition GeneratedDuration="0:0:0.2" To="NoReorderHint"/>
+        							</VisualStateGroup.Transitions>
+        							<VisualState x:Name="NoReorderHint"/>
+        							<VisualState x:Name="BottomReorderHint">
+        								<Storyboard>
+        									<DragOverThemeAnimation Direction="Bottom" ToOffset="{StaticResource ListViewItemReorderHintThemeOffset}" TargetName="ReorderHintContent"/>
+        								</Storyboard>
+        							</VisualState>
+        							<VisualState x:Name="TopReorderHint">
+        								<Storyboard>
+        									<DragOverThemeAnimation Direction="Top" ToOffset="{StaticResource ListViewItemReorderHintThemeOffset}" TargetName="ReorderHintContent"/>
+        								</Storyboard>
+        							</VisualState>
+        							<VisualState x:Name="RightReorderHint">
+        								<Storyboard>
+        									<DragOverThemeAnimation Direction="Right" ToOffset="{StaticResource ListViewItemReorderHintThemeOffset}" TargetName="ReorderHintContent"/>
+        								</Storyboard>
+        							</VisualState>
+        							<VisualState x:Name="LeftReorderHint">
+        								<Storyboard>
+        									<DragOverThemeAnimation Direction="Left" ToOffset="{StaticResource ListViewItemReorderHintThemeOffset}" TargetName="ReorderHintContent"/>
+        								</Storyboard>
+        							</VisualState>
+        						</VisualStateGroup>
+        						<VisualStateGroup x:Name="DataVirtualizationStates">
+        							<VisualState x:Name="DataAvailable"/>
+        							<VisualState x:Name="DataPlaceholder">
+        								<Storyboard>
+        									<ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetProperty="Visibility" Storyboard.TargetName="PlaceholderTextBlock">
+        										<DiscreteObjectKeyFrame KeyTime="0">
+        											<DiscreteObjectKeyFrame.Value>
+        												<Visibility>Visible</Visibility>
+        											</DiscreteObjectKeyFrame.Value>
+        										</DiscreteObjectKeyFrame>
+        									</ObjectAnimationUsingKeyFrames>
+        									<ObjectAnimationUsingKeyFrames Duration="0" Storyboard.TargetProperty="Visibility" Storyboard.TargetName="PlaceholderRect">
+        										<DiscreteObjectKeyFrame KeyTime="0">
+        											<DiscreteObjectKeyFrame.Value>
+        												<Visibility>Visible</Visibility>
+        											</DiscreteObjectKeyFrame.Value>
+        										</DiscreteObjectKeyFrame>
+        									</ObjectAnimationUsingKeyFrames>
+        								</Storyboard>
+        							</VisualState>
+        						</VisualStateGroup>
+        					</VisualStateManager.VisualStateGroups>
+        					<Grid x:Name="ReorderHintContent" Background="Transparent">
+        						<Border x:Name="ContentContainer" RenderTransformOrigin="0.5,0.5">
+        							<Border.RenderTransform>
+        								<CompositeTransform/>
+        							</Border.RenderTransform>
+        							<Grid x:Name="InnerDragContent" RenderTransformOrigin="0.5,0.5">
+        								<Grid.RenderTransform>
+        									<CompositeTransform/>
+        								</Grid.RenderTransform>
+        								<Rectangle x:Name="PointerOverBorder" Fill="{StaticResource ListViewItemPointerOverBackgroundThemeBrush}" IsHitTestVisible="False" Margin="1" Opacity="0"/>
+        								<Rectangle x:Name="FocusVisual" IsHitTestVisible="False" Opacity="0" Stroke="{StaticResource ListViewItemFocusBorderThemeBrush}" StrokeThickness="2"/>
+        								<Rectangle x:Name="SelectionBackground" Fill="{StaticResource ListViewItemSelectedBackgroundThemeBrush}" Margin="4" Opacity="0"/>
+        								<Border x:Name="ContentBorder" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Margin="4">
+        									<Grid>
+        										<ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTransitions="{TemplateBinding ContentTransitions}" Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+        										<TextBlock x:Name="PlaceholderTextBlock" Foreground="{x:Null}" IsHitTestVisible="False" Margin="{TemplateBinding Padding}" Opacity="0" Text="Xg"/>
+        										<Rectangle x:Name="PlaceholderRect" Fill="{StaticResource ListViewItemPlaceholderBackgroundThemeBrush}" IsHitTestVisible="False" Visibility="Collapsed"/>
+        										<Rectangle x:Name="MultiArrangeOverlayBackground" Fill="{StaticResource ListViewItemDragBackgroundThemeBrush}" IsHitTestVisible="False" Opacity="0"/>
+        									</Grid>
+        								</Border>
+        								<Rectangle x:Name="SelectedBorder" IsHitTestVisible="False" Margin="4" Opacity="0" Stroke="{StaticResource ListViewItemSelectedBackgroundThemeBrush}" StrokeThickness="{StaticResource ListViewItemSelectedBorderThemeThickness}"/>
+        								<Border x:Name="SelectedCheckMarkOuter" HorizontalAlignment="Right" IsHitTestVisible="False" Margin="4" VerticalAlignment="Top">
+        									<Grid x:Name="SelectedCheckMark" Height="40" Opacity="0" Width="40">
+        										<Path x:Name="SelectedEarmark" Data="M0,0 L40,0 L40,40 z" Fill="{StaticResource ListViewItemSelectedBackgroundThemeBrush}" Stretch="Fill"/>
+        										<Path Data="F1 M133.1,17.9 L137.2,13.2 L144.6,19.6 L156.4,5.8 L161.2,9.9 L145.6,28.4 z" Fill="{StaticResource ListViewItemCheckThemeBrush}" FlowDirection="LeftToRight" HorizontalAlignment="Right" Height="13" Margin="0,5.5,5.5,0" Stretch="Fill" VerticalAlignment="Top" Width="15"/>
+        									</Grid>
+        								</Border>
+        								<TextBlock x:Name="MultiArrangeOverlayText" Foreground="{StaticResource ListViewItemDragForegroundThemeBrush}" FontSize="26.667" FontFamily="{StaticResource ContentControlThemeFontFamily}" IsHitTestVisible="False" Margin="18,9,0,0" Opacity="0" TextWrapping="Wrap" Text="{Binding TemplateSettings.DragItemsCount, RelativeSource={RelativeSource Mode=TemplatedParent}}" TextTrimming="WordEllipsis"/>
+        							</Grid>
+        						</Border>
+        					</Grid>
+        				</Border>
+        			</ControlTemplate>
+        		</Setter.Value>
+        	</Setter>
+        </Style>
     </Page.Resources>
 
     <!--
@@ -399,44 +682,64 @@
 
                     <!-- Second item is announcements -->
                     <FlipViewItem x:Name="announ" ManipulationMode="None">
-                        <ListView x:Name="announcementListView" 
+                        <!--<ListView x:Name="announcementListView" 
+                                      SelectionMode="None"
                                       ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
                                       ScrollViewer.VerticalScrollBarVisibility="Hidden"
                                       ItemsSource="{Binding Source={StaticResource newAnnouncementListView}}" 
-                                      SelectionMode="None" CanDragItems="True"
-                                      >
-                            <ListView.ItemContainerStyle>
-                                <Style TargetType="ListViewItem">
-                                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                                    <Setter Property="Margin" Value="0,0,0,-6" />
-                                </Style>
-                            </ListView.ItemContainerStyle>
+                                      CanDragItems="False"
+                                      CanReorderItems="False"
+                                      ItemContainerStyle="{StaticResource AnnouncementStyle}" >
                             <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid Height="auto" Background="White">
-                                        <StackPanel VerticalAlignment="Top" 
-                                                        Margin="0" 
-                                                        Orientation="Vertical">
-                                            <Rectangle Height="3" Fill="Black"/>
-                                            <TextBlock Margin="20,5,20,5" 
+                                <DataTemplate>-->
+                        <ScrollViewer x:Name="announcementListView" 
+                                      VerticalScrollBarVisibility="Hidden" 
+                                      HorizontalScrollBarVisibility="Disabled" 
+                                      VerticalScrollMode="Auto"
+                                      HorizontalScrollMode="Disabled" 
+                                      ZoomMode="Disabled">
+
+                            <StackPanel Orientation="Vertical" Height="auto">
+                                <ItemsControl x:Name="moduleListView" 
+                                              Height="auto"
+                                              ItemsSource="{Binding Source={StaticResource newAnnouncementListView}}"  
+                                              Margin="10">
+                                    <!--<ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapGrid/>
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>-->
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                                <StackPanel VerticalAlignment="Top" 
+                                                            Margin="5" 
+                                                            Height="auto"
+                                                            Orientation="Vertical">
+                                                    <Rectangle Height="3" Fill="Black"/>
+                                                    <TextBlock Margin="20,5,20,5" 
                                                            Text="{Binding announceName}"  
                                                            TextWrapping="NoWrap" 
                                                            Foreground="Black" 
                                                            FontSize="36"
                                                            TextTrimming="WordEllipsis"/>
-                                            <TextBlock Margin="20,5,20,5" 
+                                                    <TextBlock Margin="20,5,20,5" 
                                                            Height="auto" 
                                                            Text="{Binding announceContentDisplay}" 
                                                            TextWrapping="Wrap" 
                                                            Foreground="Black" 
                                                            FontSize="24" 
                                                            TextTrimming="WordEllipsis"/>
-                                            <Rectangle Height="3" Fill="Black"/>
-                                        </StackPanel>
-                                    </Grid>
-                                </DataTemplate>
+                                                    <Rectangle Height="3" Fill="Black"/>
+                                                </StackPanel>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </ScrollViewer>
+                        
+                        <!--</DataTemplate>
                             </ListView.ItemTemplate>
-                        </ListView>
+                        </ListView>-->
                     </FlipViewItem>
                     <!-- Second item is announcements -->
 
@@ -452,7 +755,7 @@
                                         Background="Blue" 
                                         Width="300" 
                                         Height="100" 
-                                        Margin="35,35,65,35"  
+                                        Margin="35,35,25,0"  
                                         Content="..."
                                         Tapped="onUpButtonTapped"
                                         Visibility="Collapsed"/>
@@ -460,7 +763,7 @@
                                             ItemsSource="{Binding Source={StaticResource folder}}"  
                                             IsItemClickEnabled="True"
                                             Tapped="onFolderSelected"
-                                            Margin="20,20,50,20" 
+                                            Margin="20,20,10,20" 
                                           SelectionMode="None"
                                             ItemContainerStyle="{StaticResource WithoutTick}">
                                     <ListView.ItemTemplate>
@@ -476,6 +779,7 @@
                                                             Foreground="White" 
                                                             FontSize="30" 
                                                             FontFamily="Segoe UI" 
+                                                           TextWrapping="Wrap"
                                                             FontWeight="Light"
                                                             VerticalAlignment="Top"  
                                                             HorizontalAlignment="Left"/>
@@ -517,6 +821,7 @@
                                                             FontFamily="Segoe UI" 
                                                             FontWeight="Light"
                                                             VerticalAlignment="Top"  
+                                                           TextWrapping="Wrap"
                                                             HorizontalAlignment="Left"/>
                                             </Grid>
                                         </DataTemplate>

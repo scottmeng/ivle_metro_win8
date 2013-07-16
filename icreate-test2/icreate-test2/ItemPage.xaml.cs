@@ -166,7 +166,7 @@ namespace icreate_test2
                 flipView.SelectedIndex = 1;
                 _currentItem = _currentModule.moduleItems[1];
 
-                announcementListView.SelectedIndex = _announcementIndex;
+                //announcementListView.SelectedIndex = _announcementIndex;
             }
             else
             {
