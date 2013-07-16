@@ -76,14 +76,14 @@
                                            Text="{Binding announceName}"  
                                            TextWrapping="NoWrap" 
                                            Foreground="White" 
-                                           FontSize="32"
+                                           FontSize="28"
                                            TextTrimming="WordEllipsis"/>
                                 <TextBlock Margin="20,5,20,5" 
                                            Height="110" 
                                            Text="{Binding announceContentPreview}" 
                                            TextWrapping="Wrap" 
                                            Foreground="White" 
-                                           FontSize="20" 
+                                           FontSize="18" 
                                            TextTrimming="WordEllipsis"/>
                             </StackPanel>
                         </Grid>
@@ -141,21 +141,22 @@
                                             <SolidColorBrush Color="{Binding modulePrimaryColor}" />
                                         </Grid.Background>
                                         <TextBlock Text="{Binding moduleCode}" 
-                                               Margin="15" 
-                                               Foreground="White" 
-                                               FontSize="42" 
-                                               FontFamily="Segoe UI" 
-                                               FontWeight="Light"
-                                               VerticalAlignment="Top"  
-                                               HorizontalAlignment="Left"/>
+                                                   Margin="15" 
+                                                   Foreground="White" 
+                                                   FontSize="38" 
+                                                   FontFamily="Segoe UI" 
+                                                   FontWeight="Light"
+                                                   VerticalAlignment="Top"  
+                                                   HorizontalAlignment="Left"/>
                                         <TextBlock Text="{Binding moduleName}" 
-                                               Margin="15" 
-                                               Foreground="White" 
-                                               FontSize="24" 
-                                               FontFamily="Segoe UI" 
-                                               FontWeight="Light"
-                                               VerticalAlignment="Bottom" 
-                                               HorizontalAlignment="Right"/>
+                                                   Margin="15" 
+                                                   Foreground="White" 
+                                                   FontSize="20" 
+                                                   FontFamily="Segoe UI" 
+                                                   FontWeight="Light"
+                                                   VerticalAlignment="Bottom" 
+                                                   TextWrapping="Wrap"
+                                                   HorizontalAlignment="Right"/>
                                     </Grid>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>

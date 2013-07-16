@@ -413,23 +413,25 @@
                             </ListView.ItemContainerStyle>
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <Grid Height="auto" Background="Gray">
+                                    <Grid Height="auto" Background="White">
                                         <StackPanel VerticalAlignment="Top" 
                                                         Margin="0" 
                                                         Orientation="Vertical">
+                                            <Rectangle Height="3" Fill="Black"/>
                                             <TextBlock Margin="20,5,20,5" 
                                                            Text="{Binding announceName}"  
                                                            TextWrapping="NoWrap" 
-                                                           Foreground="White" 
+                                                           Foreground="Black" 
                                                            FontSize="36"
                                                            TextTrimming="WordEllipsis"/>
                                             <TextBlock Margin="20,5,20,5" 
                                                            Height="auto" 
                                                            Text="{Binding announceContentDisplay}" 
                                                            TextWrapping="Wrap" 
-                                                           Foreground="White" 
+                                                           Foreground="Black" 
                                                            FontSize="24" 
                                                            TextTrimming="WordEllipsis"/>
+                                            <Rectangle Height="3" Fill="Black"/>
                                         </StackPanel>
                                     </Grid>
                                 </DataTemplate>
