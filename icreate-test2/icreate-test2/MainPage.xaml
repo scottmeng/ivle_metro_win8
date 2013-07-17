@@ -11,14 +11,12 @@
     mc:Ignorable="d">
 
     <Page.Resources>
-
         <!-- TODO: Delete this line if the key AppName is declared in App.xaml -->
         <x:String x:Key="AppName">IVLE Metro</x:String>
         <!-- Collection of items displayed by this page -->
         <CollectionViewSource x:Name="newAnnouncementListView" Source="{Binding Items}"/>
         <CollectionViewSource x:Name="moduleGridView" Source="{Binding Items}"/>
         <CollectionViewSource x:Name="dailyListView" />
-
     </Page.Resources>
 
     <Page.BottomAppBar>
@@ -124,9 +122,12 @@
 
                     <StackPanel Orientation="Horizontal">
                         <ItemsControl x:Name="moduleListView" 
-                                      ItemsSource="{Binding Source={StaticResource moduleGridView}}"  
+                                      ItemsSource="{Binding Source={StaticResource moduleGridView}}"
                                       Margin="20,40,50,20" 
-                                      Tapped="ModuleTileTapped">
+                                      PointerPressed="ModuleItemGridPressed" 
+                                      PointerReleased="ModuleItemGridReleased" 
+                                      PointerExited="ModuleItemGridExited" 
+                                      PointerEntered="ModuleItemGridEntered">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <WrapGrid/>
@@ -134,11 +135,11 @@
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
-                                    <Grid Width="360" 
-                                      Height="175" 
-                                      Margin="10">
+                                    <Grid Width="364"
+                                          Height="171"
+                                          Margin="12">
                                         <Grid.Background>
-                                            <SolidColorBrush Color="{Binding modulePrimaryColor}" />
+                                            <SolidColorBrush Color="{Binding moduleShowColor}" />
                                         </Grid.Background>
                                         <TextBlock Text="{Binding moduleCode}" 
                                                    Margin="15" 
@@ -296,13 +297,8 @@
                                 </ListView.ItemTemplate>
                             </ListView>
                         </Grid>
-                        <!--</DataTemplate>
-                    </FlipView.ItemTemplate>
-                </FlipView>-->
-                        <!--</StackPanel>-->
                     </StackPanel>
                 </ScrollViewer>
-
             </Grid>
         </Grid>
 

@@ -54,6 +54,7 @@ namespace icreate_test2.DataStructure
         public Lecturer[] moduleLecturers { get; set; }
 
         public ExamInfo[] moduleExamInfos { get; set; }
+        public Color moduleShowColor { get; set; }
         public Color modulePrimaryColor { get; set; }
         public Color moduleSecondaryColor { get; set; }
         public List<ModuleItem> moduleItems { get; set; }
@@ -93,6 +94,7 @@ namespace icreate_test2.DataStructure
         {
             this.modulePrimaryColor = primaryColor;
             this.moduleSecondaryColor = secondaryColor;
+            this.moduleShowColor = primaryColor;
 
             foreach (Announcement announcement in this.moduleAnnouncements)
             {

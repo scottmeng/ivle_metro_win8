@@ -141,7 +141,6 @@ namespace icreate_test2
             // find the selected module and get the index of this module in module list
             // pass the index of the selected module as a parameter to module page
             DataStructure.Module selectedModule = (e.OriginalSource as FrameworkElement).DataContext as DataStructure.Module;
-
             int moduleIndex = Utils.DataManager.GetModuleIndex(selectedModule);
 
             DataStructure.NavParams navParams = new DataStructure.NavParams(moduleIndex, -1);
@@ -198,6 +197,68 @@ namespace icreate_test2
         {
             this.Frame.Navigate(typeof(TimetablePage));
         }
+
+        private void ModuleItemGridEntered(object sender, PointerRoutedEventArgs e)
+        {
+            DataStructure.Module selectedModule = (e.OriginalSource as FrameworkElement).DataContext as DataStructure.Module;
+            int moduleIndex = Utils.DataManager.GetModuleIndex(selectedModule);
+            if (selectedModule.moduleShowColor == selectedModule.modulePrimaryColor)
+            {
+                List<DataStructure.Module> modules = Utils.DataManager.GetModules();
+                for (int i = 0; i < modules.Count; i++)
+                    if(i!=moduleIndex)
+                        modules[i].moduleShowColor = modules[i].modulePrimaryColor;
+                selectedModule.moduleShowColor = selectedModule.moduleSecondaryColor;
+                moduleGridView.Source = null;
+                moduleGridView.Source = Utils.DataManager.GetModules();
+            }
+        }
+        
+
+        private void ModuleItemGridPressed(object sender, PointerRoutedEventArgs e)
+        {
+            DataStructure.Module selectedModule = (e.OriginalSource as FrameworkElement).DataContext as DataStructure.Module;
+            selectedModule.moduleShowColor = Color.FromArgb(255, 211, 211, 211);
+            moduleGridView.Source = null;
+            moduleGridView.Source = Utils.DataManager.GetModules();
+        }
+
+        private void ModuleItemGridExited(object sender, PointerRoutedEventArgs e)
+        {
+            List<DataStructure.Module> modules = Utils.DataManager.GetModules();
+            for (int i = 0; i < modules.Count;i++ )
+                modules[i].moduleShowColor = modules[i].modulePrimaryColor;
+            moduleGridView.Source = null;
+            moduleGridView.Source = modules;
+        }
+
+        private void ModuleItemGridReleased(object sender, PointerRoutedEventArgs e)
+        {
+            DataStructure.Module selectedModule = (e.OriginalSource as FrameworkElement).DataContext as DataStructure.Module;
+            if (selectedModule != null)
+            {
+                selectedModule.moduleShowColor = selectedModule.modulePrimaryColor;
+                moduleGridView.Source = null;
+                moduleGridView.Source = Utils.DataManager.GetModules();
+
+                int moduleIndex = Utils.DataManager.GetModuleIndex(selectedModule);
+                DataStructure.NavParams navParams = new DataStructure.NavParams(moduleIndex, -1);
+
+                if (this.Frame != null)
+                {
+                    this.Frame.Navigate(typeof(ItemPage), navParams);
+                }
+            }
+            else
+            {
+                List<DataStructure.Module> modules = Utils.DataManager.GetModules();
+                for (int i = 0; i < modules.Count; i++)
+                    modules[i].moduleShowColor = modules[i].modulePrimaryColor;
+                moduleGridView.Source = null;
+                moduleGridView.Source = Utils.DataManager.GetModules();
+            }
+        }
+
     }
 
    
