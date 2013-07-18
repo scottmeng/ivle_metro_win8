@@ -261,16 +261,6 @@ namespace icreate_test2
             if (selectedAnnouncement != null)
             {
                 selectedAnnouncement.announceColor = selectedAnnouncement.announceSecondaryColor;
-                /*
-                ObservableCollection<DataStructure.Module> modules = Utils.DataManager.GetModules();
-                for (int i = 0; i < modules.Count; i++)
-                {
-                    if (selectedAnnouncement.announceModuleId == modules[i].moduleId)
-                    {
-                        selectedAnnouncement.annouceColor = modules[i].moduleSecondaryColor;
-                    }
-                }
-                 */
             }
         }
 
