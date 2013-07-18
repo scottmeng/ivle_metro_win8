@@ -261,6 +261,16 @@ namespace icreate_test2
             if (selectedAnnouncement != null)
             {
                 selectedAnnouncement.announceColor = selectedAnnouncement.announceSecondaryColor;
+                selectedAnnouncement.backgroundConverter = false;
+            }
+        }
+        private void AnnoucementExited(object sender, PointerRoutedEventArgs e)
+        {
+            List<DataStructure.Announcement> annoucements = Utils.DataManager.GetAnnouncements();
+            for (int i = 0; i < annoucements.Count; i++)
+            {
+                annoucements[i].announceColor = annoucements[i].announcePrimaryColor;
+                annoucements[i].backgroundConverter = true;
             }
         }
 
@@ -283,6 +293,23 @@ namespace icreate_test2
         {
             VisualStateManager.GoToState(this, "PointerUp", true);
             this.ReleasePointerCapture(e.Pointer);
+        }
+    }
+    public class AnnouncementBackgroundConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            bool _value = (bool)value;
+            if (_value)
+                return "#808080";
+            else
+                return "#D3D3D3";
+        }
+
+        // No need to implement converting back on a one-way binding 
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
         }
     }
 }

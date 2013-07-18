@@ -50,25 +50,30 @@
                           ZoomMode="Disabled">
 
                 <StackPanel Orientation="Vertical">
+                <StackPanel.Resources>
+                    <local:AnnouncementBackgroundConverter x:Key="AnnouncementBackgroundConverter" />
+                </StackPanel.Resources>
                     <ItemsControl x:Name="announcementListView" 
                                   ItemsSource="{Binding Source={StaticResource newAnnouncementListView}}"
                                   Margin="20,40,50,20" 
-                                  Tapped="AnnoucementTapped" >
+                                  Tapped="AnnoucementTapped">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Grid Height="180"  Margin="5,0,5,0" Background="Gray"
-                                      PointerEntered="AnnoucementEntered">
-                                    <Grid.ColumnDefinitions>
+                            <Grid Height="180"  Margin="5,0,5,0" Background="{Binding Path=backgroundConverter,
+                                  Mode=OneWay,Converter={StaticResource AnnouncementBackgroundConverter}}"
+                                    PointerEntered="AnnoucementEntered"
+                                    PointerExited="AnnoucementExited">
+                                <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="20"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
                                     <StackPanel Width="20" Grid.Column="0">
                                         <StackPanel.Background>
-                                            <SolidColorBrush Color="{Binding announceColor}" />
+                                            <SolidColorBrush Color="{Binding announceColor}"/>
                                         </StackPanel.Background>
                                     </StackPanel>
                                     <StackPanel Grid.Column="1"
-                                                VerticalAlignment="Top" 
+                                                VerticalAlignment="Top"
                                                 Margin="0" 
                                                 Orientation="Vertical">
                                         <TextBlock Margin="20,5,20,5" 
