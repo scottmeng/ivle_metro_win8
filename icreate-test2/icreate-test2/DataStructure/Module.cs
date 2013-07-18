@@ -19,7 +19,7 @@ namespace icreate_test2.DataStructure
         public event PropertyChangedEventHandler PropertyChanged;
 
         [DataMember(Name = "Announcements")]
-        public Announcement[] moduleAnnouncements { get; set; }
+        public ObservableCollection<Announcement> moduleAnnouncements { get; set; }
 
         [DataMember(Name = "Forums")]
         public List<Forum> moduleForums { get; set; }
@@ -82,7 +82,7 @@ namespace icreate_test2.DataStructure
         public bool isForumAvailable { get; set; }
         public bool isWebcastAvailable { get; set; }
 
-        public Module(Announcement[] announces, List<Forum> forums, Workbin[] workins, Webcast[] webcasts, Gradebook[] gradebooks, String id, String code, 
+        public Module(ObservableCollection<Announcement> announces, List<Forum> forums, Workbin[] workins, Webcast[] webcasts, Gradebook[] gradebooks, String id, String code, 
                       String name, String depart, String sem, String ay, String mc, Lecturer[] lecturers)
         {
             moduleAnnouncements = announces;
@@ -112,11 +112,11 @@ namespace icreate_test2.DataStructure
         {
             this.modulePrimaryColor = primaryColor;
             this.moduleSecondaryColor = secondaryColor;
-            this.moduleShowColor = primaryColor;
+            this.moduleShowColor = this.modulePrimaryColor;
 
             foreach (Announcement announcement in this.moduleAnnouncements)
             {
-                announcement.annouceColor = this.modulePrimaryColor;
+                announcement.SetAnnouncementColors(primaryColor, secondaryColor);
             }
         }
 

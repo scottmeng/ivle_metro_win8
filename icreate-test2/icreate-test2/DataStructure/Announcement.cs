@@ -7,12 +7,15 @@ using System.Runtime.Serialization;
 using System.Text.RegularExpressions;
 using Windows.UI;
 using System.Net;
+using System.ComponentModel;
 
 namespace icreate_test2.DataStructure
 {
     [DataContract]
-    class Announcement
+    class Announcement : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
         [DataMember(Name = "ID")]
         public String announceID { get; set; }
 
@@ -31,7 +34,21 @@ namespace icreate_test2.DataStructure
         [DataMember(Name = "isRead")]
         public bool announceIsRead { get; set; }
 
-        public Color annouceColor { get; set; }
+        private Color _announceShowColor;
+        public Color announceColor 
+        {
+            get { return _announceShowColor; }
+            set
+            {
+                if (value != _announceShowColor)
+                {
+                    _announceShowColor = value;
+                    OnPropertyChanged("announceColor");
+                }
+            }
+        }
+        public Color announcePrimaryColor { get; set; }
+        public Color announceSecondaryColor { get; set; }
         public String announceContentDisplay { get; set; }
         public String announceContentPreview { get; set; }
         public String announceNameDisplay { get; set; }
@@ -40,36 +57,52 @@ namespace icreate_test2.DataStructure
         public String announceModuleId { get; set; }
         public String announceTimeDisplay { get; set; }
 
+        // Create the OnPropertyChanged method to raise the event 
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(name));
+            }
+        }
+
         public Announcement(String id, String name, String content, DateTime time, Member creator)
         {
-            announceID = id;
-            announceName = name;
-            announceContent = content;
-            announceTime = time;
-            announceCreator = creator;
+            this.announceID = id;
+            this.announceName = name;
+            this.announceContent = content;
+            this.announceTime = time;
+            this.announceCreator = creator;
+        }
 
+        public void SetAnnouncementColors(Color primaryColor, Color secondaryColor)
+        {
+            this.announcePrimaryColor = primaryColor;
+            this.announceColor = this.announcePrimaryColor;
+            this.announceSecondaryColor = secondaryColor;
         }
 
         public void GenerateDisplayContent(Module module)
         {
-            announceContentDisplay = WebUtility.HtmlDecode(announceContent);
-            announceContentDisplay = Regex.Replace(announceContentDisplay, "<.+?>", string.Empty);
-            announceContentDisplay = Regex.Replace(announceContentDisplay, "&nbsp;", string.Empty);
+            this.announceContentDisplay = WebUtility.HtmlDecode(announceContent);
+            this.announceContentDisplay = Regex.Replace(announceContentDisplay, "<.+?>", string.Empty);
+            this.announceContentDisplay = Regex.Replace(announceContentDisplay, "&nbsp;", string.Empty);
 
-            announceContentPreview = WebUtility.HtmlDecode(announceContent);
-            announceContentPreview = Regex.Replace(announceContentPreview, "<.+?>", string.Empty);
-            announceContentPreview = announceContentPreview.Replace(System.Environment.NewLine, " ");
-            announceContentPreview = announceContentPreview.Replace("\t", string.Empty);
-            announceContentPreview = Regex.Replace(announceContentPreview, "&nbsp;", string.Empty);
+            this.announceContentPreview = WebUtility.HtmlDecode(announceContent);
+            this.announceContentPreview = Regex.Replace(announceContentPreview, "<.+?>", string.Empty);
+            this.announceContentPreview = announceContentPreview.Replace(System.Environment.NewLine, " ");
+            this.announceContentPreview = announceContentPreview.Replace("\t", string.Empty);
+            this.announceContentPreview = Regex.Replace(announceContentPreview, "&nbsp;", string.Empty);
 
             // remove the header
-            announceNameDisplay = announceName.Replace("IVLE: ", string.Empty);
-            announceNameDisplay = announceNameDisplay.Replace(module.moduleCode + ": ", string.Empty);
+            this.announceNameDisplay = announceName.Replace("IVLE: ", string.Empty);
+            this.announceNameDisplay = announceNameDisplay.Replace(module.moduleCode + ": ", string.Empty);
 
-            announceCreatorDisplay = announceCreator.memberName;
-            announceModuleCode = module.moduleCode;
-            announceModuleId = module.moduleId;
-            announceTimeDisplay = announceTime.Day + "/" + announceTime.Month;
+            this.announceCreatorDisplay = announceCreator.memberName;
+            this.announceModuleCode = module.moduleCode;
+            this.announceModuleId = module.moduleId;
+            this.announceTimeDisplay = announceTime.Day + "/" + announceTime.Month;
         }
     }
 }

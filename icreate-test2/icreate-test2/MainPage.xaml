@@ -128,6 +128,11 @@
                                       PointerReleased="ModuleItemGridReleased" 
                                       PointerExited="ModuleItemGridExited" 
                                       PointerEntered="ModuleItemGridEntered">
+                            <ItemsControl.ItemContainerTransitions>
+                                <TransitionCollection>
+                                    <EntranceThemeTransition/>
+                                </TransitionCollection>
+                            </ItemsControl.ItemContainerTransitions>
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
                                     <WrapGrid/>
