@@ -121,7 +121,7 @@ namespace icreate_test2
             this.Frame.Navigate(typeof(LoginPage));
         }
 
-        private void AnnoucementListViewTapped(object sender, TappedRoutedEventArgs e)
+        private void AnnoucementTapped(object sender, TappedRoutedEventArgs e)
         {
             DataStructure.Announcement selectedAnnouncement = (e.OriginalSource as FrameworkElement).DataContext as DataStructure.Announcement;
 
@@ -248,6 +248,19 @@ namespace icreate_test2
                 ObservableCollection<DataStructure.Module> modules = Utils.DataManager.GetModules();
                 for (int i = 0; i < modules.Count; i++)
                     modules[i].moduleShowColor = modules[i].modulePrimaryColor;
+            }
+        }
+
+        private void AnnoucementEntered(object sender, PointerRoutedEventArgs e)
+        {
+            DataStructure.Announcement selectedAnnouncement = (e.OriginalSource as FrameworkElement).DataContext as DataStructure.Announcement;
+            if (selectedAnnouncement != null)
+            {
+                ObservableCollection<DataStructure.Module> modules = Utils.DataManager.GetModules();
+                for (int i = 0; i < modules.Count; i++)
+                    if (selectedAnnouncement.announceModuleId == modules[i].moduleId)
+                        selectedAnnouncement.annouceColor = modules[i].moduleSecondaryColor;
+                 
             }
         }
 
