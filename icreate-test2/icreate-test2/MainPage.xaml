@@ -55,14 +55,13 @@
                 </StackPanel.Resources>
                     <ItemsControl x:Name="announcementListView" 
                                   ItemsSource="{Binding Source={StaticResource newAnnouncementListView}}"
-                                  Margin="20,40,50,20" 
-                                  Tapped="AnnoucementTapped">
+                                  Margin="20,40,50,20">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                             <Grid Height="180"  Margin="5,0,5,0" Background="{Binding Path=backgroundConverter,
                                   Mode=OneWay,Converter={StaticResource AnnouncementBackgroundConverter}}"
                                     PointerEntered="AnnoucementEntered"
-                                    PointerExited="AnnoucementExited">
+                                    PointerExited="AnnoucementExited" PointerPressed="AnnoucementPressed" PointerReleased="AnnoucementReleased">
                                 <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="20"/>
                                         <ColumnDefinition Width="*"/>
