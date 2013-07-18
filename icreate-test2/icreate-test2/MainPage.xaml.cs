@@ -224,8 +224,10 @@ namespace icreate_test2
         private void ModuleItemGridExited(object sender, PointerRoutedEventArgs e)
         {
             ObservableCollection<DataStructure.Module> modules = Utils.DataManager.GetModules();
-            for (int i = 0; i < modules.Count;i++ )
+            for (int i = 0; i < modules.Count; i++)
+            {
                 modules[i].moduleShowColor = modules[i].modulePrimaryColor;
+            }
         }
 
         private void ModuleItemGridReleased(object sender, PointerRoutedEventArgs e)
@@ -247,7 +249,9 @@ namespace icreate_test2
             {
                 ObservableCollection<DataStructure.Module> modules = Utils.DataManager.GetModules();
                 for (int i = 0; i < modules.Count; i++)
+                {
                     modules[i].moduleShowColor = modules[i].modulePrimaryColor;
+                }
             }
         }
 
@@ -256,11 +260,17 @@ namespace icreate_test2
             DataStructure.Announcement selectedAnnouncement = (e.OriginalSource as FrameworkElement).DataContext as DataStructure.Announcement;
             if (selectedAnnouncement != null)
             {
+                selectedAnnouncement.announceColor = selectedAnnouncement.announceSecondaryColor;
+                /*
                 ObservableCollection<DataStructure.Module> modules = Utils.DataManager.GetModules();
                 for (int i = 0; i < modules.Count; i++)
+                {
                     if (selectedAnnouncement.announceModuleId == modules[i].moduleId)
+                    {
                         selectedAnnouncement.annouceColor = modules[i].moduleSecondaryColor;
-                 
+                    }
+                }
+                 */
             }
         }
 
