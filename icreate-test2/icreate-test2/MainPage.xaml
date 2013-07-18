@@ -41,55 +41,56 @@
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
-        <Grid Margin="0,0,20,0" >
-            <ListView x:Name="announcementListView" 
-                      ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
-                      ScrollViewer.VerticalScrollBarVisibility="Hidden" 
-                      ItemsSource="{Binding Source={StaticResource newAnnouncementListView}}" 
-                      Tapped="AnnoucementListViewTapped" 
-                      SelectionMode="None">
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
-                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                        <Setter Property="Margin" Value="0,0,0,-6" />
-                    </Style>
-                </ListView.ItemContainerStyle>
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Height="180"  Margin="5,0,5,0" Background="Gray">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="20"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <StackPanel Grid.Column="0">
-                                <StackPanel.Background>
-                                    <SolidColorBrush Color="{Binding annouceColor}" />
-                                </StackPanel.Background>
-                            </StackPanel>
-                            <StackPanel Grid.Column="1" 
-                                        VerticalAlignment="Top" 
-                                        Margin="0" 
-                                        Orientation="Vertical">
-                                <TextBlock Margin="20,5,20,5" 
-                                           Text="{Binding announceName}"  
-                                           TextWrapping="NoWrap" 
-                                           Foreground="White" 
-                                           FontSize="28"
-                                           TextTrimming="WordEllipsis"/>
-                                <TextBlock Margin="20,5,20,5" 
-                                           Height="110" 
-                                           Text="{Binding announceContentPreview}" 
-                                           TextWrapping="Wrap" 
-                                           Foreground="White" 
-                                           FontSize="18" 
-                                           TextTrimming="WordEllipsis"/>
-                            </StackPanel>
-                        </Grid>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </Grid>
+            <ScrollViewer x:Name="AnnouncementScrollViewer"
+                          VerticalScrollBarVisibility="Hidden" 
+                          HorizontalScrollBarVisibility="Disabled" 
+                          VerticalScrollMode="Auto"
+                          HorizontalScrollMode="Disabled"
+                          Grid.Column="0"
+                          ZoomMode="Disabled">
 
+                <StackPanel Orientation="Vertical">
+                    <ItemsControl x:Name="announcementListView" 
+                                  ItemsSource="{Binding Source={StaticResource newAnnouncementListView}}"
+                                  Margin="20,40,50,20" 
+                                  Tapped="AnnoucementTapped" PointerEntered="AnnoucementEntered"
+                                  >
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Height="180"  Margin="5,0,5,0" Background="Gray">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="20"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel Width="20" Grid.Column="0">
+                                        <StackPanel.Background>
+                                            <SolidColorBrush Color="{Binding annouceColor}" />
+                                        </StackPanel.Background>
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="1"
+                                                VerticalAlignment="Top" 
+                                                Margin="0" 
+                                                Orientation="Vertical">
+                                        <TextBlock Margin="20,5,20,5" 
+                                                   Text="{Binding announceName}"  
+                                                   TextWrapping="NoWrap" 
+                                                   Foreground="White" 
+                                                   FontSize="28"
+                                                   TextTrimming="WordEllipsis"/>
+                                        <TextBlock Margin="20,5,20,5" 
+                                                   Height="110" 
+                                                   Text="{Binding announceContentPreview}" 
+                                                   TextWrapping="Wrap" 
+                                                   Foreground="White" 
+                                                   FontSize="18" 
+                                                   TextTrimming="WordEllipsis"/>
+                                    </StackPanel>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </ScrollViewer>
         <!-- Back button and page title -->
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
