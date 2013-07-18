@@ -80,13 +80,13 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
+
             <TextBlock Grid.Column="1" Grid.Row="0" Text="Monday" TextAlignment="Center"/>
             <TextBlock Grid.Column="2" Grid.Row="0" Text="Tueday" TextAlignment="Center"/>
             <TextBlock Grid.Column="3" Grid.Row="0" Text="Wednesday" TextAlignment="Center"/>
             <TextBlock Grid.Column="4" Grid.Row="0" Text="Thursday" TextAlignment="Center"/>
             <TextBlock Grid.Column="5" Grid.Row="0" Text="Friday" TextAlignment="Center"/>
             <TextBlock Grid.Column="6" Grid.Row="0" Text="Saturday" TextAlignment="Center"/>
-
             <TextBlock Grid.Column="0" Grid.Row="1" Text="0800" TextAlignment="Center"/>
             <TextBlock Grid.Column="0" Grid.Row="3" Text="0900" TextAlignment="Center"/>
             <TextBlock Grid.Column="0" Grid.Row="5" Text="1000" TextAlignment="Center"/>

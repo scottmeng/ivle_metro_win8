@@ -38,6 +38,17 @@ namespace icreate_test2
         /// session.  This will be null the first time a page is visited.</param>
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
+            for (int i =0; i < 7; i++)
+                for (int j = 0; j < 29; j++)
+                {
+                    Border myBorder = new Border();
+                    SolidColorBrush brushed = new SolidColorBrush(Color.FromArgb(255, 128, 128, 128));
+                    myBorder.BorderBrush = brushed;
+                    myBorder.BorderThickness = new Thickness(0.5);
+                    timetableGrid.Children.Add(myBorder);
+                    Grid.SetColumn(myBorder, i);
+                    Grid.SetRow(myBorder, j);
+                }
             foreach (DataStructure.Class mClass in Utils.DataManager.GetClasses())
             {
                 // styling of timetable item
