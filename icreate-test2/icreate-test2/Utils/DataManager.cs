@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI;
+using System.Collections.ObjectModel;
 
 namespace icreate_test2.Utils
 {
     static class DataManager
     {
-        private static List<DataStructure.Module> _modules;
+        private static ObservableCollection<DataStructure.Module> _modules;
         private static List<DataStructure.Announcement> _announcements;
         private static List<DataStructure.Class> _allClasses;
         private static List<DataStructure.Class>[] _classesForEachDay;
@@ -18,7 +19,7 @@ namespace icreate_test2.Utils
 
         public static void InitializeDataLists()
         {
-            _modules = new List<DataStructure.Module>();
+            _modules = new ObservableCollection<DataStructure.Module>();
             _announcements = new List<DataStructure.Announcement>();
             _allClasses = new List<DataStructure.Class>();
             _sems = new List<DataStructure.SemesterInfo>();
@@ -30,9 +31,9 @@ namespace icreate_test2.Utils
             searchResults = new List<DataStructure.SearchResult>();
         }
 
-        public static List<DataStructure.Module> GetModules()
+        public static ObservableCollection<DataStructure.Module> GetModules()
         {
-            return _modules;
+            return new ObservableCollection<DataStructure.Module>(_modules);
         }
 
         public static List<DataStructure.Announcement> GetAnnouncements()

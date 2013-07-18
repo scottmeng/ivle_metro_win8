@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using Windows.UI;
+using System.ComponentModel;
+using System.Collections.ObjectModel;
 
 namespace icreate_test2.DataStructure
 {
@@ -12,8 +14,10 @@ namespace icreate_test2.DataStructure
     enum ItemType { MODULE_INFO, ANNOUNCEMENT, FORUM, WORKBIN, GRADEBOOK, WEBCAST}
 
     [DataContract]
-    class Module
+    class Module : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
         [DataMember(Name = "Announcements")]
         public Announcement[] moduleAnnouncements { get; set; }
 
@@ -54,7 +58,21 @@ namespace icreate_test2.DataStructure
         public Lecturer[] moduleLecturers { get; set; }
 
         public ExamInfo[] moduleExamInfos { get; set; }
-        public Color moduleShowColor { get; set; }
+       
+        // for one-way binding
+        private Color _colorShown;
+        public Color moduleShowColor
+        { 
+            get { return _colorShown; }
+            set
+            {
+                if (value != _colorShown)
+                {
+                    _colorShown = value;
+                    OnPropertyChanged("moduleShowColor");
+                }
+            }
+        }
         public Color modulePrimaryColor { get; set; }
         public Color moduleSecondaryColor { get; set; }
         public List<ModuleItem> moduleItems { get; set; }
@@ -99,6 +117,16 @@ namespace icreate_test2.DataStructure
             foreach (Announcement announcement in this.moduleAnnouncements)
             {
                 announcement.annouceColor = this.modulePrimaryColor;
+            }
+        }
+
+        // Create the OnPropertyChanged method to raise the event 
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(name));
             }
         }
 
