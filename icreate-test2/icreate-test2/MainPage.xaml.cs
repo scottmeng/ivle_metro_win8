@@ -195,7 +195,9 @@ namespace icreate_test2
 
         private void timetableItemTapped(object sender, TappedRoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(TimetablePage));
+            DataStructure.Class selectedClass = (e.OriginalSource as FrameworkElement).DataContext as DataStructure.Class;
+            if(selectedClass!=null)
+                this.Frame.Navigate(typeof(TimetablePage));
         }
 
         private void ModuleItemGridEntered(object sender, PointerRoutedEventArgs e)
