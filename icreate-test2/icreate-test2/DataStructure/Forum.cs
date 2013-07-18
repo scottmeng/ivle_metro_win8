@@ -4,12 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
+using System.ComponentModel;
+using System.Collections.ObjectModel;
 
 namespace icreate_test2.DataStructure
 {
     [DataContract]
-    class Forum
+    class Forum : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
         [DataMember(Name = "ID")]
         public String forumId { get; set; }
 
@@ -25,7 +29,7 @@ namespace icreate_test2.DataStructure
         [DataMember(Name = "Headings")]
         public Heading[] forumHeadings { get; set; }
 
-        public List<PostTitle> forumAllTitles { get; set; }
+        public ObservableCollection<PostTitle> forumAllTitles { get; set; }
 
         public Forum(String id, String title, String message, int badge, Heading[] headings)
         {
@@ -35,7 +39,7 @@ namespace icreate_test2.DataStructure
             forumBadge = badge;
             forumHeadings = headings;
 
-            forumAllTitles = new List<PostTitle>();
+            forumAllTitles = new ObservableCollection<PostTitle>();
         }
 
         // generate the title list to be displayed on the left-
@@ -44,7 +48,20 @@ namespace icreate_test2.DataStructure
             foreach (Heading heading in forumHeadings)
             {
                 heading.GenerateAllTitles();
-                forumAllTitles = forumAllTitles.Concat(heading.headingAllTiles).ToList();
+                foreach(PostTitle postTitle in heading.headingAllTiles)
+                {
+                    forumAllTitles.Add(postTitle);
+                }
+            }
+        }
+
+        // Create the OnPropertyChanged method to raise the event 
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(name));
             }
         }
     }

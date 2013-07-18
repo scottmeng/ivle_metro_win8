@@ -38,24 +38,46 @@ namespace icreate_test2
         /// session.  This will be null the first time a page is visited.</param>
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
-            for (int i =0; i < 7; i++)
-                for (int j = 0; j < 29; j++)
+            timetableGrid.Background = new SolidColorBrush(Color.FromArgb(0xFF, 0xF0, 0xF0, 0xF0));
+
+            int todayCode = DateTime.Now.DayOfWeek.GetHashCode();
+
+            for (int i = 1; i < 7; i++)
+            {
+                SolidColorBrush backgroundBrush;
+
+                if (i == todayCode)
+                {
+                    backgroundBrush = new SolidColorBrush(Color.FromArgb(0xFF, 0xD0, 0xD0, 0xD0));
+                }
+                else
+                {
+                    backgroundBrush = new SolidColorBrush(Color.FromArgb(0xFF, 0xF0, 0xF0, 0xF0));
+                }
+
+                for (int j = 1; j < 29; j+=2)
                 {
                     Border myBorder = new Border();
-                    SolidColorBrush brushed = new SolidColorBrush(Color.FromArgb(255, 128, 128, 128));
-                    myBorder.BorderBrush = brushed;
-                    myBorder.BorderThickness = new Thickness(0.5);
+
+                    myBorder.BorderBrush = new SolidColorBrush(Colors.White);
+                    myBorder.BorderThickness = new Thickness(0.2);
+                    myBorder.Background = backgroundBrush; 
                     timetableGrid.Children.Add(myBorder);
                     Grid.SetColumn(myBorder, i);
                     Grid.SetRow(myBorder, j);
+                    Grid.SetRowSpan(myBorder, 2);
                 }
+            }
+
             foreach (DataStructure.Class mClass in Utils.DataManager.GetClasses())
             {
                 // styling of timetable item
                 Border classBorder = new Border();
+                classBorder.Margin = new Thickness(2);
                 classBorder.Background = new SolidColorBrush(mClass.classModuleColor);
 
                 TextBlock classBlock = new TextBlock();
+                classBlock.Padding = new Thickness(5);
                 classBlock.Text = mClass.classModuleCode + "    " + mClass.classLessonType;
                 classBlock.FontSize = 24;
                 classBlock.FontFamily = new FontFamily("Segoe UI");
