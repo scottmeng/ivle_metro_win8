@@ -53,11 +53,11 @@
                     <ItemsControl x:Name="announcementListView" 
                                   ItemsSource="{Binding Source={StaticResource newAnnouncementListView}}"
                                   Margin="20,40,50,20" 
-                                  Tapped="AnnoucementTapped" 
-                                  PointerEntered="AnnoucementEntered">
+                                  Tapped="AnnoucementTapped" >
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Grid Height="180"  Margin="5,0,5,0" Background="Gray">
+                                <Grid Height="180"  Margin="5,0,5,0" Background="Gray"
+                                      PointerEntered="AnnoucementEntered">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="20"/>
                                         <ColumnDefinition Width="*"/>
@@ -113,22 +113,19 @@
 
             <Grid Grid.Row="1" Grid.RowSpan="2" HorizontalAlignment="Left">
                 <ScrollViewer x:Name="scrollViewer" 
-                              HorizontalAlignment="Left" 
+                              HorizontalAlignment="Left"
                               VerticalAlignment="Top"
-                              VerticalScrollBarVisibility="Disabled" 
-                              HorizontalScrollBarVisibility="Hidden" 
-                              VerticalScrollMode="Disabled" 
-                              HorizontalScrollMode="Auto" 
+                              VerticalScrollBarVisibility="Disabled"
+                              HorizontalScrollBarVisibility="Hidden"
+                              VerticalScrollMode="Disabled"
+                              HorizontalScrollMode="Auto"
                               ZoomMode="Disabled">
 
                     <StackPanel Orientation="Horizontal">
-                        <ItemsControl x:Name="moduleListView" 
+                        <ItemsControl x:Name="moduleListView"
                                       ItemsSource="{Binding Source={StaticResource moduleGridView}}"
-                                      Margin="20,40,50,20" 
-                                      PointerPressed="ModuleItemGridPressed" 
-                                      PointerReleased="ModuleItemGridReleased" 
-                                      PointerExited="ModuleItemGridExited" 
-                                      PointerEntered="ModuleItemGridEntered">
+                                      Margin="20,40,50,20"
+                                      >
                             <ItemsControl.ItemContainerTransitions>
                                 <TransitionCollection>
                                     <EntranceThemeTransition/>
@@ -143,7 +140,11 @@
                                 <DataTemplate>
                                     <Grid Width="364"
                                           Height="171"
-                                          Margin="12">
+                                          Margin="12"
+                                          PointerPressed="ModuleItemGridPressed"
+                                          PointerReleased="ModuleItemGridReleased"
+                                          PointerExited="ModuleItemGridExited"
+                                          PointerEntered="ModuleItemGridEntered">
                                         <Grid.Background>
                                             <SolidColorBrush Color="{Binding moduleShowColor}" />
                                         </Grid.Background>
@@ -195,7 +196,7 @@
                                            FontSize="38" 
                                            Foreground="LightSlateGray" 
                                            Margin="10" 
-                                           Opacity="0.7" 
+                                           Opacity="0.7"
                                            VerticalAlignment="Bottom" 
                                            FontWeight="Light">
                                     <TextBlock.Style>

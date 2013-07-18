@@ -480,7 +480,6 @@ namespace icreate_test2
 
                 folder.Source = _currentWorkbin.workbinFolders;
                 file.Source = new List<DataStructure.File>();
-
                 upFolderButton.Visibility = Visibility.Collapsed;
             }
         }
