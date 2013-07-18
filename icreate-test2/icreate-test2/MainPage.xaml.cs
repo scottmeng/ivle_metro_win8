@@ -261,7 +261,7 @@ namespace icreate_test2
             if (selectedAnnouncement != null)
             {
                 selectedAnnouncement.announceColor = selectedAnnouncement.announceSecondaryColor;
-                selectedAnnouncement.backgroundConverter = false;
+                selectedAnnouncement.backgroundConverter = 2;
             }
         }
         private void AnnoucementExited(object sender, PointerRoutedEventArgs e)
@@ -270,7 +270,7 @@ namespace icreate_test2
             for (int i = 0; i < annoucements.Count; i++)
             {
                 annoucements[i].announceColor = annoucements[i].announcePrimaryColor;
-                annoucements[i].backgroundConverter = true;
+                annoucements[i].backgroundConverter = 1;
             }
         }
 
@@ -299,11 +299,11 @@ namespace icreate_test2
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            bool _value = (bool)value;
-            if (_value)
+            int _value = (int)value;
+            if (_value==1)
                 return "#808080";
             else
-                return "#D3D3D3";
+                return "#696969";
         }
 
         // No need to implement converting back on a one-way binding 

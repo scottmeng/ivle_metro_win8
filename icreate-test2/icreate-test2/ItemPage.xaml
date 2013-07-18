@@ -1101,7 +1101,7 @@
                                     </ListView.ItemTemplate>
                                 </ListView>
                             </StackPanel>
-                            <ScrollViewer x:Name="scrollViewer" 
+                            <!--<ScrollViewer x:Name="scrollViewer" 
                                         HorizontalAlignment="Left" 
                                         VerticalAlignment="Top"
                                         VerticalScrollBarVisibility="Disabled" 
@@ -1120,11 +1120,27 @@
                                         </ItemsPanelTemplate>
                                     </ItemsControl.ItemsPanel>
                                     <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                                            <Grid Width="300" 
+                                        <DataTemplate>-->
+                            <GridView x:Name="fileItemsControl" 
+                                      ItemsSource="{Binding Source={StaticResource file}}"
+                                      Tapped="onFileSelected"
+                                      Margin="5" 
+                                      SelectionMode="None"
+                                      HorizontalAlignment="Left"
+                                      ScrollViewer.HorizontalScrollMode="Auto"
+                                      ScrollViewer.VerticalScrollMode="Disabled"
+                                      Grid.Column="1">
+                                <GridView.ItemContainerTransitions>
+                                    <TransitionCollection>
+                                        <PopupThemeTransition/>
+                                    </TransitionCollection>
+                                </GridView.ItemContainerTransitions>
+                                <GridView.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid Width="300" 
                                                     Height="100" 
-                                                    Margin="10" Background="Green">
-                                                <TextBlock Text="{Binding fileName}" 
+                                                    Margin="2" Background="Green">
+                                            <TextBlock Text="{Binding fileName}" 
                                                             Margin="15" 
                                                             Foreground="White" 
                                                             FontSize="24" 
@@ -1133,11 +1149,13 @@
                                                             VerticalAlignment="Top"  
                                                            TextWrapping="Wrap"
                                                             HorizontalAlignment="Left"/>
-                                            </Grid>
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
+                                        </Grid>
+                                    </DataTemplate>
+                                    <!--</ItemsControl.ItemTemplate>
                                 </ItemsControl>
-                            </ScrollViewer>
+                            </ScrollViewer>-->
+                                </GridView.ItemTemplate>
+                            </GridView>
                         </Grid>
                     </FlipViewItem>
                     <!-- Third item is workbin -->
