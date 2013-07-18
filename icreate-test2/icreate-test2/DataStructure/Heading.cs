@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
+using System.Collections.ObjectModel;
 
 namespace icreate_test2.DataStructure
 {
@@ -22,7 +23,7 @@ namespace icreate_test2.DataStructure
         [DataMember(Name = "Threads")]
         public Thread[] headingThreads { get; set; }
 
-        public List<PostTitle> headingAllTiles { get; set; }
+        public ObservableCollection<PostTitle> headingAllTiles { get; set; }
 
         public Heading(string id, string title, int badge, Thread[] threads)
         {
@@ -31,16 +32,16 @@ namespace icreate_test2.DataStructure
             headingBadge = badge;
             headingThreads = threads;
 
-            headingAllTiles = new List<PostTitle>();
+            headingAllTiles = new ObservableCollection<PostTitle>();
         }
 
         public void GenerateAllTitles()
         {
-            headingAllTiles.Add(new PostTitle(headingTitle, true, null));
+            headingAllTiles.Add(new PostTitle(headingTitle, true, null, this.headingId));
 
             foreach (Thread thread in headingThreads)
             {
-                headingAllTiles.Add(new PostTitle(thread.threadTitle, false, thread.threadId));
+                headingAllTiles.Add(new PostTitle(thread.threadTitle, false, thread.threadId, null));
             }
         }
     }

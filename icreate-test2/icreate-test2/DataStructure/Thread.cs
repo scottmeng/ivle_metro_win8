@@ -7,6 +7,7 @@ using System.Runtime.Serialization;
 using System.Net;
 using Windows.UI;
 using System.Text.RegularExpressions;
+using System.Collections.ObjectModel;
 
 namespace icreate_test2.DataStructure
 {
@@ -38,7 +39,7 @@ namespace icreate_test2.DataStructure
         public bool threadIsRead { get; set; }
 
         // hold all threads data
-        public List<Thread> threadAllThreads { get; set; }
+        public ObservableCollection<Thread> threadAllThreads { get; set; }
 
         public Thread(String id, String title, String body, DateTime date, Member poster, List<Thread> innerThreads, bool isPosterStaff, bool isRead)
         {
@@ -58,13 +59,16 @@ namespace icreate_test2.DataStructure
             threadBody = Regex.Replace(threadBody, "<.+?>", string.Empty);
             threadBody = Regex.Replace(threadBody, "&nbsp;", string.Empty);
 
-            threadAllThreads = new List<Thread>();
+            threadAllThreads = new ObservableCollection<Thread>();
             foreach (Thread thread in threadInnerThreads)
             {
                 thread.GenerateAllThread();
-                threadAllThreads = threadAllThreads.Concat(thread.threadAllThreads).ToList();
+                foreach (Thread innerThread in thread.threadAllThreads)
+                {
+                    threadAllThreads.Add(innerThread);
+                }
             }
-            threadAllThreads.Insert(0, new Thread(threadId, threadTitle, threadBody, threadDate, threadPoster, null, threadIsPosterStaff, threadIsRead));
+            threadAllThreads.Insert(0, this);
         }
     }
 }

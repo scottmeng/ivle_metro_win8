@@ -43,6 +43,8 @@ namespace icreate_test2
         private int _announcementIndex;
 
         private int _currentForumIndex;
+        private bool _isToPostNewThread = false;
+        private string _headingId;
         
         private DataStructure.Module _currentModule;
         private List<DataStructure.Module> _otherModules;
@@ -100,7 +102,6 @@ namespace icreate_test2
             if (_currentModule.isForumAvailable)
             {
                 await GetForumAsync();
-                updateForum();
             }
 
             // disable type to search
@@ -263,6 +264,9 @@ namespace icreate_test2
             DataStructure.ForumWrapper forumWrapper = JsonConvert.DeserializeObject<DataStructure.ForumWrapper>(forumsResponse);
 
             _currentModule.moduleForums = forumWrapper.forums;
+            
+            // generate content for display
+            updateForum();
         }
 
         private async Task GetExamAsync()
@@ -397,18 +401,10 @@ namespace icreate_test2
             {
                 // Set the option to show the picker
                 var options = new Windows.System.LauncherOptions();
-                options.DisplayApplicationPicker = true;
+                options.DisplayApplicationPicker = false;
 
                 // Launch the retrieved file
-                bool success = await Windows.System.Launcher.LaunchFileAsync(targetFile, options);
-                if (success)
-                {
-                    // File launched
-                }
-                else
-                {
-                    // File launch failed
-                }
+                await Windows.System.Launcher.LaunchFileAsync(targetFile, options);
             }
             else
             {
@@ -420,15 +416,26 @@ namespace icreate_test2
         {
             DataStructure.PostTitle selectedPostTitle = (e.OriginalSource as FrameworkElement).DataContext as DataStructure.PostTitle;
 
-            if (selectedPostTitle != null && !selectedPostTitle.isPostHeading)
+            if (selectedPostTitle != null)
             {
-                foreach (DataStructure.Heading heading in _currentModule.moduleForums[_currentForumIndex].forumHeadings)
-                { 
-                    foreach (DataStructure.Thread thread in heading.headingThreads)
+                if (selectedPostTitle.isPostHeading)
+                {
+                    _isToPostNewThread = true;
+                    _headingId = selectedPostTitle.headingId;
+                    replyStackPanel.Visibility = Visibility.Visible;
+                    titleTextBox.Text = "";
+                }
+                else
+                {
+                    // openning an existing thread
+                    foreach (DataStructure.Heading heading in _currentModule.moduleForums[_currentForumIndex].forumHeadings)
                     {
-                        if (thread.threadId == selectedPostTitle.threadId)
+                        foreach (DataStructure.Thread thread in heading.headingThreads)
                         {
-                            threads.Source = thread.threadAllThreads;
+                            if (thread.threadId == selectedPostTitle.threadId)
+                            {
+                                threads.Source = thread.threadAllThreads;
+                            }
                         }
                     }
                 }
@@ -487,18 +494,41 @@ namespace icreate_test2
             }
             else
             {
+                _isToPostNewThread = false;
                 _currentThread = tappedThread;
                 replyStackPanel.Visibility = Visibility.Visible;
-                replyTextBlock.Text = "Re: " + tappedThread.threadTitle;
+                titleTextBox.Text = "Re: " + tappedThread.threadTitle;
             }
         }
 
-        private async void replyButton_Tapped(object sender, TappedRoutedEventArgs e)
+        private async void PostNewThread()
+        {
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters.Add("HeadingID", _headingId);
+            parameters.Add("Title", titleTextBox.Text);
+            parameters.Add("Reply", contentTextBox.Text);
+
+            string state = await Utils.RequestSender.SendHttpPostRequestAsync("Forum_PostNewThread_JSON", parameters);
+
+            // if there is valid reply
+            // close reply textbox
+            if (state != null)
+            {
+                replyStackPanel.Visibility = Visibility.Collapsed;
+            }
+
+            // TO-DO 
+            // refresh the heading list
+            await GetForumAsync();
+            headers.Source = _currentModule.moduleForums[0].forumAllTitles;
+        }
+
+        private async void ReplyThread()
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters.Add("ThreadID", _currentThread.threadId);
-            parameters.Add("Title", "Re: " + _currentThread.threadTitle);
-            parameters.Add("Reply", replyTextBox.Text);
+            parameters.Add("Title", titleTextBox.Text);
+            parameters.Add("Reply", contentTextBox.Text);
 
             string state = await Utils.RequestSender.SendHttpPostRequestAsync("Forum_ReplyThread_JSON", parameters);
 
@@ -511,6 +541,18 @@ namespace icreate_test2
 
             // TO-DO 
             // refresh the thread list
+        }
+
+        private void replyButton_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            if (_isToPostNewThread)
+            {
+                PostNewThread();
+            }
+            else
+            {
+                ReplyThread();
+            }
         }
 
         private void FolderPointerEntered(object sender, PointerRoutedEventArgs e)
