@@ -8,6 +8,7 @@
     xmlns:common="using:icreate_test2.Common"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mmppf="using:Microsoft.PlayerFramework"
     mc:Ignorable="d">
 
     <Page.Resources>
@@ -21,6 +22,8 @@
         <CollectionViewSource x:Name="headers" Source="{Binding Items}"/>
         <CollectionViewSource x:Name="threads" Source="{Binding Items}"/>
         <CollectionViewSource x:Name="innerThreads" Source="{Binding Items}"/>
+        <CollectionViewSource x:Name="itempageLeftSide" Source="{Binding Items}"/>
+
         <Style x:Key="FlipViewStyle1" TargetType="FlipView">
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="BorderThickness" Value="0"/>
@@ -526,6 +529,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
         <Style x:Key="FolderStyle" TargetType="ListViewItem">
             <Setter Property="FontFamily" Value="{StaticResource ContentControlThemeFontFamily}"/>
             <Setter Property="FontSize" Value="{StaticResource ControlContentThemeFontSize}"/>
@@ -842,36 +846,35 @@
         * Row 1 contains the rest of the page layout
     -->
     <Grid x:Name="mainGrid" Style="{StaticResource LayoutRootStyle}">
-
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="180"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <!-- Back button and page title -->
-            <StackPanel Margin="0,30,0,0" Orientation="Vertical" Grid.Column="0" Grid.Row="0">
-                <Button x:Name="backButton" Click="backButton_Click" 
-                        Margin="0,20,0,20"
-                        VerticalAlignment="Center"
-                        HorizontalAlignment="Center"
-                        IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" 
-                        Style="{StaticResource BackButtonStyle}"/>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+        <StackPanel Grid.Column="0" x:Name="leftStackPanel">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="180"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <!-- Back button and page title -->
+                <StackPanel Margin="0,30,0,0" Orientation="Vertical" Grid.Column="0" Grid.Row="0">
+                    <Button x:Name="backButton" Click="backButton_Click" 
+                                        Margin="0,20,0,20"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}"
+                                        Style="{StaticResource BackButtonStyle}"/>
                     <TextBlock VerticalAlignment="Center"
-                            Margin="10,5"
-                            x:Name="mainModuleName" 
-                            FontSize="36" 
-                            FontWeight="Normal"
-                            Style="{StaticResource TitleTextStyle}" />
-                    <Button x:Name="menuButton" Content="..." Click="menuButtonClick" />
+                                Margin="10,5"
+                                x:Name="mainModuleName"
+                                FontSize="36"
+                                FontWeight="Normal"
+                               HorizontalAlignment="Center"
+                                Style="{StaticResource TitleTextStyle}" />
+                    <Button x:Name="menuButton" Content="..." Click="menuButtonClick" HorizontalAlignment="Center"/>
                 </StackPanel>
-            </StackPanel>
-            <Grid Grid.Column="0" Grid.Row="1">
-                <ListView x:Name="itemList"
+                <Grid Grid.Column="0" Grid.Row="1">
+                    <ListView x:Name="itemList"
                           Margin="30,0,10,0"
                           HorizontalContentAlignment="Stretch"
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
@@ -880,14 +883,14 @@
                           Tapped="itemChanged_ListViewTapped" 
                           ItemContainerStyle="{StaticResource noTickNew}"
                           IsSwipeEnabled="True">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <Grid HorizontalAlignment="Stretch">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="2*"/>
-                                    <RowDefinition Height="*"/>
-                                </Grid.RowDefinitions>
-                                <TextBlock Margin="5" 
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid HorizontalAlignment="Stretch">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="2*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Margin="5" 
                                        Padding="5"
                                        Grid.Row="0"
                                        HorizontalAlignment="Left"
@@ -896,8 +899,8 @@
                                        FontSize="24" 
                                        VerticalAlignment="Bottom"
                                        FontWeight="Thin">
-                                </TextBlock>
-                                <TextBlock Margin="5" 
+                                    </TextBlock>
+                                    <TextBlock Margin="5" 
                                        Padding="5"
                                        Grid.Row="1"
                                        HorizontalAlignment="Right"
@@ -906,13 +909,17 @@
                                        FontSize="14" 
                                        VerticalAlignment="Bottom"
                                        FontWeight="Thin">
-                                </TextBlock>
-                            </Grid>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                                    </TextBlock>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
             </Grid>
-        </Grid>
+        </StackPanel>
+        <!--end of left item-->
+
+        <!--flipview-->
         <Grid Grid.Column="1">
             <FlipView x:Name="flipView"  
                           Margin="10,30,10,30"
@@ -1354,37 +1361,42 @@
                 <!-- Fifth item is forum -->
 
                 <!-- Sixth item is webcast -->
+                <FlipViewItem>
+                    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+                        <mmppf:MediaPlayer Source="http://coursecast3.nus.edu.sg/Panopto/Content/Sessions/73e24052-2a71-48ce-a17f-b59f563a142f/91554bde-1282-4984-9b92-eb888743d454-00dffce6-309f-4e42-a9c9-1832b459ba50.mp4"/>
+                    </Grid>
+                </FlipViewItem>
                 <!-- Sixth item is webcast -->
 
             </FlipView>
         </Grid>
+
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="ApplicationViewStates">
+                <VisualState x:Name="FullScreenLandscape"/>
+                <VisualState x:Name="Filled"/>
+
+                <!-- The entire page respects the narrower 100-pixel margin convention for portrait -->
+                <VisualState x:Name="FullScreenPortrait">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="backButton" Storyboard.TargetProperty="Style">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PortraitBackButtonStyle}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+
+                <!-- The back button and title have different styles when snapped -->
+                <VisualState x:Name="Snapped">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="backButton" Storyboard.TargetProperty="Style">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource SnappedBackButtonStyle}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="pageTitle" Storyboard.TargetProperty="Style">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource SnappedPageHeaderTextStyle}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
     </Grid>
-
-    <VisualStateManager.VisualStateGroups>
-        <VisualStateGroup x:Name="ApplicationViewStates">
-            <VisualState x:Name="FullScreenLandscape"/>
-            <VisualState x:Name="Filled"/>
-
-            <!-- The entire page respects the narrower 100-pixel margin convention for portrait -->
-            <VisualState x:Name="FullScreenPortrait">
-                <Storyboard>
-                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="backButton" Storyboard.TargetProperty="Style">
-                        <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource PortraitBackButtonStyle}"/>
-                    </ObjectAnimationUsingKeyFrames>
-                </Storyboard>
-            </VisualState>
-
-            <!-- The back button and title have different styles when snapped -->
-            <VisualState x:Name="Snapped">
-                <Storyboard>
-                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="backButton" Storyboard.TargetProperty="Style">
-                        <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource SnappedBackButtonStyle}"/>
-                    </ObjectAnimationUsingKeyFrames>
-                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="pageTitle" Storyboard.TargetProperty="Style">
-                        <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource SnappedPageHeaderTextStyle}"/>
-                    </ObjectAnimationUsingKeyFrames>
-                </Storyboard>
-            </VisualState>
-        </VisualStateGroup>
-    </VisualStateManager.VisualStateGroups>
 </common:LayoutAwarePage>

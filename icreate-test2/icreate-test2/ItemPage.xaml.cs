@@ -179,6 +179,8 @@ namespace icreate_test2
                 flipView.SelectedIndex = 0;
                 _currentItem = _currentModule.moduleItems[0];
             }
+            SolidColorBrush backgroundBrush = new SolidColorBrush(_currentModule.modulePrimaryColor);
+            leftStackPanel.Background = backgroundBrush;
         }
 
         /// <summary>
@@ -213,6 +215,7 @@ namespace icreate_test2
                         break;
 
                     case DataStructure.ItemType.WEBCAST:
+                        flipView.SelectedIndex = 5;
                         break;
 
                     case DataStructure.ItemType.WORKBIN:
@@ -234,7 +237,6 @@ namespace icreate_test2
                         headers.Source = _currentModule.moduleForums[selectedItem.itemIndex].forumAllTitles;
                         
                         break;
-
                     default:
                         break;
                 }
