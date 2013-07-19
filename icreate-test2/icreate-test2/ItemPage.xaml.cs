@@ -176,6 +176,8 @@ namespace icreate_test2
                 flipView.SelectedIndex = 0;
                 _currentItem = _currentModule.moduleItems[0];
             }
+            SolidColorBrush backgroundBrush = new SolidColorBrush(_currentModule.modulePrimaryColor);
+            leftStackPanel.Background = backgroundBrush;
         }
 
         /// <summary>
