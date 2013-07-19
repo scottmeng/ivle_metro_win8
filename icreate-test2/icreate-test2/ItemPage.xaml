@@ -845,7 +845,7 @@
         * Row 0 contains the back button and page title
         * Row 1 contains the rest of the page layout
     -->
-    <Grid x:Name="mainGrid" Style="{StaticResource LayoutRootStyle}">
+    <Grid x:Name="mainGrid" Style="{StaticResource LayoutRootStyle}" KeyUp="mainGrid_KeyUp">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="3*"/>
@@ -1348,9 +1348,9 @@
                                 </ListView.ItemTemplate>
                             </ListView>
                             <StackPanel x:Name="replyStackPanel" Orientation="Vertical" Visibility="Collapsed" VerticalAlignment="Bottom" Grid.Row="1">
-                                <TextBox x:Name="titleTextBox" Height="40" FontSize="32"/>
+                                <TextBox x:Name="titleTextBox" Height="40" FontSize="32" KeyUp="titleTextBox_KeyUp"/>
                                 <Grid>
-                                    <TextBox x:Name="contentTextBox" TextWrapping="Wrap" Height="150"/>
+                                    <TextBox x:Name="contentTextBox" TextWrapping="Wrap" Height="150" KeyUp="contentTextBox_KeyUp"/>
                                     <Button x:Name="replyButton" HorizontalAlignment="Right" VerticalAlignment="Bottom"
                                                 Content="Submit" FontSize="32" Tapped="replyButton_Tapped"/>
                                 </Grid>

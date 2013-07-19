@@ -25,29 +25,10 @@
       </VisualElements>
       <Extensions>
         <Extension Category="windows.search" />
-        <Extension Category="windows.fileTypeAssociation">
-          <FileTypeAssociation Name="ivle_metro">
-            <DisplayName>IVLE Metro</DisplayName>
-            <SupportedFileTypes>
-              <FileType>.doc</FileType>
-              <FileType>.ppt</FileType>
-              <FileType>.pdf</FileType>
-              <FileType>.docx</FileType>
-              <FileType>.pptx</FileType>
-              <FileType>.xlxs</FileType>
-              <FileType>.xls</FileType>
-              <FileType>.txt</FileType>
-              <FileType>.jpeg</FileType>
-              <FileType>.jpg</FileType>
-              <FileType>.png</FileType>
-            </SupportedFileTypes>
-          </FileTypeAssociation>
-        </Extension>
       </Extensions>
     </Application>
   </Applications>
   <Capabilities>
-    <Capability Name="documentsLibrary" />
     <Capability Name="internetClient" />
   </Capabilities>
 </Package>

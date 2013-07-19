@@ -24,6 +24,7 @@ using Windows.Media;
 using Callisto.Controls;
 using Newtonsoft.Json;
 using Windows.Storage;
+using Windows.Storage.AccessCache;
 using Windows.Storage.Streams;
 using Windows.ApplicationModel.Search;
 
@@ -56,8 +57,6 @@ namespace icreate_test2
 
         // store parent/child folders in hierachy 
         private List<DataStructure.Folder> _folderTree;
-
-        private static List<string> _fileTypes = new List<string>() { "pdf", "ppt", "doc", "docx", "pptx", "txt", "png", "jpg"};
 
         public ItemPage()
         {
@@ -287,7 +286,7 @@ namespace icreate_test2
             _currentModule.moduleExamInfos = examInfoWrapper.examInfos;
         }
 
-        private void onFolderSelected(object sender, TappedRoutedEventArgs e)
+        private async void onFolderSelected(object sender, TappedRoutedEventArgs e)
         {
             if (_currentFolder != null)
             {
@@ -296,8 +295,8 @@ namespace icreate_test2
 
             _currentFolder = (e.OriginalSource as FrameworkElement).DataContext as DataStructure.Folder;
 
-            folder.Source = _currentFolder.folderInnerFolders;
-            file.Source = _currentFolder.folderFiles;
+            this.folder.Source = _currentFolder.folderInnerFolders;
+            this.file.Source = _currentFolder.folderFiles;
 
             upFolderButton.Visibility = Visibility.Visible;
         }
@@ -339,102 +338,108 @@ namespace icreate_test2
             }
         }
 
-        private bool IsFileSupported(DataStructure.File selectedFile)
-        {
-            if (_fileTypes.Contains(selectedFile.fileType))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
         private async void onFileSelected(object sender, TappedRoutedEventArgs e)
         {
             StorageFile targetFile;
 
             DataStructure.File selectedFile = (e.OriginalSource as FrameworkElement).DataContext as DataStructure.File;
 
-            if (IsFileSupported(selectedFile))
+            // check if folder token exists
+            Windows.Storage.ApplicationDataContainer folderTokens = Windows.Storage.ApplicationData.Current.LocalSettings;
+            string listToken = (string) folderTokens.Values[_currentModule.moduleId];
+
+            IStorageFolder moduleBaseFolder;
+
+            // if token exists
+            // get folder access
+            // otherwise create folder under Downloads library
+            if(listToken != null)
             {
-
-                HttpClient client = new HttpClient();
-
-                // http get request to validate token
-                HttpResponseMessage response = await client.GetAsync(Utils.LAPI.GenerateDownloadURL(selectedFile.fileId));
-
-                // make sure the http reponse is successful
-                response.EnsureSuccessStatusCode();
-
-                // open (or create if non-existing) the base folder under documents library
-                StorageFolder appFolder = await KnownFolders.DocumentsLibrary.CreateFolderAsync("IVLE_Metro", CreationCollisionOption.OpenIfExists);
-
-                // open/create module folder
-                String moduleFolderName = _currentModule.moduleCode.Replace("/", "_");
-                StorageFolder currentFolder = await appFolder.CreateFolderAsync(moduleFolderName, CreationCollisionOption.OpenIfExists);
-
-
-                foreach (DataStructure.Folder folder in _folderTree)
-                {
-                    currentFolder = await currentFolder.CreateFolderAsync(folder.folderName, CreationCollisionOption.OpenIfExists);
-                }
-
-                try
-                {
-                    targetFile = await currentFolder.GetFileAsync(selectedFile.fileName);
-                }
-                catch
-                {
-                    targetFile = null;
-                }
-                // if file has not been downloaded before
-                // download it
-                if (targetFile == null)
-                {
-                    // create the file
-                    targetFile = await currentFolder.CreateFileAsync(selectedFile.fileName, CreationCollisionOption.OpenIfExists);
-
-                    // store data in the file
-                    using (Stream outputStream = await targetFile.OpenStreamForWriteAsync())
-                    using (Stream inputStream = await response.Content.ReadAsStreamAsync())
-                    {
-                        inputStream.CopyTo(outputStream);
-                    }
-                }
-                // if file does exist
-                // check the creation date and the file upload time
-                // if creation date is prior to upload date, there must have been
-                // a newer version of the file
-                else if (targetFile.DateCreated.CompareTo(selectedFile.fileUploadTime) < 0)
-                {
-                    // store data in the file
-                    using (Stream outputStream = await targetFile.OpenStreamForWriteAsync())
-                    using (Stream inputStream = await response.Content.ReadAsStreamAsync())
-                    {
-                        inputStream.CopyTo(outputStream);
-                    }
-                }
-
-                // if file is sucessfully created and stored
-                if (targetFile != null)
-                {
-                    // Set the option to show the picker
-                    var options = new Windows.System.LauncherOptions();
-                    options.DisplayApplicationPicker = false;
-
-                    // Launch the retrieved file
-                    await Windows.System.Launcher.LaunchFileAsync(targetFile, options);
-                }
-                else
-                {
-                    // Could not find file
-                }
+                moduleBaseFolder = await Windows.Storage.AccessCache.StorageApplicationPermissions.FutureAccessList.GetFolderAsync(listToken);
             }
             else
             {
-                // notify user
+                String moduleFolderName = _currentModule.moduleCode.Replace("/", "_");
+
+                moduleBaseFolder = await Windows.Storage.DownloadsFolder.CreateFolderAsync(moduleFolderName);
+                listToken = Windows.Storage.AccessCache.StorageApplicationPermissions.FutureAccessList.Add(moduleBaseFolder, moduleBaseFolder.Name);
+
+                folderTokens.Values[_currentModule.moduleId] = listToken;
+            }
+
+
+            HttpClient client = new HttpClient();
+
+            // http get request to validate token
+            HttpResponseMessage response = await client.GetAsync(Utils.LAPI.GenerateDownloadURL(selectedFile.fileId));
+
+            // make sure the http reponse is successful
+            response.EnsureSuccessStatusCode();
+
+            /*
+            // open (or create if non-existing) the base folder under documents library
+            StorageFolder appFolder = await KnownFolders.DocumentsLibrary.CreateFolderAsync("IVLE_Metro", CreationCollisionOption.OpenIfExists);
+
+            // open/create module folder
+            String moduleFolderName = _currentModule.moduleCode.Replace("/", "_");
+             * */
+            IStorageFolder currentFolder = moduleBaseFolder; 
+
+
+            foreach (DataStructure.Folder folder in _folderTree)
+            {
+                currentFolder = await currentFolder.CreateFolderAsync(folder.folderName, CreationCollisionOption.OpenIfExists);
+            }
+
+            try
+            {
+                targetFile = await currentFolder.GetFileAsync(selectedFile.fileName);
+            }
+            catch
+            {
+                targetFile = null;
+            }
+            // if file has not been downloaded before
+            // download it
+            if (targetFile == null)
+            {
+                // create the file
+                targetFile = await currentFolder.CreateFileAsync(selectedFile.fileName, CreationCollisionOption.OpenIfExists);
+
+                // store data in the file
+                using (Stream outputStream = await targetFile.OpenStreamForWriteAsync())
+                using (Stream inputStream = await response.Content.ReadAsStreamAsync())
+                {
+                    inputStream.CopyTo(outputStream);
+                }
+            }
+            // if file does exist
+            // check the creation date and the file upload time
+            // if creation date is prior to upload date, there must have been
+            // a newer version of the file
+            else if (targetFile.DateCreated.CompareTo(selectedFile.fileUploadTime) < 0)
+            {
+                // store data in the file
+                using (Stream outputStream = await targetFile.OpenStreamForWriteAsync())
+                using (Stream inputStream = await response.Content.ReadAsStreamAsync())
+                {
+                    inputStream.CopyTo(outputStream);
+                }
+            }
+
+            // if file is sucessfully created and stored
+            if (targetFile != null)
+            {
+                // Set the option to show the picker
+                var options = new Windows.System.LauncherOptions();
+                options.DisplayApplicationPicker = false;
+
+                // Launch the retrieved file
+                await Windows.System.Launcher.LaunchFileAsync(targetFile, options);
+            }
+            else
+            {
+                // Could not find file
             }
         }
 
@@ -613,6 +618,27 @@ namespace icreate_test2
         {
             SolidColorBrush brush = new SolidColorBrush(Color.FromArgb(255, 255, 255, 255));
             FolderGrid.Background = brush;
+        }
+
+        private void mainGrid_KeyUp(object sender, KeyRoutedEventArgs e)
+        {
+            // if the event is not triggerd from a textbox
+            // and the key pressed is backspace
+            // then navigate back to the previous page
+            if (e.Key == Windows.System.VirtualKey.Back)
+            {
+                GoBack(sender, e);
+            }
+        }
+
+        private void titleTextBox_KeyUp(object sender, KeyRoutedEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        private void contentTextBox_KeyUp(object sender, KeyRoutedEventArgs e)
+        {
+            e.Handled = true;
         }
     }
 
