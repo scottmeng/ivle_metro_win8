@@ -75,7 +75,7 @@ namespace icreate_test2.DataStructure
         }
         public Color modulePrimaryColor { get; set; }
         public Color moduleSecondaryColor { get; set; }
-        public List<ModuleItem> moduleItems { get; set; }
+        public ObservableCollection<ModuleItem> moduleItems { get; set; }
         public bool isAnnouncementAvailable { get; set; }
         public bool isWorkbinAvailable { get; set; }
         public bool isGradebookAvailable { get; set; }
@@ -99,7 +99,7 @@ namespace icreate_test2.DataStructure
             moduleMc = mc;
             moduleLecturers = lecturers;
 
-            moduleItems = new List<ModuleItem>();
+            moduleItems = new ObservableCollection<ModuleItem>();
             isAnnouncementAvailable = false;
             isWorkbinAvailable = false;
             isGradebookAvailable = false;
@@ -139,14 +139,14 @@ namespace icreate_test2.DataStructure
                 /*
                  * No.1 Module info (always visible)
                  */
-                moduleItems.Add(new ModuleItem("Module Info", ItemType.MODULE_INFO, 0));
+                moduleItems.Add(new ModuleItem("Module Info", ItemType.MODULE_INFO, 0, this.modulePrimaryColor, this.moduleSecondaryColor));
 
                 /*
                  * No.2 Announcement (invisible or one)
                  */
                 if (moduleAnnouncements.Count() > 0)
                 {
-                    moduleItems.Add(new ModuleItem("Announcements", ItemType.ANNOUNCEMENT, 0));
+                    moduleItems.Add(new ModuleItem("Announcements", ItemType.ANNOUNCEMENT, 0, this.modulePrimaryColor, this.moduleSecondaryColor));
                     isAnnouncementAvailable = true;
                 }
 
@@ -158,7 +158,7 @@ namespace icreate_test2.DataStructure
                     index = 0;
                     foreach (Workbin workbin in moduleWorkbins)
                     {
-                        moduleItems.Add(new ModuleItem(workbin.workbinTitle, ItemType.WORKBIN, index));
+                        moduleItems.Add(new ModuleItem(workbin.workbinTitle, ItemType.WORKBIN, index, this.modulePrimaryColor, this.moduleSecondaryColor));
                         index++;
                     }
                     isWorkbinAvailable = true;
@@ -169,7 +169,7 @@ namespace icreate_test2.DataStructure
                  */
                 if (moduleGradebooks.Count() > 0)
                 {
-                    moduleItems.Add(new ModuleItem("Gradebook", ItemType.GRADEBOOK, 0));
+                    moduleItems.Add(new ModuleItem("Gradebook", ItemType.GRADEBOOK, 0, this.modulePrimaryColor, this.moduleSecondaryColor));
                     isGradebookAvailable = true;
                 }
 
@@ -181,7 +181,7 @@ namespace icreate_test2.DataStructure
                     index = 0;
                     foreach (Forum forum in moduleForums)
                     {
-                        moduleItems.Add(new ModuleItem(forum.forumTitle, ItemType.FORUM, index));
+                        moduleItems.Add(new ModuleItem(forum.forumTitle, ItemType.FORUM, index, this.modulePrimaryColor, this.moduleSecondaryColor));
                         index++;
                     }
                     isForumAvailable = true;
@@ -195,7 +195,7 @@ namespace icreate_test2.DataStructure
                     index = 0;
                     foreach (Webcast webcast in moduleWebcasts)
                     {
-                        moduleItems.Add(new ModuleItem(webcast.webcastTitle, ItemType.WEBCAST, index));
+                        moduleItems.Add(new ModuleItem(webcast.webcastTitle, ItemType.WEBCAST, index, this.modulePrimaryColor, this.moduleSecondaryColor));
                         index++;
                     }
                     isWebcastAvailable = true;

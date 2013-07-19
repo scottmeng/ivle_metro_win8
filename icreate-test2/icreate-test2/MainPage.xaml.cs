@@ -101,9 +101,6 @@ namespace icreate_test2
             date_textblock.Text = dayList[dayListIndex];
             dailyListView.Source = Utils.DataManager.GetDailyClassList(todayCode);
 
-            // enable type to search
-            SearchPane.GetForCurrentView().ShowOnKeyboardInput = true;
-
             //initialize rightclick remember
             isRightClicking = false;
         }
@@ -116,6 +113,14 @@ namespace icreate_test2
         /// <param name="pageState">An empty dictionary to be populated with serializable state.</param>
         protected override void SaveState(Dictionary<String, Object> pageState)
         {
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            // enable type to search
+            SearchPane.GetForCurrentView().ShowOnKeyboardInput = true;
+
+            base.OnNavigatedTo(e);
         }
 
         private void Logoff_Button_Click(object sender, RoutedEventArgs e)

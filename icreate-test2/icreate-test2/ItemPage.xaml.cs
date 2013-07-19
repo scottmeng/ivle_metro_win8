@@ -57,6 +57,8 @@ namespace icreate_test2
         // store parent/child folders in hierachy 
         private List<DataStructure.Folder> _folderTree;
 
+        private static List<string> _fileTypes = new List<string>() { "pdf", "ppt", "doc", "docx", "pptx", "txt", "png", "jpg"};
+
         public ItemPage()
         {
             this.InitializeComponent();
@@ -68,6 +70,9 @@ namespace icreate_test2
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
+            // disable type to search
+            SearchPane.GetForCurrentView().ShowOnKeyboardInput = false;
+
             if (e.Parameter != null)
             {
                 DataStructure.NavParams navParams = e.Parameter as DataStructure.NavParams;
@@ -103,9 +108,6 @@ namespace icreate_test2
             {
                 await GetForumAsync();
             }
-
-            // disable type to search
-            SearchPane.GetForCurrentView().ShowOnKeyboardInput = false;
         }
 
 
@@ -337,83 +339,102 @@ namespace icreate_test2
             }
         }
 
+        private bool IsFileSupported(DataStructure.File selectedFile)
+        {
+            if (_fileTypes.Contains(selectedFile.fileType))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         private async void onFileSelected(object sender, TappedRoutedEventArgs e)
         {
             StorageFile targetFile;
 
             DataStructure.File selectedFile = (e.OriginalSource as FrameworkElement).DataContext as DataStructure.File;
 
-
-            HttpClient client = new HttpClient();
-
-            // http get request to validate token
-            HttpResponseMessage response = await client.GetAsync(Utils.LAPI.GenerateDownloadURL(selectedFile.fileId));
-
-            // make sure the http reponse is successful
-            response.EnsureSuccessStatusCode();
-
-            // open (or create if non-existing) the base folder under documents library
-            StorageFolder appFolder = await KnownFolders.DocumentsLibrary.CreateFolderAsync("IVLE_Metro", CreationCollisionOption.OpenIfExists);
-            
-            // open/create module folder
-            String moduleFolderName = _currentModule.moduleCode.Replace("/", "_");
-            StorageFolder currentFolder = await appFolder.CreateFolderAsync(moduleFolderName, CreationCollisionOption.OpenIfExists);
-
-            
-            foreach (DataStructure.Folder folder in _folderTree)
+            if (IsFileSupported(selectedFile))
             {
-                currentFolder = await currentFolder.CreateFolderAsync(folder.folderName, CreationCollisionOption.OpenIfExists);
-            }
 
-            try
-            {
-                targetFile = await currentFolder.GetFileAsync(selectedFile.fileName);
-            }
-            catch
-            {
-                targetFile = null;
-            }
-            // if file has not been downloaded before
-            // download it
-            if (targetFile == null)
-            {
-                // create the file
-                targetFile = await currentFolder.CreateFileAsync(selectedFile.fileName, CreationCollisionOption.OpenIfExists);
+                HttpClient client = new HttpClient();
 
-                // store data in the file
-                using (Stream outputStream = await targetFile.OpenStreamForWriteAsync())
-                using (Stream inputStream = await response.Content.ReadAsStreamAsync())
+                // http get request to validate token
+                HttpResponseMessage response = await client.GetAsync(Utils.LAPI.GenerateDownloadURL(selectedFile.fileId));
+
+                // make sure the http reponse is successful
+                response.EnsureSuccessStatusCode();
+
+                // open (or create if non-existing) the base folder under documents library
+                StorageFolder appFolder = await KnownFolders.DocumentsLibrary.CreateFolderAsync("IVLE_Metro", CreationCollisionOption.OpenIfExists);
+
+                // open/create module folder
+                String moduleFolderName = _currentModule.moduleCode.Replace("/", "_");
+                StorageFolder currentFolder = await appFolder.CreateFolderAsync(moduleFolderName, CreationCollisionOption.OpenIfExists);
+
+
+                foreach (DataStructure.Folder folder in _folderTree)
                 {
-                    inputStream.CopyTo(outputStream);
+                    currentFolder = await currentFolder.CreateFolderAsync(folder.folderName, CreationCollisionOption.OpenIfExists);
                 }
-            }
-            // if file does exist
-            // check the creation date and the file upload time
-            // if creation date is prior to upload date, there must have been
-            // a newer version of the file
-            else if (targetFile.DateCreated.CompareTo(selectedFile.fileUploadTime) < 0)
-            {
-                // store data in the file
-                using (Stream outputStream = await targetFile.OpenStreamForWriteAsync())
-                using (Stream inputStream = await response.Content.ReadAsStreamAsync())
-                {
-                    inputStream.CopyTo(outputStream);
-                }
-            }
-            
-            // if file is sucessfully created and stored
-            if (targetFile != null)
-            {
-                // Set the option to show the picker
-                var options = new Windows.System.LauncherOptions();
-                options.DisplayApplicationPicker = false;
 
-                // Launch the retrieved file
-                await Windows.System.Launcher.LaunchFileAsync(targetFile, options);
+                try
+                {
+                    targetFile = await currentFolder.GetFileAsync(selectedFile.fileName);
+                }
+                catch
+                {
+                    targetFile = null;
+                }
+                // if file has not been downloaded before
+                // download it
+                if (targetFile == null)
+                {
+                    // create the file
+                    targetFile = await currentFolder.CreateFileAsync(selectedFile.fileName, CreationCollisionOption.OpenIfExists);
+
+                    // store data in the file
+                    using (Stream outputStream = await targetFile.OpenStreamForWriteAsync())
+                    using (Stream inputStream = await response.Content.ReadAsStreamAsync())
+                    {
+                        inputStream.CopyTo(outputStream);
+                    }
+                }
+                // if file does exist
+                // check the creation date and the file upload time
+                // if creation date is prior to upload date, there must have been
+                // a newer version of the file
+                else if (targetFile.DateCreated.CompareTo(selectedFile.fileUploadTime) < 0)
+                {
+                    // store data in the file
+                    using (Stream outputStream = await targetFile.OpenStreamForWriteAsync())
+                    using (Stream inputStream = await response.Content.ReadAsStreamAsync())
+                    {
+                        inputStream.CopyTo(outputStream);
+                    }
+                }
+
+                // if file is sucessfully created and stored
+                if (targetFile != null)
+                {
+                    // Set the option to show the picker
+                    var options = new Windows.System.LauncherOptions();
+                    options.DisplayApplicationPicker = false;
+
+                    // Launch the retrieved file
+                    await Windows.System.Launcher.LaunchFileAsync(targetFile, options);
+                }
+                else
+                {
+                    // Could not find file
+                }
             }
             else
             {
-                // Could not find file
+                // notify user
             }
         }
 

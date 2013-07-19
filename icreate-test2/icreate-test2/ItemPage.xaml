@@ -885,7 +885,7 @@
                           IsSwipeEnabled="True">
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <Grid HorizontalAlignment="Stretch">
+                                <Grid HorizontalAlignment="Stretch" Background="{Binding itemShowColor}">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="2*"/>
                                         <RowDefinition Height="*"/>
