@@ -165,8 +165,11 @@ namespace icreate_test2
             if (_announcementIndex >= 0)
             {
                 itemList.SelectedIndex = 1;
+                flipView.SelectedItem = null;
                 flipView.SelectedIndex = 1;
+                var obj = flipView.SelectedValue;
                 _currentItem = _currentModule.moduleItems[1];
+                
 
                 //announcementListView.SelectedIndex = _announcementIndex;
             }

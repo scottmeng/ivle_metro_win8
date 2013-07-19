@@ -84,6 +84,7 @@
                     SelectionMode="None"
                     IsSwipeEnabled="false"
                     IsItemClickEnabled="True"
+                    Tapped="SearchResultTapped"
                     ItemsSource="{Binding Source={StaticResource resultsViewSource}}"
                     ItemTemplate="{StaticResource ModifiedSmallIcon300x70ItemTemplate}">
                     

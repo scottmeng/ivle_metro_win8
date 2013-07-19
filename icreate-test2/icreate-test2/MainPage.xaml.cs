@@ -319,25 +319,6 @@ namespace icreate_test2
 
     }
 
-    public sealed class TapControl : Control
-    {
-        public TapControl()
-        {
-            this.DefaultStyleKey = typeof(TapControl);
-        }
-
-        protected override void OnPointerPressed(PointerRoutedEventArgs e)
-        {
-            this.CapturePointer(e.Pointer);
-            VisualStateManager.GoToState(this, "PointerDown", true);
-        }
-
-        protected override void OnPointerReleased(PointerRoutedEventArgs e)
-        {
-            VisualStateManager.GoToState(this, "PointerUp", true);
-            this.ReleasePointerCapture(e.Pointer);
-        }
-    }
     public class AnnouncementBackgroundConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, string language)

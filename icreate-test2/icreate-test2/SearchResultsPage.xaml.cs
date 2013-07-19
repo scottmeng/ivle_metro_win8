@@ -81,7 +81,7 @@ namespace icreate_test2
                 // RadioButton representation used when not snapped to reflect the change
                 selectedFilter.Active = true;
 
-                IEnumerable<DataStructure.SearchResult> searchResults = from result in Utils.DataManager.searchResults
+                IEnumerable<DataStructure.Searchable> searchResults = from result in Utils.DataManager.searchables
                                                                         where result.resultTitle.ToLower().Contains(searchString) ||
                                                                               result.resultContent.ToLower().Contains(searchString)
                                                                         orderby result.resultTitle ascending
@@ -94,10 +94,10 @@ namespace icreate_test2
 
                 // Ensure results are found
                 object results;
-                IEnumerable<DataStructure.SearchResult> resultsCollection;
+                IEnumerable<DataStructure.Searchable> resultsCollection;
 
                 if (this.DefaultViewModel.TryGetValue("Results", out results) &&
-                    (resultsCollection = results as IEnumerable<DataStructure.SearchResult>) != null &&
+                    (resultsCollection = results as IEnumerable<DataStructure.Searchable>) != null &&
                     resultsCollection.Count() != 0)
                 {
                     VisualStateManager.GoToState(this, "ResultsFound", true);
@@ -141,7 +141,7 @@ namespace icreate_test2
 
         public static void searchPane_SuggestionsRequested(SearchPane sender, SearchPaneSuggestionsRequestedEventArgs args)
         {
-            args.Request.SearchSuggestionCollection.AppendQuerySuggestions((from result in Utils.DataManager.searchResults
+            args.Request.SearchSuggestionCollection.AppendQuerySuggestions((from result in Utils.DataManager.searchables
                                                                             where result.resultTitle.ToLower().StartsWith(args.QueryText.ToLower())
                                                                             orderby result.resultTitle ascending
                                                                             select result.resultTitle).Take(5));
@@ -195,6 +195,40 @@ namespace icreate_test2
         private void GoBack_click(object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(MainPage));
+        }
+
+        private void SearchResultTapped(object sender, TappedRoutedEventArgs e)
+        {
+            DataStructure.Searchable selectedResult = (e.OriginalSource as FrameworkElement).DataContext as DataStructure.Searchable;
+
+            if (selectedResult != null)
+            {
+                if (selectedResult.announcementId != null)
+                {
+                    // this is an announcement
+                    int moduleIndex = Utils.DataManager.GetModuleIndexByModuleId(selectedResult.moduleId);
+                    int announcementIndex = Utils.DataManager.GetAnnouncementIndex(moduleIndex, selectedResult.announcementId);
+
+                    DataStructure.NavParams navParams = new DataStructure.NavParams(moduleIndex, announcementIndex);
+
+                    if (this.Frame != null)
+                    {
+                        this.Frame.Navigate(typeof(ItemPage), navParams);
+                    }
+
+                }
+                else if (selectedResult.moduleId != null)
+                {
+                    // this is a module
+                    int moduleIndex = Utils.DataManager.GetModuleIndexByModuleId(selectedResult.moduleId);
+                    DataStructure.NavParams navParams = new DataStructure.NavParams(moduleIndex, -1);
+
+                    if (this.Frame != null)
+                    {
+                        this.Frame.Navigate(typeof(ItemPage), navParams);
+                    }
+                }
+            }
         }
     }
 }

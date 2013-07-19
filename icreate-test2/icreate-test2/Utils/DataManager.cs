@@ -15,7 +15,7 @@ namespace icreate_test2.Utils
         private static List<DataStructure.Class> _allClasses;
         private static List<DataStructure.Class>[] _classesForEachDay;
         private static List<DataStructure.SemesterInfo> _sems;
-        public static List<DataStructure.SearchResult> searchResults;
+        public static List<DataStructure.Searchable> searchables;
 
         public static void InitializeDataLists()
         {
@@ -28,7 +28,7 @@ namespace icreate_test2.Utils
                                                                     new List<DataStructure.Class>(), new List<DataStructure.Class>(), 
                                                                     new List<DataStructure.Class>(), new List<DataStructure.Class>()};
 
-            searchResults = new List<DataStructure.SearchResult>();
+            searchables = new List<DataStructure.Searchable>();
         }
 
         public static ObservableCollection<DataStructure.Module> GetModules()
@@ -157,11 +157,17 @@ namespace icreate_test2.Utils
         {
             foreach (DataStructure.Module module in Utils.DataManager.GetModules())
             {
-                searchResults.Add(new DataStructure.SearchResult(module.moduleCode, module.moduleName));
+                searchables.Add(new DataStructure.Searchable(module.moduleCode, 
+                                                             module.moduleName, 
+                                                             module.moduleId, 
+                                                             null));
 
                 foreach (DataStructure.Announcement announcement in module.moduleAnnouncements)
                 {
-                    searchResults.Add(new DataStructure.SearchResult(announcement.announceName, announcement.announceContent));
+                    searchables.Add(new DataStructure.Searchable(announcement.announceName, 
+                                                                 announcement.announceContent, 
+                                                                 announcement.announceModuleId, 
+                                                                 announcement.announceID));
                 }
             }
         }
