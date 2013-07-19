@@ -8,6 +8,7 @@
     xmlns:common="using:icreate_test2.Common"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:mmppf="using:Microsoft.PlayerFramework"
     mc:Ignorable="d">
 
     <Page.Resources>
@@ -1360,6 +1361,11 @@
                 <!-- Fifth item is forum -->
 
                 <!-- Sixth item is webcast -->
+                <FlipViewItem>
+                    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+                        <mmppf:MediaPlayer Source="http://coursecast3.nus.edu.sg/Panopto/Content/Sessions/73e24052-2a71-48ce-a17f-b59f563a142f/91554bde-1282-4984-9b92-eb888743d454-00dffce6-309f-4e42-a9c9-1832b459ba50.mp4"/>
+                    </Grid>
+                </FlipViewItem>
                 <!-- Sixth item is webcast -->
 
             </FlipView>

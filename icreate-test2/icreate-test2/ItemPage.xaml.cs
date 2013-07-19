@@ -212,6 +212,7 @@ namespace icreate_test2
                         break;
 
                     case DataStructure.ItemType.WEBCAST:
+                        flipView.SelectedIndex = 5;
                         break;
 
                     case DataStructure.ItemType.WORKBIN:
@@ -233,7 +234,6 @@ namespace icreate_test2
                         headers.Source = _currentModule.moduleForums[selectedItem.itemIndex].forumAllTitles;
                         
                         break;
-
                     default:
                         break;
                 }
