@@ -38,7 +38,7 @@ namespace icreate_test2
         /// session.  This will be null the first time a page is visited.</param>
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
-            timetableGrid.Background = new SolidColorBrush(Color.FromArgb(0xFF, 0xF0, 0xF0, 0xF0));
+            timetableGrid.Background = new SolidColorBrush(Color.FromArgb(0xFF, 0xE3, 0xE3, 0xE3));
 
             int todayCode = DateTime.Now.DayOfWeek.GetHashCode();
 
@@ -48,11 +48,11 @@ namespace icreate_test2
 
                 if (i == todayCode)
                 {
-                    backgroundBrush = new SolidColorBrush(Color.FromArgb(0xFF, 0xD0, 0xD0, 0xD0));
+                    backgroundBrush = new SolidColorBrush(Color.FromArgb(0xFF, 0x80, 0x80, 0x80));
                 }
                 else
                 {
-                    backgroundBrush = new SolidColorBrush(Color.FromArgb(0xFF, 0xF0, 0xF0, 0xF0));
+                    backgroundBrush = new SolidColorBrush(Color.FromArgb(0xFF, 0xE3, 0xE3, 0xE3));
                 }
 
                 for (int j = 1; j < 29; j+=2)

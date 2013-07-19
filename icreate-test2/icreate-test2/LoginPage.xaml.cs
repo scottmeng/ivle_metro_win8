@@ -268,7 +268,6 @@ namespace icreate_test2
             {
                 ids.Add(i);
             }
-
             await Task.WhenAll(ids.Select(i => GetTimetableForOneModuleAsync(Utils.DataManager.GetModuleAt(i))));
         }
 

@@ -56,8 +56,8 @@ namespace icreate_test2.DataStructure
         public String announceModuleCode { get; set; }
         public String announceModuleId { get; set; }
         public String announceTimeDisplay { get; set; }
-        private bool _backgroundConverter;
-        public bool backgroundConverter 
+        private int _backgroundConverter;
+        public int backgroundConverter 
         {
             get { return _backgroundConverter; }
             set
@@ -94,7 +94,7 @@ namespace icreate_test2.DataStructure
             this.announcePrimaryColor = primaryColor;
             this.announceColor = this.announcePrimaryColor;
             this.announceSecondaryColor = secondaryColor;
-            this.backgroundConverter = true;
+            this.backgroundConverter = 1;
         }
 
         public void GenerateDisplayContent(Module module)

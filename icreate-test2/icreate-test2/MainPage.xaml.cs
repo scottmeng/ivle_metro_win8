@@ -31,7 +31,7 @@ namespace icreate_test2
         private static List<String> dayList;
         private static int todayCode;
         private static int dayListIndex;
-
+        private bool isRightClicking;
         public MainPage()
         {
             this.InitializeComponent();
@@ -103,6 +103,9 @@ namespace icreate_test2
 
             // enable type to search
             SearchPane.GetForCurrentView().ShowOnKeyboardInput = true;
+
+            //initialize rightclick remember
+            isRightClicking = false;
         }
 
         /// <summary>
@@ -260,8 +263,16 @@ namespace icreate_test2
             DataStructure.Announcement selectedAnnouncement = (e.OriginalSource as FrameworkElement).DataContext as DataStructure.Announcement;
             if (selectedAnnouncement != null)
             {
-                selectedAnnouncement.announceColor = selectedAnnouncement.announceSecondaryColor;
-                selectedAnnouncement.backgroundConverter = false;
+                if (isRightClicking == false)
+                {
+                    selectedAnnouncement.announceColor = selectedAnnouncement.announceSecondaryColor;
+                    selectedAnnouncement.backgroundConverter = 2;
+                }
+                else
+                {
+                    selectedAnnouncement.announceColor = selectedAnnouncement.announceSecondaryColor;
+                    selectedAnnouncement.backgroundConverter = 3;
+                }
             }
         }
         private void AnnoucementExited(object sender, PointerRoutedEventArgs e)
@@ -270,7 +281,39 @@ namespace icreate_test2
             for (int i = 0; i < annoucements.Count; i++)
             {
                 annoucements[i].announceColor = annoucements[i].announcePrimaryColor;
-                annoucements[i].backgroundConverter = true;
+                annoucements[i].backgroundConverter = 1;
+            }
+        }
+
+        private void AnnoucementPressed(object sender, PointerRoutedEventArgs e)
+        {
+            DataStructure.Announcement selectedAnnouncement = (e.OriginalSource as FrameworkElement).DataContext as DataStructure.Announcement;
+            isRightClicking = true;
+            if (selectedAnnouncement != null)
+            {
+                selectedAnnouncement.announceColor = selectedAnnouncement.announceSecondaryColor;
+                selectedAnnouncement.backgroundConverter = 3;
+            }
+        }
+
+        private void AnnoucementReleased(object sender, PointerRoutedEventArgs e)
+        {
+            DataStructure.Announcement selectedAnnouncement = (e.OriginalSource as FrameworkElement).DataContext as DataStructure.Announcement;
+            List<DataStructure.Announcement> annoucements = Utils.DataManager.GetAnnouncements();
+            isRightClicking = false;
+            for (int i = 0; i < annoucements.Count; i++)
+            {
+                annoucements[i].announceColor = annoucements[i].announcePrimaryColor;
+                annoucements[i].backgroundConverter = 1;
+            }
+            int moduleIndex = Utils.DataManager.GetModuleIndexByModuleId(selectedAnnouncement.announceModuleId);
+            int announcementIndex = Utils.DataManager.GetAnnouncementIndex(moduleIndex, selectedAnnouncement.announceID);
+
+            DataStructure.NavParams navParams = new DataStructure.NavParams(moduleIndex, announcementIndex);
+
+            if (this.Frame != null)
+            {
+                this.Frame.Navigate(typeof(ItemPage), navParams);
             }
         }
 
@@ -299,9 +342,11 @@ namespace icreate_test2
     {
         public object Convert(object value, Type targetType, object parameter, string language)
         {
-            bool _value = (bool)value;
-            if (_value)
+            int _value = (int)value;
+            if (_value == 1)
                 return "#808080";
+            else if (_value == 2)
+                return "#696969";
             else
                 return "#D3D3D3";
         }
