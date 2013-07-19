@@ -45,6 +45,8 @@ namespace icreate_test2.DataStructure
         // generate the title list to be displayed on the left-
         public void GenerateAllTitles()
         {
+            forumAllTitles.Clear();
+
             foreach (Heading heading in forumHeadings)
             {
                 heading.GenerateAllTitles();

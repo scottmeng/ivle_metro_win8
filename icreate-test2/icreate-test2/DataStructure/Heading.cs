@@ -21,11 +21,11 @@ namespace icreate_test2.DataStructure
         public int headingBadge { get; set; }
 
         [DataMember(Name = "Threads")]
-        public Thread[] headingThreads { get; set; }
+        public List<Thread> headingThreads { get; set; }
 
         public ObservableCollection<PostTitle> headingAllTiles { get; set; }
 
-        public Heading(string id, string title, int badge, Thread[] threads)
+        public Heading(string id, string title, int badge, List<Thread> threads)
         {
             headingId = id;
             headingTitle = title;
@@ -37,10 +37,13 @@ namespace icreate_test2.DataStructure
 
         public void GenerateAllTitles()
         {
+            headingAllTiles.Clear();
+
             headingAllTiles.Add(new PostTitle(headingTitle, true, null, this.headingId));
 
             foreach (Thread thread in headingThreads)
             {
+
                 headingAllTiles.Add(new PostTitle(thread.threadTitle, false, thread.threadId, null));
             }
         }

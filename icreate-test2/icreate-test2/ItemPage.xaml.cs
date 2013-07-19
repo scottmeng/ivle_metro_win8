@@ -488,25 +488,31 @@ namespace icreate_test2
         {
             DataStructure.Thread tappedThread = (e.OriginalSource as FrameworkElement).DataContext as DataStructure.Thread;
 
-            if (_currentThread != null && tappedThread.threadId == _currentThread.threadId && replyStackPanel.Visibility == Visibility.Visible)
+            if (tappedThread != null)
             {
-                replyStackPanel.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                _isToPostNewThread = false;
-                _currentThread = tappedThread;
-                replyStackPanel.Visibility = Visibility.Visible;
-                titleTextBox.Text = "Re: " + tappedThread.threadTitle;
+                if (_currentThread != null && tappedThread.threadId == _currentThread.threadId && replyStackPanel.Visibility == Visibility.Visible)
+                {
+                    replyStackPanel.Visibility = Visibility.Collapsed;
+                }
+                else
+                {
+                    _isToPostNewThread = false;
+                    _currentThread = tappedThread;
+                    replyStackPanel.Visibility = Visibility.Visible;
+                    titleTextBox.Text = "Re: " + tappedThread.threadTitle;
+                }
             }
         }
 
         private async void PostNewThread()
         {
+            string title = titleTextBox.Text;
+            string content = contentTextBox.Text;
+
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters.Add("HeadingID", _headingId);
-            parameters.Add("Title", titleTextBox.Text);
-            parameters.Add("Reply", contentTextBox.Text);
+            parameters.Add("Title", title);
+            parameters.Add("Reply", content);
 
             string state = await Utils.RequestSender.SendHttpPostRequestAsync("Forum_PostNewThread_JSON", parameters);
 
@@ -519,8 +525,18 @@ namespace icreate_test2
 
             // TO-DO 
             // refresh the heading list
-            await GetForumAsync();
-            headers.Source = _currentModule.moduleForums[0].forumAllTitles;
+
+            foreach(DataStructure.Heading heading in _currentModule.moduleForums[0].forumHeadings)
+            {
+                if (heading.headingId == _headingId)
+                {
+                    heading.headingThreads.Add(new DataStructure.Thread(state, title, content, DateTime.Now, null, new List<DataStructure.Thread>(), false, false));
+                }
+            }
+
+            updateForum();
+            //await GetForumAsync();
+            //headers.Source = _currentModule.moduleForums[0].forumAllTitles;
         }
 
         private async void ReplyThread()
