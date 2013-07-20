@@ -1127,26 +1127,6 @@
                                 </ListView.ItemTemplate>
                             </ListView>
                         </StackPanel>
-                        <!--<ScrollViewer x:Name="scrollViewer" 
-                                        HorizontalAlignment="Left" 
-                                        VerticalAlignment="Top"
-                                        VerticalScrollBarVisibility="Disabled" 
-                                        HorizontalScrollBarVisibility="Hidden" 
-                                        VerticalScrollMode="Disabled" 
-                                        HorizontalScrollMode="Auto" 
-                                        Grid.Column="1"
-                                        ZoomMode="Disabled">
-                                <ItemsControl x:Name="fileItemsControl" 
-                                                ItemsSource="{Binding Source={StaticResource file}}"  
-                                                Margin="5"
-                                                Tapped="onFileSelected">
-                                    <ItemsControl.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                            <WrapGrid/>
-                                        </ItemsPanelTemplate>
-                                    </ItemsControl.ItemsPanel>
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate>-->
                         <GridView x:Name="fileItemsControl" 
                                       ItemsSource="{Binding Source={StaticResource file}}"
                                       Tapped="onFileSelected"
@@ -1164,17 +1144,26 @@
                             <GridView.ItemTemplate>
                                 <DataTemplate>
                                     <Grid Width="300" 
-                                                    Height="100" 
-                                                    Margin="2" Background="Green">
-                                        <TextBlock Text="{Binding fileName}" 
-                                                            Margin="15" 
-                                                            Foreground="White" 
-                                                            FontSize="24" 
-                                                            FontFamily="Segoe UI" 
-                                                            FontWeight="Light"
-                                                            VerticalAlignment="Top"  
-                                                           TextWrapping="Wrap"
-                                                            HorizontalAlignment="Left"/>
+                                          Height="100" 
+                                          Margin="2" Background="Green">
+                                        <Grid.Resources>
+                                            <local:FileIconConverter x:Key="FileIconConverter" />
+                                        </Grid.Resources>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="{Binding Path=fileType,
+                                            Mode=OneWay,Converter={StaticResource FileIconConverter}}"
+                                                   Height="60"
+                                                   Width="80"/>
+                                            <TextBlock Text="{Binding fileName}" 
+                                                       Margin="15" 
+                                                       Foreground="White" 
+                                                       FontSize="24" 
+                                                       FontFamily="Segoe UI" 
+                                                       FontWeight="Light"
+                                                       VerticalAlignment="Top"  
+                                                       TextWrapping="Wrap"
+                                                       HorizontalAlignment="Left"/>
+                                        </StackPanel>
                                     </Grid>
                                 </DataTemplate>
                             </GridView.ItemTemplate>

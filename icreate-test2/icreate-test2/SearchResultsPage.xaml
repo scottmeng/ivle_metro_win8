@@ -20,7 +20,7 @@
         <DataTemplate x:Key="ModifiedSmallIcon300x70ItemTemplate">
             <Grid Width="294" Margin="6">
                 
-                <TextBlock Text="{Binding resultTitle}" FontSize="24" TextAlignment="Left" VerticalAlignment="Center" />
+                <TextBlock Text="{Binding resultTitle}" FontSize="24" TextAlignment="Left" VerticalAlignment="Center"/>
 
             </Grid>
         </DataTemplate>
@@ -84,7 +84,7 @@
                     SelectionMode="None"
                     IsSwipeEnabled="false"
                     IsItemClickEnabled="True"
-                    Tapped="SearchResultTapped"
+                    ItemClick="SearchResultTapped"
                     ItemsSource="{Binding Source={StaticResource resultsViewSource}}"
                     ItemTemplate="{StaticResource ModifiedSmallIcon300x70ItemTemplate}">
                     

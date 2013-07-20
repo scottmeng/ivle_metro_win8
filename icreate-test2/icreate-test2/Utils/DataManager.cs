@@ -155,19 +155,22 @@ namespace icreate_test2.Utils
         // generate search results from available modules and announcements
         public static void GenerateSearchResults()
         {
-            foreach (DataStructure.Module module in Utils.DataManager.GetModules())
+            if (searchables.Count == 0)
             {
-                searchables.Add(new DataStructure.Searchable(module.moduleCode, 
-                                                             module.moduleName, 
-                                                             module.moduleId, 
-                                                             null));
-
-                foreach (DataStructure.Announcement announcement in module.moduleAnnouncements)
+                foreach (DataStructure.Module module in Utils.DataManager.GetModules())
                 {
-                    searchables.Add(new DataStructure.Searchable(announcement.announceName, 
-                                                                 announcement.announceContent, 
-                                                                 announcement.announceModuleId, 
-                                                                 announcement.announceID));
+                    searchables.Add(new DataStructure.Searchable(module.moduleCode,
+                                                                 module.moduleName,
+                                                                 module.moduleId,
+                                                                 null));
+
+                    foreach (DataStructure.Announcement announcement in module.moduleAnnouncements)
+                    {
+                        searchables.Add(new DataStructure.Searchable(announcement.announceName,
+                                                                     announcement.announceContent,
+                                                                     announcement.announceModuleId,
+                                                                     announcement.announceID));
+                    }
                 }
             }
         }

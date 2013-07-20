@@ -197,9 +197,9 @@ namespace icreate_test2
             this.Frame.Navigate(typeof(MainPage));
         }
 
-        private void SearchResultTapped(object sender, TappedRoutedEventArgs e)
+        private void SearchResultTapped(object sender, ItemClickEventArgs e)
         {
-            DataStructure.Searchable selectedResult = (e.OriginalSource as FrameworkElement).DataContext as DataStructure.Searchable;
+            DataStructure.Searchable selectedResult = e.ClickedItem as DataStructure.Searchable;
 
             if (selectedResult != null)
             {

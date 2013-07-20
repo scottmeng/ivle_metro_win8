@@ -20,6 +20,7 @@ using Windows.Data.Json;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Windows.Networking.Connectivity;
+using Windows.Storage;
 
 using Newtonsoft.Json;
 
@@ -165,7 +166,7 @@ namespace icreate_test2
                     // update token
                     Utils.TokenManager.StoreToken();
                     SaveUserCredentials();
-
+                    
                     // load data on modules and classes
                     await GetModulesAsync();
                     await GetTimetableAsync();
@@ -293,12 +294,33 @@ namespace icreate_test2
         private async Task GetModulesAsync()
         {
             int iterator = 0;
+            string modulesResponse;
 
-            Dictionary<string, string> parameters = new Dictionary<string, string>();
-            parameters.Add("Duration", "0");
-            parameters.Add("IncludeAllInfo", "true");
+            Windows.Storage.StorageFolder localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
+            try
+            {
+                StorageFile sampleFile = await localFolder.GetFileAsync("dataFile.txt");
+                modulesResponse = await FileIO.ReadTextAsync(sampleFile);
+                // Data is contained in timestamp
+            }
+            catch (Exception)
+            {
+                modulesResponse = null;
+            }
 
-            String modulesResponse = await Utils.RequestSender.GetResponseStringAsync("Modules", parameters);
+            if (modulesResponse == null)
+            {
+
+                Dictionary<string, string> parameters = new Dictionary<string, string>();
+                parameters.Add("Duration", "0");
+                parameters.Add("IncludeAllInfo", "true");
+
+                modulesResponse = await Utils.RequestSender.GetResponseStringAsync("Modules", parameters);
+
+                StorageFile sampleFile = await localFolder.CreateFileAsync("dataFile.txt", CreationCollisionOption.ReplaceExisting);
+                await FileIO.WriteTextAsync(sampleFile, modulesResponse);
+            }
+
             DataStructure.ModuleInfoWrapper moduleWrapper = JsonConvert.DeserializeObject<DataStructure.ModuleInfoWrapper>(modulesResponse);
 
             if (moduleWrapper.comments.Equals("Valid login!"))

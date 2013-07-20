@@ -522,6 +522,9 @@ namespace icreate_test2
                 replyStackPanel.Visibility = Visibility.Collapsed;
             }
 
+            // TEST
+            state = state.Replace("\" ", "");
+
             // TO-DO 
             // refresh the heading list
 
@@ -747,6 +750,48 @@ namespace icreate_test2
                 return "0,0,0,0";
             else
                 return "20,0,0,0";
+        }
+
+        // No need to implement converting back on a one-way binding 
+        public object ConvertBack(object value, Type targetType, object parameter, string language)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    // converter for thread title margin binding
+    public class FileIconConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, string language)
+        {
+            string fileType = (string)value;
+            Uri iconLocation = new Uri("ms-appx:///Assets/General.png");
+
+            switch (fileType)
+            {
+                case "docx":
+                case "doc":
+                    iconLocation = new Uri("ms-appx:///Assets/Word.png");
+                    break;
+                case "pptx":
+                case "ppt":
+                    iconLocation = new Uri("ms-appx:///Assets/PPT.png");
+                    break;
+                case "pdf":
+                    iconLocation = new Uri("ms-appx:///Assets/PDF.png");
+                    break;
+                case "xls":
+                case "xlsx":
+                    iconLocation = new Uri("ms-appx:///Assets/Excel.png");
+                    break;
+                case "zip":
+                    iconLocation = new Uri("ms-appx:///Assets/ZIP.png");
+                    break;
+                default:
+                    break;
+            }
+
+            return new Windows.UI.Xaml.Media.Imaging.BitmapImage(iconLocation);
         }
 
         // No need to implement converting back on a one-way binding 
