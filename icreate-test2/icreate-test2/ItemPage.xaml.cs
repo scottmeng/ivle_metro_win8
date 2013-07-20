@@ -126,6 +126,12 @@ namespace icreate_test2
         {
             // display tabs
             itemListView.Source = _currentModule.moduleItems;
+            ObservableCollection<DataStructure.ModuleItem> moduleItems = _currentModule.moduleItems;
+            Color gray = Color.FromArgb(255, 211, 211, 211);
+            for (int i = 0; i < moduleItems.Count; i++)
+            {
+                moduleItems[i].itemShowColor = moduleItems[i].itemPrimaryColor;
+            }
 
             try
             {
@@ -173,18 +179,20 @@ namespace icreate_test2
                 flipView.SelectedIndex = 1;
                 var obj = flipView.SelectedValue;
                 _currentItem = _currentModule.moduleItems[1];
-                
+                moduleItems[1].itemShowColor = gray;
 
                 //announcementListView.SelectedIndex = _announcementIndex;
             }
             else
             {
                 //itemList.SelectedIndex = 0;
+                moduleItems[0].itemShowColor = gray;
                 flipView.SelectedIndex = 0;
                 _currentItem = _currentModule.moduleItems[0];
             }
             SolidColorBrush backgroundBrush = new SolidColorBrush(_currentModule.modulePrimaryColor);
             leftStackPanel.Background = backgroundBrush;
+
         }
 
         /// <summary>
