@@ -112,7 +112,19 @@ namespace icreate_test2
 
         private void GoBack_Click(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(MainPage));
+            //this.Frame.Navigate(typeof(MainPage));
+            GoBack(sender, e);
+        }
+
+        private void mainGrid_KeyUp(object sender, KeyRoutedEventArgs e)
+        {
+            // if the event is not triggerd from a textbox
+            // and the key pressed is backspace
+            // then navigate back to the previous page
+            if (e.Key == Windows.System.VirtualKey.Back)
+            {
+                GoBack(sender, e);
+            }
         }
     }
 }

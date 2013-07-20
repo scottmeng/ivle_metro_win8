@@ -133,6 +133,7 @@ namespace icreate_test2
                 moduleAcadYear_textblock.Text = _currentModule.moduleAcadYear + _currentModule.moduleSemester;
                 moduleMc_textblock.Text = _currentModule.moduleMc;
                 moduleExamtime_textblock.Text = _currentModule.moduleExamInfos[0].examInfo;
+                lecturerListView.Source = _currentModule.moduleLecturers;
             }
             catch
             {
@@ -238,6 +239,7 @@ namespace icreate_test2
                         headers.Source = _currentModule.moduleForums[selectedItem.itemIndex].forumAllTitles;
                         
                         break;
+
                     default:
                         break;
                 }
@@ -349,7 +351,6 @@ namespace icreate_test2
             string listToken = (string) folderTokens.Values[_currentModule.moduleId];
 
             IStorageFolder moduleBaseFolder;
-            bool isFolderExisting = false;
 
             // if token exists
             // get folder access
@@ -394,15 +395,7 @@ namespace icreate_test2
             // make sure the http reponse is successful
             response.EnsureSuccessStatusCode();
 
-            /*
-            // open (or create if non-existing) the base folder under documents library
-            StorageFolder appFolder = await KnownFolders.DocumentsLibrary.CreateFolderAsync("IVLE_Metro", CreationCollisionOption.OpenIfExists);
-
-            // open/create module folder
-            String moduleFolderName = _currentModule.moduleCode.Replace("/", "_");
-             * */
             IStorageFolder currentFolder = moduleBaseFolder; 
-
 
             foreach (DataStructure.Folder folder in _folderTree)
             {
@@ -657,6 +650,19 @@ namespace icreate_test2
         private void contentTextBox_KeyUp(object sender, KeyRoutedEventArgs e)
         {
             e.Handled = true;
+        }
+
+        private async void lecturesListView_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            DataStructure.Lecturer selectedLecturer = (e.OriginalSource as FrameworkElement).DataContext as DataStructure.Lecturer;
+
+            if (selectedLecturer != null)
+            {
+                var uri = new Uri("mailto:" + selectedLecturer.lecturerMember.memberEmail);
+
+                // Launch the URI.
+                bool success = await Windows.System.Launcher.LaunchUriAsync(uri);
+            }
         }
     }
 

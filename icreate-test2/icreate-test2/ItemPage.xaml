@@ -23,6 +23,7 @@
         <CollectionViewSource x:Name="threads" Source="{Binding Items}"/>
         <CollectionViewSource x:Name="innerThreads" Source="{Binding Items}"/>
         <CollectionViewSource x:Name="itempageLeftSide" Source="{Binding Items}"/>
+        <CollectionViewSource x:Name="lecturerListView" Source="{Binding Items}"/>
 
         <Style x:Key="FlipViewStyle1" TargetType="FlipView">
             <Setter Property="Background" Value="Transparent"/>
@@ -984,6 +985,20 @@
                             <TextBlock x:Name="moduleExamtime_textblock" 
                                        Grid.Column="1" Grid.Row="5" FontSize="26"
                                        Margin="20,5" Padding="5,10" FontWeight="Light"/>
+                            <ListView x:Name="lecturesListView" 
+                                      Grid.Column="1" Grid.Row="6" Margin="20,5" Padding="5,10"
+                                      ItemsSource="{Binding Source={StaticResource lecturerListView}}"
+                                      Tapped="lecturesListView_Tapped"> 
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Text="{Binding lecturerMember.memberName}"/>
+                                            <TextBlock Text="{Binding lecturerRole}"/>
+                                            <TextBlock Text="{Binding lecturerMember.memberEmail}"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
                         </Grid>
                     </Border>
                 </FlipViewItem>
@@ -1285,6 +1300,11 @@
                                         ItemsSource="{Binding Source={StaticResource headers}}"
                                         SelectionMode="None"
                                         Tapped="thread_Tapped">
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                </Style>
+                            </ListView.ItemContainerStyle>
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <Grid Height="auto" Background="{Binding Path=isPostHeading,
