@@ -27,6 +27,8 @@ using Windows.Storage;
 using Windows.Storage.AccessCache;
 using Windows.Storage.Streams;
 using Windows.ApplicationModel.Search;
+using System.ComponentModel;
+using System.Collections.ObjectModel;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
@@ -46,7 +48,7 @@ namespace icreate_test2
         private int _currentForumIndex;
         private bool _isToPostNewThread = false;
         private string _headingId;
-        
+        private bool isRightClicking;
         private DataStructure.Module _currentModule;
         private List<DataStructure.Module> _otherModules;
         private DataStructure.ModuleItem _currentItem;
@@ -166,7 +168,7 @@ namespace icreate_test2
             // if announcement index passed from main page is valid
             if (_announcementIndex >= 0)
             {
-                itemList.SelectedIndex = 1;
+                //itemList.SelectedIndex = 1;
                 flipView.SelectedItem = null;
                 flipView.SelectedIndex = 1;
                 var obj = flipView.SelectedValue;
@@ -177,7 +179,7 @@ namespace icreate_test2
             }
             else
             {
-                itemList.SelectedIndex = 0;
+                //itemList.SelectedIndex = 0;
                 flipView.SelectedIndex = 0;
                 _currentItem = _currentModule.moduleItems[0];
             }
@@ -193,59 +195,6 @@ namespace icreate_test2
         /// <param name="pageState">An empty dictionary to be populated with serializable state.</param>
         protected override void SaveState(Dictionary<String, Object> pageState)
         {
-        }
-
-        private void itemChanged_ListViewTapped(object sender, TappedRoutedEventArgs e)
-        {
-            DataStructure.ModuleItem selectedItem = (e.OriginalSource as FrameworkElement).DataContext as DataStructure.ModuleItem;
-
-            // make sure the tap event occurs on list items
-            if (selectedItem != null && selectedItem != _currentItem)
-            {
-                switch (selectedItem.itemType)
-                {
-                    case DataStructure.ItemType.ANNOUNCEMENT:
-                        flipView.SelectedIndex = 1;
-                        break;
-
-                    case DataStructure.ItemType.GRADEBOOK:
-                        flipView.SelectedIndex = 3;
-                        break;
-
-                    case DataStructure.ItemType.MODULE_INFO:
-                        flipView.SelectedIndex = 0;
-                        break;
-
-                    case DataStructure.ItemType.WEBCAST:
-                        flipView.SelectedIndex = 5;
-                        break;
-
-                    case DataStructure.ItemType.WORKBIN:
-                        flipView.SelectedIndex = 2;
-
-                        _currentWorkbin = _currentModule.moduleWorkbins[selectedItem.itemIndex];
-
-                        folder.Source = _currentWorkbin.workbinFolders;
-                        file.Source = new List<DataStructure.File>();
-
-                        _folderTree.Clear();
-                        upFolderButton.Visibility = Visibility.Collapsed;
-
-                        break;
-
-                    case DataStructure.ItemType.FORUM:
-                        flipView.SelectedIndex = 4;
-
-                        headers.Source = _currentModule.moduleForums[selectedItem.itemIndex].forumAllTitles;
-                        
-                        break;
-
-                    default:
-                        break;
-                }
-
-                _currentItem = selectedItem;
-            }
         }
 
         private async Task GetWorkbinAsync()
@@ -659,9 +608,104 @@ namespace icreate_test2
             if (selectedLecturer != null)
             {
                 var uri = new Uri("mailto:" + selectedLecturer.lecturerMember.memberEmail);
-
                 // Launch the URI.
                 bool success = await Windows.System.Launcher.LaunchUriAsync(uri);
+            }
+        }
+
+        private void itemListEntered(object sender, PointerRoutedEventArgs e)
+        {
+            DataStructure.ModuleItem selectedModuleItem = (e.OriginalSource as FrameworkElement).DataContext as DataStructure.ModuleItem;
+            Color gray = Color.FromArgb(255, 211, 211, 211);
+            if (selectedModuleItem != null)
+            {
+                if(selectedModuleItem.itemShowColor != gray)
+                    selectedModuleItem.itemShowColor = selectedModuleItem.itemSecondaryColor;
+                if(isRightClicking)
+                    selectedModuleItem.itemShowColor = gray;
+            }
+        }
+
+        private void itemListExited(object sender, PointerRoutedEventArgs e)
+        {
+            ObservableCollection<DataStructure.ModuleItem> moduleItems = _currentModule.moduleItems;
+            Color gray = Color.FromArgb(255, 211, 211, 211);
+            for (int i = 0; i < moduleItems.Count; i++)
+            {
+                if (moduleItems[i].itemShowColor != gray)
+                    moduleItems[i].itemShowColor = moduleItems[i].itemPrimaryColor;
+            }
+        }
+
+        private void itemListPressed(object sender, PointerRoutedEventArgs e)
+        {
+            DataStructure.ModuleItem selectedModuleItem = (e.OriginalSource as FrameworkElement).DataContext as DataStructure.ModuleItem;
+            ObservableCollection<DataStructure.ModuleItem> moduleItems = _currentModule.moduleItems;
+            Color gray = Color.FromArgb(255, 211, 211, 211);
+            isRightClicking = true;
+
+            for (int i = 0; i < moduleItems.Count; i++)
+            {
+                moduleItems[i].itemShowColor = moduleItems[i].itemPrimaryColor;
+            }
+            
+            if (selectedModuleItem != null)
+            {
+                selectedModuleItem.itemShowColor = gray;
+            }
+        }
+
+        private void itemListReleased(object sender, PointerRoutedEventArgs e)
+        {
+            isRightClicking = false;
+            DataStructure.ModuleItem selectedItem = (e.OriginalSource as FrameworkElement).DataContext as DataStructure.ModuleItem;
+
+            // make sure the tap event occurs on list items
+            if (selectedItem != null && selectedItem != _currentItem)
+            {
+                switch (selectedItem.itemType)
+                {
+                    case DataStructure.ItemType.ANNOUNCEMENT:
+                        flipView.SelectedIndex = 1;
+                        break;
+
+                    case DataStructure.ItemType.GRADEBOOK:
+                        flipView.SelectedIndex = 3;
+                        break;
+
+                    case DataStructure.ItemType.MODULE_INFO:
+                        flipView.SelectedIndex = 0;
+                        break;
+
+                    case DataStructure.ItemType.WEBCAST:
+                        flipView.SelectedIndex = 5;
+                        break;
+
+                    case DataStructure.ItemType.WORKBIN:
+                        flipView.SelectedIndex = 2;
+
+                        _currentWorkbin = _currentModule.moduleWorkbins[selectedItem.itemIndex];
+
+                        folder.Source = _currentWorkbin.workbinFolders;
+                        file.Source = new List<DataStructure.File>();
+
+                        _folderTree.Clear();
+                        upFolderButton.Visibility = Visibility.Collapsed;
+
+                        break;
+
+                    case DataStructure.ItemType.FORUM:
+                        flipView.SelectedIndex = 4;
+
+                        headers.Source = _currentModule.moduleForums[selectedItem.itemIndex].forumAllTitles;
+
+                        break;
+
+                    default:
+                        break;
+                }
+
+                _currentItem = selectedItem;
             }
         }
     }

@@ -862,59 +862,83 @@
                     <Button x:Name="backButton" Click="backButton_Click" 
                                         Margin="0,20,0,20"
                                         VerticalAlignment="Center"
+                            Foreground="White"
                                         HorizontalAlignment="Center"
                                         IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}"
                                         Style="{StaticResource BackButtonStyle}"/>
                     <TextBlock VerticalAlignment="Center"
-                                Margin="10,5"
-                                x:Name="mainModuleName"
-                                FontSize="36"
-                                FontWeight="Normal"
+                               Margin="10,5"
+                               x:Name="mainModuleName"
+                               FontSize="36"
+                               FontWeight="Normal"
+                               Foreground="White"
                                HorizontalAlignment="Center"
-                                Style="{StaticResource TitleTextStyle}" />
+                               Style="{StaticResource TitleTextStyle}" />
                     <Button x:Name="menuButton" Content="..." Click="menuButtonClick" HorizontalAlignment="Center"/>
                 </StackPanel>
                 <Grid Grid.Column="0" Grid.Row="1">
-                    <ListView x:Name="itemList"
-                          Margin="30,0,10,0"
+                    <!--<ListView x:Name="itemList"
+                          Margin="0,0,0,0"
                           HorizontalContentAlignment="Stretch"
                           ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
                           ScrollViewer.VerticalScrollBarVisibility="Hidden" 
                           ItemsSource="{Binding Source={StaticResource itemListView}}" 
-                          Tapped="itemChanged_ListViewTapped" 
+                          
                           ItemContainerStyle="{StaticResource noTickNew}"
                           IsSwipeEnabled="True">
                         <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <Grid HorizontalAlignment="Stretch" Background="{Binding itemShowColor}">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="2*"/>
-                                        <RowDefinition Height="*"/>
-                                    </Grid.RowDefinitions>
-                                    <TextBlock Margin="5" 
-                                       Padding="5"
-                                       Grid.Row="0"
-                                       HorizontalAlignment="Left"
-                                       Text="{Binding itemType}"  
-                                       TextWrapping="NoWrap" 
-                                       FontSize="24" 
-                                       VerticalAlignment="Bottom"
-                                       FontWeight="Thin">
-                                    </TextBlock>
-                                    <TextBlock Margin="5" 
-                                       Padding="5"
-                                       Grid.Row="1"
-                                       HorizontalAlignment="Right"
-                                       Text="{Binding itemName}"  
-                                       TextWrapping="NoWrap" 
-                                       FontSize="14" 
-                                       VerticalAlignment="Bottom"
-                                       FontWeight="Thin">
-                                    </TextBlock>
-                                </Grid>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
+                            <DataTemplate>-->
+                    <ScrollViewer x:Name="itemListScrollViewer"
+                                  VerticalScrollBarVisibility="Hidden" 
+                                  HorizontalScrollBarVisibility="Disabled" 
+                                  VerticalScrollMode="Auto"
+                                  HorizontalScrollMode="Disabled"
+                                  ZoomMode="Disabled">
+                        <StackPanel Orientation="Vertical">
+                            <ItemsControl x:Name="itemList" 
+                                          ItemsSource="{Binding Source={StaticResource itemListView}}"
+                                          Margin="0">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid HorizontalAlignment="Stretch" 
+                                              PointerEntered="itemListEntered" PointerExited="itemListExited" PointerPressed="itemListPressed" PointerReleased="itemListReleased">
+                                            <Grid.Background>
+                                                <SolidColorBrush Color="{Binding itemShowColor}" />
+                                            </Grid.Background>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="2*"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+                                            <TextBlock Margin="5" 
+                                                       Padding="5"
+                                                       Grid.Row="0"
+                                                       HorizontalAlignment="Left"
+                                                       Text="{Binding itemType}"  
+                                                       TextWrapping="NoWrap" 
+                                                       FontSize="24" 
+                                                       Foreground="White"
+                                                       VerticalAlignment="Bottom"
+                                                       FontWeight="Thin">
+                                            </TextBlock>
+                                            <TextBlock Margin="5" 
+                                                       Padding="5"
+                                                       Grid.Row="1"
+                                                       Foreground="White"
+                                                       HorizontalAlignment="Right"
+                                                       Text="{Binding itemName}"
+                                                       TextWrapping="NoWrap"
+                                                       FontSize="14" 
+                                                       VerticalAlignment="Bottom"
+                                                       FontWeight="Thin">
+                                            </TextBlock>
+                                        </Grid>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </ScrollViewer>
+                    <!--</ListView.ItemTemplate>
+                    </ListView>-->
                 </Grid>
             </Grid>
         </StackPanel>

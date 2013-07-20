@@ -128,8 +128,7 @@
                     <StackPanel Orientation="Horizontal">
                         <ItemsControl x:Name="moduleListView"
                                       ItemsSource="{Binding Source={StaticResource moduleGridView}}"
-                                      Margin="20,40,50,20"
-                                      >
+                                      Margin="20,40,50,20">
                             <ItemsControl.ItemContainerTransitions>
                                 <TransitionCollection>
                                     <EntranceThemeTransition/>
