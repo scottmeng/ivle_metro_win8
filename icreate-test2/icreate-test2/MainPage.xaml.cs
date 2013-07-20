@@ -73,7 +73,7 @@ namespace icreate_test2
             }
 
             // cache the page for future usage
-            this.NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Enabled;
+            //this.NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Enabled;
 
             Utils.DataManager.GenerateSearchResults();
 
