@@ -286,7 +286,7 @@ namespace icreate_test2
             _currentModule.moduleExamInfos = examInfoWrapper.examInfos;
         }
 
-        private async void onFolderSelected(object sender, TappedRoutedEventArgs e)
+        private void onFolderSelected(object sender, TappedRoutedEventArgs e)
         {
             if (_currentFolder != null)
             {
@@ -349,19 +349,37 @@ namespace icreate_test2
             string listToken = (string) folderTokens.Values[_currentModule.moduleId];
 
             IStorageFolder moduleBaseFolder;
+            bool isFolderExisting = false;
 
             // if token exists
             // get folder access
             // otherwise create folder under Downloads library
             if(listToken != null)
             {
-                moduleBaseFolder = await Windows.Storage.AccessCache.StorageApplicationPermissions.FutureAccessList.GetFolderAsync(listToken);
+                try
+                {
+                    moduleBaseFolder = await Windows.Storage.AccessCache.StorageApplicationPermissions.FutureAccessList.GetFolderAsync(listToken);
+                }
+                catch
+                {
+                    moduleBaseFolder = null;
+                }
+
+                if (moduleBaseFolder == null)
+                {
+                    String moduleFolderName = _currentModule.moduleCode.Replace("/", "_");
+
+                    moduleBaseFolder = await Windows.Storage.DownloadsFolder.CreateFolderAsync(moduleFolderName, CreationCollisionOption.GenerateUniqueName);
+                    listToken = Windows.Storage.AccessCache.StorageApplicationPermissions.FutureAccessList.Add(moduleBaseFolder, moduleBaseFolder.Name);
+
+                    folderTokens.Values[_currentModule.moduleId] = listToken;
+                }
             }
             else
             {
                 String moduleFolderName = _currentModule.moduleCode.Replace("/", "_");
 
-                moduleBaseFolder = await Windows.Storage.DownloadsFolder.CreateFolderAsync(moduleFolderName);
+                moduleBaseFolder = await Windows.Storage.DownloadsFolder.CreateFolderAsync(moduleFolderName, CreationCollisionOption.GenerateUniqueName);
                 listToken = Windows.Storage.AccessCache.StorageApplicationPermissions.FutureAccessList.Add(moduleBaseFolder, moduleBaseFolder.Name);
 
                 folderTokens.Values[_currentModule.moduleId] = listToken;
