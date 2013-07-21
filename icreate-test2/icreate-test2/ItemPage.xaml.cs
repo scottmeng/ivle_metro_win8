@@ -235,7 +235,17 @@ namespace icreate_test2
             {
                 DataStructure.ForumWrapper forumWrapper = JsonConvert.DeserializeObject<DataStructure.ForumWrapper>(forumsResponse);
 
-                _currentModule.moduleForums = forumWrapper.forums;
+                foreach (DataStructure.Forum forum in forumWrapper.forums)
+                {
+                    foreach (DataStructure.Forum mForum in _currentModule.moduleForums)
+                    {
+                        if (forum.forumId == mForum.forumId)
+                        {
+                            mForum.forumHeadings = mForum.forumHeadings;
+                        }
+                    }
+                }
+                //_currentModule.moduleForums = forumWrapper.forums;
 
                 // generate content for display
                 updateForum();
@@ -541,7 +551,7 @@ namespace icreate_test2
             // TO-DO 
             // refresh the heading list
 
-            foreach(DataStructure.Heading heading in _currentModule.moduleForums[0].forumHeadings)
+            foreach(DataStructure.Heading heading in _currentModule.moduleForums[_currentForumIndex].forumHeadings)
             {
                 if (heading.headingId == _headingId)
                 {
@@ -689,22 +699,27 @@ namespace icreate_test2
                 switch (selectedItem.itemType)
                 {
                     case DataStructure.ItemType.ANNOUNCEMENT:
+                        flipView.SelectedItem = null;
                         flipView.SelectedIndex = 1;
                         break;
 
                     case DataStructure.ItemType.GRADEBOOK:
+                        flipView.SelectedItem = null;
                         flipView.SelectedIndex = 3;
                         break;
 
                     case DataStructure.ItemType.MODULE_INFO:
+                        flipView.SelectedItem = null;
                         flipView.SelectedIndex = 0;
                         break;
 
                     case DataStructure.ItemType.WEBCAST:
+                        flipView.SelectedItem = null;
                         flipView.SelectedIndex = 5;
                         break;
 
                     case DataStructure.ItemType.WORKBIN:
+                        flipView.SelectedItem = null;
                         flipView.SelectedIndex = 2;
 
                         _currentWorkbin = _currentModule.moduleWorkbins[selectedItem.itemIndex];
@@ -718,6 +733,7 @@ namespace icreate_test2
                         break;
 
                     case DataStructure.ItemType.FORUM:
+                        flipView.SelectedItem = null;
                         flipView.SelectedIndex = 4;
 
                         headers.Source = _currentModule.moduleForums[selectedItem.itemIndex].forumAllTitles;
@@ -799,6 +815,7 @@ namespace icreate_test2
                     iconLocation = new Uri("ms-appx:///Assets/Excel.png");
                     break;
                 case "zip":
+                case "rar":
                     iconLocation = new Uri("ms-appx:///Assets/ZIP.png");
                     break;
                 default:

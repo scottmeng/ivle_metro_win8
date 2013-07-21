@@ -29,7 +29,19 @@ namespace icreate_test2.DataStructure
         [DataMember(Name = "Headings")]
         public Heading[] forumHeadings { get; set; }
 
-        public ObservableCollection<PostTitle> forumAllTitles { get; set; }
+        private ObservableCollection<PostTitle> _forumAllTitles;
+        public ObservableCollection<PostTitle> forumAllTitles 
+        {
+            get { return this._forumAllTitles; }
+            set
+            {
+                if (value != this._forumAllTitles)
+                {
+                    this._forumAllTitles = value;
+                    OnPropertyChanged("forumAllTitles");
+                }
+            }
+        }
 
         public Forum(String id, String title, String message, int badge, Heading[] headings)
         {
@@ -40,6 +52,13 @@ namespace icreate_test2.DataStructure
             forumHeadings = headings;
 
             forumAllTitles = new ObservableCollection<PostTitle>();
+            forumAllTitles.CollectionChanged += _forumAllTitles_CollectionChanged;
+        }
+
+        void _forumAllTitles_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            string test = null;
+            //throw new NotImplementedException();
         }
 
         // generate the title list to be displayed on the left-
@@ -52,7 +71,7 @@ namespace icreate_test2.DataStructure
                 heading.GenerateAllTitles();
                 foreach(PostTitle postTitle in heading.headingAllTiles)
                 {
-                    forumAllTitles.Add(postTitle);
+                    this.forumAllTitles.Add(postTitle);
                 }
             }
         }

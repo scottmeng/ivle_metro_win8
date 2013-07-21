@@ -158,10 +158,6 @@ namespace icreate_test2
             }
         }
 
-        internal void ProcessQueryText(string p)
-        {
-        }
-
         private void onNextDaySelected(object sender, TappedRoutedEventArgs e)
         {
             if (dayListIndex < 5)
