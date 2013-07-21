@@ -119,6 +119,18 @@ namespace icreate_test2
             // enable type to search
             SearchPane.GetForCurrentView().ShowOnKeyboardInput = true;
 
+            if (e.Parameter != null)
+            {
+                bool isModuleDataUpdated = (bool) e.Parameter;
+
+                if (!isModuleDataUpdated)
+                {
+                    // fetch module data
+
+                    // generate announcement display
+                }
+            }
+
             base.OnNavigatedTo(e);
         }
 

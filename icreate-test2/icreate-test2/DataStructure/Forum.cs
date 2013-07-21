@@ -64,14 +64,15 @@ namespace icreate_test2.DataStructure
         // generate the title list to be displayed on the left-
         public void GenerateAllTitles()
         {
-            forumAllTitles.Clear();
-
             foreach (Heading heading in forumHeadings)
             {
                 heading.GenerateAllTitles();
-                foreach(PostTitle postTitle in heading.headingAllTiles)
+                foreach (PostTitle postTitle in heading.headingAllTiles)
                 {
-                    this.forumAllTitles.Add(postTitle);
+                    if (!this.forumAllTitles.Contains(postTitle, new PostTitleEqualityComparer()))
+                    {
+                        this.forumAllTitles.Add(postTitle);
+                    }
                 }
             }
         }
@@ -84,6 +85,27 @@ namespace icreate_test2.DataStructure
             {
                 handler(this, new PropertyChangedEventArgs(name));
             }
+        }
+    }
+
+    class PostTitleEqualityComparer : IEqualityComparer<DataStructure.PostTitle>
+    {
+        public bool Equals(DataStructure.PostTitle p1, DataStructure.PostTitle p2)
+        {
+            if (p1.isPostHeading == p2.isPostHeading && p1.headingId == p2.headingId && p1.threadId == p2.threadId)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public int GetHashCode(DataStructure.PostTitle postTitle)
+        {
+            int hCode = postTitle.postTitle.Length ^ postTitle.isPostHeading.GetHashCode();
+            return hCode.GetHashCode();
         }
     }
 }

@@ -45,7 +45,7 @@ namespace icreate_test2
         private int _moduleIndex;
         private int _announcementIndex;
 
-        private int _currentForumIndex;
+        private int _currentForumIndex = 0;
         private bool _isToPostNewThread = false;
         private string _headingId;
         private bool isRightClicking;
@@ -56,6 +56,7 @@ namespace icreate_test2
         private DataStructure.Folder _currentFolder;
         private List<DataStructure.Grade> _allGrades;
         private DataStructure.Thread _currentThread;
+        private DataStructure.Thread _currentBaseThread;
 
         // store parent/child folders in hierachy 
         private List<DataStructure.Folder> _folderTree;
@@ -67,6 +68,7 @@ namespace icreate_test2
             _folderTree = new List<DataStructure.Folder>();
             _otherModules = new List<DataStructure.Module>();
             _allGrades = new List<DataStructure.Grade>();
+
         }
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
@@ -220,6 +222,11 @@ namespace icreate_test2
 
                 _currentModule.moduleWorkbins = workbinWrapper.workbins;
             }
+            else
+            {
+                MessageDialog noInternetDialog = new MessageDialog("There is currently no internet connection..", "Oops");
+                await noInternetDialog.ShowAsync();
+            }
         }
 
         private async Task GetForumAsync()
@@ -230,7 +237,7 @@ namespace icreate_test2
             parameters.Add("IncludeThreads", "true");
 
             String forumsResponse = await Utils.RequestSender.GetResponseStringAsync("Forums", parameters);
-            
+
             if (forumsResponse != null)
             {
                 DataStructure.ForumWrapper forumWrapper = JsonConvert.DeserializeObject<DataStructure.ForumWrapper>(forumsResponse);
@@ -241,7 +248,7 @@ namespace icreate_test2
                     {
                         if (forum.forumId == mForum.forumId)
                         {
-                            mForum.forumHeadings = mForum.forumHeadings;
+                            mForum.forumHeadings = forum.forumHeadings;
                         }
                     }
                 }
@@ -249,6 +256,11 @@ namespace icreate_test2
 
                 // generate content for display
                 updateForum();
+            }
+            else
+            {
+                MessageDialog noInternetDialog = new MessageDialog("There is currently no internet connection..", "Oops");
+                await noInternetDialog.ShowAsync();
             }
         }
 
@@ -258,12 +270,17 @@ namespace icreate_test2
             parameters.Add("CourseID", _currentModule.moduleId);
 
             String examResponse = await Utils.RequestSender.GetResponseStringAsync("Timetable_ModuleExam", parameters);
-            
+
             if (examResponse != null)
             {
                 DataStructure.ExamInfoWrapper examInfoWrapper = JsonConvert.DeserializeObject<DataStructure.ExamInfoWrapper>(examResponse);
 
                 _currentModule.moduleExamInfos = examInfoWrapper.examInfos;
+            }
+            else
+            {
+                MessageDialog noInternetDialog = new MessageDialog("There is currently no internet connection..", "Oops");
+                await noInternetDialog.ShowAsync();
             }
         }
 
@@ -445,6 +462,7 @@ namespace icreate_test2
                     _headingId = selectedPostTitle.headingId;
                     replyStackPanel.Visibility = Visibility.Visible;
                     titleTextBox.Text = "";
+                    contentTextBox.Text = "";
                 }
                 else
                 {
@@ -455,7 +473,9 @@ namespace icreate_test2
                         {
                             if (thread.threadId == selectedPostTitle.threadId)
                             {
-                                threads.Source = thread.threadAllThreads;
+                                _currentBaseThread = thread;
+                                threads.Source = _currentBaseThread.threadAllThreads;
+                                return;
                             }
                         }
                     }
@@ -521,6 +541,7 @@ namespace icreate_test2
                     _currentThread = tappedThread;
                     replyStackPanel.Visibility = Visibility.Visible;
                     titleTextBox.Text = "Re: " + tappedThread.threadTitle;
+                    contentTextBox.Text = "";
                 }
             }
         }
@@ -542,26 +563,15 @@ namespace icreate_test2
             if (state != null)
             {
                 replyStackPanel.Visibility = Visibility.Collapsed;
+
+                // refresh the heading list
+                await GetForumAsync();
             }
-
-            // TEST
-            state = state.Remove(state.Length - 1);
-            state = state.Remove(0);
-
-            // TO-DO 
-            // refresh the heading list
-
-            foreach(DataStructure.Heading heading in _currentModule.moduleForums[_currentForumIndex].forumHeadings)
+            else
             {
-                if (heading.headingId == _headingId)
-                {
-                    heading.headingThreads.Add(new DataStructure.Thread(state, title, content, DateTime.Now, null, new List<DataStructure.Thread>(), false, false));
-                }
+                // TODO
+                // display error message
             }
-
-            updateForum();
-            //await GetForumAsync();
-            //headers.Source = _currentModule.moduleForums[0].forumAllTitles;
         }
 
         private async void ReplyThread()
@@ -578,10 +588,35 @@ namespace icreate_test2
             if (state != null)
             {
                 replyStackPanel.Visibility = Visibility.Collapsed;
-            }
 
-            // TO-DO 
-            // refresh the thread list
+                // TO-DO ]
+                parameters.Clear();
+                parameters.Add("ThreadID", _currentBaseThread.threadId);
+                parameters.Add("Duration", "0");
+                parameters.Add("GetSubThreads", "true");
+
+                state = await Utils.RequestSender.GetResponseStringAsync("Forum_Threads", parameters);
+
+                if (state != null)
+                {
+                    DataStructure.ThreadWrapper threadWrapper = JsonConvert.DeserializeObject<DataStructure.ThreadWrapper>(state);
+                    _currentBaseThread.threadInnerThreads = threadWrapper.threads[0].threadInnerThreads;
+                    _currentBaseThread.GenerateAllThread();
+                }
+                else
+                {
+                    // display error message
+                    MessageDialog noInternetDialog = new MessageDialog("There is currently no internet connection..", "Oops");
+                    await noInternetDialog.ShowAsync();
+                }
+            }
+            else
+            {
+                // display error message
+                MessageDialog noInternetDialog = new MessageDialog("There is currently no internet connection..", "Oops");
+                await noInternetDialog.ShowAsync();
+            }
+            
         }
 
         private void replyButton_Tapped(object sender, TappedRoutedEventArgs e)
@@ -734,6 +769,8 @@ namespace icreate_test2
                     case DataStructure.ItemType.FORUM:
                         flipView.SelectedItem = null;
                         flipView.SelectedIndex = 4;
+
+                        _currentForumIndex = selectedItem.itemIndex;
 
                         headers.Source = _currentModule.moduleForums[selectedItem.itemIndex].forumAllTitles;
 

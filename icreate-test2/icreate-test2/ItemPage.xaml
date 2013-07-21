@@ -1667,7 +1667,11 @@
                                   ItemsSource="{Binding Source={StaticResource headers}}"
                                   SelectionMode="None"
                                   Tapped="thread_Tapped" ItemContainerStyle="{StaticResource forumStyle}">
-
+                            <ListView.ItemContainerTransitions>
+                                <TransitionCollection>
+                                    <PopupThemeTransition/>
+                                </TransitionCollection>
+                            </ListView.ItemContainerTransitions>
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <Grid Height="auto" Background="{Binding Path=isPostHeading,
@@ -1721,7 +1725,11 @@
                                         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                                     </Style>
                                 </ListView.ItemContainerStyle>
-
+                                <ListView.ItemContainerTransitions>
+                                    <TransitionCollection>
+                                        <PopupThemeTransition/>
+                                    </TransitionCollection>
+                                </ListView.ItemContainerTransitions>
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <Grid Height="auto" Background="Gray">
@@ -1763,7 +1771,8 @@
                                 </ListView.ItemTemplate>
                             </ListView>
                             <StackPanel x:Name="replyStackPanel" Orientation="Vertical" Visibility="Collapsed" VerticalAlignment="Bottom" Grid.Row="1">
-                                <TextBox x:Name="titleTextBox" Height="50" BorderBrush="LightBlue" BorderThickness="4" FontSize="24" KeyUp="titleTextBox_KeyUp"/>
+                                <TextBox x:Name="titleTextBox" Height="50" BorderBrush="LightBlue" BorderThickness="4" FontSize="24" KeyUp="titleTextBox_KeyUp">
+                                </TextBox>
                                 <Grid>
                                     <TextBox x:Name="contentTextBox" AcceptsReturn="True" FontSize="20" BorderBrush="LightBlue" BorderThickness="4" TextWrapping="Wrap" Height="150" KeyUp="contentTextBox_KeyUp"/>
                                     <Button x:Name="replyButton" HorizontalAlignment="Right" VerticalAlignment="Bottom"

@@ -50,7 +50,9 @@ namespace icreate_test2.DataStructure
             threadPoster = poster;
             threadInnerThreads = innerThreads;
             threadIsPosterStaff = isPosterStaff;
-            threadIsRead = isRead;           
+            threadIsRead = isRead;
+
+            threadAllThreads = new ObservableCollection<Thread>();
         }
 
         public void GenerateAllThread()
@@ -59,16 +61,43 @@ namespace icreate_test2.DataStructure
             threadBody = Regex.Replace(threadBody, "<.+?>", string.Empty);
             threadBody = Regex.Replace(threadBody, "&nbsp;", string.Empty);
 
-            threadAllThreads = new ObservableCollection<Thread>();
             foreach (Thread thread in threadInnerThreads)
             {
                 thread.GenerateAllThread();
                 foreach (Thread innerThread in thread.threadAllThreads)
                 {
-                    threadAllThreads.Add(innerThread);
+                    if (!threadAllThreads.Contains(innerThread, new ThreadEqualityComparer()))
+                    {
+                        threadAllThreads.Add(innerThread);
+                    }
                 }
             }
-            threadAllThreads.Insert(0, this);
+
+            if (!threadAllThreads.Contains(this, new ThreadEqualityComparer()))
+            {
+                threadAllThreads.Insert(0, this);
+            }
+        }
+    }
+
+    class ThreadEqualityComparer : IEqualityComparer<DataStructure.Thread>
+    {
+        public bool Equals(DataStructure.Thread t1, DataStructure.Thread t2)
+        {
+            if (t1.threadId == t2.threadId)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public int GetHashCode(DataStructure.Thread thread)
+        {
+            int hCode = thread.threadId.Length ^ thread.threadTitle.Length;
+            return hCode.GetHashCode();
         }
     }
 }
