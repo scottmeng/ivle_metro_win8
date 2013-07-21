@@ -24,13 +24,22 @@
 
     <Grid Style="{StaticResource LayoutRootStyle}" Background="#003399">
         <Canvas x:Name="defaultLogin" Height="768" Width="1366" 
-                Visibility="Visible" RenderTransformOrigin="0.5,0.5">
+                Visibility="Visible" RenderTransformOrigin="0.264,0.477">
             <Canvas.Resources>
-                <Storyboard x:Name="myStoryboard" BeginTime="00:00:00"/>
+                <Storyboard x:Name="myStoryboard" BeginTime="00:00:00">
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MyAnimatedTranslateTransform" 
+                                                           Storyboard.TargetProperty="X" Duration="0:0:1">
+                        <LinearDoubleKeyFrame Value="0" KeyTime="0:0:0.3" />
+                        <LinearDoubleKeyFrame Value="-300" KeyTime="0:0:1" />
+                    </DoubleAnimationUsingKeyFrames>
+                </Storyboard>
             </Canvas.Resources>
+        	<Canvas.RenderTransform>
+        		<CompositeTransform/>
+        	</Canvas.RenderTransform>
             <Image x:Name="image" Source="Assets/SplashScreen.scale-100.png"  Margin="355,234,373,234">
                 <Image.RenderTransform>
-                	<CompositeTransform TranslateX="0" TranslateY="0"/>
+                    <TranslateTransform x:Name="MyAnimatedTranslateTransform" X="0" Y="0" />
                 </Image.RenderTransform>
             </Image>
             <ProgressRing x:Name="ProgressRingIfTokenExist" Margin="663,544,0,154" IsActive="False" Height="40" Width="40"
@@ -229,17 +238,18 @@
                 </VisualState>
                 <VisualState x:Name="FullScreenPortrait">
                 	<Storyboard>
-                		<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.HorizontalAlignment)" Storyboard.TargetName="image">
+                		<DoubleAnimation Duration="0" To="-57" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="userInfo" d:IsOptimized="True"/>
+                		<DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="userInfo" d:IsOptimized="True"/>
+                		<DoubleAnimation Duration="0" To="-102" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="ProgressRing" d:IsOptimized="True"/>
+                		<DoubleAnimation Duration="0" To="2.5" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="ProgressRing" d:IsOptimized="True"/>
+                		<DoubleAnimation Duration="0" To="12" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="ProgressRingIfTokenExist" d:IsOptimized="True"/>
+                		<DoubleAnimation Duration="0" To="-24" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="ProgressRingIfTokenExist" d:IsOptimized="True"/>
+                		<PointAnimation Duration="0" To="-0.288,0.525" Storyboard.TargetProperty="(UIElement.RenderTransformOrigin)" Storyboard.TargetName="ProgressRingIfTokenExist" d:IsOptimized="True"/>
+                		<PointAnimation Duration="0" To="0.321,1.25" Storyboard.TargetProperty="(UIElement.RenderTransformOrigin)" Storyboard.TargetName="userInfo" d:IsOptimized="True"/>
+                		<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Margin)" Storyboard.TargetName="userInfo">
                 			<DiscreteObjectKeyFrame KeyTime="0">
                 				<DiscreteObjectKeyFrame.Value>
-                					<HorizontalAlignment>Center</HorizontalAlignment>
-                				</DiscreteObjectKeyFrame.Value>
-                			</DiscreteObjectKeyFrame>
-                		</ObjectAnimationUsingKeyFrames>
-                		<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.VerticalAlignment)" Storyboard.TargetName="image">
-                			<DiscreteObjectKeyFrame KeyTime="0">
-                				<DiscreteObjectKeyFrame.Value>
-                					<VerticalAlignment>Center</VerticalAlignment>
+                					<Thickness>610,290,100,234</Thickness>
                 				</DiscreteObjectKeyFrame.Value>
                 			</DiscreteObjectKeyFrame>
                 		</ObjectAnimationUsingKeyFrames>
@@ -250,29 +260,9 @@
                 				</DiscreteObjectKeyFrame.Value>
                 			</DiscreteObjectKeyFrame>
                 		</ObjectAnimationUsingKeyFrames>
-                		<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.FontFamily)" Storyboard.TargetName="ProgressRingIfTokenExist">
-                			<DiscreteObjectKeyFrame KeyTime="0">
-                				<DiscreteObjectKeyFrame.Value>
-                					<FontFamily>Global User Interface</FontFamily>
-                				</DiscreteObjectKeyFrame.Value>
-                			</DiscreteObjectKeyFrame>
-                		</ObjectAnimationUsingKeyFrames>
-                		<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="ProgressRing">
-                			<EasingDoubleKeyFrame KeyTime="0" Value="-216"/>
-                		</DoubleAnimationUsingKeyFrames>
-                		<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="ProgressRing">
-                			<EasingDoubleKeyFrame KeyTime="0" Value="113.5"/>
-                		</DoubleAnimationUsingKeyFrames>
-                		<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="ProgressRingIfTokenExist">
-                			<EasingDoubleKeyFrame KeyTime="0" Value="-7.5"/>
-                		</DoubleAnimationUsingKeyFrames>
-                		<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="ProgressRingIfTokenExist">
-                			<EasingDoubleKeyFrame KeyTime="0" Value="-64"/>
-                		</DoubleAnimationUsingKeyFrames>
-                		<DoubleAnimation Duration="0" To="-156" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="userInfo" d:IsOptimized="True"/>
-                		<DoubleAnimation Duration="0" To="131" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="userInfo" d:IsOptimized="True"/>
-                		<DoubleAnimation Duration="0" To="-7" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="image" d:IsOptimized="True"/>
-                		<DoubleAnimation Duration="0" To="-104" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="image" d:IsOptimized="True"/>
+                		<DoubleAnimation Duration="0" To="90" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="defaultLogin" d:IsOptimized="True"/>
+                		<DoubleAnimation Duration="0" To="18" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="defaultLogin" d:IsOptimized="True"/>
+                		<PointAnimation Duration="0" To="0.512,0.506" Storyboard.TargetProperty="(UIElement.RenderTransformOrigin)" Storyboard.TargetName="ProgressRing" d:IsOptimized="True"/>
                 	</Storyboard>
                 </VisualState>
             </VisualStateGroup>

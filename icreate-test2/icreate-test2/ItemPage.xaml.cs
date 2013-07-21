@@ -126,6 +126,7 @@ namespace icreate_test2
         {
             // display tabs
             itemListView.Source = _currentModule.moduleItems;
+            workbinListView.Source = _currentModule.moduleWorkbins;
             ObservableCollection<DataStructure.ModuleItem> moduleItems = _currentModule.moduleItems;
             Color gray = Color.FromArgb(255, 211, 211, 211);
             for (int i = 0; i < moduleItems.Count; i++)
@@ -270,6 +271,7 @@ namespace icreate_test2
             this.file.Source = _currentFolder.folderFiles;
 
             upFolderButton.Visibility = Visibility.Visible;
+            upFolderButton_snapped.Visibility = Visibility.Visible;
         }
                 
         private void menuButtonClick(object sender, RoutedEventArgs e)
@@ -315,7 +317,7 @@ namespace icreate_test2
 
             DataStructure.File selectedFile = (e.OriginalSource as FrameworkElement).DataContext as DataStructure.File;
 
-            // check if folder token exists
+            // check if token exists
             Windows.Storage.ApplicationDataContainer folderTokens = Windows.Storage.ApplicationData.Current.LocalSettings;
             string listToken = (string) folderTokens.Values[_currentModule.moduleId];
 
@@ -492,6 +494,7 @@ namespace icreate_test2
                 folder.Source = _currentWorkbin.workbinFolders;
                 file.Source = new List<DataStructure.File>();
                 upFolderButton.Visibility = Visibility.Collapsed;
+                upFolderButton_snapped.Visibility = Visibility.Collapsed;
             }
         }
 
@@ -595,6 +598,7 @@ namespace icreate_test2
             SolidColorBrush brush = new SolidColorBrush(Color.FromArgb(255,211,211,211));
             SolidColorBrush brushBlue = new SolidColorBrush(Color.FromArgb(255,0,0,255));
             FolderGrid.Background = brush;
+            FolderGrid_snapped.Background = brush;
             
         }
 
@@ -602,6 +606,7 @@ namespace icreate_test2
         {
             SolidColorBrush brush = new SolidColorBrush(Color.FromArgb(255, 255, 255, 255));
             FolderGrid.Background = brush;
+            FolderGrid_snapped.Background = brush;
         }
 
         private void mainGrid_KeyUp(object sender, KeyRoutedEventArgs e)
@@ -713,6 +718,7 @@ namespace icreate_test2
 
                         _folderTree.Clear();
                         upFolderButton.Visibility = Visibility.Collapsed;
+                        upFolderButton_snapped.Visibility = Visibility.Collapsed;
 
                         break;
 
