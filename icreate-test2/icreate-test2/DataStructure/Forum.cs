@@ -29,7 +29,19 @@ namespace icreate_test2.DataStructure
         [DataMember(Name = "Headings")]
         public Heading[] forumHeadings { get; set; }
 
-        public ObservableCollection<PostTitle> forumAllTitles { get; set; }
+        private ObservableCollection<PostTitle> _forumAllTitles;
+        public ObservableCollection<PostTitle> forumAllTitles 
+        {
+            get { return this._forumAllTitles; }
+            set
+            {
+                if (value != this._forumAllTitles)
+                {
+                    this._forumAllTitles = value;
+                    OnPropertyChanged("forumAllTitles");
+                }
+            }
+        }
 
         public Forum(String id, String title, String message, int badge, Heading[] headings)
         {
@@ -40,19 +52,27 @@ namespace icreate_test2.DataStructure
             forumHeadings = headings;
 
             forumAllTitles = new ObservableCollection<PostTitle>();
+            forumAllTitles.CollectionChanged += _forumAllTitles_CollectionChanged;
+        }
+
+        void _forumAllTitles_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            string test = null;
+            //throw new NotImplementedException();
         }
 
         // generate the title list to be displayed on the left-
         public void GenerateAllTitles()
         {
-            forumAllTitles.Clear();
-
             foreach (Heading heading in forumHeadings)
             {
                 heading.GenerateAllTitles();
-                foreach(PostTitle postTitle in heading.headingAllTiles)
+                foreach (PostTitle postTitle in heading.headingAllTiles)
                 {
-                    forumAllTitles.Add(postTitle);
+                    if (!this.forumAllTitles.Contains(postTitle, new PostTitleEqualityComparer()))
+                    {
+                        this.forumAllTitles.Add(postTitle);
+                    }
                 }
             }
         }
@@ -65,6 +85,27 @@ namespace icreate_test2.DataStructure
             {
                 handler(this, new PropertyChangedEventArgs(name));
             }
+        }
+    }
+
+    class PostTitleEqualityComparer : IEqualityComparer<DataStructure.PostTitle>
+    {
+        public bool Equals(DataStructure.PostTitle p1, DataStructure.PostTitle p2)
+        {
+            if (p1.isPostHeading == p2.isPostHeading && p1.headingId == p2.headingId && p1.threadId == p2.threadId)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public int GetHashCode(DataStructure.PostTitle postTitle)
+        {
+            int hCode = postTitle.postTitle.Length ^ postTitle.isPostHeading.GetHashCode();
+            return hCode.GetHashCode();
         }
     }
 }

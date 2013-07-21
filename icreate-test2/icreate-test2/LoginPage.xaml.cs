@@ -36,6 +36,7 @@ namespace icreate_test2
         private String password;
         private String domain;
         private String postString;
+        private bool isModuleDataUpdated = false;
 
         public LoginPage()
         {
@@ -43,7 +44,6 @@ namespace icreate_test2
             hideUserInfo.Begin();
 
             Utils.DataManager.InitializeDataLists();
-
         }
 
         void myStoryboard_Completed(object sender, object e)
@@ -98,7 +98,7 @@ namespace icreate_test2
                         ProgressRing.IsActive = false;
                         ProgressRing_snapped.IsActive = false;
                         // navigate to main menu page
-                        this.Frame.Navigate(typeof(MainPage));
+                        this.Frame.Navigate(typeof(MainPage), isModuleDataUpdated);
                     }
                     else
                     {
@@ -177,7 +177,7 @@ namespace icreate_test2
                     await GetTimetableAsync();
 
                     // navigate to the home page
-                    this.Frame.Navigate(typeof(MainPage));
+                    this.Frame.Navigate(typeof(MainPage), isModuleDataUpdated);
                 }
                 else
                 {
@@ -203,11 +203,6 @@ namespace icreate_test2
                 UsernameTextBox.Text = roamingSettings.Values["userID"].ToString();
                 UsernameTextBox_snapped.Text = roamingSettings.Values["userID"].ToString();
             }
-            if (roamingSettings.Values.ContainsKey("password"))
-            {
-                PasswordBox.Password = roamingSettings.Values["password"].ToString();
-                PasswordBox_snapped.Password = roamingSettings.Values["password"].ToString();
-            }
             if (roamingSettings.Values.ContainsKey("domain"))
             {
                 DomainComboBox.SelectedItem = roamingSettings.Values["domain"].ToString();
@@ -221,7 +216,6 @@ namespace icreate_test2
             Windows.Storage.ApplicationDataContainer roamingSettings = Windows.Storage.ApplicationData.Current.RoamingSettings;
 
             roamingSettings.Values["userID"] = this.username;
-            roamingSettings.Values["password"] = this.password;
             roamingSettings.Values["domain"] = this.domain;
         }
 
@@ -321,6 +315,7 @@ namespace icreate_test2
             int iterator = 0;
             string modulesResponse;
 
+            // try to fetch old data from local storage
             Windows.Storage.StorageFolder localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
             try
             {
@@ -333,9 +328,10 @@ namespace icreate_test2
                 modulesResponse = null;
             }
 
+            // if serialized data does not exist
+            // fetch module data from server
             if (modulesResponse == null)
             {
-
                 Dictionary<string, string> parameters = new Dictionary<string, string>();
                 parameters.Add("Duration", "0");
                 parameters.Add("IncludeAllInfo", "true");
@@ -344,8 +340,11 @@ namespace icreate_test2
 
                 StorageFile sampleFile = await localFolder.CreateFileAsync("dataFile.txt", CreationCollisionOption.ReplaceExisting);
                 await FileIO.WriteTextAsync(sampleFile, modulesResponse);
+
+                isModuleDataUpdated = true;
             }
 
+            // deserialize data into objects
             DataStructure.ModuleInfoWrapper moduleWrapper = JsonConvert.DeserializeObject<DataStructure.ModuleInfoWrapper>(modulesResponse);
 
             if (moduleWrapper.comments.Equals("Valid login!"))

@@ -135,6 +135,7 @@
     <Compile Include="DataStructure\Searchable.cs" />
     <Compile Include="DataStructure\SemesterInfo.cs" />
     <Compile Include="DataStructure\Thread.cs" />
+    <Compile Include="DataStructure\ThreadWrapper.cs" />
     <Compile Include="DataStructure\Webcast.cs" />
     <Compile Include="DataStructure\Workbin.cs" />
     <Compile Include="DataStructure\WorkbinWrapper.cs" />

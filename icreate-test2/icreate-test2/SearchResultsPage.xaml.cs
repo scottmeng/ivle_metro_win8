@@ -230,5 +230,16 @@ namespace icreate_test2
                 }
             }
         }
+
+        private void MainGrid_KeyUp(object sender, KeyRoutedEventArgs e)
+        {
+            // if the event is not triggerd from a textbox
+            // and the key pressed is backspace
+            // then navigate back to the previous page
+            if (e.Key == Windows.System.VirtualKey.Back)
+            {
+                this.Frame.Navigate(typeof(MainPage));
+            }
+        }
     }
 }

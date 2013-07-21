@@ -16,7 +16,7 @@ namespace icreate_test2.DataStructure
             Color.FromArgb(255, 100, 26, 183),
             Color.FromArgb(255, 26, 85, 175),
             Color.FromArgb(255, 226, 107, 27),
-            Color.FromArgb(255, 255, 152, 31),
+            Color.FromArgb(255, 1, 174, 170),
             Color.FromArgb(255, 17, 155, 43),
             Color.FromArgb(255, 217, 100, 179),
             Color.FromArgb(255, 134, 184, 27),
