@@ -24,25 +24,27 @@
 
     <Grid Style="{StaticResource LayoutRootStyle}" Background="#003399">
         <Canvas x:Name="defaultLogin" Height="768" Width="1366" 
-                Visibility="Visible">
+                Visibility="Visible" RenderTransformOrigin="0.5,0.5">
             <Canvas.Resources>
-                <Storyboard x:Name="myStoryboard" BeginTime="00:00:00">
-                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MyAnimatedTranslateTransform" 
-                                                           Storyboard.TargetProperty="X" Duration="0:0:2">
-                        <LinearDoubleKeyFrame Value="0" KeyTime="0:0:1" />
-                        <LinearDoubleKeyFrame Value="-230" KeyTime="0:0:2" />
-                    </DoubleAnimationUsingKeyFrames>
-                </Storyboard>
+                <Storyboard x:Name="myStoryboard" BeginTime="00:00:00"/>
             </Canvas.Resources>
-            <Image Source="Assets/SplashScreen.scale-100.png"  Margin="373,234,373,234">
+            <Image x:Name="image" Source="Assets/SplashScreen.scale-100.png"  Margin="355,234,373,234">
                 <Image.RenderTransform>
-                    <TranslateTransform x:Name="MyAnimatedTranslateTransform" X="0" Y="0" />
+                	<CompositeTransform TranslateX="0" TranslateY="0"/>
                 </Image.RenderTransform>
             </Image>
             <ProgressRing x:Name="ProgressRingIfTokenExist" Margin="663,544,0,154" IsActive="False" Height="40" Width="40"
-                                  Grid.Column="0" Grid.Row="3" Foreground="White" />
+                                  Grid.Column="0" Grid.Row="3" Foreground="White" RenderTransformOrigin="0.5,0.5" >
+            	<ProgressRing.RenderTransform>
+            		<CompositeTransform/>
+            	</ProgressRing.RenderTransform>
+            </ProgressRing>
             <ProgressRing x:Name="ProgressRing" Margin="850,330,100,5" IsActive="False" Height="80" Width="80"
-                                  Grid.Column="0" Grid.Row="3" Foreground="White" />
+                                  Grid.Column="0" Grid.Row="3" Foreground="White" RenderTransformOrigin="0.5,0.5" >
+            	<ProgressRing.RenderTransform>
+            		<CompositeTransform/>
+            	</ProgressRing.RenderTransform>
+            </ProgressRing>
             <StackPanel>
                 <StackPanel.Resources>
                     <Storyboard x:Name="showUserInfo">
@@ -54,78 +56,119 @@
                     <Storyboard x:Name="userInfoOpacity">
                         <DoubleAnimation Storyboard.TargetName="userInfo" 
                                          Storyboard.TargetProperty="(Rectangle.Opacity)" 
-                                         From="0.0" To="1.0" Duration="0:0:0.5" />
+                                         From="0.0" To="1.0" Duration="0:0:0.3" />
                     </Storyboard>
                 </StackPanel.Resources>
-                <Grid Name="userInfo" Opacity="0" Margin="700,270,100,234" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid Name="userInfo" Opacity="0" Margin="660,290,100,234" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5">
+                	<Grid.RenderTransform>
+                		<CompositeTransform/>
+                	</Grid.RenderTransform>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="auto"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="60"/>
-                        <RowDefinition Height="60"/>
-                        <RowDefinition Height="60"/>
-                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="55"/>
+                        <RowDefinition Height="55"/>
+                        <RowDefinition Height="55"/>
+                        <RowDefinition Height="55"/>
                     </Grid.RowDefinitions>
-                    <TextBlock Text="UserID:" FontSize="28" Margin="5" Foreground="White"
-                               Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                    <TextBox x:Name="UsernameTextBox" Margin="5"   Width="300" FontSize="24" 
-                             Grid.Column="1" Grid.Row="0"/>
-                    <TextBlock Text="Password:" FontSize="28" Margin="5" Foreground="White"
-                               Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                    <PasswordBox x:Name="PasswordBox" Margin="5" Width="300" FontSize="24" 
-                                 PasswordChar="*" Grid.Column="1" Grid.Row="1" KeyDown="onPasswordKeyDown"/>
-                    <TextBlock Text="Domain:" FontSize="28" Margin="5" Foreground="White"
-                               Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                    <ComboBox x:Name="DomainComboBox" Margin="5" SelectedItem="domainItem"  
-                              Width="300" FontSize="28" Grid.Column="1" Grid.Row="2" SelectedIndex="0">
+                    <TextBlock x:Name="textBlock" Text="UserID:" FontSize="24" Margin="5,2,3,0" Foreground="White"
+                               Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5">
+                        <TextBlock.RenderTransform>
+                            <CompositeTransform/>
+                        </TextBlock.RenderTransform>
+                    </TextBlock>
+                    <TextBox x:Name="UsernameTextBox" Margin="5,2,3,0"   Width="270" Height="50" FontSize="20" 
+                             Grid.Column="1" Grid.Row="0" VerticalContentAlignment="Center" RenderTransformOrigin="0.5,0.5">
+                        <TextBox.RenderTransform>
+                            <CompositeTransform/>
+                        </TextBox.RenderTransform>
+                    </TextBox>
+                    <TextBlock x:Name="textBlock1" Text="Password:" FontSize="24" Margin="5,2,3,0" Foreground="White"
+                               Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5">
+                        <TextBlock.RenderTransform>
+                            <CompositeTransform/>
+                        </TextBlock.RenderTransform>
+                    </TextBlock>
+                    <PasswordBox x:Name="PasswordBox" Margin="5,2,3,0" Width="270" Height="50" FontSize="20" 
+                                 PasswordChar="*" Grid.Column="1" Grid.Row="1" KeyDown="onPasswordKeyDown" VerticalContentAlignment="Center" RenderTransformOrigin="0.5,0.5">
+                        <PasswordBox.RenderTransform>
+                            <CompositeTransform/>
+                        </PasswordBox.RenderTransform>
+                    </PasswordBox>
+                    <TextBlock x:Name="textBlock2" Text="Domain:" FontSize="24" Margin="5,2,3,0" Foreground="White"
+                               Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5">
+                        <TextBlock.RenderTransform>
+                            <CompositeTransform/>
+                        </TextBlock.RenderTransform>
+                    </TextBlock>
+                    <ComboBox x:Name="DomainComboBox" Margin="5,2,3,0" SelectedItem="domainItem"  
+                              Width="270" Height="50" FontSize="20" Grid.Column="1" Grid.Row="2" SelectedIndex="0" VerticalContentAlignment="Center" RenderTransformOrigin="0.5,0.5">
+                        <ComboBox.RenderTransform>
+                            <CompositeTransform/>
+                        </ComboBox.RenderTransform>
                         <x:String>NUSSTU</x:String>
                         <x:String>NUSSTF</x:String>
                         <x:String>NUSSSS</x:String>
                     </ComboBox>
-                    <Button x:Name="LoginButton" Height="50" Margin="5" Padding="5" Content="Login" 
-                            FontSize="26" Click="login_Click" Background="White" Foreground="#003399"
-                            Grid.Column="1"  Grid.Row="3" Width="180" HorizontalAlignment="Right"/>
+                    <Button x:Name="LoginButton" Height="45" Margin="3,3,3,0" Padding="2" Content="Login" 
+                            FontSize="24" Click="login_Click" Background="White" Foreground="#003399"
+                            Grid.Column="1"  Grid.Row="3" Width="160" HorizontalAlignment="Right" RenderTransformOrigin="0.5,0.5">
+                        <Button.RenderTransform>
+                            <CompositeTransform/>
+                        </Button.RenderTransform>
+                    </Button>
                 </Grid>
             </StackPanel>
         </Canvas>
-        <Grid x:Name="snappedLogin" Width="320" Visibility="Collapsed">
+        <Grid x:Name="snappedLogin" Width="320" Background="#003399" Visibility="Collapsed">
             <StackPanel>
-                <Image x:Name="snapLoginImg" Source="Assets/Login.png" 
-                       Width="150" Height="150" HorizontalAlignment="Center"
+                <StackPanel.Style>
+                    <Style TargetType="StackPanel">
+                        <Setter Property="MaxWidth" Value="320"/>
+                    </Style>
+                </StackPanel.Style>
+                <Image x:Name="snapLoginImg" Source="Assets/Login.png" Margin="10,150,10,10"
+                       Width="200" Height="200" HorizontalAlignment="Center"
                        VerticalAlignment="Top"/>
-                <Grid Margin="20,50,20,50" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <Grid x:Name="userInfo_snapped" Margin="20,20,20,50" HorizontalAlignment="Center" VerticalAlignment="Center">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="100"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="60"/>
-                        <RowDefinition Height="60"/>
-                        <RowDefinition Height="60"/>
-                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
                     </Grid.RowDefinitions>
-                    <TextBlock Text="UserID:" FontSize="20" Margin="5" 
-                               Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                    <TextBox x:Name="UsernameTextBox_snapped" Margin="5"   Width="180" FontSize="18" 
-                             Grid.Column="1" Grid.Row="0"/>
-                    <TextBlock Text="Password:" FontSize="20" Margin="5" 
-                               Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                    <PasswordBox x:Name="PasswordBox_snapped" Margin="5" Width="180" FontSize="18" 
+                    <TextBlock Text="UserID:" FontSize="18" Margin="5" Foreground="White" 
+                               Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                    <TextBox x:Name="UsernameTextBox_snapped" Margin="2"   Width="150" FontSize="18" 
+                             Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center"/>
+                    <TextBlock Text="Password:" FontSize="18" Margin="2" Foreground="White"
+                               Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                    <PasswordBox x:Name="PasswordBox_snapped" Margin="2" Width="150" FontSize="18" HorizontalAlignment="Center"
                                  PasswordChar="*" Grid.Column="1" Grid.Row="1" KeyDown="onPasswordKeyDown"/>
-                    <TextBlock Text="Domain:" FontSize="20" Margin="5" 
-                               Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                    <ComboBox x:Name="DomainComboBox_snapped" Margin="5" SelectedItem="domainItem"  
-                              Width="180" FontSize="20" Grid.Column="1" Grid.Row="2" SelectedIndex="0">
+                    <TextBlock Text="Domain:" FontSize="18" Margin="2" Foreground="White"
+                               Grid.Column="0" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                    <ComboBox x:Name="DomainComboBox_snapped" Margin="2" SelectedItem="domainItem"  HorizontalAlignment="Center"
+                              Width="150" FontSize="18" Grid.Column="1" Grid.Row="2" SelectedIndex="0">
                         <x:String>NUSSTU</x:String>
                         <x:String>NUSSTF</x:String>
                         <x:String>NUSSSS</x:String>
                     </ComboBox>
-                    <Button x:Name="LoginButton_snapped" Height="50" Margin="5" Padding="5" Content="Login" 
-                            FontSize="22" Click="login_Click" Background="#003399" Foreground="White"
-                            Grid.Column="1"  Grid.Row="3" Width="100" HorizontalAlignment="Right"/>
+                    <Button x:Name="LoginButton_snapped" Height="40" Margin="2,10,2,2" Padding="3" Content="Login" 
+                            FontSize="18" Click="login_Click" Background="White" Foreground="#003399"
+                            Grid.Column="1"  Grid.Row="3" Width="80" HorizontalAlignment="Right"/>
                 </Grid>
+                <ProgressRing x:Name="ProgressRing_snapped" Margin="100,0,100,5" IsActive="False" Height="40" Width="40"
+                            Grid.Column="0" Grid.Row="3" Foreground="White" RenderTransformOrigin="0.5,0.5" >
+                    <ProgressRing.RenderTransform>
+                        <CompositeTransform/>
+                    </ProgressRing.RenderTransform>
+                </ProgressRing>
             </StackPanel>
         </Grid>
 
@@ -133,16 +176,104 @@
         <VisualStateManager.VisualStateGroups>
             <!-- Visual states reflect the application's view state -->
             <VisualStateGroup>
-                <VisualState x:Name="DefaultLayout"/>
-                <VisualState x:Name="SnappedLayout">
+                <VisualState x:Name="FullScreenLandscape">
                     <Storyboard>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="defaultLogin" Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0" Value="Collapsed"/>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="defaultLogin">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Visibility>Visible</Visibility>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
                         </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="snappedLogin" Storyboard.TargetProperty="Visibility">
-                            <DiscreteObjectKeyFrame KeyTime="0" Value="Visible"/>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="snappedLogin">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Visibility>Collapsed</Visibility>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <DoubleAnimation Duration="0" To="10" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="ProgressRing_snapped" d:IsOptimized="True"/>
+                        <DoubleAnimation Duration="0" To="-230" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="ProgressRing_snapped" d:IsOptimized="True"/>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Snapped">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="defaultLogin">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Visibility>Collapsed</Visibility>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="snappedLogin">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Visibility>Visible</Visibility>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <DoubleAnimation Duration="0" To="10" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="ProgressRing_snapped" d:IsOptimized="True"/>
+                        <DoubleAnimation Duration="0" To="-230" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="ProgressRing_snapped" d:IsOptimized="True"/>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Filled">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.HorizontalAlignment)" Storyboard.TargetName="defaultLogin">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <HorizontalAlignment>Center</HorizontalAlignment>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
+                </VisualState>
+                <VisualState x:Name="FullScreenPortrait">
+                	<Storyboard>
+                		<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.HorizontalAlignment)" Storyboard.TargetName="image">
+                			<DiscreteObjectKeyFrame KeyTime="0">
+                				<DiscreteObjectKeyFrame.Value>
+                					<HorizontalAlignment>Center</HorizontalAlignment>
+                				</DiscreteObjectKeyFrame.Value>
+                			</DiscreteObjectKeyFrame>
+                		</ObjectAnimationUsingKeyFrames>
+                		<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.VerticalAlignment)" Storyboard.TargetName="image">
+                			<DiscreteObjectKeyFrame KeyTime="0">
+                				<DiscreteObjectKeyFrame.Value>
+                					<VerticalAlignment>Center</VerticalAlignment>
+                				</DiscreteObjectKeyFrame.Value>
+                			</DiscreteObjectKeyFrame>
+                		</ObjectAnimationUsingKeyFrames>
+                		<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.HorizontalAlignment)" Storyboard.TargetName="defaultLogin">
+                			<DiscreteObjectKeyFrame KeyTime="0">
+                				<DiscreteObjectKeyFrame.Value>
+                					<HorizontalAlignment>Center</HorizontalAlignment>
+                				</DiscreteObjectKeyFrame.Value>
+                			</DiscreteObjectKeyFrame>
+                		</ObjectAnimationUsingKeyFrames>
+                		<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.FontFamily)" Storyboard.TargetName="ProgressRingIfTokenExist">
+                			<DiscreteObjectKeyFrame KeyTime="0">
+                				<DiscreteObjectKeyFrame.Value>
+                					<FontFamily>Global User Interface</FontFamily>
+                				</DiscreteObjectKeyFrame.Value>
+                			</DiscreteObjectKeyFrame>
+                		</ObjectAnimationUsingKeyFrames>
+                		<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="ProgressRing">
+                			<EasingDoubleKeyFrame KeyTime="0" Value="-216"/>
+                		</DoubleAnimationUsingKeyFrames>
+                		<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="ProgressRing">
+                			<EasingDoubleKeyFrame KeyTime="0" Value="113.5"/>
+                		</DoubleAnimationUsingKeyFrames>
+                		<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="ProgressRingIfTokenExist">
+                			<EasingDoubleKeyFrame KeyTime="0" Value="-7.5"/>
+                		</DoubleAnimationUsingKeyFrames>
+                		<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="ProgressRingIfTokenExist">
+                			<EasingDoubleKeyFrame KeyTime="0" Value="-64"/>
+                		</DoubleAnimationUsingKeyFrames>
+                		<DoubleAnimation Duration="0" To="-156" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="userInfo" d:IsOptimized="True"/>
+                		<DoubleAnimation Duration="0" To="131" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="userInfo" d:IsOptimized="True"/>
+                		<DoubleAnimation Duration="0" To="-7" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="image" d:IsOptimized="True"/>
+                		<DoubleAnimation Duration="0" To="-104" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="image" d:IsOptimized="True"/>
+                	</Storyboard>
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>

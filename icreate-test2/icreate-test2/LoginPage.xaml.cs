@@ -82,6 +82,7 @@ namespace icreate_test2
 
                     // display progress circle
                     ProgressRing.IsActive = false;
+                    ProgressRing_snapped.IsActive = false;
 
                     // check if token is valid
                     if (await Utils.TokenManager.IsTokenValid())
@@ -95,6 +96,7 @@ namespace icreate_test2
                         Utils.DataManager.GenerateDailyClassList();
                         // if so, hide progress circle
                         ProgressRing.IsActive = false;
+                        ProgressRing_snapped.IsActive = false;
                         // navigate to main menu page
                         this.Frame.Navigate(typeof(MainPage), isModuleDataUpdated);
                     }
@@ -107,6 +109,7 @@ namespace icreate_test2
                         myStoryboard.Completed += myStoryboard_Completed;
 
                         ProgressRing.IsActive = false;
+                        ProgressRing_snapped.IsActive = false;
                         EnableLoginControls();
                     }
                 }
@@ -149,6 +152,7 @@ namespace icreate_test2
 
                 // display progress ring
                 ProgressRing.IsActive = false;
+                ProgressRing_snapped.IsActive = false;
 
                 username = UsernameTextBox.Text;
                 password = PasswordBox.Password;
@@ -162,6 +166,7 @@ namespace icreate_test2
                     HideLoginControls();
                     // hide progress ring
                     ProgressRing.IsActive = true;
+                    ProgressRing_snapped.IsActive = true;
 
                     // update token
                     Utils.TokenManager.StoreToken();
@@ -179,6 +184,7 @@ namespace icreate_test2
                     // hide progress ring
                     // enable log in controls
                     ProgressRing.IsActive = false;
+                    ProgressRing_snapped.IsActive = false;
                     EnableLoginControls();
 
                     MessageDialog loginFailDialog = new MessageDialog("Log in failed. Please check your userId and password", "Oops");
@@ -195,10 +201,12 @@ namespace icreate_test2
             if (roamingSettings.Values.ContainsKey("userID"))
             {
                 UsernameTextBox.Text = roamingSettings.Values["userID"].ToString();
+                UsernameTextBox_snapped.Text = roamingSettings.Values["userID"].ToString();
             }
             if (roamingSettings.Values.ContainsKey("domain"))
             {
                 DomainComboBox.SelectedItem = roamingSettings.Values["domain"].ToString();
+                DomainComboBox_snapped.SelectedItem = roamingSettings.Values["domain"].ToString();
             }
         }
 
@@ -215,22 +223,31 @@ namespace icreate_test2
         private void DisableLoginControls()
         {
             UsernameTextBox.IsEnabled = false;
+            UsernameTextBox_snapped.IsEnabled = false;
             PasswordBox.IsEnabled = false;
+            PasswordBox_snapped.IsEnabled = false;
             DomainComboBox.IsEnabled = false;
+            DomainComboBox_snapped.IsEnabled = false;
             LoginButton.IsEnabled = false;
+            LoginButton_snapped.IsEnabled = false;
         }
 
         // enable log in page controls
         private void EnableLoginControls()
         {
             UsernameTextBox.IsEnabled = true;
+            UsernameTextBox_snapped.IsEnabled = true;
             PasswordBox.IsEnabled = true;
+            PasswordBox_snapped.IsEnabled = true;
             DomainComboBox.IsEnabled = true;
+            DomainComboBox_snapped.IsEnabled = true;
             LoginButton.IsEnabled = true;
+            LoginButton_snapped.IsEnabled = true;
         }
         private void HideLoginControls()
         {
             userInfo.Opacity = 0;
+            userInfo_snapped.Opacity = 0;
         }
 
         private async Task GetClassesAsync()
@@ -366,18 +383,5 @@ namespace icreate_test2
             bool internet = connections != null && connections.GetNetworkConnectivityLevel() == NetworkConnectivityLevel.InternetAccess;
             return internet;
         }
-
-        void LoginPage_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            if (e.NewSize.Width < 500)
-            {
-                VisualStateManager.GoToState(this, "SnappedLayout", true);
-            }
-           
-            else
-            {
-                VisualStateManager.GoToState(this, "DefaultLayout", true);
-            }
-        } 
     }
 }
