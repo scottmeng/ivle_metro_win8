@@ -224,9 +224,9 @@
                             </StackPanel>
                             <ListView x:Name="timetable" Margin="10,0,0,20" Grid.Row="1"
                                       ItemsSource="{Binding Source={StaticResource dailyListView}}" 
-                                      SelectionMode="None" 
-                                      Background="Transparent" 
-                                      IsSwipeEnabled="false" 
+                                      SelectionMode="None"
+                                      Background="Transparent"
+                                      IsSwipeEnabled="false"
                                       IsItemClickEnabled="False" 
                                       ScrollViewer.HorizontalScrollMode="Disabled"
                                       ScrollViewer.VerticalScrollMode="Enabled" 

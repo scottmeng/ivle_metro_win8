@@ -623,7 +623,6 @@ namespace icreate_test2
                 bool success = await Windows.System.Launcher.LaunchUriAsync(uri);
             }
         }
-
         private void itemListEntered(object sender, PointerRoutedEventArgs e)
         {
             DataStructure.ModuleItem selectedModuleItem = (e.OriginalSource as FrameworkElement).DataContext as DataStructure.ModuleItem;
@@ -719,6 +718,8 @@ namespace icreate_test2
                 _currentItem = selectedItem;
             }
         }
+
+
     }
 
     // converter for thread title background color binding
