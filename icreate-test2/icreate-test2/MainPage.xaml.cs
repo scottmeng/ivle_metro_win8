@@ -97,7 +97,6 @@ namespace icreate_test2
             newAnnouncementListView.Source = Utils.DataManager.GetAnnouncements();
 
             // let data manager populates class list for each weekday
-            Utils.DataManager.GenerateDailyClassList();
             date_textblock.Text = dayList[dayListIndex];
             dailyListView.Source = Utils.DataManager.GetDailyClassList(todayCode);
 

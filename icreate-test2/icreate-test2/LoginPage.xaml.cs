@@ -92,7 +92,7 @@ namespace icreate_test2
                         // load data on modules and classes
                         await GetModulesAsync();
                         await GetTimetableAsync();
-
+                        Utils.DataManager.GenerateDailyClassList();
                         // if so, hide progress circle
                         ProgressRing.IsActive = false;
                         // navigate to main menu page
@@ -247,16 +247,19 @@ namespace icreate_test2
                 parameters.Add("Semester", sem.Semester);
 
                 string classesResponse = await Utils.RequestSender.GetResponseStringAsync("Timetable_Student", parameters);
-                DataStructure.ClassWrapper classWrapper = JsonConvert.DeserializeObject<DataStructure.ClassWrapper>(classesResponse);
 
-                if (classWrapper.comments.Equals("Valid login!"))
+                if (classesResponse != null)
                 {
-                    foreach (DataStructure.Class mClass in classWrapper.classes)
+                    DataStructure.ClassWrapper classWrapper = JsonConvert.DeserializeObject<DataStructure.ClassWrapper>(classesResponse);
+
+                    if (classWrapper.comments.Equals("Valid login!"))
                     {
-                        Utils.DataManager.AddClass(mClass);
+                        foreach (DataStructure.Class mClass in classWrapper.classes)
+                        {
+                            Utils.DataManager.AddClass(mClass);
+                        }
                     }
                 }
-
             }
         }
 
@@ -278,14 +281,18 @@ namespace icreate_test2
             parameters.Add("CourseId", module.moduleId);
 
             string timetableResponse = await Utils.RequestSender.GetResponseStringAsync("Timetable_Student_Module", parameters);
-            DataStructure.ClassWrapper classWrapper = JsonConvert.DeserializeObject<DataStructure.ClassWrapper>(timetableResponse);
 
-            if (classWrapper.comments.Equals("Valid login!"))
+            if (timetableResponse != null)
             {
-                foreach (DataStructure.Class mClass in classWrapper.classes)
+                DataStructure.ClassWrapper classWrapper = JsonConvert.DeserializeObject<DataStructure.ClassWrapper>(timetableResponse);
+
+                if (classWrapper.comments.Equals("Valid login!"))
                 {
-                    mClass.classModuleColor = module.modulePrimaryColor;
-                    Utils.DataManager.AddClass(mClass);
+                    foreach (DataStructure.Class mClass in classWrapper.classes)
+                    {
+                        mClass.classModuleColor = module.modulePrimaryColor;
+                        Utils.DataManager.AddClass(mClass);
+                    }
                 }
             }
         }

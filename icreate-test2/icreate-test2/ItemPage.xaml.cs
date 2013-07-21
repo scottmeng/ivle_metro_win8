@@ -213,9 +213,13 @@ namespace icreate_test2
             parameters.Add("TitleOnly", "false");
 
             String workbinsResponse = await Utils.RequestSender.GetResponseStringAsync("Workbins", parameters);
-            DataStructure.WorkbinWrapper workbinWrapper = JsonConvert.DeserializeObject<DataStructure.WorkbinWrapper>(workbinsResponse);
 
-            _currentModule.moduleWorkbins = workbinWrapper.workbins;
+            if (workbinsResponse != null)
+            {
+                DataStructure.WorkbinWrapper workbinWrapper = JsonConvert.DeserializeObject<DataStructure.WorkbinWrapper>(workbinsResponse);
+
+                _currentModule.moduleWorkbins = workbinWrapper.workbins;
+            }
         }
 
         private async Task GetForumAsync()
@@ -226,12 +230,16 @@ namespace icreate_test2
             parameters.Add("IncludeThreads", "true");
 
             String forumsResponse = await Utils.RequestSender.GetResponseStringAsync("Forums", parameters);
-            DataStructure.ForumWrapper forumWrapper = JsonConvert.DeserializeObject<DataStructure.ForumWrapper>(forumsResponse);
-
-            _currentModule.moduleForums = forumWrapper.forums;
             
-            // generate content for display
-            updateForum();
+            if (forumsResponse != null)
+            {
+                DataStructure.ForumWrapper forumWrapper = JsonConvert.DeserializeObject<DataStructure.ForumWrapper>(forumsResponse);
+
+                _currentModule.moduleForums = forumWrapper.forums;
+
+                // generate content for display
+                updateForum();
+            }
         }
 
         private async Task GetExamAsync()
@@ -240,9 +248,13 @@ namespace icreate_test2
             parameters.Add("CourseID", _currentModule.moduleId);
 
             String examResponse = await Utils.RequestSender.GetResponseStringAsync("Timetable_ModuleExam", parameters);
-            DataStructure.ExamInfoWrapper examInfoWrapper = JsonConvert.DeserializeObject<DataStructure.ExamInfoWrapper>(examResponse);
+            
+            if (examResponse != null)
+            {
+                DataStructure.ExamInfoWrapper examInfoWrapper = JsonConvert.DeserializeObject<DataStructure.ExamInfoWrapper>(examResponse);
 
-            _currentModule.moduleExamInfos = examInfoWrapper.examInfos;
+                _currentModule.moduleExamInfos = examInfoWrapper.examInfos;
+            }
         }
 
         private void onFolderSelected(object sender, TappedRoutedEventArgs e)
@@ -523,7 +535,8 @@ namespace icreate_test2
             }
 
             // TEST
-            state = state.Replace("\" ", "");
+            state = state.Remove(state.Length - 1);
+            state = state.Remove(0);
 
             // TO-DO 
             // refresh the heading list

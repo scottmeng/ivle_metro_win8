@@ -17,21 +17,28 @@ namespace icreate_test2.Utils
         // if token is invalid
         public static async Task<String> GetResponseStringAsync(string field, Dictionary<string, string> dataPairs)
         {
-            HttpClient client = new HttpClient();
+            try
+            {
+                HttpClient client = new HttpClient();
 
-            // http get request to validate token
-            HttpResponseMessage response = await client.GetAsync(Utils.LAPI.GenerateGetURL(field, dataPairs));
+                // http get request to validate token
+                HttpResponseMessage response = await client.GetAsync(Utils.LAPI.GenerateGetURL(field, dataPairs));
 
-            // make sure the http reponse is successful
-            response.EnsureSuccessStatusCode();
+                // make sure the http reponse is successful
+                response.EnsureSuccessStatusCode();
 
-            // convert http response to string
-            string responseString = await response.Content.ReadAsStringAsync();
+                // convert http response to string
+                string responseString = await response.Content.ReadAsStringAsync();
 
-            response.Dispose();
-            client.Dispose();
+                response.Dispose();
+                client.Dispose();
 
-            return responseString;
+                return responseString;
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         public static async Task<String> SendHttpPostRequestAsync(string field, Dictionary<string, string> dataPairs)
