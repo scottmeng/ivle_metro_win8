@@ -106,7 +106,7 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock x:Name="pageTitle" 
+                <TextBlock x:Name="pageTitle"
                            Margin="20,0,0,0" 
                            Grid.Column="1" 
                            Text="{StaticResource AppName}" 
@@ -123,7 +123,8 @@
                               HorizontalScrollBarVisibility="Hidden"
                               VerticalScrollMode="Disabled"
                               HorizontalScrollMode="Auto"
-                              ZoomMode="Disabled">
+                              
+                              ZoomMode="Disabled" LayoutUpdated="moduleItemLayoutUpdated">
 
                     <StackPanel Orientation="Horizontal">
                         <ItemsControl x:Name="moduleListView"

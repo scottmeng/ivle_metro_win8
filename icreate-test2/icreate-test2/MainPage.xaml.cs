@@ -337,6 +337,15 @@ namespace icreate_test2
             }
         }
 
+        private void moduleItemLayoutUpdated(object sender, object e)
+        {
+            ObservableCollection<DataStructure.Module> modules = Utils.DataManager.GetModules();
+            for (int i = 0; i < modules.Count; i++)
+            {
+                modules[i].moduleShowColor = modules[i].modulePrimaryColor;
+            }
+        }
+
     }
 
     public class AnnouncementBackgroundConverter : IValueConverter
