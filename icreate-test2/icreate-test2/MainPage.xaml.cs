@@ -332,6 +332,16 @@ namespace icreate_test2
             }
         }
 
+        private void AnnouncementLayoutUpdated(object sender, object e)
+        {
+            List<DataStructure.Announcement> annoucements = Utils.DataManager.GetAnnouncements();
+            for (int i = 0; i < annoucements.Count; i++)
+            {
+                annoucements[i].announceColor = annoucements[i].announcePrimaryColor;
+                annoucements[i].backgroundConverter = 1;
+            }
+        }
+
     }
 
     public class AnnouncementBackgroundConverter : IValueConverter

@@ -47,7 +47,7 @@
                           VerticalScrollMode="Auto"
                           HorizontalScrollMode="Disabled"
                           Grid.Column="0"
-                          ZoomMode="Disabled">
+                          ZoomMode="Disabled" LayoutUpdated="AnnouncementLayoutUpdated">
 
                 <StackPanel Orientation="Vertical">
                 <StackPanel.Resources>
