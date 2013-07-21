@@ -636,10 +636,11 @@ namespace icreate_test2
                 bool success = await Windows.System.Launcher.LaunchUriAsync(uri);
             }
         }
+        Color gray = Color.FromArgb(255, 96, 96, 96);
         private void itemListEntered(object sender, PointerRoutedEventArgs e)
         {
             DataStructure.ModuleItem selectedModuleItem = (e.OriginalSource as FrameworkElement).DataContext as DataStructure.ModuleItem;
-            Color gray = Color.FromArgb(255, 211, 211, 211);
+            
             if (selectedModuleItem != null)
             {
                 if(selectedModuleItem.itemShowColor != gray)
@@ -652,7 +653,6 @@ namespace icreate_test2
         private void itemListExited(object sender, PointerRoutedEventArgs e)
         {
             ObservableCollection<DataStructure.ModuleItem> moduleItems = _currentModule.moduleItems;
-            Color gray = Color.FromArgb(255, 211, 211, 211);
             for (int i = 0; i < moduleItems.Count; i++)
             {
                 if (moduleItems[i].itemShowColor != gray)
@@ -664,7 +664,6 @@ namespace icreate_test2
         {
             DataStructure.ModuleItem selectedModuleItem = (e.OriginalSource as FrameworkElement).DataContext as DataStructure.ModuleItem;
             ObservableCollection<DataStructure.ModuleItem> moduleItems = _currentModule.moduleItems;
-            Color gray = Color.FromArgb(255, 211, 211, 211);
             isRightClicking = true;
 
             for (int i = 0; i < moduleItems.Count; i++)
@@ -742,9 +741,9 @@ namespace icreate_test2
         {
             bool _value = (bool)value;
             if (_value)
-                return "#990033";
+                return "#2F4F4F";
             else
-                return "#CC3366";
+                return "#008080";
         }
 
         // No need to implement converting back on a one-way binding 
