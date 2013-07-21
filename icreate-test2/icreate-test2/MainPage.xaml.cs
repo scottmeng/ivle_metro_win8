@@ -221,7 +221,10 @@ namespace icreate_test2
             
             if (selectedModule != null)
             {
-                selectedModule.moduleShowColor = selectedModule.moduleSecondaryColor;
+                if(isRightClicking == false)
+                    selectedModule.moduleShowColor = selectedModule.moduleSecondaryColor;
+                else
+                    selectedModule.moduleShowColor = Color.FromArgb(255, 211, 211, 211);
             }
         }
 
@@ -230,6 +233,7 @@ namespace icreate_test2
         {
             DataStructure.Module selectedModule = (e.OriginalSource as FrameworkElement).DataContext as DataStructure.Module;
             ObservableCollection<DataStructure.Module> modules = Utils.DataManager.GetModules();
+            isRightClicking = true;
             for (int i = 0; i < modules.Count; i++)
             {
                 modules[i].moduleShowColor = modules[i].modulePrimaryColor;
@@ -252,6 +256,7 @@ namespace icreate_test2
         private void ModuleItemGridReleased(object sender, PointerRoutedEventArgs e)
         {
             DataStructure.Module selectedModule = (e.OriginalSource as FrameworkElement).DataContext as DataStructure.Module;
+            isRightClicking = false;
             if (selectedModule != null)
             {
                 selectedModule.moduleShowColor = selectedModule.modulePrimaryColor;

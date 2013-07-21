@@ -129,7 +129,6 @@ namespace icreate_test2
             // display tabs
             itemListView.Source = _currentModule.moduleItems;
             ObservableCollection<DataStructure.ModuleItem> moduleItems = _currentModule.moduleItems;
-            Color gray = Color.FromArgb(255, 211, 211, 211);
             for (int i = 0; i < moduleItems.Count; i++)
             {
                 moduleItems[i].itemShowColor = moduleItems[i].itemPrimaryColor;
