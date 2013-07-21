@@ -1381,9 +1381,9 @@
                                 </ListView.ItemTemplate>
                             </ListView>
                             <StackPanel x:Name="replyStackPanel" Orientation="Vertical" Visibility="Collapsed" VerticalAlignment="Bottom" Grid.Row="1">
-                                <TextBox x:Name="titleTextBox" Height="40" FontSize="32" KeyUp="titleTextBox_KeyUp"/>
+                                <TextBox x:Name="titleTextBox" Height="50" BorderBrush="LightBlue" BorderThickness="4" FontSize="24" KeyUp="titleTextBox_KeyUp"/>
                                 <Grid>
-                                    <TextBox x:Name="contentTextBox" TextWrapping="Wrap" Height="150" KeyUp="contentTextBox_KeyUp"/>
+                                    <TextBox x:Name="contentTextBox" FontSize="20" BorderBrush="LightBlue" BorderThickness="4" TextWrapping="Wrap" Height="150" KeyUp="contentTextBox_KeyUp"/>
                                     <Button x:Name="replyButton" HorizontalAlignment="Right" VerticalAlignment="Bottom"
                                                 Content="Submit" FontSize="32" Tapped="replyButton_Tapped"/>
                                 </Grid>
