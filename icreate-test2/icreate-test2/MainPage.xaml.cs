@@ -216,12 +216,16 @@ namespace icreate_test2
                 selectedModule.moduleShowColor = selectedModule.moduleSecondaryColor;
             }
         }
-        
+
 
         private void ModuleItemGridPressed(object sender, PointerRoutedEventArgs e)
         {
             DataStructure.Module selectedModule = (e.OriginalSource as FrameworkElement).DataContext as DataStructure.Module;
-
+            ObservableCollection<DataStructure.Module> modules = Utils.DataManager.GetModules();
+            for (int i = 0; i < modules.Count; i++)
+            {
+                modules[i].moduleShowColor = modules[i].modulePrimaryColor;
+            }
             if (selectedModule != null)
             {
                 selectedModule.moduleShowColor = Color.FromArgb(255, 211, 211, 211);
@@ -291,6 +295,12 @@ namespace icreate_test2
 
         private void AnnoucementPressed(object sender, PointerRoutedEventArgs e)
         {
+            List<DataStructure.Announcement> annoucements = Utils.DataManager.GetAnnouncements();
+            for (int i = 0; i < annoucements.Count; i++)
+            {
+                annoucements[i].announceColor = annoucements[i].announcePrimaryColor;
+                annoucements[i].backgroundConverter = 1;
+            }
             DataStructure.Announcement selectedAnnouncement = (e.OriginalSource as FrameworkElement).DataContext as DataStructure.Announcement;
             isRightClicking = true;
             if (selectedAnnouncement != null)
@@ -318,6 +328,16 @@ namespace icreate_test2
             if (this.Frame != null)
             {
                 this.Frame.Navigate(typeof(ItemPage), navParams);
+            }
+        }
+
+        private void AnnouncementLayoutUpdated(object sender, object e)
+        {
+            List<DataStructure.Announcement> annoucements = Utils.DataManager.GetAnnouncements();
+            for (int i = 0; i < annoucements.Count; i++)
+            {
+                annoucements[i].announceColor = annoucements[i].announcePrimaryColor;
+                annoucements[i].backgroundConverter = 1;
             }
         }
 

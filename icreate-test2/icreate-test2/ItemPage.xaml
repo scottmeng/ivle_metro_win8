@@ -858,20 +858,20 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <!-- Back button and page title -->
-                <StackPanel Margin="0,30,0,0" Orientation="Vertical" Grid.Column="0" Grid.Row="0">
+                <StackPanel Margin="0,10,0,0" Orientation="Vertical" Grid.Column="0" Grid.Row="0">
                     <Button x:Name="backButton" Click="backButton_Click" 
-                                        Margin="0,20,0,20"
-                                        VerticalAlignment="Center"
-                            Foreground="White"
-                                        HorizontalAlignment="Center"
-                                        IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}"
-                                        Style="{StaticResource BackButtonStyle}"/>
+                            Margin="0,20,0,10"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}"
+                            Style="{StaticResource BackButtonStyle}"/>
                     <TextBlock VerticalAlignment="Center"
-                               Margin="10,5"
+                               Margin="0,0,0,10"
                                x:Name="mainModuleName"
-                               FontSize="36"
+                               FontSize="30"
                                FontWeight="Normal"
                                Foreground="White"
+                               TextWrapping="NoWrap"
                                HorizontalAlignment="Center"
                                Style="{StaticResource TitleTextStyle}" />
                     <Button x:Name="menuButton" Content="..." Click="menuButtonClick" HorizontalAlignment="Center"/>
@@ -1381,9 +1381,9 @@
                                 </ListView.ItemTemplate>
                             </ListView>
                             <StackPanel x:Name="replyStackPanel" Orientation="Vertical" Visibility="Collapsed" VerticalAlignment="Bottom" Grid.Row="1">
-                                <TextBox x:Name="titleTextBox" Height="40" FontSize="32" KeyUp="titleTextBox_KeyUp"/>
+                                <TextBox x:Name="titleTextBox" Height="50" BorderBrush="LightBlue" BorderThickness="4" FontSize="24" KeyUp="titleTextBox_KeyUp"/>
                                 <Grid>
-                                    <TextBox x:Name="contentTextBox" TextWrapping="Wrap" Height="150" KeyUp="contentTextBox_KeyUp"/>
+                                    <TextBox x:Name="contentTextBox" AcceptsReturn="True" FontSize="20" BorderBrush="LightBlue" BorderThickness="4" TextWrapping="Wrap" Height="150" KeyUp="contentTextBox_KeyUp"/>
                                     <Button x:Name="replyButton" HorizontalAlignment="Right" VerticalAlignment="Bottom"
                                                 Content="Submit" FontSize="32" Tapped="replyButton_Tapped"/>
                                 </Grid>
