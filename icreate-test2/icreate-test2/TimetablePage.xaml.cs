@@ -75,6 +75,8 @@ namespace icreate_test2
                 Border classBorder = new Border();
                 classBorder.Margin = new Thickness(2);
                 classBorder.Background = new SolidColorBrush(mClass.classModuleColor);
+                CornerRadius radius = new CornerRadius(25,25,25,25);
+                classBorder.CornerRadius = radius;
 
                 TextBlock classBlock = new TextBlock();
                 classBlock.Padding = new Thickness(5);
