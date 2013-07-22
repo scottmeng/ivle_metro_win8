@@ -68,6 +68,8 @@ namespace icreate_test2
             if (!IsInternet())
             {
                 MessageDialog noInternetDialog = new MessageDialog("There is currently no internet connection..", "Oops");
+                noInternetDialog.Commands.Add(new UICommand("Go offline", new UICommandInvokedHandler(this.OfflineInvokedHandler)));
+                noInternetDialog.Commands.Add(new UICommand("Exit", new UICommandInvokedHandler(this.ExitInvokedHandler)));
                 noInternetDialog.ShowAsync();
             }
             else
@@ -136,6 +138,17 @@ namespace icreate_test2
             Login();
         }
 
+        private async void OfflineInvokedHandler(IUICommand command)
+        {
+            await GetModulesAsync();
+
+            this.Frame.Navigate(typeof(MainPage));
+        }
+
+        private async void ExitInvokedHandler(IUICommand command)
+        {
+            App.Current.Exit();
+        }
 
         private async void Login()
         {

@@ -233,8 +233,8 @@ namespace icreate_test2
             }
             else
             {
-                MessageDialog noInternetDialog = new MessageDialog("There is currently no internet connection..", "Oops");
-                await noInternetDialog.ShowAsync();
+                //MessageDialog noInternetDialog = new MessageDialog("There is currently no internet connection..", "Oops");
+                //await noInternetDialog.ShowAsync();
             }
         }
 
@@ -255,8 +255,8 @@ namespace icreate_test2
             }
             else
             {
-                MessageDialog noInternetDialog = new MessageDialog("There is currently no internet connection..", "Oops");
-                await noInternetDialog.ShowAsync();
+                //MessageDialog noInternetDialog = new MessageDialog("There is currently no internet connection..", "Oops");
+                //await noInternetDialog.ShowAsync();
             }
         }
 
@@ -290,8 +290,8 @@ namespace icreate_test2
             }
             else
             {
-                MessageDialog noInternetDialog = new MessageDialog("There is currently no internet connection..", "Oops");
-                await noInternetDialog.ShowAsync();
+                //MessageDialog noInternetDialog = new MessageDialog("There is currently no internet connection..", "Oops");
+                //await noInternetDialog.ShowAsync();
             }
         }
 
@@ -310,8 +310,8 @@ namespace icreate_test2
             }
             else
             {
-                MessageDialog noInternetDialog = new MessageDialog("There is currently no internet connection..", "Oops");
-                await noInternetDialog.ShowAsync();
+                //MessageDialog noInternetDialog = new MessageDialog("There is currently no internet connection..", "Oops");
+                //await noInternetDialog.ShowAsync();
             }
         }
 
