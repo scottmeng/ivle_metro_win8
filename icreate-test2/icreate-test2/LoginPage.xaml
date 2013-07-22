@@ -27,17 +27,16 @@
                 Visibility="Visible" RenderTransformOrigin="0.264,0.477">
             <Canvas.Resources>
                 <Storyboard x:Name="myStoryboard" BeginTime="00:00:00">
-                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MyAnimatedTranslateTransform" 
-                                                           Storyboard.TargetProperty="X" Duration="0:0:1">
-                        <LinearDoubleKeyFrame Value="0" KeyTime="0:0:0.3" />
-                        <LinearDoubleKeyFrame Value="-300" KeyTime="0:0:1" />
+                    <DoubleAnimationUsingKeyFrames Storyboard.TargetName="MyAnimatedTranslateTransform" Storyboard.TargetProperty="X" Duration="0:0:2">
+                        <LinearDoubleKeyFrame Value="0" KeyTime="0:0:1" />
+                        <LinearDoubleKeyFrame Value="-300" KeyTime="0:0:2" />
                     </DoubleAnimationUsingKeyFrames>
                 </Storyboard>
             </Canvas.Resources>
         	<Canvas.RenderTransform>
         		<CompositeTransform/>
         	</Canvas.RenderTransform>
-            <Image x:Name="image" Source="Assets/SplashScreen.scale-100.png"  Margin="355,234,373,234">
+            <Image x:Name="image" Source="Assets/SplashScreen.scale-100.png"  Margin="373,234,373,234">
                 <Image.RenderTransform>
                     <TranslateTransform x:Name="MyAnimatedTranslateTransform" X="0" Y="0" />
                 </Image.RenderTransform>

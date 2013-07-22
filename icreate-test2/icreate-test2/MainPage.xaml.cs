@@ -251,32 +251,27 @@ namespace icreate_test2
             {
                 modules[i].moduleShowColor = modules[i].modulePrimaryColor;
             }
+            isRightClicking = false;
         }
 
         private void ModuleItemGridReleased(object sender, PointerRoutedEventArgs e)
         {
             DataStructure.Module selectedModule = (e.OriginalSource as FrameworkElement).DataContext as DataStructure.Module;
-            isRightClicking = false;
+            
             if (selectedModule != null)
             {
                 selectedModule.moduleShowColor = selectedModule.modulePrimaryColor;
-
-                int moduleIndex = Utils.DataManager.GetModuleIndex(selectedModule);
-                DataStructure.NavParams navParams = new DataStructure.NavParams(moduleIndex, -1);
-
-                if (this.Frame != null)
+                if (isRightClicking)
                 {
-                    this.Frame.Navigate(typeof(ItemPage), navParams);
+                    int moduleIndex = Utils.DataManager.GetModuleIndex(selectedModule);
+                    DataStructure.NavParams navParams = new DataStructure.NavParams(moduleIndex, -1);
+                    if (this.Frame != null)
+                    {
+                        this.Frame.Navigate(typeof(ItemPage), navParams);
+                    }
                 }
             }
-            else
-            {
-                ObservableCollection<DataStructure.Module> modules = Utils.DataManager.GetModules();
-                for (int i = 0; i < modules.Count; i++)
-                {
-                    modules[i].moduleShowColor = modules[i].modulePrimaryColor;
-                }
-            }
+            isRightClicking = false;
         }
 
         private void AnnoucementEntered(object sender, PointerRoutedEventArgs e)
@@ -304,6 +299,7 @@ namespace icreate_test2
                 annoucements[i].announceColor = annoucements[i].announcePrimaryColor;
                 annoucements[i].backgroundConverter = 1;
             }
+            isRightClicking = false;
         }
 
         private void AnnoucementPressed(object sender, PointerRoutedEventArgs e)
@@ -327,7 +323,7 @@ namespace icreate_test2
         {
             DataStructure.Announcement selectedAnnouncement = (e.OriginalSource as FrameworkElement).DataContext as DataStructure.Announcement;
             List<DataStructure.Announcement> annoucements = Utils.DataManager.GetAnnouncements();
-            isRightClicking = false;
+            
             for (int i = 0; i < annoucements.Count; i++)
             {
                 annoucements[i].announceColor = annoucements[i].announcePrimaryColor;
@@ -335,13 +331,15 @@ namespace icreate_test2
             }
             int moduleIndex = Utils.DataManager.GetModuleIndexByModuleId(selectedAnnouncement.announceModuleId);
             int announcementIndex = Utils.DataManager.GetAnnouncementIndex(moduleIndex, selectedAnnouncement.announceID);
-
-            DataStructure.NavParams navParams = new DataStructure.NavParams(moduleIndex, announcementIndex);
-
-            if (this.Frame != null)
+            if (isRightClicking)
             {
-                this.Frame.Navigate(typeof(ItemPage), navParams);
+                DataStructure.NavParams navParams = new DataStructure.NavParams(moduleIndex, announcementIndex);
+                if (this.Frame != null)
+                {
+                    this.Frame.Navigate(typeof(ItemPage), navParams);
+                }
             }
+            isRightClicking = false;
         }
 
         private void AnnouncementLayoutUpdated(object sender, object e)
