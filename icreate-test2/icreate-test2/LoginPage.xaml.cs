@@ -153,9 +153,18 @@ namespace icreate_test2
                 ProgressRing.IsActive = false;
                 ProgressRing_snapped.IsActive = false;
 
-                username = UsernameTextBox.Text;
-                password = PasswordBox.Password;
-                domain = DomainComboBox.SelectedValue.ToString();
+                if (defaultLogin.Visibility == Windows.UI.Xaml.Visibility.Visible)
+                {
+                    username = UsernameTextBox.Text;
+                    password = PasswordBox.Password;
+                    domain = DomainComboBox.SelectedValue.ToString();
+                }
+                else
+                {
+                    username = UsernameTextBox_snapped.Text;
+                    password = PasswordBox_snapped.Password;
+                    domain = DomainComboBox_snapped.SelectedValue.ToString();
+                }
 
                 postString = Utils.LAPI.GeneratePostString(username, password, domain);
 

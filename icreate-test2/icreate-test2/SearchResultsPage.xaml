@@ -14,14 +14,24 @@
     <Page.Resources>
         <CollectionViewSource x:Name="resultsViewSource" Source="{Binding Results}"/>
         <CollectionViewSource x:Name="filtersViewSource" Source="{Binding Filters}"/>
+        <local:backgroundConverter x:Key="backgroundConverter"/>
+        <local:typeConverter x:Key="typeConverter"/>
         <common:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
         <!-- TODO: Update the following string to be the name of your app -->
         <x:String x:Key="AppName">App Name</x:String>
         <DataTemplate x:Key="ModifiedSmallIcon300x70ItemTemplate">
-            <Grid Width="294" Margin="6">
-                
-                <TextBlock Text="{Binding resultTitle}" FontSize="24" TextAlignment="Left" VerticalAlignment="Center"/>
-
+            <Grid Width="340" Margin="6" Height="150">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="5*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Grid.Background>
+                    <SolidColorBrush Color="{Binding Path=announcementId,Mode=OneWay,Converter={StaticResource backgroundConverter}}"/>
+                </Grid.Background>
+                <TextBlock Padding="2" Grid.Row="0" Text="{Binding resultTitle}" TextWrapping="NoWrap" FontSize="24" TextAlignment="Left" VerticalAlignment="Center"/>
+                <TextBlock Padding="2" Grid.Row="1" Text="{Binding resultContent}" TextWrapping="Wrap" FontSize="18" TextAlignment="Left" VerticalAlignment="Center"/>
+                <TextBlock Padding="2" Grid.Row="2" Text="{Binding Path=announcementId,Mode=OneWay,Converter={StaticResource typeConverter}}" TextWrapping="Wrap" FontSize="18" TextAlignment="Left" HorizontalAlignment="Right" Foreground="#1291A9" VerticalAlignment="Center"/>
             </Grid>
         </DataTemplate>
     </Page.Resources>
@@ -90,7 +100,6 @@
                     
                     <GridView.ItemContainerStyle>
                         <Style TargetType="Control">
-                            <Setter Property="Height" Value="70"/>
                             <Setter Property="Margin" Value="0,0,38,8"/>
                        </Style>
                     </GridView.ItemContainerStyle>

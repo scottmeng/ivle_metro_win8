@@ -55,6 +55,20 @@
                                 </DiscreteObjectKeyFrame.Value>
                             </DiscreteObjectKeyFrame>
                         </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.VerticalAlignment)" Storyboard.TargetName="grid2">
+                        	<DiscreteObjectKeyFrame KeyTime="0">
+                        		<DiscreteObjectKeyFrame.Value>
+                        			<VerticalAlignment>Top</VerticalAlignment>
+                        		</DiscreteObjectKeyFrame.Value>
+                        	</DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Grid.ColumnSpan)" Storyboard.TargetName="scrollViewer">
+                        	<DiscreteObjectKeyFrame KeyTime="0">
+                        		<DiscreteObjectKeyFrame.Value>
+                        			<x:Int32>1</x:Int32>
+                        		</DiscreteObjectKeyFrame.Value>
+                        	</DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
                         <DoubleAnimation Duration="0" To="-40" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="pageTitle" d:IsOptimized="True"/>
                         <DoubleAnimation Duration="0" To="22.5" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="pageTitle" d:IsOptimized="True"/>
                         <DoubleAnimation Duration="0" To="48" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="pageTitle" d:IsOptimized="True"/>
@@ -249,6 +263,37 @@
                         		</DiscreteObjectKeyFrame.Value>
                         	</DiscreteObjectKeyFrame>
                         </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.VerticalAlignment)" Storyboard.TargetName="stackPanel1">
+                        	<DiscreteObjectKeyFrame KeyTime="0">
+                        		<DiscreteObjectKeyFrame.Value>
+                        			<VerticalAlignment>Top</VerticalAlignment>
+                        		</DiscreteObjectKeyFrame.Value>
+                        	</DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="modules_snapped">
+                        	<DiscreteObjectKeyFrame KeyTime="0">
+                        		<DiscreteObjectKeyFrame.Value>
+                        			<Visibility>Visible</Visibility>
+                        		</DiscreteObjectKeyFrame.Value>
+                        	</DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="grid">
+                        	<DiscreteObjectKeyFrame KeyTime="0">
+                        		<DiscreteObjectKeyFrame.Value>
+                        			<Visibility>Collapsed</Visibility>
+                        		</DiscreteObjectKeyFrame.Value>
+                        	</DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                      <DoubleAnimation Duration="0" To="14.442" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="textBlock" d:IsOptimized="True"/>
+                        <DoubleAnimation Duration="0" To="-3" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="textBlock" d:IsOptimized="True"/>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Grid.ColumnSpan)" Storyboard.TargetName="modules_snapped">
+                        	<DiscreteObjectKeyFrame KeyTime="0">
+                        		<DiscreteObjectKeyFrame.Value>
+                        			<x:Int32>2</x:Int32>
+                        		</DiscreteObjectKeyFrame.Value>
+                        	</DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <DoubleAnimation Duration="0" To="48" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock" d:IsOptimized="True"/>
                     </Storyboard>
                 </VisualState>
                 <VisualState x:Name="Filled">
@@ -366,7 +411,7 @@
                               ZoomMode="Disabled" 
                               ViewChanged="moduleItemLayoutUpdated">
 
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel x:Name="stackPanel1" Orientation="Horizontal">
                         <ItemsControl x:Name="moduleListView"
                                       ItemsSource="{Binding Source={StaticResource moduleGridView}}"
                                       Margin="20,40,50,20">
@@ -574,6 +619,54 @@
                     </StackPanel>
                 </ScrollViewer>
             </Grid>
+        </Grid>
+        <Grid x:Name="modules_snapped" Visibility="Collapsed" HorizontalAlignment="Stretch" Width="300" RenderTransformOrigin="0.5,0.5">
+        	<Grid.RenderTransform>
+        		<CompositeTransform/>
+        	</Grid.RenderTransform>
+            <ListView Margin="10,50,10,20" ItemsSource="{Binding Source={StaticResource moduleGridView}}" 
+                      HorizontalAlignment="Stretch" SelectionMode="None" Width="300">
+                <ListView.Header>
+                    <TextBlock x:Name="textBlock" FontWeight="Light" FontSize="36" HorizontalAlignment="Center" Margin="20" RenderTransformOrigin="0.5,0.5">
+                    	<TextBlock.RenderTransform>
+                    		<CompositeTransform/>
+                    	</TextBlock.RenderTransform>
+                        Modules
+                    </TextBlock>
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Width="300"
+                              Height="140"
+                              Margin="0,2,0,2"
+                              PointerPressed="ModuleItemGridPressed"
+                              PointerReleased="ModuleItemGridReleased"
+                              PointerExited="ModuleItemGridExited"
+                              PointerEntered="ModuleItemGridEntered">
+                            <Grid.Background>
+                                <SolidColorBrush Color="{Binding moduleShowColor}" />
+                            </Grid.Background>
+                            <TextBlock Text="{Binding moduleCode}" 
+                                                   Margin="15" 
+                                                   Foreground="White" 
+                                                   FontSize="32" 
+                                                   FontFamily="Segoe UI" 
+                                                   FontWeight="Light"
+                                                   VerticalAlignment="Top"  
+                                                   HorizontalAlignment="Left"/>
+                            <TextBlock Text="{Binding moduleName}" 
+                                                   Margin="15" 
+                                                   Foreground="White" 
+                                                   FontSize="16" 
+                                                   FontFamily="Segoe UI" 
+                                                   FontWeight="Light"
+                                                   VerticalAlignment="Bottom" 
+                                                   TextWrapping="Wrap"
+                                                   HorizontalAlignment="Right"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </Grid>
     </Grid>
 </common:LayoutAwarePage>

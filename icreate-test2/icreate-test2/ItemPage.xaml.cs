@@ -757,6 +757,7 @@ namespace icreate_test2
             }
         }
 
+
         private void itemListReleased(object sender, PointerRoutedEventArgs e)
         {
             isRightClicking = false;
@@ -818,6 +819,18 @@ namespace icreate_test2
 
                 _currentItem = selectedItem;
             }
+        }
+
+        private void workbinListReleased (object sender, PointerRoutedEventArgs e)
+        {
+            _currentWorkbin = _currentModule.moduleWorkbins[workbinList_snapped.SelectedIndex];
+
+            folder.Source = _currentWorkbin.workbinFolders;
+            file.Source = new List<DataStructure.File>();
+
+            _folderTree.Clear();
+            upFolderButton.Visibility = Visibility.Collapsed;
+            upFolderButton_snapped.Visibility = Visibility.Collapsed;
         }
 
 
