@@ -336,7 +336,7 @@ namespace icreate_test2
                 parameters.Add("Duration", "0");
                 parameters.Add("IncludeAllInfo", "true");
 
-                modulesResponse = await Utils.RequestSender.GetResponseStringAsync("Modules", parameters);
+                modulesResponse = await Utils.RequestSender.GetResponseStringAsync("Modules_Student", parameters);
 
                 StorageFile sampleFile = await localFolder.CreateFileAsync("dataFile.txt", CreationCollisionOption.ReplaceExisting);
                 await FileIO.WriteTextAsync(sampleFile, modulesResponse);

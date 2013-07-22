@@ -19,11 +19,15 @@ namespace icreate_test2.DataStructure
         [DataMember(Name = "Creator")]
         public Member webcastCreator { get; set; }
 
-        public Webcast(String id, String title, Member creator)
+        [DataMember(Name = "ItemGroups")]
+        public List<VideoGroup> webcastVideoGroups { get; set; }
+
+        public Webcast(String id, String title, Member creator, List<VideoGroup> videoGroups)
         {
-            webcastId = id;
-            webcastTitle = title;
-            webcastCreator = creator;
+            this.webcastId = id;
+            this.webcastTitle = title;
+            this.webcastCreator = creator;
+            this.webcastVideoGroups = videoGroups;
         }
     }
 }

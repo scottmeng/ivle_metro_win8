@@ -111,6 +111,11 @@ namespace icreate_test2
             {
                 await GetForumAsync();
             }
+
+            if (_currentModule.isWebcastAvailable)
+            {
+                await GetWebcastAsync();
+            }
         }
 
 
@@ -207,6 +212,28 @@ namespace icreate_test2
         {
         }
 
+        private async Task GetWebcastAsync()
+        {
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters.Add("CourseID", _currentModule.moduleId);
+            parameters.Add("Duration", "0");
+            parameters.Add("TitleOnly", "false");
+
+            string webcastsResponse = await Utils.RequestSender.GetResponseStringAsync("Webcasts", parameters);
+
+            if (webcastsResponse != null)
+            {
+                DataStructure.WebcastWrapper webcastWrapper = JsonConvert.DeserializeObject<DataStructure.WebcastWrapper>(webcastsResponse);
+
+                _currentModule.moduleWebcasts = webcastWrapper.webcasts;
+            }
+            else
+            {
+                MessageDialog noInternetDialog = new MessageDialog("There is currently no internet connection..", "Oops");
+                await noInternetDialog.ShowAsync();
+            }
+        }
+
         private async Task GetWorkbinAsync()
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
@@ -214,7 +241,7 @@ namespace icreate_test2
             parameters.Add("Duration", "0");
             parameters.Add("TitleOnly", "false");
 
-            String workbinsResponse = await Utils.RequestSender.GetResponseStringAsync("Workbins", parameters);
+            string workbinsResponse = await Utils.RequestSender.GetResponseStringAsync("Workbins", parameters);
 
             if (workbinsResponse != null)
             {

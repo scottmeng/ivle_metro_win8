@@ -136,7 +136,10 @@
     <Compile Include="DataStructure\SemesterInfo.cs" />
     <Compile Include="DataStructure\Thread.cs" />
     <Compile Include="DataStructure\ThreadWrapper.cs" />
+    <Compile Include="DataStructure\VideoFile.cs" />
+    <Compile Include="DataStructure\VideoGroup.cs" />
     <Compile Include="DataStructure\Webcast.cs" />
+    <Compile Include="DataStructure\WebcastWrapper.cs" />
     <Compile Include="DataStructure\Workbin.cs" />
     <Compile Include="DataStructure\WorkbinWrapper.cs" />
     <Compile Include="ItemPage.xaml.cs">
@@ -244,8 +247,8 @@
     <SDKReference Include="Callisto, Version=1.3.1">
       <Name>Callisto</Name>
     </SDKReference>
-    <SDKReference Include="Microsoft.PlayerFramework.Xaml, Version=1.4.1">
-      <Name>Microsoft Media Platform: Player Framework</Name>
+    <SDKReference Include="Microsoft.PlayerFramework.Xaml, Version=1.8.2.0">
+      <Name>Microsoft Player Framework</Name>
     </SDKReference>
   </ItemGroup>
   <ItemGroup>
