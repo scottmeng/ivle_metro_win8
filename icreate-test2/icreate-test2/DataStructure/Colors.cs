@@ -10,11 +10,18 @@ namespace icreate_test2.DataStructure
     static class Colors
     {
         private static Color[] _moduleColors = new Color[12]{
-            Color.FromArgb(255, 0, 69, 0),
-            Color.FromArgb(255, 187, 27, 27),
-            Color.FromArgb(255, 186, 27, 107),
+            //Color.FromArgb(255, 0, 69, 0),
+            //Color.FromArgb(255, 187, 27, 27),
+            //Color.FromArgb(255, 186, 27, 107),
+            //Color.FromArgb(255, 100, 26, 183),
+            //Color.FromArgb(255, 26, 85, 175),
+
+            Color.FromArgb(255, 16, 148, 165),
+            Color.FromArgb(255, 214,190,128),
+            Color.FromArgb(255, 214, 85, 107),
             Color.FromArgb(255, 100, 26, 183),
-            Color.FromArgb(255, 26, 85, 175),
+            Color.FromArgb(255, 42, 98, 160),
+
             Color.FromArgb(255, 226, 107, 27),
             Color.FromArgb(255, 1, 174, 170),
             Color.FromArgb(255, 17, 155, 43),
@@ -25,11 +32,18 @@ namespace icreate_test2.DataStructure
         };
 
         private static Color[] _moduleSecondayrColors = new Color[12]{
-            Color.FromArgb(255, 22, 154, 8),
-            Color.FromArgb(255, 255, 43, 19),
-            Color.FromArgb(255, 255, 28, 117),
+            //Color.FromArgb(255, 22, 154, 8),
+            //Color.FromArgb(255, 255, 43, 19),
+            //Color.FromArgb(255, 255, 28, 117),
+            //Color.FromArgb(255, 167, 64, 255),
+            //Color.FromArgb(255, 28, 175, 255),
+
+            Color.FromArgb(255, 115, 206, 214),
+            Color.FromArgb(255, 237,206,179),
+            Color.FromArgb(255, 231, 151, 160),
             Color.FromArgb(255, 167, 64, 255),
-            Color.FromArgb(255, 28, 175, 255),
+            Color.FromArgb(255, 154, 200, 243),
+
             Color.FromArgb(255, 255, 152, 31),
             Color.FromArgb(255, 5, 215, 202),
             Color.FromArgb(255, 0, 195, 65),

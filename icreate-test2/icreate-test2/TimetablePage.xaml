@@ -36,7 +36,7 @@
             <Button x:Name="backButton" Click="GoBack_Click" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
             <TextBlock x:Name="pageTitle" Grid.Column="1" Text="{StaticResource PageName}" Style="{StaticResource PageHeaderTextStyle}"/>
         </Grid>
-        <Border BorderBrush="Black" BorderThickness="2" Grid.Row="1" Margin="50, 10, 50, 50">
+        <Border BorderBrush="LightGray" BorderThickness="1" Grid.Row="1" Margin="50, 10, 50, 50">
             <Grid x:Name="timetableGrid">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="0.3*"/>
@@ -79,12 +79,12 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <TextBlock Grid.Column="1" Grid.Row="0" Text="Monday" TextAlignment="Center" FontSize="18" VerticalAlignment="Center"/>
-                <TextBlock Grid.Column="2" Grid.Row="0" Text="Tueday" TextAlignment="Center" FontSize="18" VerticalAlignment="Center"/>
-                <TextBlock Grid.Column="3" Grid.Row="0" Text="Wednesday" TextAlignment="Center" FontSize="18" VerticalAlignment="Center"/>
-                <TextBlock Grid.Column="4" Grid.Row="0" Text="Thursday" TextAlignment="Center" FontSize="18" VerticalAlignment="Center"/>
-                <TextBlock Grid.Column="5" Grid.Row="0" Text="Friday" TextAlignment="Center" FontSize="18" VerticalAlignment="Center"/>
-                <TextBlock Grid.Column="6" Grid.Row="0" Text="Saturday" TextAlignment="Center" FontSize="18" VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="1" Grid.Row="0" x:Name="mon" Text="Monday" TextAlignment="Center" FontSize="18" VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="2" Grid.Row="0" x:Name="tue" Text="Tueday" TextAlignment="Center" FontSize="18" VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="3" Grid.Row="0" x:Name="wed" Text="Wednesday" TextAlignment="Center" FontSize="18" VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="4" Grid.Row="0" x:Name="thu" Text="Thursday" TextAlignment="Center" FontSize="18" VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="5" Grid.Row="0" x:Name="fri" Text="Friday" TextAlignment="Center" FontSize="18" VerticalAlignment="Center"/>
+                <TextBlock Grid.Column="6" Grid.Row="0" x:Name="sat" Text="Saturday" TextAlignment="Center" FontSize="18" VerticalAlignment="Center"/>
                 <TextBlock Grid.Column="0" Grid.Row="1" Grid.RowSpan="2" Text="0800" TextAlignment="Center" FontSize="18" VerticalAlignment="Top"/>
                 <TextBlock Grid.Column="0" Grid.Row="3" Grid.RowSpan="2" Text="0900" TextAlignment="Center" FontSize="18" VerticalAlignment="Top"/>
                 <TextBlock Grid.Column="0" Grid.Row="5" Grid.RowSpan="2" Text="1000" TextAlignment="Center" FontSize="18" VerticalAlignment="Top"/>

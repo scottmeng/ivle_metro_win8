@@ -38,9 +38,46 @@ namespace icreate_test2
         /// session.  This will be null the first time a page is visited.</param>
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
-            timetableGrid.Background = new SolidColorBrush(Color.FromArgb(0xFF, 0xE3, 0xE3, 0xE3));
+            timetableGrid.Background = new SolidColorBrush(Color.FromArgb(255, 255, 255, 255));
 
             int todayCode = DateTime.Now.DayOfWeek.GetHashCode();
+            SolidColorBrush bluegreen = new SolidColorBrush(Color.FromArgb(255, 71,165,168));
+
+            switch (todayCode)
+            {
+                case 1:
+                    mon.Foreground = bluegreen;
+                    mon.FontSize = 22;
+                    mon.FontWeight = Windows.UI.Text.FontWeights.Bold;
+                    break;
+                case 2:
+                    tue.Foreground = bluegreen;
+                    tue.FontSize = 22;
+                    tue.FontWeight = Windows.UI.Text.FontWeights.Bold;
+                    break;
+                case 3:
+                    wed.Foreground = bluegreen;
+                    wed.FontSize = 22;
+                    wed.FontWeight = Windows.UI.Text.FontWeights.Bold;
+                    break;
+                case 4:
+                    thu.Foreground = bluegreen;
+                    thu.FontSize = 22;
+                    thu.FontWeight = Windows.UI.Text.FontWeights.Bold;
+                    break;
+                case 5:
+                    fri.Foreground = bluegreen;
+                    fri.FontSize = 22;
+                    fri.FontWeight = Windows.UI.Text.FontWeights.Bold;
+                    break;
+                case 6:
+                    sat.Foreground = bluegreen;
+                    sat.FontSize = 22;
+                    sat.FontWeight = Windows.UI.Text.FontWeights.Bold;
+                    break;
+                default:
+                    break;
+            }
 
             for (int i = 1; i < 7; i++)
             {
@@ -48,26 +85,48 @@ namespace icreate_test2
 
                 if (i == todayCode)
                 {
-                    backgroundBrush = new SolidColorBrush(Color.FromArgb(0xFF, 0x80, 0x80, 0x80));
+                    backgroundBrush = new SolidColorBrush(Color.FromArgb(255, 234, 234, 234));
                 }
                 else
                 {
-                    backgroundBrush = new SolidColorBrush(Color.FromArgb(0xFF, 0xE3, 0xE3, 0xE3));
+                    backgroundBrush = new SolidColorBrush(Color.FromArgb(255, 255, 255, 255));
                 }
 
-                for (int j = 1; j < 29; j+=2)
+                for (int j = 1; j < 29; j += 2)
                 {
                     Border myBorder = new Border();
 
-                    myBorder.BorderBrush = new SolidColorBrush(Colors.White);
-                    myBorder.BorderThickness = new Thickness(0.2);
-                    myBorder.Background = backgroundBrush; 
+                    myBorder.BorderBrush = new SolidColorBrush(Colors.LightGray);
+                    myBorder.BorderThickness = new Thickness(0.5);
+                    myBorder.Background = backgroundBrush;
                     timetableGrid.Children.Add(myBorder);
                     Grid.SetColumn(myBorder, i);
                     Grid.SetRow(myBorder, j);
                     Grid.SetRowSpan(myBorder, 2);
                 }
             }
+            for (int i = 0; i < 7; i++)
+            {
+                Border myBorder = new Border();
+
+                myBorder.BorderBrush = new SolidColorBrush(Colors.LightGray);
+                myBorder.BorderThickness = new Thickness(0.5);
+                timetableGrid.Children.Add(myBorder);
+                Grid.SetColumn(myBorder, i);
+                Grid.SetRow(myBorder, 0);
+            }
+            for (int i = 0; i < 29; i++)
+            {
+                Border myBorder = new Border();
+                SolidColorBrush backgroundBrush;
+                backgroundBrush = new SolidColorBrush(Color.FromArgb(255, 234, 234, 234));
+                myBorder.BorderBrush = new SolidColorBrush(Colors.LightGray);
+                myBorder.BorderThickness = new Thickness(0.5);
+                timetableGrid.Children.Add(myBorder);
+                Grid.SetColumn(myBorder, 0);
+                Grid.SetRow(myBorder, i);
+            }
+
 
             foreach (DataStructure.Class mClass in Utils.DataManager.GetClasses())
             {
@@ -75,17 +134,29 @@ namespace icreate_test2
                 Border classBorder = new Border();
                 classBorder.Margin = new Thickness(2);
                 classBorder.Background = new SolidColorBrush(mClass.classModuleColor);
-                CornerRadius radius = new CornerRadius(25,25,25,25);
+                CornerRadius radius = new CornerRadius(20);
                 classBorder.CornerRadius = radius;
 
+                StackPanel oneClass = new StackPanel();
+                oneClass.Orientation = Orientation.Vertical;
+                classBorder.Child = oneClass;
+
                 TextBlock classBlock = new TextBlock();
-                classBlock.Padding = new Thickness(5);
+                classBlock.Padding = new Thickness(2);
+                classBlock.Margin = new Thickness(5, 0, 0, 0);
                 classBlock.Text = mClass.classModuleCode + "    " + mClass.classLessonType;
-                classBlock.FontSize = 24;
+                classBlock.FontSize = 22;
                 classBlock.FontFamily = new FontFamily("Segoe UI");
                 classBlock.Foreground = new SolidColorBrush(Colors.White);
 
-                classBorder.Child = classBlock;
+                oneClass.Children.Add(classBlock);
+
+                TextBlock location = new TextBlock();
+                location.Text = mClass.classVenue;
+                location.FontSize = 18;
+                location.HorizontalAlignment = Windows.UI.Xaml.HorizontalAlignment.Center;
+                location.Foreground = new SolidColorBrush(Colors.White);
+                oneClass.Children.Add(location);
 
                 // set timetable item column position
                 Grid.SetColumn(classBorder, mClass.classDayCodeInt);
@@ -97,7 +168,7 @@ namespace icreate_test2
                 // set timetable item row span
                 int durationInHours = mClass.classDurationInt / 100 * 100 + (mClass.classDurationInt % 100) * 100 / 60;
                 Grid.SetRowSpan(classBorder, durationInHours / 50);
-                
+
                 timetableGrid.Children.Add(classBorder);
             }
         }
