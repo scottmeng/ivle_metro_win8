@@ -95,7 +95,6 @@ namespace icreate_test2
                 for (int j = 1; j < 29; j += 2)
                 {
                     Border myBorder = new Border();
-
                     myBorder.BorderBrush = new SolidColorBrush(Colors.LightGray);
                     myBorder.BorderThickness = new Thickness(0.5);
                     myBorder.Background = backgroundBrush;
@@ -134,11 +133,11 @@ namespace icreate_test2
                 Border classBorder = new Border();
                 classBorder.Margin = new Thickness(2);
                 classBorder.Background = new SolidColorBrush(mClass.classModuleColor);
-                if (mClass.classLessonType != "LECTURE")
-                {
-                    CornerRadius radius = new CornerRadius(20);
-                    classBorder.CornerRadius = radius;
-                }
+                //if (mClass.classLessonType != "LECTURE")
+                //{
+                //    CornerRadius radius = new CornerRadius(20);
+                //    classBorder.CornerRadius = radius;
+                //}
 
                 StackPanel oneClass = new StackPanel();
                 oneClass.Orientation = Orientation.Vertical;
