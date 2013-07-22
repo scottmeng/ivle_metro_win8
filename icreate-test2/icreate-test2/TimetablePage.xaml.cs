@@ -100,9 +100,9 @@ namespace icreate_test2
                     myBorder.BorderThickness = new Thickness(0.5);
                     myBorder.Background = backgroundBrush;
                     timetableGrid.Children.Add(myBorder);
-                    Grid.SetColumn(myBorder, i);
-                    Grid.SetRow(myBorder, j);
-                    Grid.SetRowSpan(myBorder, 2);
+                    Grid.SetRow(myBorder, i);
+                    Grid.SetColumn(myBorder, j);
+                    Grid.SetColumnSpan(myBorder, 2);
                 }
             }
             for (int i = 0; i < 7; i++)
@@ -112,8 +112,8 @@ namespace icreate_test2
                 myBorder.BorderBrush = new SolidColorBrush(Colors.LightGray);
                 myBorder.BorderThickness = new Thickness(0.5);
                 timetableGrid.Children.Add(myBorder);
-                Grid.SetColumn(myBorder, i);
-                Grid.SetRow(myBorder, 0);
+                Grid.SetRow(myBorder, i);
+                Grid.SetColumn(myBorder, 0);
             }
             for (int i = 0; i < 29; i++)
             {
@@ -123,8 +123,8 @@ namespace icreate_test2
                 myBorder.BorderBrush = new SolidColorBrush(Colors.LightGray);
                 myBorder.BorderThickness = new Thickness(0.5);
                 timetableGrid.Children.Add(myBorder);
-                Grid.SetColumn(myBorder, 0);
-                Grid.SetRow(myBorder, i);
+                Grid.SetRow(myBorder, 0);
+                Grid.SetColumn(myBorder, i);
             }
 
 
@@ -134,40 +134,49 @@ namespace icreate_test2
                 Border classBorder = new Border();
                 classBorder.Margin = new Thickness(2);
                 classBorder.Background = new SolidColorBrush(mClass.classModuleColor);
-                CornerRadius radius = new CornerRadius(20);
-                classBorder.CornerRadius = radius;
+                if (mClass.classLessonType != "LECTURE")
+                {
+                    CornerRadius radius = new CornerRadius(20);
+                    classBorder.CornerRadius = radius;
+                }
 
                 StackPanel oneClass = new StackPanel();
                 oneClass.Orientation = Orientation.Vertical;
                 classBorder.Child = oneClass;
 
                 TextBlock classBlock = new TextBlock();
-                classBlock.Padding = new Thickness(2);
-                classBlock.Margin = new Thickness(5, 0, 0, 0);
-                classBlock.Text = mClass.classModuleCode + "    " + mClass.classLessonType;
-                classBlock.FontSize = 22;
+                classBlock.Padding = new Thickness(1);
+                classBlock.Margin = new Thickness(3, 0, 0, 0);
+                classBlock.Text = mClass.classModuleCode;
+                classBlock.FontSize = 18;
                 classBlock.FontFamily = new FontFamily("Segoe UI");
                 classBlock.Foreground = new SolidColorBrush(Colors.White);
-
                 oneClass.Children.Add(classBlock);
-
+                TextBlock classType = new TextBlock();
+                classType.Margin = new Thickness(3, 0, 0, 0);
+                classType.Text = mClass.classLessonType;
+                classType.FontSize = 18;
+                classType.FontFamily = new FontFamily("Segoe UI");
+                classType.Foreground = new SolidColorBrush(Colors.White);
+                oneClass.Children.Add(classType);
                 TextBlock location = new TextBlock();
+                location.Padding = new Thickness(1);
+                location.Margin = new Thickness(3, 0, 0, 0);
                 location.Text = mClass.classVenue;
-                location.FontSize = 18;
-                location.HorizontalAlignment = Windows.UI.Xaml.HorizontalAlignment.Center;
+                location.FontSize = 16;
                 location.Foreground = new SolidColorBrush(Colors.White);
                 oneClass.Children.Add(location);
 
                 // set timetable item column position
-                Grid.SetColumn(classBorder, mClass.classDayCodeInt);
+                Grid.SetRow(classBorder, mClass.classDayCodeInt);
 
                 // set timetable item row position
                 int startTimeInHours = mClass.classStartTimeInt / 100 * 100 + (mClass.classStartTimeInt % 100) * 100 / 60;
-                Grid.SetRow(classBorder, (startTimeInHours - 800) / 50 + 1);
+                Grid.SetColumn(classBorder, (startTimeInHours - 800) / 50 + 1);
 
                 // set timetable item row span
                 int durationInHours = mClass.classDurationInt / 100 * 100 + (mClass.classDurationInt % 100) * 100 / 60;
-                Grid.SetRowSpan(classBorder, durationInHours / 50);
+                Grid.SetColumnSpan(classBorder, durationInHours / 50);
 
                 timetableGrid.Children.Add(classBorder);
             }
