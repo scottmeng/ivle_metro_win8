@@ -96,11 +96,12 @@ namespace icreate_test2
                 }
             }
 
-            await GetExamAsync();
-
             _currentModule.GenerateModuleItemList();
 
             base.OnNavigatedTo(e);
+
+            /* 
+            await GetExamAsync();
 
             if (_currentModule.isWorkbinAvailable)
             {
@@ -116,6 +117,9 @@ namespace icreate_test2
             {
                 await GetWebcastAsync();
             }
+             */
+
+            await Task.WhenAll(GetExamAsync(), GetWorkbinAsync(), GetForumAsync(), GetWebcastAsync());
         }
 
 
