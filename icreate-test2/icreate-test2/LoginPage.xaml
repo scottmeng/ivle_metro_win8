@@ -87,19 +87,19 @@
                             <CompositeTransform/>
                         </TextBlock.RenderTransform>
                     </TextBlock>
-                    <TextBox x:Name="UsernameTextBox" Margin="5,2,3,0"   Width="270" Height="50" FontSize="20" 
-                             Grid.Column="1" Grid.Row="0" VerticalContentAlignment="Center" RenderTransformOrigin="0.5,0.5">
+                    <TextBox x:Name="UsernameTextBox" Margin="5,2,3,0" Width="270" Height="50" FontSize="24" VerticalAlignment="Center"
+                             Grid.Column="1" Grid.Row="0" VerticalContentAlignment="Center" RenderTransformOrigin="0.5,0.5" Padding="7">
                         <TextBox.RenderTransform>
                             <CompositeTransform/>
                         </TextBox.RenderTransform>
                     </TextBox>
-                    <TextBlock x:Name="textBlock1" Text="Password:" FontSize="24" Margin="5,2,3,0" Foreground="White"
+                    <TextBlock x:Name="textBlock1" Text="Password:" FontSize="24" Margin="5,2,3,0" Foreground="White" 
                                Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" RenderTransformOrigin="0.5,0.5">
                         <TextBlock.RenderTransform>
                             <CompositeTransform/>
                         </TextBlock.RenderTransform>
                     </TextBlock>
-                    <PasswordBox x:Name="PasswordBox" Margin="5,2,3,0" Width="270" Height="50" FontSize="20" 
+                    <PasswordBox x:Name="PasswordBox" Margin="5,2,3,0" Width="270" Height="50" FontSize="24" Padding="7"
                                  PasswordChar="*" Grid.Column="1" Grid.Row="1" KeyDown="onPasswordKeyDown" VerticalContentAlignment="Center" RenderTransformOrigin="0.5,0.5">
                         <PasswordBox.RenderTransform>
                             <CompositeTransform/>
@@ -112,7 +112,7 @@
                         </TextBlock.RenderTransform>
                     </TextBlock>
                     <ComboBox x:Name="DomainComboBox" Margin="5,2,3,0" SelectedItem="domainItem"  
-                              Width="270" Height="50" FontSize="20" Grid.Column="1" Grid.Row="2" SelectedIndex="0" VerticalContentAlignment="Center" RenderTransformOrigin="0.5,0.5">
+                              Width="270" Height="50" FontSize="24" Grid.Column="1" Grid.Row="2" SelectedIndex="0" VerticalContentAlignment="Center" RenderTransformOrigin="0.5,0.5">
                         <ComboBox.RenderTransform>
                             <CompositeTransform/>
                         </ComboBox.RenderTransform>
@@ -153,7 +153,7 @@
                     </Grid.RowDefinitions>
                     <TextBlock Text="UserID:" FontSize="18" Margin="5" Foreground="White" 
                                Grid.Column="0" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-                    <TextBox x:Name="UsernameTextBox_snapped" Margin="2"   Width="150" FontSize="18" 
+                    <TextBox x:Name="UsernameTextBox_snapped" Margin="2" Width="150" FontSize="18" 
                              Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center"/>
                     <TextBlock Text="Password:" FontSize="18" Margin="2" Foreground="White"
                                Grid.Column="0" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right"/>

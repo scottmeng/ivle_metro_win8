@@ -17,6 +17,8 @@ using Windows.ApplicationModel.Search;
 
 // The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=234227
 
+public enum AppState { UPDATED, CACHED, OFFLINE};
+
 namespace icreate_test2
 {
     /// <summary>
@@ -24,12 +26,17 @@ namespace icreate_test2
     /// </summary>
     sealed partial class App : Application
     {
+
+        public static AppState appState;
+
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
         /// </summary>
         public App()
         {
+            appState = AppState.OFFLINE;
+
             this.InitializeComponent();
             this.Suspending += OnSuspending;
         }

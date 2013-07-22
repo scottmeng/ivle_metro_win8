@@ -10,7 +10,9 @@ namespace icreate_test2.Utils
 {
     static class DataManager
     {
-        private static ObservableCollection<DataStructure.Module> _modules;
+        public static ObservableCollection<DataStructure.Module> modules { get; set; }
+        public static ObservableCollection<DataStructure.Announcement> announcements { get; set; }
+
         private static List<DataStructure.Announcement> _announcements;
         private static List<DataStructure.Class> _allClasses;
         private static List<DataStructure.Class>[] _classesForEachDay;
@@ -19,7 +21,9 @@ namespace icreate_test2.Utils
 
         public static void InitializeDataLists()
         {
-            _modules = new ObservableCollection<DataStructure.Module>();
+            modules = new ObservableCollection<DataStructure.Module>();
+            announcements = new ObservableCollection<DataStructure.Announcement>();
+
             _announcements = new List<DataStructure.Announcement>();
             _allClasses = new List<DataStructure.Class>();
             _sems = new List<DataStructure.SemesterInfo>();
@@ -29,11 +33,6 @@ namespace icreate_test2.Utils
                                                                     new List<DataStructure.Class>(), new List<DataStructure.Class>()};
 
             searchables = new List<DataStructure.Searchable>();
-        }
-
-        public static ObservableCollection<DataStructure.Module> GetModules()
-        {
-            return new ObservableCollection<DataStructure.Module>(_modules);
         }
 
         public static List<DataStructure.Announcement> GetAnnouncements()
@@ -53,7 +52,7 @@ namespace icreate_test2.Utils
 
         public static void AddModule(DataStructure.Module module)
         {
-            _modules.Add(module);
+            modules.Add(module);
         }
 
         public static void AddAnnouncement(DataStructure.Announcement announcement)
@@ -74,20 +73,93 @@ namespace icreate_test2.Utils
             }
         }
 
+        public static void ClearAnnouncement()
+        {
+            _announcements.Clear();
+        }
+
+        public static void UpdateModules(DataStructure.Module[] newModules)
+        {
+            foreach (DataStructure.Module module in modules)
+            {
+                // if old module no longer exists
+                // remove from observable collection
+                if (!newModules.Contains(module, new ModuleEqualityComparer()))
+                {
+                    modules.Remove(module);
+                }
+                else
+                {
+                    // if old module still exists
+                    // update its announcements
+                    foreach (DataStructure.Module newModule in newModules)
+                    {
+                        if (newModule.moduleId == module.moduleId)
+                        {
+                            module.moduleAnnouncements = newModule.moduleAnnouncements;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            // if there are new modules
+            foreach (DataStructure.Module newModule in newModules)
+            {
+                if (!modules.Contains(newModule, new ModuleEqualityComparer()))
+                {
+                    modules.Add(newModule);
+                }
+            }
+
+            SortAnnouncementWrtTime();
+        }
+
         public static void SortAnnouncementWrtTime()
         {
+            int iterator = 0;
+            // sort the list
             _announcements.Sort(new AnnouncementTimeComparer());
+
+            if (announcements.Count == 0)
+            {
+                foreach (DataStructure.Announcement announcement in _announcements)
+                {
+                    announcements.Add(announcement);
+                }
+            }
+            else
+            {
+                foreach (DataStructure.Announcement announcement in announcements)
+                {
+                    if (!announcements.Contains(announcement, new AnnouncementEqualityComparer()))
+                    {
+                        announcements.Remove(announcement);
+                    }
+                }
+
+                foreach (DataStructure.Announcement newAnnouncement in _announcements)
+                {
+                    if (!announcements.Contains(newAnnouncement, new AnnouncementEqualityComparer()))
+                    {
+                        announcements.Insert(iterator, newAnnouncement);
+                        iterator++;
+                    }
+                }
+
+
+            }
         }
 
         public static int GetModuleIndex(DataStructure.Module module)
         {
-            return _modules.IndexOf(module);
+            return modules.IndexOf(module);
         }
         
         public static int GetModuleIndexByModuleId(string moduleId)
         {
             int index = 0;
-            while (_modules[index].moduleId != moduleId)
+            while (modules[index].moduleId != moduleId)
             {
                 index++;
             }
@@ -98,7 +170,7 @@ namespace icreate_test2.Utils
         public static int GetAnnouncementIndex(int moduleIndex, String announcementId)
         {
             int index = 0;
-            while (_modules[moduleIndex].moduleAnnouncements[index].announceID != announcementId)
+            while (modules[moduleIndex].moduleAnnouncements[index].announceID != announcementId)
             {
                 index++;
             }
@@ -107,7 +179,7 @@ namespace icreate_test2.Utils
 
         public static DataStructure.Module GetModuleAt(int index)
         {
-            return _modules[index];
+            return modules[index];
         }
 
         public static List<DataStructure.Class> GetDailyClassList(int dayCode)
@@ -157,7 +229,7 @@ namespace icreate_test2.Utils
         {
             if (searchables.Count == 0)
             {
-                foreach (DataStructure.Module module in Utils.DataManager.GetModules())
+                foreach (DataStructure.Module module in Utils.DataManager.modules)
                 {
                     searchables.Add(new DataStructure.Searchable(module.moduleCode,
                                                                  module.moduleName,
@@ -176,6 +248,47 @@ namespace icreate_test2.Utils
         }
     }
 
+    class AnnouncementEqualityComparer : IEqualityComparer<DataStructure.Announcement>
+    {
+        public bool Equals(DataStructure.Announcement a1, DataStructure.Announcement a2)
+        {
+            if (a1.announceID == a2.announceID)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public int GetHashCode(DataStructure.Announcement announcement)
+        {
+            int hCode = announcement.announceName.Length ^ announcement.announceContent.Length;
+            return hCode.GetHashCode();
+        }
+    }
+
+    class ModuleEqualityComparer : IEqualityComparer<DataStructure.Module>
+    {
+        public bool Equals(DataStructure.Module m1, DataStructure.Module m2)
+        {
+            if (m1.moduleId == m2.moduleId)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public int GetHashCode(DataStructure.Module mod)
+        {
+            int hCode = mod.moduleCode.Length ^ mod.moduleName.Length;
+            return hCode.GetHashCode();
+        }
+    }
 
     class SeminfoEqualityComparer : IEqualityComparer<DataStructure.SemesterInfo>
     {

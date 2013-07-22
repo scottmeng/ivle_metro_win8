@@ -87,7 +87,7 @@ namespace icreate_test2
 
                 mainModuleName.Text = _currentModule.moduleCode;
 
-                foreach (DataStructure.Module module in Utils.DataManager.GetModules())
+                foreach (DataStructure.Module module in Utils.DataManager.modules)
                 {
                     if (module.moduleId != _currentModule.moduleId)
                     {

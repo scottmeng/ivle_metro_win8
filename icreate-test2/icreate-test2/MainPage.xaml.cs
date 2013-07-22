@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI;
 using Windows.ApplicationModel.Search;
+using Windows.Storage;
 
 using Newtonsoft.Json;
 
@@ -91,10 +92,8 @@ namespace icreate_test2
         /// session.  This will be null the first time a page is visited.</param>
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
-            Utils.DataManager.SortAnnouncementWrtTime();
-
-            moduleGridView.Source = Utils.DataManager.GetModules();
-            newAnnouncementListView.Source = Utils.DataManager.GetAnnouncements();
+            moduleGridView.Source = Utils.DataManager.modules;
+            newAnnouncementListView.Source = Utils.DataManager.announcements;
 
             // let data manager populates class list for each weekday
             date_textblock.Text = dayList[dayListIndex];
@@ -114,24 +113,67 @@ namespace icreate_test2
         {
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             // enable type to search
             SearchPane.GetForCurrentView().ShowOnKeyboardInput = true;
+            
+            base.OnNavigatedTo(e);
 
-            if (e.Parameter != null)
+            if (App.appState == AppState.CACHED)
             {
-                bool isModuleDataUpdated = (bool) e.Parameter;
-
-                if (!isModuleDataUpdated)
-                {
-                    // fetch module data
-
-                    // generate announcement display
-                }
+                // fetch module data
+                await GetModulesAsync();
+                // generate announcement display
             }
 
-            base.OnNavigatedTo(e);
+        }
+
+        private async Task GetModulesAsync()
+        {
+            int iterator = 0;
+            string modulesResponse;
+
+            Windows.Storage.StorageFolder localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
+
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            parameters.Add("Duration", "0");
+            parameters.Add("IncludeAllInfo", "true");
+
+            modulesResponse = await Utils.RequestSender.GetResponseStringAsync("Modules_Student", parameters);
+
+            if (modulesResponse != null)
+            {
+                // store all data in local storage
+                StorageFile sampleFile = await localFolder.CreateFileAsync("dataFile.txt", CreationCollisionOption.ReplaceExisting);
+                await FileIO.WriteTextAsync(sampleFile, modulesResponse);
+
+                // deserialize data into objects
+                DataStructure.ModuleInfoWrapper modulesWrapper = JsonConvert.DeserializeObject<DataStructure.ModuleInfoWrapper>(modulesResponse);
+
+                if (modulesWrapper.comments.Equals("Valid login!"))
+                {
+                    // clear all announcements 
+                    Utils.DataManager.ClearAnnouncement();
+
+                    foreach (DataStructure.Module module in modulesWrapper.modules)
+                    {
+                        module.SetModuleColor(DataStructure.Colors.GetModuleColor(iterator), DataStructure.Colors.GetSecondaryColor(iterator));
+
+                        foreach (DataStructure.Announcement announcement in module.moduleAnnouncements)
+                        {
+                            announcement.GenerateDisplayContent(module);
+                            Utils.DataManager.AddAnnouncement(announcement);
+                        }
+
+                        iterator++;
+                    }
+
+                    Utils.DataManager.UpdateModules(modulesWrapper.modules);
+                }
+
+                App.appState = AppState.UPDATED;
+            }
         }
 
         private void Logoff_Button_Click(object sender, RoutedEventArgs e)
@@ -232,25 +274,26 @@ namespace icreate_test2
         private void ModuleItemGridPressed(object sender, PointerRoutedEventArgs e)
         {
             DataStructure.Module selectedModule = (e.OriginalSource as FrameworkElement).DataContext as DataStructure.Module;
-            ObservableCollection<DataStructure.Module> modules = Utils.DataManager.GetModules();
             isRightClicking = true;
-            for (int i = 0; i < modules.Count; i++)
+
+            foreach (DataStructure.Module module in Utils.DataManager.modules)
             {
-                modules[i].moduleShowColor = modules[i].modulePrimaryColor;
+                module.moduleShowColor = module.modulePrimaryColor;
             }
+
             if (selectedModule != null)
             {
-                selectedModule.moduleShowColor = Color.FromArgb(255, 211, 211, 211);
+                selectedModule.moduleShowColor = Color.FromArgb(255, 100, 100, 100);
             }
         }
 
         private void ModuleItemGridExited(object sender, PointerRoutedEventArgs e)
         {
-            ObservableCollection<DataStructure.Module> modules = Utils.DataManager.GetModules();
-            for (int i = 0; i < modules.Count; i++)
+            foreach (DataStructure.Module module in Utils.DataManager.modules)
             {
-                modules[i].moduleShowColor = modules[i].modulePrimaryColor;
+                module.moduleShowColor = module.modulePrimaryColor;
             }
+
             isRightClicking = false;
         }
 
@@ -293,24 +336,24 @@ namespace icreate_test2
         }
         private void AnnoucementExited(object sender, PointerRoutedEventArgs e)
         {
-            List<DataStructure.Announcement> annoucements = Utils.DataManager.GetAnnouncements();
-            for (int i = 0; i < annoucements.Count; i++)
+            foreach (DataStructure.Announcement announcement in Utils.DataManager.announcements)
             {
-                annoucements[i].announceColor = annoucements[i].announcePrimaryColor;
-                annoucements[i].backgroundConverter = 1;
+                announcement.announceColor = announcement.announcePrimaryColor;
+                announcement.backgroundConverter = 1;
             }
             isRightClicking = false;
         }
 
         private void AnnoucementPressed(object sender, PointerRoutedEventArgs e)
         {
-            List<DataStructure.Announcement> annoucements = Utils.DataManager.GetAnnouncements();
-            for (int i = 0; i < annoucements.Count; i++)
-            {
-                annoucements[i].announceColor = annoucements[i].announcePrimaryColor;
-                annoucements[i].backgroundConverter = 1;
-            }
             DataStructure.Announcement selectedAnnouncement = (e.OriginalSource as FrameworkElement).DataContext as DataStructure.Announcement;
+            
+            foreach (DataStructure.Announcement announcement in Utils.DataManager.announcements)
+            {
+                announcement.announceColor = announcement.announcePrimaryColor;
+                announcement.backgroundConverter = 1;
+            }
+
             isRightClicking = true;
             if (selectedAnnouncement != null)
             {
@@ -322,13 +365,13 @@ namespace icreate_test2
         private void AnnoucementReleased(object sender, PointerRoutedEventArgs e)
         {
             DataStructure.Announcement selectedAnnouncement = (e.OriginalSource as FrameworkElement).DataContext as DataStructure.Announcement;
-            List<DataStructure.Announcement> annoucements = Utils.DataManager.GetAnnouncements();
             
-            for (int i = 0; i < annoucements.Count; i++)
+            foreach (DataStructure.Announcement announcement in Utils.DataManager.announcements)
             {
-                annoucements[i].announceColor = annoucements[i].announcePrimaryColor;
-                annoucements[i].backgroundConverter = 1;
+                announcement.announceColor = announcement.announcePrimaryColor;
+                announcement.backgroundConverter = 1;
             }
+            
             int moduleIndex = Utils.DataManager.GetModuleIndexByModuleId(selectedAnnouncement.announceModuleId);
             int announcementIndex = Utils.DataManager.GetAnnouncementIndex(moduleIndex, selectedAnnouncement.announceID);
             if (isRightClicking)
@@ -344,20 +387,18 @@ namespace icreate_test2
 
         private void AnnouncementLayoutUpdated(object sender, object e)
         {
-            List<DataStructure.Announcement> annoucements = Utils.DataManager.GetAnnouncements();
-            for (int i = 0; i < annoucements.Count; i++)
+            foreach (DataStructure.Announcement announcement in Utils.DataManager.announcements)
             {
-                annoucements[i].announceColor = annoucements[i].announcePrimaryColor;
-                annoucements[i].backgroundConverter = 1;
+                announcement.announceColor = announcement.announcePrimaryColor;
+                announcement.backgroundConverter = 1;
             }
         }
 
         private void moduleItemLayoutUpdated(object sender, object e)
         {
-            ObservableCollection<DataStructure.Module> modules = Utils.DataManager.GetModules();
-            for (int i = 0; i < modules.Count; i++)
+            foreach(DataStructure.Module module in Utils.DataManager.modules)
             {
-                modules[i].moduleShowColor = modules[i].modulePrimaryColor;
+                module.moduleShowColor = module.modulePrimaryColor;
             }
         }
 

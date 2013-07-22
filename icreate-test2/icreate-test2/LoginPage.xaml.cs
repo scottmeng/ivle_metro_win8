@@ -36,7 +36,6 @@ namespace icreate_test2
         private String password;
         private String domain;
         private String postString;
-        private bool isModuleDataUpdated = false;
 
         public LoginPage()
         {
@@ -98,7 +97,7 @@ namespace icreate_test2
                         ProgressRing.IsActive = false;
                         ProgressRing_snapped.IsActive = false;
                         // navigate to main menu page
-                        this.Frame.Navigate(typeof(MainPage), isModuleDataUpdated);
+                        this.Frame.Navigate(typeof(MainPage));
                     }
                     else
                     {
@@ -177,7 +176,7 @@ namespace icreate_test2
                     await GetTimetableAsync();
 
                     // navigate to the home page
-                    this.Frame.Navigate(typeof(MainPage), isModuleDataUpdated);
+                    this.Frame.Navigate(typeof(MainPage));
                 }
                 else
                 {
@@ -278,7 +277,7 @@ namespace icreate_test2
         private async Task GetTimetableAsync()
         {
             List<int> ids = new List<int>();
-            int count = Utils.DataManager.GetModules().Count;
+            int count = Utils.DataManager.modules.Count;
 
             for(int i=0; i<count; i++)
             {
@@ -341,7 +340,11 @@ namespace icreate_test2
                 StorageFile sampleFile = await localFolder.CreateFileAsync("dataFile.txt", CreationCollisionOption.ReplaceExisting);
                 await FileIO.WriteTextAsync(sampleFile, modulesResponse);
 
-                isModuleDataUpdated = true;
+                App.appState = AppState.UPDATED;
+            }
+            else
+            {
+                App.appState = AppState.CACHED;
             }
 
             // deserialize data into objects
@@ -351,20 +354,17 @@ namespace icreate_test2
             {
                 foreach (DataStructure.Module module in moduleWrapper.modules)
                 {
+                    module.SetModuleColor(DataStructure.Colors.GetModuleColor(iterator), DataStructure.Colors.GetSecondaryColor(iterator));
+
                     foreach (DataStructure.Announcement announcement in module.moduleAnnouncements)
                     {
                         announcement.GenerateDisplayContent(module);
                         Utils.DataManager.AddAnnouncement(announcement);
                     }
-                    module.SetModuleColor(DataStructure.Colors.GetModuleColor(iterator), DataStructure.Colors.GetSecondaryColor(iterator));
-
-                    DataStructure.SemesterInfo newSemInfo = new DataStructure.SemesterInfo(module.moduleAcadYear,
-                                                                                           module.moduleSemester.Replace("Semester ", String.Empty));
-
-                    Utils.DataManager.AddSemInfo(newSemInfo);
-                    Utils.DataManager.AddModule(module);
                     iterator++;
                 }
+
+                Utils.DataManager.UpdateModules(moduleWrapper.modules);
             }
         }
 
