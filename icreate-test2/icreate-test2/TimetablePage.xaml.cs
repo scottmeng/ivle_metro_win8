@@ -12,6 +12,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI;
+using Windows.ApplicationModel.Search;
+
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
@@ -114,7 +116,7 @@ namespace icreate_test2
                 Grid.SetRow(myBorder, i);
                 Grid.SetColumn(myBorder, 0);
             }
-            for (int i = 0; i < 29; i++)
+            for (int i = 1; i < 29; i+=2)
             {
                 Border myBorder = new Border();
                 SolidColorBrush backgroundBrush;
@@ -124,6 +126,7 @@ namespace icreate_test2
                 timetableGrid.Children.Add(myBorder);
                 Grid.SetRow(myBorder, 0);
                 Grid.SetColumn(myBorder, i);
+                Grid.SetColumnSpan(myBorder, 2);
             }
 
 
@@ -179,6 +182,22 @@ namespace icreate_test2
 
                 timetableGrid.Children.Add(classBorder);
             }
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            // enable type to search
+            SearchPane.GetForCurrentView().ShowOnKeyboardInput = true;
+
+            base.OnNavigatedTo(e);
+        }
+
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            // disable type to search
+            SearchPane.GetForCurrentView().ShowOnKeyboardInput = false;
+            
+            base.OnNavigatedFrom(e);
         }
 
         /// <summary>

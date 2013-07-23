@@ -129,11 +129,21 @@ namespace icreate_test2
 
         }
 
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            // disable type to search
+            SearchPane.GetForCurrentView().ShowOnKeyboardInput = false;
+
+            base.OnNavigatedFrom(e);
+        }
+
         private async Task GetModulesAsync()
         {
             int iterator = 0;
             string modulesResponse;
-            loadingProgress.IsActive = true;
+            loadingProgressBar.IsIndeterminate = true;
+            loadingProgressBar.Visibility = Visibility.Visible;
+            //loadingProgress.IsActive = true;
 
             Windows.Storage.StorageFolder localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
 
@@ -175,7 +185,10 @@ namespace icreate_test2
 
                 App.appState = AppState.UPDATED;
             }
-            loadingProgress.IsActive = false;
+
+            loadingProgressBar.IsIndeterminate = false;
+            loadingProgressBar.Visibility = Visibility.Collapsed;
+            //loadingProgress.IsActive = false;
         }
 
         private void Logoff_Button_Click(object sender, RoutedEventArgs e)

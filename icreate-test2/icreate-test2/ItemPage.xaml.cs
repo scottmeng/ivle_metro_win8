@@ -73,9 +73,6 @@ namespace icreate_test2
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
-            // disable type to search
-            SearchPane.GetForCurrentView().ShowOnKeyboardInput = false;
-
             if (e.Parameter != null)
             {
                 DataStructure.NavParams navParams = e.Parameter as DataStructure.NavParams;
@@ -151,7 +148,6 @@ namespace icreate_test2
                 moduleCode_textblock.Text = _currentModule.moduleCode;
                 moduleAcadYear_textblock.Text = _currentModule.moduleAcadYear + _currentModule.moduleSemester;
                 moduleMc_textblock.Text = _currentModule.moduleMc;
-                moduleExamtime_textblock.Text = _currentModule.moduleExamInfos[0].examInfo;
                 lecturerListView.Source = _currentModule.moduleLecturers;
             }
             catch
@@ -304,6 +300,8 @@ namespace icreate_test2
                 DataStructure.ExamInfoWrapper examInfoWrapper = JsonConvert.DeserializeObject<DataStructure.ExamInfoWrapper>(examResponse);
 
                 _currentModule.moduleExamInfos = examInfoWrapper.examInfos;
+
+                moduleExamtime_textblock.Text = _currentModule.moduleExamInfos[0].examInfo;
             }
             else
             {
