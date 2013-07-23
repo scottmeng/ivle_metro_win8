@@ -1366,8 +1366,6 @@
                                 </DiscreteObjectKeyFrame.Value>
                             </DiscreteObjectKeyFrame>
                         </ObjectAnimationUsingKeyFrames>
-                        <DoubleAnimation Duration="0" To="39.333" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)" Storyboard.TargetName="stackPanel1_snapped" d:IsOptimized="True"/>
-                        <DoubleAnimation Duration="0" To="287.5" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="stackPanel1_snapped" d:IsOptimized="True"/>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="leftStackPanel">
                             <DiscreteObjectKeyFrame KeyTime="0">
                                 <DiscreteObjectKeyFrame.Value>
@@ -1701,7 +1699,7 @@
                 <Grid x:Name="FolderGrid_snapped" Grid.Row="1">
                     <Button x:Name="upFolderButton_snapped" 
                                     Background="Blue" 
-                                    Width="300" 
+                                    Width="290" 
                                     Height="100" 
                                     Margin="5"
                                     Content="..."
@@ -1771,7 +1769,7 @@
                                     <Grid.Resources>
                                         <local:FileIconConverter x:Key="FileIconConverter" />
                                     </Grid.Resources>
-                                    <StackPanel Orientation="Vertical">
+                                    <StackPanel Orientation="Horizontal">
                                         <Image Source="{Binding Path=fileType,
                                             Mode=OneWay,Converter={StaticResource FileIconConverter}}"
                                                    Height="60"
@@ -1782,7 +1780,7 @@
                                                        FontSize="24" 
                                                        FontFamily="Segoe UI" 
                                                        FontWeight="Light"
-                                                       VerticalAlignment="Top"  
+                                                       VerticalAlignment="Center"  
                                                        TextWrapping="Wrap"
                                                        HorizontalAlignment="Left"/>
                                     </StackPanel>
