@@ -400,6 +400,7 @@
                         <CompositeTransform TranslateX="-2" TranslateY="8"/>
                     </TextBlock.RenderTransform>
                 </TextBlock>
+                <ProgressRing Grid.Column="1" x:Name="loadingProgress" Height="60" Width="60" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="20" IsActive="False"/>
             </Grid>
 
 
