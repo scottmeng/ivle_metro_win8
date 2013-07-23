@@ -133,6 +133,7 @@ namespace icreate_test2
         {
             int iterator = 0;
             string modulesResponse;
+            loadingProgress.IsActive = true;
 
             Windows.Storage.StorageFolder localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
 
@@ -174,6 +175,7 @@ namespace icreate_test2
 
                 App.appState = AppState.UPDATED;
             }
+            loadingProgress.IsActive = false;
         }
 
         private void Logoff_Button_Click(object sender, RoutedEventArgs e)
