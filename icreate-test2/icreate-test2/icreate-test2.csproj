@@ -171,6 +171,7 @@
     <None Include="icreate-test2_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\downButton.png" />
     <Content Include="Assets\Excel.png" />
     <Content Include="Assets\Folder.png" />
     <Content Include="Assets\General.png" />
