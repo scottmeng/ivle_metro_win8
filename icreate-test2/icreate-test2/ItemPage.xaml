@@ -2195,7 +2195,7 @@
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,5">
                                                 <TextBlock Height="auto" 
                                                                Margin="0,0,20,0"
-                                                            Text="{Binding threadDate}" 
+                                                            Text="{Binding threadDatetime}" 
                                                             TextWrapping="Wrap" 
                                                             Foreground="White" 
                                                             FontSize="20" 

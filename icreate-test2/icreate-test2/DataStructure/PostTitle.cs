@@ -32,13 +32,18 @@ namespace icreate_test2.DataStructure
         public bool isPostHeading { get; set; }
         public String threadId { get; set; }
         public String headingId { get; set; }
+        public Member threadPoster { get; set; }
+        public string threadDatetime { get; set; }
 
-        public PostTitle(String title, bool isHeading, String threadId, String headingId)
+        public PostTitle(String title, bool isHeading, String threadId, String headingId, 
+            Member poster, string datetime)
         {
             this.postTitle = title;
             this.isPostHeading = isHeading;
             this.threadId = threadId;
             this.headingId = headingId;
+            this.threadPoster = poster;
+            this.threadDatetime = datetime;
         }
 
         // Create the OnPropertyChanged method to raise the event 

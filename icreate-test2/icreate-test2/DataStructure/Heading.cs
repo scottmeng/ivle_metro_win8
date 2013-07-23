@@ -39,12 +39,12 @@ namespace icreate_test2.DataStructure
         {
             headingAllTiles.Clear();
 
-            headingAllTiles.Add(new PostTitle(headingTitle, true, null, this.headingId));
+            headingAllTiles.Add(new PostTitle(headingTitle, true, null, this.headingId, null, null));
 
             foreach (Thread thread in headingThreads)
             {
 
-                headingAllTiles.Add(new PostTitle(thread.threadTitle, false, thread.threadId, null));
+                headingAllTiles.Add(new PostTitle(thread.threadTitle, false, thread.threadId, null, thread.threadPoster, thread.threadDate.ToString()));
             }
         }
     }

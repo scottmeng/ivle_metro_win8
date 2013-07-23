@@ -97,32 +97,14 @@ namespace icreate_test2
 
             base.OnNavigatedTo(e);
 
-            /* 
-            await GetExamAsync();
-
-            if (_currentModule.isWorkbinAvailable)
-            {
-                await GetWorkbinAsync();
-            }
-
-            if (_currentModule.isForumAvailable)
-            {
-                await GetForumAsync();
-            }
-
-            if (_currentModule.isWebcastAvailable)
-            {
-                await GetWebcastAsync();
-            }
-             */
-
-
+            /*
             await GetExamAsync();
             await GetWebcastAsync();
             await GetForumAsync();
             await GetWorkbinAsync();
+             * */
             
-            //await Task.WhenAll(GetExamAsync(), GetWorkbinAsync(), GetForumAsync(), GetWebcastAsync());
+            await Task.WhenAll(GetExamAsync(), GetWorkbinAsync(), GetForumAsync(), GetWebcastAsync());
         }
 
 
@@ -285,8 +267,11 @@ namespace icreate_test2
                         }
                     }
                 }
-                
-                //_currentModule.moduleForums = forumWrapper.forums;
+
+                if (_currentModule.isForumAvailable)
+                {
+                    updateForum();
+                }
             }
             else
             {
