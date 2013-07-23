@@ -10,12 +10,6 @@ namespace icreate_test2.Utils
 {
     static class DataManager
     {
-        /*
-         * Test
-         */
-        public static bool testBool = false;
-
-
         public static ObservableCollection<DataStructure.Module> modules { get; set; }
         public static ObservableCollection<DataStructure.Announcement> announcements { get; set; }
 
@@ -118,21 +112,9 @@ namespace icreate_test2.Utils
                 }
             }
 
-            /*
-             * Test
-             */
-            if (testBool)
-            {
-                _announcements.Add(new DataStructure.Announcement("1", "first", "first content", DateTime.Now, null));
-                _announcements.Add(new DataStructure.Announcement("2", "second", "second content", DateTime.Now.AddDays(1), null));
-                _announcements.Add(new DataStructure.Announcement("3", "thir", "third content", DateTime.Now, null));
-                _announcements.Add(new DataStructure.Announcement("4", "fourth", "fourth content", DateTime.Now, null));
-                _announcements.Add(new DataStructure.Announcement("5", "fifth", "fifth content", DateTime.Now.AddDays(2), null));
-            }
-
-            testBool = true;
-
             SortAnnouncementWrtTime();
+
+            GenerateSearchResults();
         }
 
         public static void SortAnnouncementWrtTime()
@@ -247,23 +229,23 @@ namespace icreate_test2.Utils
         // generate search results from available modules and announcements
         public static void GenerateSearchResults()
         {
-            if (searchables.Count == 0)
-            {
-                foreach (DataStructure.Module module in Utils.DataManager.modules)
-                {
-                    searchables.Add(new DataStructure.Searchable(module.moduleCode,
-                                                                 module.moduleName,
-                                                                 module.moduleId,
-                                                                 null));
+            // clear all searchable results
+            searchables.Clear();
 
-                    foreach (DataStructure.Announcement announcement in module.moduleAnnouncements)
-                    {
-                        searchables.Add(new DataStructure.Searchable(announcement.announceName,
-                                                                     announcement.announceContent,
-                                                                     announcement.announceModuleId,
-                                                                     announcement.announceID));
-                    }
-                }
+            foreach (DataStructure.Module module in modules)
+            {
+                searchables.Add(new DataStructure.Searchable(module.moduleCode,
+                                                                module.moduleName,
+                                                                module.moduleId,
+                                                                null));
+            }
+
+            foreach (DataStructure.Announcement announcement in _announcements)
+            {
+                searchables.Add(new DataStructure.Searchable(announcement.announceName,
+                                                                    announcement.announceContentPreview,
+                                                                    announcement.announceModuleId,
+                                                                    announcement.announceID));
             }
         }
     }
@@ -338,11 +320,11 @@ namespace icreate_test2.Utils
         {
             if (announce1.announceTime.CompareTo(announce2.announceTime) != 0)
             {
-                return announce1.announceTime.CompareTo(announce2.announceTime);
+                return -announce1.announceTime.CompareTo(announce2.announceTime);
             }
             else if (announce1.announceIsRead.CompareTo(announce2.announceIsRead) != 0)
             {
-                return announce1.announceIsRead.CompareTo(announce2.announceIsRead);
+                return -announce1.announceIsRead.CompareTo(announce2.announceIsRead);
             }
             else
             {

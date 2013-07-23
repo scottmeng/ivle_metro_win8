@@ -284,9 +284,6 @@ namespace icreate_test2
                     }
                 }
                 //_currentModule.moduleForums = forumWrapper.forums;
-
-                // generate content for display
-                updateForum();
             }
             else
             {
@@ -786,6 +783,10 @@ namespace icreate_test2
                     case DataStructure.ItemType.WEBCAST:
                         flipView.SelectedItem = null;
                         flipView.SelectedIndex = 5;
+
+                        // generate a complete list of video files
+                        // and store under webcast object
+                        _currentModule.moduleWebcasts[selectedItem.itemIndex].GenerateVideoFileList();
                         break;
 
                     case DataStructure.ItemType.WORKBIN:
@@ -809,8 +810,11 @@ namespace icreate_test2
 
                         _currentForumIndex = selectedItem.itemIndex;
 
-                        headers.Source = _currentModule.moduleForums[selectedItem.itemIndex].forumAllTitles;
+                        // generate content for display
+                        updateForum();
 
+                        headers.Source = _currentModule.moduleForums[selectedItem.itemIndex].forumAllTitles;
+                   
                         break;
 
                     default:

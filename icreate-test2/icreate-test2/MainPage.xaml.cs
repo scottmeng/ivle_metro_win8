@@ -76,7 +76,7 @@ namespace icreate_test2
             // cache the page for future usage
             //this.NavigationCacheMode = Windows.UI.Xaml.Navigation.NavigationCacheMode.Enabled;
 
-            Utils.DataManager.GenerateSearchResults();
+            //Utils.DataManager.GenerateSearchResults();
 
             SearchPane.GetForCurrentView().SuggestionsRequested += SearchResultsPage.searchPane_SuggestionsRequested;
         }
@@ -168,8 +168,6 @@ namespace icreate_test2
 
                         iterator++;
                     }
-
-                    modulesWrapper.modules.RemoveAt(2);
 
                     Utils.DataManager.UpdateModules(modulesWrapper.modules);
                 }
