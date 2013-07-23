@@ -1592,9 +1592,11 @@
                                FontWeight="Normal"
                                Foreground="White"
                                TextWrapping="NoWrap"
+                               TextTrimming="CharacterEllipsis"
+                               MaxWidth="200"
                                HorizontalAlignment="Center"
                                Style="{StaticResource TitleTextStyle}" />
-                    <Button x:Name="menuButton" Content="..." Click="menuButtonClick" HorizontalAlignment="Center"/>
+                    <Button x:Name="menuButton" Foreground="White" Background="Transparent" Margin="0,0,10,10" Content="..." Click="menuButtonClick" HorizontalAlignment="Center"/>
                 </StackPanel>
                 <Grid x:Name="grid" Grid.Row="1" Visibility="Visible" d:IsHidden="True">
                     <ScrollViewer x:Name="itemListScrollViewer"
