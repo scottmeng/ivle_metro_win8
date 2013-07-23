@@ -822,7 +822,7 @@ namespace icreate_test2
             }
         }
 
-        private void workbinListReleased (object sender, PointerRoutedEventArgs e)
+        private void workbinListTapped(object sender, TappedRoutedEventArgs e)
         {
             _currentWorkbin = _currentModule.moduleWorkbins[workbinList_snapped.SelectedIndex];
 
@@ -830,7 +830,6 @@ namespace icreate_test2
             file.Source = new List<DataStructure.File>();
 
             _folderTree.Clear();
-            upFolderButton.Visibility = Visibility.Collapsed;
             upFolderButton_snapped.Visibility = Visibility.Collapsed;
         }
 

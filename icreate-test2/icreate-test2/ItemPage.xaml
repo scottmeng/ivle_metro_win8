@@ -1209,382 +1209,379 @@
     </Page.Resources>
 
     <Grid x:Name="mainGrid" Style="{StaticResource LayoutRootStyle}" KeyUp="mainGrid_KeyUp">
-    	<VisualStateManager.VisualStateGroups>
-    		<VisualStateGroup x:Name="VisualStateGroup">
-    			<VisualState x:Name="FullScreenLandscape">
-    				<Storyboard>
-    					<DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock" d:IsOptimized="True"/>
-    					<DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock1" d:IsOptimized="True"/>
-    					<DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock2" d:IsOptimized="True"/>
-    					<DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock3" d:IsOptimized="True"/>
-    					<DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock4" d:IsOptimized="True"/>
-    					<DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock5" d:IsOptimized="True"/>
-    					<DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock6" d:IsOptimized="True"/>
-    				</Storyboard>
-    			</VisualState>
-    			<VisualState x:Name="Snapped">
-    				<Storyboard>
-    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="grid">
-    						<DiscreteObjectKeyFrame KeyTime="0">
-    							<DiscreteObjectKeyFrame.Value>
-    								<Visibility>Collapsed</Visibility>
-    							</DiscreteObjectKeyFrame.Value>
-    						</DiscreteObjectKeyFrame>
-    					</ObjectAnimationUsingKeyFrames>
-    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Grid.ColumnSpan)" Storyboard.TargetName="stackPanel">
-    						<DiscreteObjectKeyFrame KeyTime="0">
-    							<DiscreteObjectKeyFrame.Value>
-    								<x:Int32>1</x:Int32>
-    							</DiscreteObjectKeyFrame.Value>
-    						</DiscreteObjectKeyFrame>
-    					</ObjectAnimationUsingKeyFrames>
-    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Grid.Row)" Storyboard.TargetName="grid1">
-    						<DiscreteObjectKeyFrame KeyTime="0">
-    							<DiscreteObjectKeyFrame.Value>
-    								<x:Int32>0</x:Int32>
-    							</DiscreteObjectKeyFrame.Value>
-    						</DiscreteObjectKeyFrame>
-    					</ObjectAnimationUsingKeyFrames>
-    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Grid.Column)" Storyboard.TargetName="grid1">
-    						<DiscreteObjectKeyFrame KeyTime="0">
-    							<DiscreteObjectKeyFrame.Value>
-    								<x:Int32>0</x:Int32>
-    							</DiscreteObjectKeyFrame.Value>
-    						</DiscreteObjectKeyFrame>
-    					</ObjectAnimationUsingKeyFrames>
-    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Grid.ColumnSpan)" Storyboard.TargetName="grid1">
-    						<DiscreteObjectKeyFrame KeyTime="0">
-    							<DiscreteObjectKeyFrame.Value>
-    								<x:Int32>2</x:Int32>
-    							</DiscreteObjectKeyFrame.Value>
-    						</DiscreteObjectKeyFrame>
-    					</ObjectAnimationUsingKeyFrames>
-    					<DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock" d:IsOptimized="True"/>
-    					<DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock1" d:IsOptimized="True"/>
-    					<DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock2" d:IsOptimized="True"/>
-    					<DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock3" d:IsOptimized="True"/>
-    					<DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock4" d:IsOptimized="True"/>
-    					<DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock5" d:IsOptimized="True"/>
-    					<DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock6" d:IsOptimized="True"/>
-    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="moduleInfomation">
-    						<DiscreteObjectKeyFrame KeyTime="0">
-    							<DiscreteObjectKeyFrame.Value>
-    								<Visibility>Collapsed</Visibility>
-    							</DiscreteObjectKeyFrame.Value>
-    						</DiscreteObjectKeyFrame>
-    					</ObjectAnimationUsingKeyFrames>
-    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="announ">
-    						<DiscreteObjectKeyFrame KeyTime="0">
-    							<DiscreteObjectKeyFrame.Value>
-    								<Visibility>Collapsed</Visibility>
-    							</DiscreteObjectKeyFrame.Value>
-    						</DiscreteObjectKeyFrame>
-    					</ObjectAnimationUsingKeyFrames>
-    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="gradeBook">
-    						<DiscreteObjectKeyFrame KeyTime="0">
-    							<DiscreteObjectKeyFrame.Value>
-    								<Visibility>Collapsed</Visibility>
-    							</DiscreteObjectKeyFrame.Value>
-    						</DiscreteObjectKeyFrame>
-    					</ObjectAnimationUsingKeyFrames>
-    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="forum">
-    						<DiscreteObjectKeyFrame KeyTime="0">
-    							<DiscreteObjectKeyFrame.Value>
-    								<Visibility>Collapsed</Visibility>
-    							</DiscreteObjectKeyFrame.Value>
-    						</DiscreteObjectKeyFrame>
-    					</ObjectAnimationUsingKeyFrames>
-    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="webcast">
-    						<DiscreteObjectKeyFrame KeyTime="0">
-    							<DiscreteObjectKeyFrame.Value>
-    								<Visibility>Collapsed</Visibility>
-    							</DiscreteObjectKeyFrame.Value>
-    						</DiscreteObjectKeyFrame>
-    					</ObjectAnimationUsingKeyFrames>
-    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Grid.ColumnSpan)" Storyboard.TargetName="stackPanel1">
-    						<DiscreteObjectKeyFrame KeyTime="0">
-    							<DiscreteObjectKeyFrame.Value>
-    								<x:Int32>2</x:Int32>
-    							</DiscreteObjectKeyFrame.Value>
-    						</DiscreteObjectKeyFrame>
-    					</ObjectAnimationUsingKeyFrames>
-    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Grid.Column)" Storyboard.TargetName="fileItemsControl">
-    						<DiscreteObjectKeyFrame KeyTime="0">
-    							<DiscreteObjectKeyFrame.Value>
-    								<x:Int32>0</x:Int32>
-    							</DiscreteObjectKeyFrame.Value>
-    						</DiscreteObjectKeyFrame>
-    					</ObjectAnimationUsingKeyFrames>
-    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Grid.ColumnSpan)" Storyboard.TargetName="fileItemsControl">
-    						<DiscreteObjectKeyFrame KeyTime="0">
-    							<DiscreteObjectKeyFrame.Value>
-    								<x:Int32>2</x:Int32>
-    							</DiscreteObjectKeyFrame.Value>
-    						</DiscreteObjectKeyFrame>
-    					</ObjectAnimationUsingKeyFrames>
-    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Grid.Row)" Storyboard.TargetName="fileItemsControl">
-    						<DiscreteObjectKeyFrame KeyTime="0">
-    							<DiscreteObjectKeyFrame.Value>
-    								<x:Int32>1</x:Int32>
-    							</DiscreteObjectKeyFrame.Value>
-    						</DiscreteObjectKeyFrame>
-    					</ObjectAnimationUsingKeyFrames>
-    					<DoubleAnimation Duration="0" To="0.772" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)" Storyboard.TargetName="grid1" d:IsOptimized="True"/>
-    					<DoubleAnimation Duration="0" To="87.5" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="grid1" d:IsOptimized="True"/>
-    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Selector.SelectedIndex)" Storyboard.TargetName="flipView">
-    						<DiscreteObjectKeyFrame KeyTime="0">
-    							<DiscreteObjectKeyFrame.Value>
-    								<x:Int32>0</x:Int32>
-    							</DiscreteObjectKeyFrame.Value>
-    						</DiscreteObjectKeyFrame>
-    					</ObjectAnimationUsingKeyFrames>
-    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Grid.ColumnSpan)" Storyboard.TargetName="leftStackPanel">
-    						<DiscreteObjectKeyFrame KeyTime="0">
-    							<DiscreteObjectKeyFrame.Value>
-    								<x:Int32>2</x:Int32>
-    							</DiscreteObjectKeyFrame.Value>
-    						</DiscreteObjectKeyFrame>
-    					</ObjectAnimationUsingKeyFrames>
-    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="grid1">
-    						<DiscreteObjectKeyFrame KeyTime="0">
-    							<DiscreteObjectKeyFrame.Value>
-    								<Visibility>Collapsed</Visibility>
-    							</DiscreteObjectKeyFrame.Value>
-    						</DiscreteObjectKeyFrame>
-    					</ObjectAnimationUsingKeyFrames>
-    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="grid_snapped">
-    						<DiscreteObjectKeyFrame KeyTime="0">
-    							<DiscreteObjectKeyFrame.Value>
-    								<Visibility>Visible</Visibility>
-    							</DiscreteObjectKeyFrame.Value>
-    						</DiscreteObjectKeyFrame>
-    					</ObjectAnimationUsingKeyFrames>
-    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.FontFamily)" Storyboard.TargetName="fileItemsControl_snapped">
-    						<DiscreteObjectKeyFrame KeyTime="0">
-    							<DiscreteObjectKeyFrame.Value>
-    								<FontFamily>Global User Interface</FontFamily>
-    							</DiscreteObjectKeyFrame.Value>
-    						</DiscreteObjectKeyFrame>
-    					</ObjectAnimationUsingKeyFrames>
-    					<DoubleAnimation Duration="0" To="39.333" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)" Storyboard.TargetName="stackPanel1_snapped" d:IsOptimized="True"/>
-    					<DoubleAnimation Duration="0" To="287.5" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="stackPanel1_snapped" d:IsOptimized="True"/>
-    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="leftStackPanel">
-    						<DiscreteObjectKeyFrame KeyTime="0">
-    							<DiscreteObjectKeyFrame.Value>
-    								<Visibility>Visible</Visibility>
-    							</DiscreteObjectKeyFrame.Value>
-    						</DiscreteObjectKeyFrame>
-    					</ObjectAnimationUsingKeyFrames>
-    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="upFolderButton_snapped">
-    						<DiscreteObjectKeyFrame KeyTime="0">
-    							<DiscreteObjectKeyFrame.Value>
-    								<Visibility>Collapsed</Visibility>
-    							</DiscreteObjectKeyFrame.Value>
-    						</DiscreteObjectKeyFrame>
-    					</ObjectAnimationUsingKeyFrames>
-    				</Storyboard>
-    			</VisualState>
-    			<VisualState x:Name="FullScreenPortrait">
-    				<Storyboard>
-    					<DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock" d:IsOptimized="True"/>
-    					<DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock1" d:IsOptimized="True"/>
-    					<DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock2" d:IsOptimized="True"/>
-    					<DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock3" d:IsOptimized="True"/>
-    					<DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock4" d:IsOptimized="True"/>
-    					<DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock5" d:IsOptimized="True"/>
-    					<DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock6" d:IsOptimized="True"/>
-    					<DoubleAnimation Duration="0" To="1.07" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)" Storyboard.TargetName="border" d:IsOptimized="True"/>
-    					<DoubleAnimation Duration="0" To="17.5" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="border" d:IsOptimized="True"/>
-    					<DoubleAnimation Duration="0" To="18.667" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="moduleCode_textblock" d:IsOptimized="True"/>
-    					<DoubleAnimation Duration="0" To="18.667" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="moduleName_textblock" d:IsOptimized="True"/>
-    					<DoubleAnimation Duration="0" To="18.667" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="moduleMc_textblock" d:IsOptimized="True"/>
-    					<DoubleAnimation Duration="0" To="18.667" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="moduleAcadYear_textblock" d:IsOptimized="True"/>
-    					<DoubleAnimation Duration="0" To="18.667" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="moduleTimetable_textblock" d:IsOptimized="True"/>
-    					<DoubleAnimation Duration="0" To="18.667" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="moduleExamtime_textblock" d:IsOptimized="True"/>
-    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.FontStretch)" Storyboard.TargetName="moduleCode_textblock">
-    						<DiscreteObjectKeyFrame KeyTime="0">
-    							<DiscreteObjectKeyFrame.Value>
-    								<FontStretch>Condensed</FontStretch>
-    							</DiscreteObjectKeyFrame.Value>
-    						</DiscreteObjectKeyFrame>
-    					</ObjectAnimationUsingKeyFrames>
-    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.FontStretch)" Storyboard.TargetName="moduleName_textblock">
-    						<DiscreteObjectKeyFrame KeyTime="0">
-    							<DiscreteObjectKeyFrame.Value>
-    								<FontStretch>Condensed</FontStretch>
-    							</DiscreteObjectKeyFrame.Value>
-    						</DiscreteObjectKeyFrame>
-    					</ObjectAnimationUsingKeyFrames>
-    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.FontStretch)" Storyboard.TargetName="moduleMc_textblock">
-    						<DiscreteObjectKeyFrame KeyTime="0">
-    							<DiscreteObjectKeyFrame.Value>
-    								<FontStretch>Condensed</FontStretch>
-    							</DiscreteObjectKeyFrame.Value>
-    						</DiscreteObjectKeyFrame>
-    					</ObjectAnimationUsingKeyFrames>
-    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.FontStretch)" Storyboard.TargetName="moduleAcadYear_textblock">
-    						<DiscreteObjectKeyFrame KeyTime="0">
-    							<DiscreteObjectKeyFrame.Value>
-    								<FontStretch>Condensed</FontStretch>
-    							</DiscreteObjectKeyFrame.Value>
-    						</DiscreteObjectKeyFrame>
-    					</ObjectAnimationUsingKeyFrames>
-    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.FontStretch)" Storyboard.TargetName="moduleTimetable_textblock">
-    						<DiscreteObjectKeyFrame KeyTime="0">
-    							<DiscreteObjectKeyFrame.Value>
-    								<FontStretch>Condensed</FontStretch>
-    							</DiscreteObjectKeyFrame.Value>
-    						</DiscreteObjectKeyFrame>
-    					</ObjectAnimationUsingKeyFrames>
-    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.FontStretch)" Storyboard.TargetName="moduleExamtime_textblock">
-    						<DiscreteObjectKeyFrame KeyTime="0">
-    							<DiscreteObjectKeyFrame.Value>
-    								<FontStretch>Condensed</FontStretch>
-    							</DiscreteObjectKeyFrame.Value>
-    						</DiscreteObjectKeyFrame>
-    					</ObjectAnimationUsingKeyFrames>
-    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.FontStretch)" Storyboard.TargetName="textBlock">
-    						<DiscreteObjectKeyFrame KeyTime="0">
-    							<DiscreteObjectKeyFrame.Value>
-    								<FontStretch>Condensed</FontStretch>
-    							</DiscreteObjectKeyFrame.Value>
-    						</DiscreteObjectKeyFrame>
-    					</ObjectAnimationUsingKeyFrames>
-    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.FontStretch)" Storyboard.TargetName="textBlock1">
-    						<DiscreteObjectKeyFrame KeyTime="0">
-    							<DiscreteObjectKeyFrame.Value>
-    								<FontStretch>Condensed</FontStretch>
-    							</DiscreteObjectKeyFrame.Value>
-    						</DiscreteObjectKeyFrame>
-    					</ObjectAnimationUsingKeyFrames>
-    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.FontStretch)" Storyboard.TargetName="textBlock2">
-    						<DiscreteObjectKeyFrame KeyTime="0">
-    							<DiscreteObjectKeyFrame.Value>
-    								<FontStretch>Condensed</FontStretch>
-    							</DiscreteObjectKeyFrame.Value>
-    						</DiscreteObjectKeyFrame>
-    					</ObjectAnimationUsingKeyFrames>
-    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.FontStretch)" Storyboard.TargetName="textBlock3">
-    						<DiscreteObjectKeyFrame KeyTime="0">
-    							<DiscreteObjectKeyFrame.Value>
-    								<FontStretch>Condensed</FontStretch>
-    							</DiscreteObjectKeyFrame.Value>
-    						</DiscreteObjectKeyFrame>
-    					</ObjectAnimationUsingKeyFrames>
-    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.FontStretch)" Storyboard.TargetName="textBlock4">
-    						<DiscreteObjectKeyFrame KeyTime="0">
-    							<DiscreteObjectKeyFrame.Value>
-    								<FontStretch>Condensed</FontStretch>
-    							</DiscreteObjectKeyFrame.Value>
-    						</DiscreteObjectKeyFrame>
-    					</ObjectAnimationUsingKeyFrames>
-    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.FontStretch)" Storyboard.TargetName="textBlock5">
-    						<DiscreteObjectKeyFrame KeyTime="0">
-    							<DiscreteObjectKeyFrame.Value>
-    								<FontStretch>Condensed</FontStretch>
-    							</DiscreteObjectKeyFrame.Value>
-    						</DiscreteObjectKeyFrame>
-    					</ObjectAnimationUsingKeyFrames>
-    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.FontStretch)" Storyboard.TargetName="textBlock6">
-    						<DiscreteObjectKeyFrame KeyTime="0">
-    							<DiscreteObjectKeyFrame.Value>
-    								<FontStretch>Condensed</FontStretch>
-    							</DiscreteObjectKeyFrame.Value>
-    						</DiscreteObjectKeyFrame>
-    					</ObjectAnimationUsingKeyFrames>
-    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.HorizontalAlignment)" Storyboard.TargetName="textBlock">
-    						<DiscreteObjectKeyFrame KeyTime="0">
-    							<DiscreteObjectKeyFrame.Value>
-    								<HorizontalAlignment>Right</HorizontalAlignment>
-    							</DiscreteObjectKeyFrame.Value>
-    						</DiscreteObjectKeyFrame>
-    					</ObjectAnimationUsingKeyFrames>
-    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.HorizontalAlignment)" Storyboard.TargetName="textBlock1">
-    						<DiscreteObjectKeyFrame KeyTime="0">
-    							<DiscreteObjectKeyFrame.Value>
-    								<HorizontalAlignment>Right</HorizontalAlignment>
-    							</DiscreteObjectKeyFrame.Value>
-    						</DiscreteObjectKeyFrame>
-    					</ObjectAnimationUsingKeyFrames>
-    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.HorizontalAlignment)" Storyboard.TargetName="textBlock2">
-    						<DiscreteObjectKeyFrame KeyTime="0">
-    							<DiscreteObjectKeyFrame.Value>
-    								<HorizontalAlignment>Right</HorizontalAlignment>
-    							</DiscreteObjectKeyFrame.Value>
-    						</DiscreteObjectKeyFrame>
-    					</ObjectAnimationUsingKeyFrames>
-    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.HorizontalAlignment)" Storyboard.TargetName="textBlock3">
-    						<DiscreteObjectKeyFrame KeyTime="0">
-    							<DiscreteObjectKeyFrame.Value>
-    								<HorizontalAlignment>Right</HorizontalAlignment>
-    							</DiscreteObjectKeyFrame.Value>
-    						</DiscreteObjectKeyFrame>
-    					</ObjectAnimationUsingKeyFrames>
-    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.HorizontalAlignment)" Storyboard.TargetName="textBlock4">
-    						<DiscreteObjectKeyFrame KeyTime="0">
-    							<DiscreteObjectKeyFrame.Value>
-    								<HorizontalAlignment>Right</HorizontalAlignment>
-    							</DiscreteObjectKeyFrame.Value>
-    						</DiscreteObjectKeyFrame>
-    					</ObjectAnimationUsingKeyFrames>
-    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.HorizontalAlignment)" Storyboard.TargetName="textBlock5">
-    						<DiscreteObjectKeyFrame KeyTime="0">
-    							<DiscreteObjectKeyFrame.Value>
-    								<HorizontalAlignment>Right</HorizontalAlignment>
-    							</DiscreteObjectKeyFrame.Value>
-    						</DiscreteObjectKeyFrame>
-    					</ObjectAnimationUsingKeyFrames>
-    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.HorizontalAlignment)" Storyboard.TargetName="textBlock6">
-    						<DiscreteObjectKeyFrame KeyTime="0">
-    							<DiscreteObjectKeyFrame.Value>
-    								<HorizontalAlignment>Right</HorizontalAlignment>
-    							</DiscreteObjectKeyFrame.Value>
-    						</DiscreteObjectKeyFrame>
-    					</ObjectAnimationUsingKeyFrames>
-    					<DoubleAnimation Duration="0" To="18.667" Storyboard.TargetProperty="(Control.FontSize)" Storyboard.TargetName="lecturesListView" d:IsOptimized="True"/>
-    					<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.FontStretch)" Storyboard.TargetName="lecturesListView">
-    						<DiscreteObjectKeyFrame KeyTime="0">
-    							<DiscreteObjectKeyFrame.Value>
-    								<FontStretch>Condensed</FontStretch>
-    							</DiscreteObjectKeyFrame.Value>
-    						</DiscreteObjectKeyFrame>
-    					</ObjectAnimationUsingKeyFrames>
-    				</Storyboard>
-    			</VisualState>
-    			<VisualState x:Name="Filled">
-    				<Storyboard>
-    					<DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock" d:IsOptimized="True"/>
-    					<DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock1" d:IsOptimized="True"/>
-    					<DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock2" d:IsOptimized="True"/>
-    					<DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock3" d:IsOptimized="True"/>
-    					<DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock4" d:IsOptimized="True"/>
-    					<DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock5" d:IsOptimized="True"/>
-    					<DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock6" d:IsOptimized="True"/>
-    					<DoubleAnimation Duration="0" To="1.049" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)" Storyboard.TargetName="border" d:IsOptimized="True"/>
-    					<DoubleAnimation Duration="0" To="17" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="border" d:IsOptimized="True"/>
-    				</Storyboard>
-    			</VisualState>
-    		</VisualStateGroup>
-    	</VisualStateManager.VisualStateGroups>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup x:Name="VisualStateGroup">
+                <VisualState x:Name="FullScreenLandscape">
+                    <Storyboard>
+                        <DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock" d:IsOptimized="True"/>
+                        <DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock1" d:IsOptimized="True"/>
+                        <DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock2" d:IsOptimized="True"/>
+                        <DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock3" d:IsOptimized="True"/>
+                        <DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock4" d:IsOptimized="True"/>
+                        <DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock5" d:IsOptimized="True"/>
+                        <DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock6" d:IsOptimized="True"/>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Snapped">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="grid">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Visibility>Collapsed</Visibility>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Grid.ColumnSpan)" Storyboard.TargetName="stackPanel">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <x:Int32>1</x:Int32>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Grid.Row)" Storyboard.TargetName="grid1">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <x:Int32>0</x:Int32>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Grid.Column)" Storyboard.TargetName="grid1">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <x:Int32>0</x:Int32>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Grid.ColumnSpan)" Storyboard.TargetName="grid1">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <x:Int32>2</x:Int32>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock" d:IsOptimized="True"/>
+                        <DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock1" d:IsOptimized="True"/>
+                        <DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock2" d:IsOptimized="True"/>
+                        <DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock3" d:IsOptimized="True"/>
+                        <DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock4" d:IsOptimized="True"/>
+                        <DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock5" d:IsOptimized="True"/>
+                        <DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock6" d:IsOptimized="True"/>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="moduleInfomation">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Visibility>Collapsed</Visibility>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="announ">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Visibility>Collapsed</Visibility>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="gradeBook">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Visibility>Collapsed</Visibility>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="forum">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Visibility>Collapsed</Visibility>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="webcast">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Visibility>Collapsed</Visibility>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Grid.ColumnSpan)" Storyboard.TargetName="stackPanel1">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <x:Int32>2</x:Int32>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Grid.Column)" Storyboard.TargetName="fileItemsControl">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <x:Int32>0</x:Int32>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Grid.ColumnSpan)" Storyboard.TargetName="fileItemsControl">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <x:Int32>2</x:Int32>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Grid.Row)" Storyboard.TargetName="fileItemsControl">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <x:Int32>1</x:Int32>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <DoubleAnimation Duration="0" To="0.772" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)" Storyboard.TargetName="grid1" d:IsOptimized="True"/>
+                        <DoubleAnimation Duration="0" To="87.5" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)" Storyboard.TargetName="grid1" d:IsOptimized="True"/>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Selector.SelectedIndex)" Storyboard.TargetName="flipView">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <x:Int32>0</x:Int32>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Grid.ColumnSpan)" Storyboard.TargetName="leftStackPanel">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <x:Int32>2</x:Int32>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="grid1">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Visibility>Collapsed</Visibility>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="grid_snapped">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Visibility>Visible</Visibility>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.FontFamily)" Storyboard.TargetName="fileItemsControl_snapped">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <FontFamily>Global User Interface</FontFamily>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="leftStackPanel">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Visibility>Visible</Visibility>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="upFolderButton_snapped">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Visibility>Collapsed</Visibility>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="FullScreenPortrait">
+                    <Storyboard>
+                        <DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock" d:IsOptimized="True"/>
+                        <DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock1" d:IsOptimized="True"/>
+                        <DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock2" d:IsOptimized="True"/>
+                        <DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock3" d:IsOptimized="True"/>
+                        <DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock4" d:IsOptimized="True"/>
+                        <DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock5" d:IsOptimized="True"/>
+                        <DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock6" d:IsOptimized="True"/>
+                        <DoubleAnimation Duration="0" To="1.07" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)" Storyboard.TargetName="border" d:IsOptimized="True"/>
+                        <DoubleAnimation Duration="0" To="17.5" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="border" d:IsOptimized="True"/>
+                        <DoubleAnimation Duration="0" To="18.667" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="moduleCode_textblock" d:IsOptimized="True"/>
+                        <DoubleAnimation Duration="0" To="18.667" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="moduleName_textblock" d:IsOptimized="True"/>
+                        <DoubleAnimation Duration="0" To="18.667" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="moduleMc_textblock" d:IsOptimized="True"/>
+                        <DoubleAnimation Duration="0" To="18.667" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="moduleAcadYear_textblock" d:IsOptimized="True"/>
+                        <DoubleAnimation Duration="0" To="18.667" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="moduleTimetable_textblock" d:IsOptimized="True"/>
+                        <DoubleAnimation Duration="0" To="18.667" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="moduleExamtime_textblock" d:IsOptimized="True"/>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.FontStretch)" Storyboard.TargetName="moduleCode_textblock">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <FontStretch>Condensed</FontStretch>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.FontStretch)" Storyboard.TargetName="moduleName_textblock">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <FontStretch>Condensed</FontStretch>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.FontStretch)" Storyboard.TargetName="moduleMc_textblock">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <FontStretch>Condensed</FontStretch>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.FontStretch)" Storyboard.TargetName="moduleAcadYear_textblock">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <FontStretch>Condensed</FontStretch>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.FontStretch)" Storyboard.TargetName="moduleTimetable_textblock">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <FontStretch>Condensed</FontStretch>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.FontStretch)" Storyboard.TargetName="moduleExamtime_textblock">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <FontStretch>Condensed</FontStretch>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.FontStretch)" Storyboard.TargetName="textBlock">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <FontStretch>Condensed</FontStretch>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.FontStretch)" Storyboard.TargetName="textBlock1">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <FontStretch>Condensed</FontStretch>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.FontStretch)" Storyboard.TargetName="textBlock2">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <FontStretch>Condensed</FontStretch>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.FontStretch)" Storyboard.TargetName="textBlock3">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <FontStretch>Condensed</FontStretch>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.FontStretch)" Storyboard.TargetName="textBlock4">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <FontStretch>Condensed</FontStretch>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.FontStretch)" Storyboard.TargetName="textBlock5">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <FontStretch>Condensed</FontStretch>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.FontStretch)" Storyboard.TargetName="textBlock6">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <FontStretch>Condensed</FontStretch>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.HorizontalAlignment)" Storyboard.TargetName="textBlock">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <HorizontalAlignment>Right</HorizontalAlignment>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.HorizontalAlignment)" Storyboard.TargetName="textBlock1">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <HorizontalAlignment>Right</HorizontalAlignment>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.HorizontalAlignment)" Storyboard.TargetName="textBlock2">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <HorizontalAlignment>Right</HorizontalAlignment>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.HorizontalAlignment)" Storyboard.TargetName="textBlock3">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <HorizontalAlignment>Right</HorizontalAlignment>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.HorizontalAlignment)" Storyboard.TargetName="textBlock4">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <HorizontalAlignment>Right</HorizontalAlignment>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.HorizontalAlignment)" Storyboard.TargetName="textBlock5">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <HorizontalAlignment>Right</HorizontalAlignment>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.HorizontalAlignment)" Storyboard.TargetName="textBlock6">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <HorizontalAlignment>Right</HorizontalAlignment>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                        <DoubleAnimation Duration="0" To="18.667" Storyboard.TargetProperty="(Control.FontSize)" Storyboard.TargetName="lecturesListView" d:IsOptimized="True"/>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Control.FontStretch)" Storyboard.TargetName="lecturesListView">
+                            <DiscreteObjectKeyFrame KeyTime="0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <FontStretch>Condensed</FontStretch>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Filled">
+                    <Storyboard>
+                        <DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock" d:IsOptimized="True"/>
+                        <DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock1" d:IsOptimized="True"/>
+                        <DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock2" d:IsOptimized="True"/>
+                        <DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock3" d:IsOptimized="True"/>
+                        <DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock4" d:IsOptimized="True"/>
+                        <DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock5" d:IsOptimized="True"/>
+                        <DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock6" d:IsOptimized="True"/>
+                        <DoubleAnimation Duration="0" To="1.049" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)" Storyboard.TargetName="border" d:IsOptimized="True"/>
+                        <DoubleAnimation Duration="0" To="17" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="border" d:IsOptimized="True"/>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="0" x:Name="leftStackPanel">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="180"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <!-- Back button and page title -->
-                <StackPanel x:Name="stackPanel" Margin="0,10,0,0" Orientation="Vertical" Grid.Row="0">
-                    <Button x:Name="backButton" Click="backButton_Click" 
+        <Grid x:Name="leftStackPanel" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="180"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <!-- Back button and page title -->
+            <StackPanel x:Name="stackPanel" Margin="0,10,0,0" Orientation="Vertical" Grid.Row="0">
+                <Button x:Name="backButton" Click="backButton_Click" 
                             Margin="0,20,0,10"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center"
                             IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}"
                             Style="{StaticResource whiteBackButton}"/>
-                    <TextBlock VerticalAlignment="Center"
+                <TextBlock VerticalAlignment="Center"
                                Margin="0,0,0,10"
                                x:Name="mainModuleName"
                                FontSize="30"
@@ -1593,31 +1590,31 @@
                                TextWrapping="NoWrap"
                                HorizontalAlignment="Center"
                                Style="{StaticResource TitleTextStyle}" />
-                    <Button x:Name="menuButton" Content="..." Click="menuButtonClick" HorizontalAlignment="Center"/>
-                </StackPanel>
-                <Grid x:Name="grid" Grid.Row="1" Visibility="Visible" d:IsHidden="True">
-                    <ScrollViewer x:Name="itemListScrollViewer"
+                <Button x:Name="menuButton" Content="..." Click="menuButtonClick" HorizontalAlignment="Center"/>
+            </StackPanel>
+            <Grid x:Name="grid" Grid.Row="1" Visibility="Visible" d:IsHidden="True">
+                <ScrollViewer x:Name="itemListScrollViewer"
                                   VerticalScrollBarVisibility="Hidden" 
                                   HorizontalScrollBarVisibility="Disabled" 
                                   VerticalScrollMode="Auto"
                                   HorizontalScrollMode="Disabled"
                                   ZoomMode="Disabled">
-                        <StackPanel Orientation="Vertical">
-                            <ItemsControl x:Name="itemList" 
+                    <StackPanel Orientation="Vertical">
+                        <ItemsControl x:Name="itemList" 
                                           ItemsSource="{Binding Source={StaticResource itemListView}}"
                                           Margin="0">
-                                <ItemsControl.ItemTemplate>
-                                    <DataTemplate>
-                                        <Grid HorizontalAlignment="Stretch" 
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid HorizontalAlignment="Stretch" 
                                               PointerEntered="itemListEntered" PointerExited="itemListExited" PointerPressed="itemListPressed" PointerReleased="itemListReleased">
-                                            <Grid.Background>
-                                                <SolidColorBrush Color="{Binding itemShowColor}" />
-                                            </Grid.Background>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="2*"/>
-                                                <RowDefinition Height="*"/>
-                                            </Grid.RowDefinitions>
-                                            <TextBlock Margin="5" 
+                                        <Grid.Background>
+                                            <SolidColorBrush Color="{Binding itemShowColor}" />
+                                        </Grid.Background>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="2*"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Margin="5" 
                                                        Padding="5"
                                                        Grid.Row="0"
                                                        HorizontalAlignment="Left"
@@ -1627,8 +1624,8 @@
                                                        Foreground="White"
                                                        VerticalAlignment="Bottom"
                                                        FontWeight="Thin">
-                                            </TextBlock>
-                                            <TextBlock Margin="5" 
+                                        </TextBlock>
+                                        <TextBlock Margin="5" 
                                                        Padding="5"
                                                        Grid.Row="1"
                                                        Foreground="White"
@@ -1638,26 +1635,28 @@
                                                        FontSize="14" 
                                                        VerticalAlignment="Bottom"
                                                        FontWeight="Thin">
-                                            </TextBlock>
-                                        </Grid>
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                            </ItemsControl>
-                        </StackPanel>
-                    </ScrollViewer>
-                </Grid>
-                <Grid x:Name="grid_snapped" Visibility="Collapsed" Grid.ColumnSpan="2" Grid.Row="1">
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <ListView x:Name="workbinList_snapped" Grid.Row="0" SelectionMode="None" Margin="5"
+                                        </TextBlock>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </ScrollViewer>
+            </Grid>
+            <Grid x:Name="grid_snapped" Visibility="Collapsed" Grid.ColumnSpan="2" Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <ListView x:Name="workbinList_snapped" SelectionMode="None" Margin="5"
                               ItemsSource="{Binding Source={StaticResource workbinListView}}" HorizontalAlignment="Stretch">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <Grid HorizontalAlignment="Stretch"
-                                      PointerReleased="workbinListReleased">
+                                      Tapped="workbinListTapped">
                                     <Grid.Background>
                                         <SolidColorBrush Color="DarkGray" />
                                     </Grid.Background>
@@ -1691,12 +1690,9 @@
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-                    <StackPanel x:Name="stackPanel1_snapped" Orientation="Vertical" Grid.Row="1" RenderTransformOrigin="0.5,0.5">
-                        <StackPanel.RenderTransform>
-                            <CompositeTransform/>
-                        </StackPanel.RenderTransform>
-                        <Grid x:Name="FolderGrid_snapped">
-                        <Button x:Name="upFolderButton_snapped" 
+                </Grid>
+                <Grid x:Name="FolderGrid_snapped" Grid.Row="1">
+                    <Button x:Name="upFolderButton_snapped" 
                                     Background="Blue" 
                                     Width="300" 
                                     Height="100" 
@@ -1707,30 +1703,31 @@
                                     PointerEntered="FolderButtonEntered" 
                                     PointerExited="FolderButtonExited" 
                                     Style="{StaticResource UpButtonStyle}"/>
-                        </Grid>
-                        <ListView x:Name="folderItemsControl_snapped" 
+                </Grid>
+                <Grid x:Name="folder_snapped" Grid.Row="2">
+                    <ListView x:Name="folderItemsControl_snapped" 
                                           ItemsSource="{Binding Source={StaticResource folder}}"
                                           Tapped="onFolderSelected"
                                           Margin="5" 
                                           SelectionMode="None"
                                           HorizontalAlignment="Center"
                                           ItemContainerStyle="{StaticResource FolderStyle}">
-                            <ListView.ItemContainerTransitions>
-                                <TransitionCollection>
-                                    <PopupThemeTransition/>
-                                </TransitionCollection>
-                            </ListView.ItemContainerTransitions>
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid Width="300" 
+                        <ListView.ItemContainerTransitions>
+                            <TransitionCollection>
+                                <PopupThemeTransition/>
+                            </TransitionCollection>
+                        </ListView.ItemContainerTransitions>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Width="300" 
                                           Height="100"
                                           HorizontalAlignment="Center"
                                           Margin="2" Background="Blue">
-                                        <StackPanel Orientation="Horizontal">
-                                            <Image Source="Assets/Folder.png"
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="Assets/Folder.png"
                                                            Height="60"
                                                            Width="80"/>
-                                            <TextBlock Text="{Binding folderName}" 
+                                        <TextBlock Text="{Binding folderName}" 
                                                                 Margin="15" 
                                                                 Foreground="White" 
                                                                 FontSize="24" 
@@ -1739,13 +1736,14 @@
                                                                 FontWeight="Light"
                                                                 VerticalAlignment="Top"  
                                                                 HorizontalAlignment="Left"/>
-                                        </StackPanel>
-                                    </Grid>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-                    </StackPanel>
-                    <ListView x:Name="fileItemsControl_snapped" Grid.Row="2"
+                                    </StackPanel>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+                <Grid x:Name="file_snapped" Grid.Row="3">
+                    <ListView x:Name="fileItemsControl_snapped" 
                                       ItemsSource="{Binding Source={StaticResource file}}"
                                       Tapped="onFileSelected"
                                       Margin="5" 
@@ -1787,14 +1785,15 @@
                     </ListView>
                 </Grid>
             </Grid>
-        </StackPanel>
+        </Grid>
+
         <!--end of left item-->
 
         <!--flipview-->
         <Grid x:Name="grid1" Grid.Column="1" RenderTransformOrigin="0.5,0.5">
-        	<Grid.RenderTransform>
-        		<CompositeTransform/>
-        	</Grid.RenderTransform>
+            <Grid.RenderTransform>
+                <CompositeTransform/>
+            </Grid.RenderTransform>
             <FlipView x:Name="flipView"  
                           Margin="10,30,10,30"
                           Style="{StaticResource FlipViewStyle1}"
@@ -1809,9 +1808,9 @@
                                 BorderThickness="2" 
                                 Margin="0,0,50,50"
                                 Padding="20" RenderTransformOrigin="0.5,0.5">
-                    	<Border.RenderTransform>
-                    		<CompositeTransform/>
-                    	</Border.RenderTransform>
+                        <Border.RenderTransform>
+                            <CompositeTransform/>
+                        </Border.RenderTransform>
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="auto"/>
