@@ -196,6 +196,7 @@ namespace icreate_test2
                     // load data on modules and classes
                     await GetModulesAsync();
                     await GetTimetableAsync();
+                    Utils.DataManager.GenerateDailyClassList();
 
                     // navigate to the home page
                     this.Frame.Navigate(typeof(MainPage));
