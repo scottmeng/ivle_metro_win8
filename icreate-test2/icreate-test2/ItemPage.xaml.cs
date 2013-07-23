@@ -116,7 +116,13 @@ namespace icreate_test2
             }
              */
 
-            await Task.WhenAll(GetExamAsync(), GetWorkbinAsync(), GetForumAsync(), GetWebcastAsync());
+
+            await GetExamAsync();
+            await GetWebcastAsync();
+            await GetForumAsync();
+            await GetWorkbinAsync();
+            
+            //await Task.WhenAll(GetExamAsync(), GetWorkbinAsync(), GetForumAsync(), GetWebcastAsync());
         }
 
 
@@ -279,6 +285,7 @@ namespace icreate_test2
                         }
                     }
                 }
+                
                 //_currentModule.moduleForums = forumWrapper.forums;
             }
             else
@@ -301,7 +308,11 @@ namespace icreate_test2
 
                 _currentModule.moduleExamInfos = examInfoWrapper.examInfos;
 
-                moduleExamtime_textblock.Text = _currentModule.moduleExamInfos[0].examInfo;
+                try
+                {
+                    moduleExamtime_textblock.Text = _currentModule.moduleExamInfos[0].examInfo;
+                }
+                catch { }
             }
             else
             {
@@ -594,6 +605,9 @@ namespace icreate_test2
 
                 // refresh the heading list
                 await GetForumAsync();
+
+                // generate content for display
+                updateForum();
             }
             else
             {
