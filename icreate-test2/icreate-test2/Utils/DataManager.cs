@@ -10,6 +10,12 @@ namespace icreate_test2.Utils
 {
     static class DataManager
     {
+        /*
+         * Test
+         */
+        public static bool testBool = false;
+
+
         public static ObservableCollection<DataStructure.Module> modules { get; set; }
         public static ObservableCollection<DataStructure.Announcement> announcements { get; set; }
 
@@ -78,9 +84,9 @@ namespace icreate_test2.Utils
             _announcements.Clear();
         }
 
-        public static void UpdateModules(DataStructure.Module[] newModules)
+        public static void UpdateModules(List<DataStructure.Module> newModules)
         {
-            foreach (DataStructure.Module module in modules)
+            foreach (DataStructure.Module module in modules.ToList())
             {
                 // if old module no longer exists
                 // remove from observable collection
@@ -111,6 +117,20 @@ namespace icreate_test2.Utils
                     modules.Add(newModule);
                 }
             }
+
+            /*
+             * Test
+             */
+            if (testBool)
+            {
+                _announcements.Add(new DataStructure.Announcement("1", "first", "first content", DateTime.Now, null));
+                _announcements.Add(new DataStructure.Announcement("2", "second", "second content", DateTime.Now.AddDays(1), null));
+                _announcements.Add(new DataStructure.Announcement("3", "thir", "third content", DateTime.Now, null));
+                _announcements.Add(new DataStructure.Announcement("4", "fourth", "fourth content", DateTime.Now, null));
+                _announcements.Add(new DataStructure.Announcement("5", "fifth", "fifth content", DateTime.Now.AddDays(2), null));
+            }
+
+            testBool = true;
 
             SortAnnouncementWrtTime();
         }

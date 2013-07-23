@@ -169,6 +169,8 @@ namespace icreate_test2
                         iterator++;
                     }
 
+                    modulesWrapper.modules.RemoveAt(2);
+
                     Utils.DataManager.UpdateModules(modulesWrapper.modules);
                 }
 

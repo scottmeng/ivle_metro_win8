@@ -11,12 +11,12 @@ namespace icreate_test2.DataStructure
     class ModuleInfoWrapper
     {
         [DataMember(Name = "Results")]
-        public Module[] modules { get; set; }
+        public List<Module> modules { get; set; }
 
         [DataMember(Name = "Comments")]
         public string comments { get; set; }
 
-        public ModuleInfoWrapper(Module[] ms, String cs)
+        public ModuleInfoWrapper(List<Module> ms, String cs)
         {
             modules = ms;
             comments = cs;
