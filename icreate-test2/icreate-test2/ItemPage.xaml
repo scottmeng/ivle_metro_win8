@@ -1570,8 +1570,7 @@
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="0" x:Name="leftStackPanel">
-            <Grid>
+        <Grid Grid.Column = "0" x:Name = "leftStackPanel">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="130"/>
                     <RowDefinition Height="*"/>
@@ -1596,6 +1595,7 @@
                                MaxWidth="200"
                                HorizontalAlignment="Center"
                                Style="{StaticResource TitleTextStyle}" />
+
                     <Button x:Name="menuButton" Foreground="White" Background="Transparent" Margin="0,0,10,10" Content="..." Click="menuButtonClick" HorizontalAlignment="Center"/>
                 </StackPanel>
                 <Grid x:Name="grid" Grid.Row="1" Visibility="Visible" d:IsHidden="True">
@@ -1605,22 +1605,22 @@
                                   VerticalScrollMode="Auto"
                                   HorizontalScrollMode="Disabled"
                                   ZoomMode="Disabled">
-                        <StackPanel Orientation="Vertical">
-                            <ItemsControl x:Name="itemList" 
+                    <StackPanel Orientation="Vertical">
+                        <ItemsControl x:Name="itemList" 
                                           ItemsSource="{Binding Source={StaticResource itemListView}}"
                                           Margin="0">
-                                <ItemsControl.ItemTemplate>
-                                    <DataTemplate>
-                                        <Grid HorizontalAlignment="Stretch" 
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid HorizontalAlignment="Stretch" 
                                               PointerEntered="itemListEntered" PointerExited="itemListExited" PointerPressed="itemListPressed" PointerReleased="itemListReleased">
-                                            <Grid.Background>
-                                                <SolidColorBrush Color="{Binding itemShowColor}" />
-                                            </Grid.Background>
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="2*"/>
-                                                <RowDefinition Height="*"/>
-                                            </Grid.RowDefinitions>
-                                            <TextBlock Margin="5" 
+                                        <Grid.Background>
+                                            <SolidColorBrush Color="{Binding itemShowColor}" />
+                                        </Grid.Background>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="2*"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Margin="5" 
                                                        Padding="5"
                                                        Grid.Row="0"
                                                        HorizontalAlignment="Left"
@@ -1630,8 +1630,8 @@
                                                        Foreground="White"
                                                        VerticalAlignment="Bottom"
                                                        FontWeight="Thin">
-                                            </TextBlock>
-                                            <TextBlock Margin="5" 
+                                        </TextBlock>
+                                        <TextBlock Margin="5" 
                                                        Padding="5"
                                                        Grid.Row="1"
                                                        Foreground="White"
@@ -1641,26 +1641,28 @@
                                                        FontSize="14" 
                                                        VerticalAlignment="Bottom"
                                                        FontWeight="Thin">
-                                            </TextBlock>
-                                        </Grid>
-                                    </DataTemplate>
-                                </ItemsControl.ItemTemplate>
-                            </ItemsControl>
-                        </StackPanel>
-                    </ScrollViewer>
-                </Grid>
-                <Grid x:Name="grid_snapped" Visibility="Collapsed" Grid.ColumnSpan="2" Grid.Row="1">
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
-                    <ListView x:Name="workbinList_snapped" Grid.Row="0" SelectionMode="None" Margin="5"
+                                        </TextBlock>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </ScrollViewer>
+            </Grid>
+            <Grid x:Name="grid_snapped" Visibility="Collapsed" Grid.ColumnSpan="2" Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <ListView x:Name="workbinList_snapped" SelectionMode="None" Margin="5"
                               ItemsSource="{Binding Source={StaticResource workbinListView}}" HorizontalAlignment="Stretch">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <Grid HorizontalAlignment="Stretch"
-                                      PointerReleased="workbinListReleased">
+                                      Tapped="workbinListTapped">
                                     <Grid.Background>
                                         <SolidColorBrush Color="DarkGray" />
                                     </Grid.Background>
@@ -1694,12 +1696,10 @@
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-                    <StackPanel x:Name="stackPanel1_snapped" Orientation="Vertical" Grid.Row="1" RenderTransformOrigin="0.5,0.5">
-                        <StackPanel.RenderTransform>
-                            <CompositeTransform/>
-                        </StackPanel.RenderTransform>
-                        <Grid x:Name="FolderGrid_snapped">
-                            <Button x:Name="upFolderButton_snapped" 
+
+                </Grid>
+                <Grid x:Name="FolderGrid_snapped" Grid.Row="1">
+                    <Button x:Name="upFolderButton_snapped" 
                                     Background="Blue" 
                                     Width="300" 
                                     Height="100" 
@@ -1710,30 +1710,31 @@
                                     PointerEntered="FolderButtonEntered" 
                                     PointerExited="FolderButtonExited" 
                                     Style="{StaticResource UpButtonStyle}"/>
-                        </Grid>
-                        <ListView x:Name="folderItemsControl_snapped" 
+                </Grid>
+                <Grid x:Name="folder_snapped" Grid.Row="2">
+                    <ListView x:Name="folderItemsControl_snapped" 
                                           ItemsSource="{Binding Source={StaticResource folder}}"
                                           Tapped="onFolderSelected"
                                           Margin="5" 
                                           SelectionMode="None"
                                           HorizontalAlignment="Center"
                                           ItemContainerStyle="{StaticResource FolderStyle}">
-                            <ListView.ItemContainerTransitions>
-                                <TransitionCollection>
-                                    <PopupThemeTransition/>
-                                </TransitionCollection>
-                            </ListView.ItemContainerTransitions>
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid Width="300" 
+                        <ListView.ItemContainerTransitions>
+                            <TransitionCollection>
+                                <PopupThemeTransition/>
+                            </TransitionCollection>
+                        </ListView.ItemContainerTransitions>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Width="300" 
                                           Height="100"
                                           HorizontalAlignment="Center"
                                           Margin="2" Background="Blue">
-                                        <StackPanel Orientation="Horizontal">
-                                            <Image Source="Assets/Folder.png"
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="Assets/Folder.png"
                                                            Height="60"
                                                            Width="80"/>
-                                            <TextBlock Text="{Binding folderName}" 
+                                        <TextBlock Text="{Binding folderName}" 
                                                                 Margin="15" 
                                                                 Foreground="White" 
                                                                 FontSize="24" 
@@ -1742,13 +1743,14 @@
                                                                 FontWeight="Light"
                                                                 VerticalAlignment="Top"  
                                                                 HorizontalAlignment="Left"/>
-                                        </StackPanel>
-                                    </Grid>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-                    </StackPanel>
-                    <ListView x:Name="fileItemsControl_snapped" Grid.Row="2"
+                                    </StackPanel>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+                <Grid x:Name="file_snapped" Grid.Row="3">
+                    <ListView x:Name="fileItemsControl_snapped" 
                                       ItemsSource="{Binding Source={StaticResource file}}"
                                       Tapped="onFileSelected"
                                       Margin="5" 
@@ -1790,7 +1792,8 @@
                     </ListView>
                 </Grid>
             </Grid>
-        </StackPanel>
+        </Grid>
+
         <!--end of left item-->
 
         <!--flipview-->
