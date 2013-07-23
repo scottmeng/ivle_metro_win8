@@ -1569,20 +1569,20 @@
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
         <Grid Grid.Column = "0" x:Name = "leftStackPanel">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="130"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <!-- Back button and page title -->
-                <StackPanel x:Name="stackPanel" Margin="20,10,0,0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="0">
-                    <Button x:Name="backButton" Click="backButton_Click" 
+            <Grid.RowDefinitions>
+                <RowDefinition Height="130"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <!-- Back button and page title -->
+            <StackPanel x:Name="stackPanel" Margin="20,10,0,0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="0">
+                <Button x:Name="backButton" Click="backButton_Click" 
                             Margin="0,0,10,10"
                             Grid.Column="0"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Center"
                             IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}"
                             Style="{StaticResource whiteBackButton}"/>
-                    <TextBlock VerticalAlignment="Center"
+                <TextBlock VerticalAlignment="Center"
                                Margin="0,0,10,10"
                                x:Name="mainModuleName"
                                FontSize="30"
@@ -1594,10 +1594,10 @@
                                HorizontalAlignment="Center"
                                Style="{StaticResource TitleTextStyle}" />
 
-                    <Button x:Name="menuButton" Foreground="White" Background="Transparent" Margin="0,0,10,10" Content="..." Click="menuButtonClick" HorizontalAlignment="Center"/>
-                </StackPanel>
-                <Grid x:Name="grid" Grid.Row="1" Visibility="Visible" d:IsHidden="True">
-                    <ScrollViewer x:Name="itemListScrollViewer"
+                <Button x:Name="menuButton" Foreground="White" Background="Transparent" Margin="0,0,10,10" Content="..." Click="menuButtonClick" HorizontalAlignment="Center"/>
+            </StackPanel>
+            <Grid x:Name="grid" Grid.Row="1" Visibility="Visible" d:IsHidden="True">
+                <ScrollViewer x:Name="itemListScrollViewer"
                                   VerticalScrollBarVisibility="Hidden" 
                                   HorizontalScrollBarVisibility="Disabled" 
                                   VerticalScrollMode="Auto"
