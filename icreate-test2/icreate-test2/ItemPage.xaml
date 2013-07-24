@@ -2326,10 +2326,14 @@
                                 </DataTemplate>
                             </GridView.ItemTemplate>
                         </GridView>
-                        <StackPanel x:Name ="playerStackpanel" Orientation="Vertical">
+                        <Grid x:Name ="playerStackpanel">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
                             <Button Style="{StaticResource BackButtonStyle}" Click="videoBackClick"/>
-                            <mmppf:MediaPlayer x:Name="player"/>
-                        </StackPanel>
+                            <mmppf:MediaPlayer Grid.Row="1" x:Name="player"/>
+                        </Grid>
                     </Grid>
                 </FlipViewItem>
                 <!-- Sixth item is webcast -->
