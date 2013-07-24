@@ -148,7 +148,7 @@ namespace icreate_test2
             // can respond to the user's search queries at any time.
 
             // Get search pane
-            Windows.ApplicationModel.Search.SearchPane searchPane = SearchPane.GetForCurrentView();
+            //Windows.ApplicationModel.Search.SearchPane searchPane = SearchPane.GetForCurrentView();
 
             // Register event handlers for SearchPane events
 

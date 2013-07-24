@@ -341,8 +341,8 @@ namespace icreate_test2
             Windows.Storage.StorageFolder localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
             try
             {
-                StorageFile sampleFile = await localFolder.GetFileAsync("dataFile.txt");
-                modulesResponse = await FileIO.ReadTextAsync(sampleFile);
+                StorageFile dataFile = await localFolder.GetFileAsync("dataFile.txt");
+                modulesResponse = await FileIO.ReadTextAsync(dataFile);
                 // Data is contained in timestamp
             }
             catch (Exception)
@@ -352,7 +352,7 @@ namespace icreate_test2
 
             // if serialized data does not exist
             // fetch module data from server
-            if (modulesResponse == null)
+            if (modulesResponse == null || modulesResponse == "")
             {
                 Dictionary<string, string> parameters = new Dictionary<string, string>();
                 parameters.Add("Duration", "0");
@@ -360,7 +360,7 @@ namespace icreate_test2
 
                 modulesResponse = await Utils.RequestSender.GetResponseStringAsync("Modules_Student", parameters);
 
-                StorageFile sampleFile = await localFolder.CreateFileAsync("dataFile.txt", CreationCollisionOption.ReplaceExisting);
+                StorageFile sampleFile = await localFolder.CreateFileAsync("dataFile.txt", CreationCollisionOption.OpenIfExists);
                 await FileIO.WriteTextAsync(sampleFile, modulesResponse);
 
                 App.appState = AppState.UPDATED;
