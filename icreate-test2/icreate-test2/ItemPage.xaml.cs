@@ -71,6 +71,7 @@ namespace icreate_test2
             _otherModules = new List<DataStructure.Module>();
             _allGrades = new List<DataStructure.Grade>();
 
+            // virtual keyboard handler
             Windows.UI.ViewManagement.InputPane.GetForCurrentView().Showing += (s, args) =>
             {
                 _offSet = (int)args.OccludedRect.Height;

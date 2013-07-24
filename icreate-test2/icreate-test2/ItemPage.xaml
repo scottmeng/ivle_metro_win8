@@ -1669,26 +1669,26 @@
                                         <RowDefinition Height="*"/>
                                     </Grid.RowDefinitions>
                                     <TextBlock Margin="5" 
-                                               Padding="5"
-                                               Grid.Row="0"
-                                                       HorizontalAlignment="Left"
-                                                       Text="Workbin"  
-                                                       TextWrapping="NoWrap" 
-                                                       FontSize="24"
-                                                       Foreground="White"
-                                                       VerticalAlignment="Bottom"
-                                                       FontWeight="Thin">
+                                        Padding="5"
+                                        Grid.Row="0"
+                                        HorizontalAlignment="Left"
+                                        Text="Workbin"  
+                                        TextWrapping="NoWrap" 
+                                        FontSize="24"
+                                        Foreground="White"
+                                        VerticalAlignment="Bottom"
+                                        FontWeight="Thin">
                                     </TextBlock>
                                     <TextBlock Margin="5" 
-                                                       Padding="5"
-                                                       Grid.Row="1"
-                                                       Foreground="White"
-                                                       HorizontalAlignment="Right"
-                                                       Text="{Binding workbinTitle}"
-                                                       TextWrapping="NoWrap"
-                                                       FontSize="14" 
-                                                       VerticalAlignment="Bottom"
-                                                       FontWeight="Thin">
+                                        Padding="5"
+                                        Grid.Row="1"
+                                        Foreground="White"
+                                        HorizontalAlignment="Right"
+                                        Text="{Binding workbinTitle}"
+                                        TextWrapping="NoWrap"
+                                        FontSize="14" 
+                                        VerticalAlignment="Bottom"
+                                        FontWeight="Thin">
                                     </TextBlock>
                                 </Grid>
                             </DataTemplate>
@@ -1702,6 +1702,7 @@
                                     Width="290" 
                                     Height="100" 
                                     Margin="5"
+                                    Foreground="white"
                                     Content="..."
                                     Tapped="onUpButtonTapped"
                                     Visibility="Collapsed" 
@@ -1711,12 +1712,12 @@
                 </Grid>
                 <Grid x:Name="folder_snapped" Grid.Row="2">
                     <ListView x:Name="folderItemsControl_snapped" 
-                                          ItemsSource="{Binding Source={StaticResource folder}}"
-                                          Tapped="onFolderSelected"
-                                          Margin="5" 
-                                          SelectionMode="None"
-                                          HorizontalAlignment="Center"
-                                          ItemContainerStyle="{StaticResource FolderStyle}">
+                        ItemsSource="{Binding Source={StaticResource folder}}"
+                        Tapped="onFolderSelected"
+                        Margin="5" 
+                        SelectionMode="None"
+                        HorizontalAlignment="Center"
+                        ItemContainerStyle="{StaticResource FolderStyle}">
                         <ListView.ItemContainerTransitions>
                             <TransitionCollection>
                                 <PopupThemeTransition/>
@@ -1725,22 +1726,23 @@
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <Grid Width="300" 
-                                          Height="100"
-                                          HorizontalAlignment="Center"
-                                          Margin="2" Background="Blue">
+                                    Height="100"
+                                    HorizontalAlignment="Center"
+                                    Margin="2" Background="Blue">
                                     <StackPanel Orientation="Horizontal">
                                         <Image Source="Assets/Folder.png"
-                                                           Height="60"
-                                                           Width="80"/>
+                                            Height="60"
+                                            Width="80"/>
                                         <TextBlock Text="{Binding folderName}" 
-                                                                Margin="15" 
-                                                                Foreground="White" 
-                                                                FontSize="24" 
-                                                                FontFamily="Segoe UI" 
-                                                                TextWrapping="Wrap"
-                                                                FontWeight="Light"
-                                                                VerticalAlignment="Top"  
-                                                                HorizontalAlignment="Left"/>
+                                            Padding="5"
+                                            Width="200"
+                                            Foreground="White" 
+                                            FontSize="24" 
+                                            FontFamily="Segoe UI" 
+                                            TextWrapping="Wrap"
+                                            FontWeight="Light"
+                                            VerticalAlignment="Center"  
+                                            HorizontalAlignment="Center"/>
                                     </StackPanel>
                                 </Grid>
                             </DataTemplate>
@@ -1772,17 +1774,18 @@
                                     <StackPanel Orientation="Horizontal">
                                         <Image Source="{Binding Path=fileType,
                                             Mode=OneWay,Converter={StaticResource FileIconConverter}}"
-                                                   Height="60"
-                                                   Width="80"/>
+                                            Height="60"
+                                            Width="80"/>
                                         <TextBlock Text="{Binding fileName}" 
-                                                       Margin="15" 
-                                                       Foreground="White" 
-                                                       FontSize="24" 
-                                                       FontFamily="Segoe UI" 
-                                                       FontWeight="Light"
-                                                       VerticalAlignment="Center"  
-                                                       TextWrapping="Wrap"
-                                                       HorizontalAlignment="Left"/>
+                                            Padding="5"
+                                            Width="200"
+                                            Foreground="White" 
+                                            FontSize="24" 
+                                            FontFamily="Segoe UI" 
+                                            FontWeight="Light"
+                                            VerticalAlignment="Center"  
+                                            TextWrapping="Wrap"
+                                            HorizontalAlignment="Left"/>
                                     </StackPanel>
                                 </Grid>
                             </DataTemplate>
@@ -1878,9 +1881,9 @@
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <Grid Background="LightGray" HorizontalAlignment="Stretch">
-                                            <TextBlock Padding="10" Text="{Binding lecturerMember.memberName}" FontSize="28" HorizontalAlignment="Left"/>
-                                            <TextBlock Padding="10" Text="{Binding lecturerRole}" FontSize="28" HorizontalAlignment="Center"/>
-                                            <TextBlock Padding="10" Text="{Binding lecturerMember.memberEmail}" HorizontalAlignment="Right" FontSize="28" Foreground="Blue"/>
+                                            <TextBlock Padding="10" Text="{Binding lecturerMember.memberName}" FontSize="18" HorizontalAlignment="Left"/>
+                                            <TextBlock Padding="10" Text="{Binding lecturerRole}" FontSize="18" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                            <TextBlock Padding="10" Text="{Binding lecturerMember.memberEmail}" HorizontalAlignment="Right" FontSize="14" Foreground="Blue"/>
                                         </Grid>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
@@ -1915,14 +1918,14 @@
                                                                Text="{Binding announceName}"  
                                                                TextWrapping="NoWrap" 
                                                                Foreground="Black" 
-                                                               FontSize="36"
+                                                               FontSize="30"
                                                                TextTrimming="WordEllipsis"/>
                                             <TextBlock Margin="20,5,20,5" 
                                                                Height="auto" 
                                                                Text="{Binding announceContentDisplay}" 
                                                                TextWrapping="Wrap" 
                                                                Foreground="Black" 
-                                                               FontSize="24" 
+                                                               FontSize="20" 
                                                                TextTrimming="WordEllipsis"/>
                                             <Rectangle Height="3" Fill="Black"/>
                                         </StackPanel>
@@ -1984,7 +1987,7 @@
                                                             FontFamily="Segoe UI" 
                                                             TextWrapping="Wrap"
                                                             FontWeight="Light"
-                                                            VerticalAlignment="Top"  
+                                                            VerticalAlignment="Center"  
                                                             HorizontalAlignment="Left"/>
                                             </StackPanel>
                                         </Grid>
@@ -2019,15 +2022,15 @@
                                                    Height="60"
                                                    Width="80"/>
                                             <TextBlock Text="{Binding fileName}" 
-                                                       Padding="5"
-                                                       Foreground="White" 
-                                                       FontSize="24" 
-                                                       FontFamily="Segoe UI" 
-                                                       FontWeight="Light"
-                                                       Width="200"
-                                                       VerticalAlignment="Top"  
-                                                       TextWrapping="Wrap"
-                                                       HorizontalAlignment="Left"/>
+                                                        Padding="5"
+                                                        Foreground="White" 
+                                                        FontSize="24" 
+                                                        FontFamily="Segoe UI" 
+                                                        FontWeight="Light"
+                                                        Width="200"
+                                                        VerticalAlignment="Center"  
+                                                        TextWrapping="Wrap"
+                                                        HorizontalAlignment="Left"/>
                                         </StackPanel>
                                     </Grid>
                                 </DataTemplate>
@@ -2152,6 +2155,7 @@
                                                        Style="{StaticResource grade_textblock}"/>
                                         <TextBlock Text="{Binding gradeEnteredDate}"
                                                        Grid.Column="8"
+                                                       FontSize="14"
                                                        Style="{StaticResource grade_textblock}"/>
                                     </Grid>
                                 </DataTemplate>
@@ -2193,11 +2197,11 @@
                                         <StackPanel VerticalAlignment="Top" 
                                                         Margin="0" 
                                                         Orientation="Vertical">
-                                            <TextBlock Margin="20,5,20,5" 
+                                            <TextBlock Margin="10,5,10,5" 
                                                            Text="{Binding postTitle}"
                                                            TextWrapping="Wrap" 
                                                            Foreground="White" 
-                                                           FontSize="28"
+                                                           FontSize="24"
                                                            TextTrimming="WordEllipsis"/>
                                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,5">
                                                 <TextBlock Height="auto" 
@@ -2205,14 +2209,14 @@
                                                             Text="{Binding threadDatetime}" 
                                                             TextWrapping="Wrap" 
                                                             Foreground="White" 
-                                                            FontSize="20" 
+                                                            FontSize="12" 
                                                             TextTrimming="WordEllipsis"/>
                                                 <TextBlock Height="auto" 
                                                                Margin="0,0,10,0"
                                                             Text="{Binding threadPoster.memberName}" 
                                                             TextWrapping="Wrap" 
                                                             Foreground="White" 
-                                                            FontSize="20" 
+                                                            FontSize="12" 
                                                             TextTrimming="WordEllipsis"/>
                                             </StackPanel>
                                         </StackPanel>
@@ -2248,33 +2252,33 @@
                                             <StackPanel VerticalAlignment="Top" 
                                                         Margin="0" 
                                                         Orientation="Vertical">
-                                                <TextBlock Margin="20,5,20,5" 
+                                                <TextBlock Margin="10,5,10,0" 
                                                             Text="{Binding threadTitle}"  
                                                             TextWrapping="NoWrap" 
                                                             Foreground="White" 
-                                                            FontSize="26"
+                                                            FontSize="24"
                                                             TextTrimming="WordEllipsis"/>
-                                                <TextBlock Margin="20,5,20,5" 
+                                                <TextBlock Margin="10,5,10,0" 
                                                             Height="auto" 
                                                             Text="{Binding threadBody}" 
                                                             TextWrapping="Wrap" 
                                                             Foreground="White" 
-                                                            FontSize="22" 
+                                                            FontSize="16" 
                                                             TextTrimming="WordEllipsis"/>
                                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,5">
                                                     <TextBlock Height="auto" 
-                                                               Margin="0,0,20,0"
+                                                               Margin="0,0,10,0"
                                                             Text="{Binding threadDate}" 
                                                             TextWrapping="Wrap" 
                                                             Foreground="White" 
-                                                            FontSize="20" 
+                                                            FontSize="12" 
                                                             TextTrimming="WordEllipsis"/>
                                                     <TextBlock Height="auto" 
                                                                Margin="0,0,10,0"
                                                             Text="{Binding threadPoster.memberName}" 
                                                             TextWrapping="Wrap" 
                                                             Foreground="White" 
-                                                            FontSize="20" 
+                                                            FontSize="12" 
                                                             TextTrimming="WordEllipsis"/>
                                                 </StackPanel>
                                             </StackPanel>
@@ -2313,7 +2317,7 @@
                             </GridView.ItemContainerTransitions>
                             <GridView.ItemTemplate>
                                 <DataTemplate>
-                                    <Grid Background="LightBlue" Height="170" Width="320" Tapped="videoTapped" >
+                                    <Grid Background="Blue"  Height="120" Width="240" Tapped="videoTapped" >
                                         <TextBlock Margin="20,5,20,5" 
                                                    VerticalAlignment="Center"
                                                    HorizontalAlignment="Center"
