@@ -784,6 +784,9 @@ namespace icreate_test2
                         // generate a complete list of video files
                         // and store under webcast object
                         _currentModule.moduleWebcasts[selectedItem.itemIndex].GenerateVideoFileList();
+                        webcastGridViews.Source = _currentModule.moduleWebcasts[selectedItem.itemIndex].webcastAllVideoFiles;
+                        playerStackpanel.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+                        webcastGridView.Visibility = Windows.UI.Xaml.Visibility.Visible;
                         break;
 
                     case DataStructure.ItemType.WORKBIN:
@@ -831,6 +834,26 @@ namespace icreate_test2
 
             _folderTree.Clear();
             upFolderButton_snapped.Visibility = Visibility.Collapsed;
+        }
+
+        private void videoTapped(object sender, TappedRoutedEventArgs e)
+        {
+           
+            DataStructure.VideoFile selectedItem = (e.OriginalSource as FrameworkElement).DataContext as DataStructure.VideoFile;
+            if(selectedItem!=null)
+            {
+                Uri uu = new Uri(selectedItem.videoMP4);
+                player.Source = uu;
+            }
+            playerStackpanel.Visibility = Windows.UI.Xaml.Visibility.Visible;
+            webcastGridView.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+        }
+
+        private void videoBackClick(object sender, RoutedEventArgs e)
+        {
+            player.Source = null;
+            playerStackpanel.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+            webcastGridView.Visibility = Windows.UI.Xaml.Visibility.Visible;
         }
 
 

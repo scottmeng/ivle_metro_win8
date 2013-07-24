@@ -2313,29 +2313,23 @@
                             </GridView.ItemContainerTransitions>
                             <GridView.ItemTemplate>
                                 <DataTemplate>
-                                    <Grid Height="auto" Background="Gray">
-                                        <StackPanel VerticalAlignment="Top" 
-                                                    Margin="0" 
-                                                    Orientation="Vertical">
-                                            <TextBlock Margin="20,5,20,5" 
-                                                        Text="{Binding threadTitle}"  
-                                                        TextWrapping="NoWrap" 
-                                                        Foreground="White" 
-                                                        FontSize="26"
-                                                        TextTrimming="WordEllipsis"/>
-                                            <TextBlock Margin="20,5,20,5" 
-                                                        Height="auto" 
-                                                        Text="{Binding threadBody}" 
-                                                        TextWrapping="Wrap" 
-                                                        Foreground="White" 
-                                                        FontSize="22" 
-                                                        TextTrimming="WordEllipsis"/>
-                                        </StackPanel>
+                                    <Grid Background="LightBlue" Height="170" Width="320" Tapped="videoTapped" >
+                                        <TextBlock Margin="20,5,20,5" 
+                                                   VerticalAlignment="Center"
+                                                   HorizontalAlignment="Center"
+                                                    Text="{Binding videoTitle}"  
+                                                    TextWrapping="Wrap"
+                                                    Foreground="White" 
+                                                    FontSize="26"
+                                                    TextTrimming="WordEllipsis"/>
                                     </Grid>
                                 </DataTemplate>
                             </GridView.ItemTemplate>
                         </GridView>
-                        <mmppf:MediaPlayer x:Name="player" Source="http://coursecast3.nus.edu.sg/Panopto/Content/Sessions/73e24052-2a71-48ce-a17f-b59f563a142f/91554bde-1282-4984-9b92-eb888743d454-00dffce6-309f-4e42-a9c9-1832b459ba50.mp4"/>
+                        <StackPanel x:Name ="playerStackpanel" Orientation="Vertical">
+                            <Button Style="{StaticResource BackButtonStyle}" Click="videoBackClick"/>
+                            <mmppf:MediaPlayer x:Name="player"/>
+                        </StackPanel>
                     </Grid>
                 </FlipViewItem>
                 <!-- Sixth item is webcast -->
