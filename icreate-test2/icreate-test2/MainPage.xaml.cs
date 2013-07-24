@@ -191,9 +191,18 @@ namespace icreate_test2
             //loadingProgress.IsActive = false;
         }
 
-        private void Logoff_Button_Click(object sender, RoutedEventArgs e)
+        private async void Logoff_Button_Click(object sender, RoutedEventArgs e)
         {
             Utils.TokenManager.RemoveToken();
+
+            Windows.Storage.StorageFolder localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
+            try
+            {
+                Windows.Storage.StorageFile dataFile = await localFolder.GetFileAsync("dataFile.txt");
+                await dataFile.DeleteAsync();
+            }
+            catch { }
+
             this.Frame.Navigate(typeof(LoginPage));
         }
 
