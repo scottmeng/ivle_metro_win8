@@ -61,6 +61,8 @@ namespace icreate_test2
         // store parent/child folders in hierachy 
         private List<DataStructure.Folder> _folderTree;
 
+        private int _offSet = 0;
+
         public ItemPage()
         {
             this.InitializeComponent();
@@ -68,6 +70,23 @@ namespace icreate_test2
             _folderTree = new List<DataStructure.Folder>();
             _otherModules = new List<DataStructure.Module>();
             _allGrades = new List<DataStructure.Grade>();
+
+            Windows.UI.ViewManagement.InputPane.GetForCurrentView().Showing += (s, args) =>
+            {
+                _offSet = (int)args.OccludedRect.Height;
+                args.EnsuredFocusedElementInView = true;
+                var trans = new TranslateTransform();
+                trans.Y = -_offSet;
+                this.RenderTransform = trans;
+            };
+
+            Windows.UI.ViewManagement.InputPane.GetForCurrentView().Hiding += (s, args) =>
+            {
+                var trans = new TranslateTransform();
+                trans.Y = 0;
+                this.RenderTransform = trans;
+                args.EnsuredFocusedElementInView = false;
+            };
 
         }
 
