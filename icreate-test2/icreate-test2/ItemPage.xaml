@@ -2062,12 +2062,12 @@
                             </Border>
                             <Border Grid.Column="1"
                                         Style="{StaticResource grade_border}">
-                                <TextBlock Text="Item Name"
+                                <TextBlock Text="Name"
                                                Style="{StaticResource gradebookText}"/>
                             </Border>
                             <Border Grid.Column="2"
                                         Style="{StaticResource grade_border}">
-                                <TextBlock Text="Marks Obtained"
+                                <TextBlock Text="Marks"
                                                Style="{StaticResource gradebookText}"
                                                FontStretch="SemiCondensed"/>
                             </Border>
@@ -2131,9 +2131,11 @@
                                         </Grid.ColumnDefinitions>
                                         <TextBlock Text="{Binding gradeCategory}"
                                                        Grid.Column="0"
+                                                       FontSize="16"
                                                        Style="{StaticResource grade_textblock}"/>
                                         <TextBlock Text="{Binding gradeName}"
                                                        Grid.Column="1"
+                                                       FontSize="16"
                                                        Style="{StaticResource grade_textblock}"/>
                                         <TextBlock Text="{Binding gradeObtainedMarks}"
                                                        Grid.Column="2"
