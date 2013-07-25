@@ -652,7 +652,8 @@
                               PointerPressed="ModuleItemGridPressed"
                               PointerReleased="ModuleItemGridReleased"
                               PointerExited="ModuleItemGridExited"
-                              PointerEntered="ModuleItemGridEntered">
+                              PointerEntered="ModuleItemGridEntered"
+                              Tapped="ModuleTileTapped">
                             <Grid.Background>
                                 <SolidColorBrush Color="{Binding moduleShowColor}" />
                             </Grid.Background>
