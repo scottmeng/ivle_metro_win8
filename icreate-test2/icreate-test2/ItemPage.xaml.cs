@@ -688,14 +688,13 @@ namespace icreate_test2
             SolidColorBrush brushBlue = new SolidColorBrush(Color.FromArgb(255,0,0,255));
             FolderGrid.Background = brush;
             FolderGrid_snapped.Background = brush;
-            
         }
 
         private void FolderButtonExited(object sender, PointerRoutedEventArgs e)
         {
             SolidColorBrush brush = new SolidColorBrush(Color.FromArgb(255, 255, 255, 255));
             FolderGrid.Background = brush;
-            FolderGrid_snapped.Background = brush;
+            FolderGrid_snapped.Background.Opacity = 0;
         }
 
         private void mainGrid_KeyUp(object sender, KeyRoutedEventArgs e)
@@ -853,6 +852,7 @@ namespace icreate_test2
             file.Source = new List<DataStructure.File>();
 
             _folderTree.Clear();
+            upFolderButton.Visibility = Visibility.Collapsed;
             upFolderButton_snapped.Visibility = Visibility.Collapsed;
         }
 
@@ -875,8 +875,6 @@ namespace icreate_test2
             playerStackpanel.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
             webcastGridView.Visibility = Windows.UI.Xaml.Visibility.Visible;
         }
-
-
     }
 
     // converter for thread title background color binding

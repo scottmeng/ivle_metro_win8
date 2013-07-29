@@ -1373,6 +1373,7 @@
                                 </DiscreteObjectKeyFrame.Value>
                             </DiscreteObjectKeyFrame>
                         </ObjectAnimationUsingKeyFrames>
+                        <!--
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="upFolderButton_snapped">
                             <DiscreteObjectKeyFrame KeyTime="0">
                                 <DiscreteObjectKeyFrame.Value>
@@ -1380,6 +1381,7 @@
                                 </DiscreteObjectKeyFrame.Value>
                             </DiscreteObjectKeyFrame>
                         </ObjectAnimationUsingKeyFrames>
+                        -->
                     </Storyboard>
                 </VisualState>
                 <VisualState x:Name="FullScreenPortrait">
@@ -1657,12 +1659,16 @@
                 <Grid Grid.Row="0">
                     <ListView x:Name="workbinList_snapped" SelectionMode="None" Margin="5"
                               ItemsSource="{Binding Source={StaticResource workbinListView}}" HorizontalAlignment="Stretch">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                            </Style>
+                        </ListView.ItemContainerStyle>
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <Grid HorizontalAlignment="Stretch"
-                                      Tapped="workbinListTapped">
+                                <Grid Tapped="workbinListTapped">
                                     <Grid.Background>
-                                        <SolidColorBrush Color="DarkGray" />
+                                        <SolidColorBrush Color="Gray"/>
                                     </Grid.Background>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="2*"/>
@@ -1694,21 +1700,20 @@
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-
                 </Grid>
                 <Grid x:Name="FolderGrid_snapped" Grid.Row="1">
                     <Button x:Name="upFolderButton_snapped" 
-                                    Background="Blue" 
-                                    Width="290" 
-                                    Height="100" 
-                                    Margin="5"
-                                    Foreground="white"
-                                    Content="..."
-                                    Tapped="onUpButtonTapped"
-                                    Visibility="Collapsed" 
-                                    PointerEntered="FolderButtonEntered" 
-                                    PointerExited="FolderButtonExited" 
-                                    Style="{StaticResource UpButtonStyle}"/>
+                            Background="Blue" 
+                            Width="290" 
+                            Height="100" 
+                            Margin="5"
+                            Foreground="white"
+                            Content="..."
+                            Tapped="onUpButtonTapped"
+                            Visibility="Collapsed"
+                            PointerEntered="FolderButtonEntered" 
+                            PointerExited="FolderButtonExited" 
+                            Style="{StaticResource UpButtonStyle}"/>
                 </Grid>
                 <Grid x:Name="folder_snapped" Grid.Row="2">
                     <ListView x:Name="folderItemsControl_snapped" 
@@ -2232,12 +2237,11 @@
                                 <RowDefinition Height="auto"/>
                             </Grid.RowDefinitions>
                             <ListView x:Name="thread"
-                                          Grid.Row="0"
-                                          ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
-                                          ScrollViewer.VerticalScrollBarVisibility="Hidden" 
-                                          ItemsSource="{Binding Source={StaticResource threads}}" 
-                                          SelectionMode="None" Tapped="innerThread_Tapped"
-                                          >
+                                    Grid.Row="0"
+                                    ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                                    ScrollViewer.VerticalScrollBarVisibility="Hidden" 
+                                    ItemsSource="{Binding Source={StaticResource threads}}" 
+                                    SelectionMode="None" Tapped="innerThread_Tapped">
                                 <ListView.ItemContainerStyle>
                                     <Style TargetType="ListViewItem">
                                         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -2255,28 +2259,28 @@
                                                         Margin="0" 
                                                         Orientation="Vertical">
                                                 <TextBlock Margin="10,5,10,0" 
-                                                            Text="{Binding threadTitle}"  
-                                                            TextWrapping="NoWrap" 
-                                                            Foreground="White" 
-                                                            FontSize="24"
-                                                            TextTrimming="WordEllipsis"/>
+                                                        Text="{Binding threadTitle}"  
+                                                        TextWrapping="NoWrap" 
+                                                        Foreground="White" 
+                                                        FontSize="24"
+                                                        TextTrimming="WordEllipsis"/>
                                                 <TextBlock Margin="10,5,10,0" 
-                                                            Height="auto" 
-                                                            Text="{Binding threadBody}" 
-                                                            TextWrapping="Wrap" 
-                                                            Foreground="White" 
-                                                            FontSize="16" 
-                                                            TextTrimming="WordEllipsis"/>
+                                                        Height="auto" 
+                                                        Text="{Binding threadBody}" 
+                                                        TextWrapping="Wrap" 
+                                                        Foreground="White" 
+                                                        FontSize="16" 
+                                                        TextTrimming="WordEllipsis"/>
                                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,0,5">
                                                     <TextBlock Height="auto" 
-                                                               Margin="0,0,10,0"
+                                                            Margin="0,0,10,0"
                                                             Text="{Binding threadDate}" 
                                                             TextWrapping="Wrap" 
                                                             Foreground="White" 
                                                             FontSize="12" 
                                                             TextTrimming="WordEllipsis"/>
                                                     <TextBlock Height="auto" 
-                                                               Margin="0,0,10,0"
+                                                            Margin="0,0,10,0"
                                                             Text="{Binding threadPoster.memberName}" 
                                                             TextWrapping="Wrap" 
                                                             Foreground="White" 

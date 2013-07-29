@@ -644,10 +644,14 @@
                         Modules
                     </TextBlock>
                 </ListView.Header>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Grid Width="300"
-                              Height="140"
+                        <Grid Height="140"
                               Margin="0,2,0,2"
                               PointerPressed="ModuleItemGridPressed"
                               PointerReleased="ModuleItemGridReleased"
@@ -658,22 +662,22 @@
                                 <SolidColorBrush Color="{Binding moduleShowColor}" />
                             </Grid.Background>
                             <TextBlock Text="{Binding moduleCode}" 
-                                                   Margin="15" 
-                                                   Foreground="White" 
-                                                   FontSize="32" 
-                                                   FontFamily="Segoe UI" 
-                                                   FontWeight="Light"
-                                                   VerticalAlignment="Top"  
-                                                   HorizontalAlignment="Left"/>
+                                        Margin="15" 
+                                        Foreground="White" 
+                                        FontSize="32" 
+                                        FontFamily="Segoe UI" 
+                                        FontWeight="Light"
+                                        VerticalAlignment="Top"  
+                                        HorizontalAlignment="Left"/>
                             <TextBlock Text="{Binding moduleName}" 
-                                                   Margin="15" 
-                                                   Foreground="White" 
-                                                   FontSize="16" 
-                                                   FontFamily="Segoe UI" 
-                                                   FontWeight="Light"
-                                                   VerticalAlignment="Bottom" 
-                                                   TextWrapping="Wrap"
-                                                   HorizontalAlignment="Right"/>
+                                        Margin="15" 
+                                        Foreground="White" 
+                                        FontSize="16" 
+                                        FontFamily="Segoe UI" 
+                                        FontWeight="Light"
+                                        VerticalAlignment="Bottom" 
+                                        TextWrapping="Wrap"
+                                        HorizontalAlignment="Right"/>
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>
