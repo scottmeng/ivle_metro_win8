@@ -1591,10 +1591,9 @@
                                FontWeight="Normal"
                                Foreground="White"
                                TextWrapping="NoWrap"
-                               TextTrimming="CharacterEllipsis"
+                               TextTrimming="WordEllipsis"
                                MaxWidth="200"
-                               HorizontalAlignment="Center"
-                               Style="{StaticResource TitleTextStyle}" />
+                               HorizontalAlignment="Center"/>
 
                 <Button x:Name="menuButton" Foreground="White" Background="Transparent" Margin="0,0,10,10" Content="..." Click="menuButtonClick" HorizontalAlignment="Center"/>
             </StackPanel>
