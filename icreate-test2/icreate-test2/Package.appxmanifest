@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
-  <Identity Name="ab2dcaa8-51d3-4385-9200-8615562bec1f" Publisher="CN=Jiajianiu" Version="1.0.0.0" />
+  <Identity Name="26629Blackrider.MetroIVLE" Publisher="CN=6F806AEA-6C64-4127-964E-01CF2039D98E" Version="1.0.0.2" />
   <Properties>
-    <DisplayName>icreate-test2</DisplayName>
-    <PublisherDisplayName>Jiajianiu</PublisherDisplayName>
-    <Logo>Assets\Logo.png</Logo>
+    <DisplayName>Metro IVLE</DisplayName>
+    <PublisherDisplayName>Blackrider</PublisherDisplayName>
+    <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   <Prerequisites>
     <OSMinVersion>6.2.1</OSMinVersion>
@@ -16,7 +16,7 @@
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="icreate_test2.App">
       <VisualElements DisplayName="IVLE Metro" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="icreate-test2" ForegroundText="light" BackgroundColor="#003399">
-        <DefaultTile ShowName="allLogos" WideLogo="Assets\WideLogo.scale-100.png" />
+        <DefaultTile ShowName="allLogos" WideLogo="Assets\WideLogo.png" />
         <SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#003399" />
         <InitialRotationPreference>
           <Rotation Preference="landscape" />

@@ -12,7 +12,9 @@
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{BC8A1FFA-BEE3-4634-8014-F334798102B3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <PackageCertificateKeyFile>icreate-test2_TemporaryKey.pfx</PackageCertificateKeyFile>
+    <PackageCertificateKeyFile>icreate-test2_StoreKey.pfx</PackageCertificateKeyFile>
+    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <PackageCertificateThumbprint>253E852C02112296036DE8D64F8C882F053B8494</PackageCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -168,6 +170,7 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <None Include="icreate-test2_StoreKey.pfx" />
     <None Include="icreate-test2_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
@@ -175,29 +178,21 @@
     <Content Include="Assets\Excel.png" />
     <Content Include="Assets\Folder.png" />
     <Content Include="Assets\General.png" />
-    <Content Include="Assets\LionFilled.png" />
-    <Content Include="Assets\LionSketch.png" />
-    <Content Include="Assets\LionSquare.png" />
     <Content Include="Assets\Login.png" />
-    <Content Include="Assets\Logo.png" />
     <Content Include="Assets\Logo.scale-100.png" />
     <Content Include="Assets\Logo.scale-140.png" />
     <Content Include="Assets\Logo.scale-180.png" />
-    <Content Include="Assets\Logo2.png" />
     <Content Include="Assets\Logo3.png" />
+    <Content Include="Assets\Logo_50.scale-100.png" />
     <Content Include="Assets\PDF.png" />
     <Content Include="Assets\PPT.png" />
-    <Content Include="Assets\SmallLogo.png" />
     <Content Include="Assets\SmallLogo.scale-100.png" />
     <Content Include="Assets\SmallLogo.scale-140.png" />
     <Content Include="Assets\SmallLogo.scale-180.png" />
     <Content Include="Assets\SmallLogo.scale-80.png" />
-    <Content Include="Assets\splash.png" />
-    <Content Include="Assets\SplashScreen.png" />
     <Content Include="Assets\SplashScreen.scale-100.png" />
     <Content Include="Assets\SplashScreen.scale-140.png" />
     <Content Include="Assets\SplashScreen.scale-180.png" />
-    <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\StoreLogo.scale-100.png" />
     <Content Include="Assets\StoreLogo.scale-140.png" />
     <Content Include="Assets\StoreLogo.scale-180.png" />
@@ -208,6 +203,7 @@
     <Content Include="Assets\Word.png" />
     <Content Include="Assets\ZIP.png" />
     <Content Include="Common\ReadMe.txt" />
+    <None Include="Package.StoreAssociation.xml" />
     <Page Include="TimetablePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
