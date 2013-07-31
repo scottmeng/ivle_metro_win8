@@ -67,11 +67,22 @@ namespace icreate_test2.DataStructure
                 classEndTime = "0" + classEndTime;
             }
 
-            classStartTimeInt = Int32.Parse(classStartTime);
-            classEndTimeInt = Int32.Parse(classEndTime);
-            classDurationInt = classEndTimeInt - classStartTimeInt;
-            classDayCodeInt = Int32.Parse(classDayCode);
-            classTimePoint = classStartTimeInt + 10000 * classDayCodeInt;
+            try
+            {
+                classStartTimeInt = Int32.Parse(classStartTime);
+                classEndTimeInt = Int32.Parse(classEndTime);
+                classDurationInt = classEndTimeInt - classStartTimeInt;
+                classDayCodeInt = Int32.Parse(classDayCode);
+                classTimePoint = classStartTimeInt + 10000 * classDayCodeInt;
+            }
+            catch 
+            {
+                classStartTimeInt = 0;
+                classEndTimeInt = 0;
+                classDurationInt = classEndTimeInt - classStartTimeInt;
+                classDayCodeInt = -1;
+                classTimePoint = classStartTimeInt + 10000 * classDayCodeInt;
+            }
         }
     }
 }

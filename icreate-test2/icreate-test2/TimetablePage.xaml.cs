@@ -132,55 +132,58 @@ namespace icreate_test2
 
             foreach (DataStructure.Class mClass in Utils.DataManager.GetClasses())
             {
-                // styling of timetable item
-                Border classBorder = new Border();
-                classBorder.Margin = new Thickness(2);
-                classBorder.Background = new SolidColorBrush(mClass.classModuleColor);
-                //if (mClass.classLessonType != "LECTURE")
-                //{
-                //    CornerRadius radius = new CornerRadius(20);
-                //    classBorder.CornerRadius = radius;
-                //}
+                if (mClass.classDayCodeInt > 0)
+                {
+                    // styling of timetable item
+                    Border classBorder = new Border();
+                    classBorder.Margin = new Thickness(2);
+                    classBorder.Background = new SolidColorBrush(mClass.classModuleColor);
+                    //if (mClass.classLessonType != "LECTURE")
+                    //{
+                    //    CornerRadius radius = new CornerRadius(20);
+                    //    classBorder.CornerRadius = radius;
+                    //}
 
-                StackPanel oneClass = new StackPanel();
-                oneClass.Orientation = Orientation.Vertical;
-                classBorder.Child = oneClass;
+                    StackPanel oneClass = new StackPanel();
+                    oneClass.Orientation = Orientation.Vertical;
+                    classBorder.Child = oneClass;
 
-                TextBlock classBlock = new TextBlock();
-                classBlock.Padding = new Thickness(1);
-                classBlock.Margin = new Thickness(3, 0, 0, 0);
-                classBlock.Text = mClass.classModuleCode;
-                classBlock.FontSize = 18;
-                classBlock.FontFamily = new FontFamily("Segoe UI");
-                classBlock.Foreground = new SolidColorBrush(Colors.White);
-                oneClass.Children.Add(classBlock);
-                TextBlock classType = new TextBlock();
-                classType.Margin = new Thickness(3, 0, 0, 0);
-                classType.Text = mClass.classLessonType;
-                classType.FontSize = 18;
-                classType.FontFamily = new FontFamily("Segoe UI");
-                classType.Foreground = new SolidColorBrush(Colors.White);
-                oneClass.Children.Add(classType);
-                TextBlock location = new TextBlock();
-                location.Padding = new Thickness(1);
-                location.Margin = new Thickness(3, 0, 0, 0);
-                location.Text = mClass.classVenue;
-                location.FontSize = 16;
-                location.Foreground = new SolidColorBrush(Colors.White);
-                oneClass.Children.Add(location);
+                    TextBlock classBlock = new TextBlock();
+                    classBlock.Padding = new Thickness(1);
+                    classBlock.Margin = new Thickness(3, 0, 0, 0);
+                    classBlock.Text = mClass.classModuleCode;
+                    classBlock.FontSize = 18;
+                    classBlock.FontFamily = new FontFamily("Segoe UI");
+                    classBlock.Foreground = new SolidColorBrush(Colors.White);
+                    oneClass.Children.Add(classBlock);
+                    TextBlock classType = new TextBlock();
+                    classType.Margin = new Thickness(3, 0, 0, 0);
+                    classType.Text = mClass.classLessonType;
+                    classType.FontSize = 18;
+                    classType.FontFamily = new FontFamily("Segoe UI");
+                    classType.Foreground = new SolidColorBrush(Colors.White);
+                    oneClass.Children.Add(classType);
+                    TextBlock location = new TextBlock();
+                    location.Padding = new Thickness(1);
+                    location.Margin = new Thickness(3, 0, 0, 0);
+                    location.Text = mClass.classVenue;
+                    location.FontSize = 16;
+                    location.Foreground = new SolidColorBrush(Colors.White);
+                    oneClass.Children.Add(location);
 
-                // set timetable item column position
-                Grid.SetRow(classBorder, mClass.classDayCodeInt);
+                    // set timetable item column position
+                    Grid.SetRow(classBorder, mClass.classDayCodeInt);
 
-                // set timetable item row position
-                int startTimeInHours = mClass.classStartTimeInt / 100 * 100 + (mClass.classStartTimeInt % 100) * 100 / 60;
-                Grid.SetColumn(classBorder, (startTimeInHours - 800) / 50 + 1);
+                    // set timetable item row position
+                    int startTimeInHours = mClass.classStartTimeInt / 100 * 100 + (mClass.classStartTimeInt % 100) * 100 / 60;
+                    Grid.SetColumn(classBorder, (startTimeInHours - 800) / 50 + 1);
 
-                // set timetable item row span
-                int durationInHours = mClass.classDurationInt / 100 * 100 + (mClass.classDurationInt % 100) * 100 / 60;
-                Grid.SetColumnSpan(classBorder, durationInHours / 50);
+                    // set timetable item row span
+                    int durationInHours = mClass.classDurationInt / 100 * 100 + (mClass.classDurationInt % 100) * 100 / 60;
+                    Grid.SetColumnSpan(classBorder, durationInHours / 50);
 
-                timetableGrid.Children.Add(classBorder);
+                    timetableGrid.Children.Add(classBorder);
+                }
             }
         }
 
