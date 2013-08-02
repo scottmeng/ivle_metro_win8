@@ -164,6 +164,7 @@
     <Compile Include="Utils\LAPI.cs" />
     <Compile Include="DataStructure\Token.cs" />
     <Compile Include="Utils\RequestSender.cs" />
+    <Compile Include="Utils\SettingsHelper.cs" />
     <Compile Include="Utils\TokenManager.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -202,6 +203,7 @@
     <Content Include="Assets\Word.png" />
     <Content Include="Assets\ZIP.png" />
     <Content Include="Common\ReadMe.txt" />
+    <None Include="Package.StoreAssociation.xml" />
     <Page Include="TimetablePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

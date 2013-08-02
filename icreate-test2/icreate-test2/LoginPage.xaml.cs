@@ -21,6 +21,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Windows.Networking.Connectivity;
 using Windows.Storage;
+using Windows.UI.ApplicationSettings;
 
 using Newtonsoft.Json;
 

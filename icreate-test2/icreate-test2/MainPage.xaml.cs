@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI;
+using Windows.UI.ApplicationSettings;
 using Windows.ApplicationModel.Search;
 using Windows.Storage;
 

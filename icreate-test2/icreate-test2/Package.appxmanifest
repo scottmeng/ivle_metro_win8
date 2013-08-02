@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
-  <Identity Name="26629Blackrider.MetroIVLE" Publisher="CN=6F806AEA-6C64-4127-964E-01CF2039D98E" Version="1.0.0.2" />
+  <Identity Name="26629Blackrider.MetroIVLE" Publisher="CN=6F806AEA-6C64-4127-964E-01CF2039D98E" Version="1.0.0.4" />
   <Properties>
     <DisplayName>Metro IVLE</DisplayName>
     <PublisherDisplayName>Blackrider</PublisherDisplayName>

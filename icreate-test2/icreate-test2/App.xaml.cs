@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.ApplicationModel.Search;
+using Windows.UI.ApplicationSettings;
 
 // The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=234227
 
@@ -77,8 +78,17 @@ namespace icreate_test2
                     throw new Exception("Failed to create initial page");
                 }
             }
+
+            SettingsPane.GetForCurrentView().CommandsRequested += GroupedItemsPage_CommandsRequested;
+
             // Ensure the current window is active
             Window.Current.Activate();
+        }
+
+
+        void GroupedItemsPage_CommandsRequested(SettingsPane sender, SettingsPaneCommandsRequestedEventArgs args)
+        {
+            Utils.SettingsHelper.AddSettingsCommands(args);
         }
 
         /// <summary>
