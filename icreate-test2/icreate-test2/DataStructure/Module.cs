@@ -11,7 +11,7 @@ using System.Collections.ObjectModel;
 namespace icreate_test2.DataStructure
 {
     // accessible to all data structures
-    enum ItemType { MODULE_INFO, ANNOUNCEMENT, FORUM, WORKBIN, GRADEBOOK, WEBCAST}
+    enum ItemType { ABOUT, ANNOUNCEMENT, FORUM, WORKBIN, GRADEBOOK, WEBCAST}
 
     [DataContract]
     class Module : INotifyPropertyChanged
@@ -139,7 +139,7 @@ namespace icreate_test2.DataStructure
                 /*
                  * No.1 Module info (always visible)
                  */
-                moduleItems.Add(new ModuleItem("Module Info", ItemType.MODULE_INFO, 0, this.modulePrimaryColor, this.moduleSecondaryColor));
+                moduleItems.Add(new ModuleItem("Module Info", ItemType.ABOUT, 0, this.modulePrimaryColor, this.moduleSecondaryColor));
 
                 /*
                  * No.2 Announcement (invisible or one)

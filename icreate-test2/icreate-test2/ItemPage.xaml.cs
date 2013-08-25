@@ -791,7 +791,7 @@ namespace icreate_test2
                         flipView.SelectedIndex = 3;
                         break;
 
-                    case DataStructure.ItemType.MODULE_INFO:
+                    case DataStructure.ItemType.ABOUT:
                         flipView.SelectedItem = null;
                         flipView.SelectedIndex = 0;
                         break;
