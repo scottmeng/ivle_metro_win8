@@ -1979,6 +1979,8 @@
                                           ItemsSource="{Binding Source={StaticResource folder}}"
                                           Tapped="onFolderSelected"
                                           SelectionMode="None"
+                                      ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                                      ScrollViewer.VerticalScrollBarVisibility="Hidden"
                                           HorizontalAlignment="Center"
                                           ItemContainerStyle="{StaticResource FolderStyle}">
                                 <ListView.ItemContainerTransitions>
