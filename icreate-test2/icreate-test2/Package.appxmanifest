@@ -15,8 +15,8 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="icreate_test2.App">
-      <VisualElements DisplayName="IVLE Metro" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="icreate-test2" ForegroundText="light" BackgroundColor="#003399">
-        <DefaultTile ShowName="allLogos" WideLogo="Assets\WideLogo.png" />
+      <VisualElements DisplayName="IVLE Metro" Logo="Assets\Logo.scale-100.png" SmallLogo="Assets\SmallLogo.scale-100.png" Description="icreate-test2" ForegroundText="light" BackgroundColor="#003399">
+        <DefaultTile ShowName="allLogos" WideLogo="Assets\WideLogo.scale-100.png" />
         <SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#003399" />
         <InitialRotationPreference>
           <Rotation Preference="landscape" />
