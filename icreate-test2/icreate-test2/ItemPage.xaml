@@ -1722,7 +1722,6 @@
                 <Grid x:Name="folder_snapped" Grid.Row="2">
                     <ListView x:Name="folderItemsControl_snapped" 
                         ItemsSource="{Binding Source={StaticResource folder}}"
-                        Tapped="onFolderSelected"
                         Margin="5" 
                         SelectionMode="None"
                         HorizontalAlignment="Center"
@@ -1737,7 +1736,8 @@
                                 <Grid Width="300" 
                                     Height="100"
                                     HorizontalAlignment="Center"
-                                    Margin="2" Background="Blue">
+                                    Margin="2" Background="Blue"
+                                    Tapped="onFolderSelected">
                                     <StackPanel Orientation="Horizontal">
                                         <Image Source="Assets/Folder.png"
                                             Height="60"
@@ -1977,7 +1977,6 @@
                             <ListView x:Name="folderItemsControl" 
                                       Grid.Row="1"
                                           ItemsSource="{Binding Source={StaticResource folder}}"
-                                          Tapped="onFolderSelected"
                                           SelectionMode="None"
                                       ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
                                       ScrollViewer.VerticalScrollBarVisibility="Hidden"
@@ -1991,9 +1990,10 @@
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <Grid Width="300" 
-                                                  Height="100"
-                                                  HorizontalAlignment="Center"
-                                                  Background="Blue">
+                                            Height="100"
+                                            HorizontalAlignment="Center"
+                                            Background="Blue"
+                                            Tapped="onFolderSelected">
                                             <StackPanel Orientation="Horizontal">
                                                 <Image Source="Assets/Folder.png"
                                                            Height="60"

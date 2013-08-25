@@ -379,12 +379,60 @@ namespace icreate_test2
             }
         }
 
+        private async Task<StorageFolder> getModuleBaseFolderAsync(DataStructure.Module selectedModule)
+        {
+            // check if token exists
+            Windows.Storage.ApplicationDataContainer folderTokens = Windows.Storage.ApplicationData.Current.LocalSettings;
+            string listToken = (string)folderTokens.Values[selectedModule.moduleId];
+
+            StorageFolder moduleBaseFolder;
+
+            // if token exists
+            // get folder access
+            // otherwise create folder under Downloads library
+            if (listToken != null)
+            {
+                try
+                {
+                    moduleBaseFolder = await Windows.Storage.AccessCache.StorageApplicationPermissions.FutureAccessList.GetFolderAsync(listToken);
+                }
+                catch
+                {
+                    moduleBaseFolder = null;
+                }
+
+                if (moduleBaseFolder == null)
+                {
+                    String moduleFolderName = selectedModule.moduleCode.Replace("/", "_");
+
+                    moduleBaseFolder = await Windows.Storage.DownloadsFolder.CreateFolderAsync(moduleFolderName, CreationCollisionOption.GenerateUniqueName);
+                    listToken = Windows.Storage.AccessCache.StorageApplicationPermissions.FutureAccessList.Add(moduleBaseFolder, moduleBaseFolder.Name);
+
+                    folderTokens.Values[selectedModule.moduleId] = listToken;
+                }
+            }
+            else
+            {
+                String moduleFolderName = selectedModule.moduleCode.Replace("/", "_");
+
+                moduleBaseFolder = await Windows.Storage.DownloadsFolder.CreateFolderAsync(moduleFolderName, CreationCollisionOption.GenerateUniqueName);
+                listToken = Windows.Storage.AccessCache.StorageApplicationPermissions.FutureAccessList.Add(moduleBaseFolder, moduleBaseFolder.Name);
+
+                folderTokens.Values[selectedModule.moduleId] = listToken;
+            }
+
+            return moduleBaseFolder;
+        }
+
         private async void onFileSelected(object sender, TappedRoutedEventArgs e)
         {
             StorageFile targetFile;
 
             DataStructure.File selectedFile = (e.OriginalSource as FrameworkElement).DataContext as DataStructure.File;
 
+            StorageFolder moduleBaseFolder = await getModuleBaseFolderAsync(_currentModule);
+
+            /*
             // check if token exists
             Windows.Storage.ApplicationDataContainer folderTokens = Windows.Storage.ApplicationData.Current.LocalSettings;
             string listToken = (string) folderTokens.Values[_currentModule.moduleId];
@@ -424,6 +472,7 @@ namespace icreate_test2
 
                 folderTokens.Values[_currentModule.moduleId] = listToken;
             }
+             * */
 
 
             HttpClient client = new HttpClient();
@@ -439,6 +488,11 @@ namespace icreate_test2
             foreach (DataStructure.Folder folder in _folderTree)
             {
                 currentFolder = await currentFolder.CreateFolderAsync(folder.folderName, CreationCollisionOption.OpenIfExists);
+            }
+
+            if (_currentFolder != null)
+            {
+                currentFolder = await currentFolder.CreateFolderAsync(_currentFolder.folderName, CreationCollisionOption.OpenIfExists);
             }
 
             try
@@ -465,10 +519,20 @@ namespace icreate_test2
             }
             // if file does exist
             // check the creation date and the file upload time
-            // if creation date is prior to upload date, there must have been
-            // a newer version of the file
             else if (targetFile.DateCreated.CompareTo(selectedFile.fileUploadTime) < 0)
             {
+                Windows.Storage.FileProperties.BasicProperties fileProperties = await targetFile.GetBasicPropertiesAsync();
+
+                // if file is modified after downloading
+                // create a new file with UNIQUE name
+                if (fileProperties.DateModified > targetFile.DateCreated)
+                {
+                    string fileExtension = selectedFile.fileName.Substring(selectedFile.fileName.IndexOf('.'));
+                    string fileName = selectedFile.fileName.Remove(selectedFile.fileName.IndexOf('.'));
+                    await targetFile.RenameAsync(fileName + "_modified_as_of_" + DateTime.Today.ToString("dd_MM_yyyy") + fileExtension); 
+                    targetFile = await currentFolder.CreateFileAsync(selectedFile.fileName, CreationCollisionOption.ReplaceExisting);
+                }
+
                 // store data in the file
                 using (Stream outputStream = await targetFile.OpenStreamForWriteAsync())
                 using (Stream inputStream = await response.Content.ReadAsStreamAsync())
