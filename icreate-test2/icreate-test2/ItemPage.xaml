@@ -1576,7 +1576,12 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <!-- Back button and page title -->
-            <StackPanel x:Name="stackPanel" Margin="20,10,0,0" Orientation="Horizontal" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="0">
+            <Grid x:Name="stackPanel" Margin="20,10,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
                 <Button x:Name="backButton" Click="backButton_Click" 
                             Margin="0,0,10,10"
                             Grid.Column="0"
@@ -1585,6 +1590,7 @@
                             IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}"
                             Style="{StaticResource whiteBackButton}"/>
                 <TextBlock VerticalAlignment="Center"
+                           Grid.Column="1"
                                Margin="0,0,10,10"
                                x:Name="mainModuleName"
                                FontSize="30"
@@ -1592,11 +1598,10 @@
                                Foreground="White"
                                TextWrapping="NoWrap"
                                TextTrimming="WordEllipsis"
-                               MaxWidth="200"
+                               
                                HorizontalAlignment="Center"/>
-
-                <Button x:Name="menuButton" Foreground="White" Background="Transparent" Margin="0,0,10,10" Content="..." Click="menuButtonClick" HorizontalAlignment="Center"/>
-            </StackPanel>
+                <Button x:Name="menuButton" Grid.Column="2" Foreground="White" Background="Transparent" Margin="0,0,10,10" Content="..." Click="menuButtonClick" HorizontalAlignment="Center"/>
+            </Grid>
             <Grid x:Name="grid" Grid.Row="1" Visibility="Visible" d:IsHidden="True">
                 <ScrollViewer x:Name="itemListScrollViewer"
                                   VerticalScrollBarVisibility="Hidden" 
@@ -1637,7 +1642,7 @@
                                                        HorizontalAlignment="Right"
                                                        Text="{Binding itemName}"
                                                        TextWrapping="NoWrap"
-                                                       FontSize="14" 
+                                                       FontSize="18" 
                                                        VerticalAlignment="Bottom"
                                                        FontWeight="Thin">
                                         </TextBlock>
@@ -2225,7 +2230,7 @@
                                                             Foreground="White" 
                                                             FontSize="12" 
                                                             TextTrimming="WordEllipsis"/>
-                                                <TextBlock Height="auto" 
+                                                <TextBlock Height="auto"  
                                                                Margin="0,0,10,0"
                                                             Text="{Binding threadPoster.memberName}" 
                                                             TextWrapping="Wrap" 
