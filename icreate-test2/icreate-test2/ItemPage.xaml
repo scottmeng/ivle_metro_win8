@@ -1817,9 +1817,9 @@
                 <!-- First item is module information -->
                 <FlipViewItem x:Name="moduleInfomation" ManipulationMode="None">
                     <Border x:Name="border" BorderBrush="DarkGray" 
-                                BorderThickness="2" 
-                                Margin="0,0,50,50"
-                                Padding="20" RenderTransformOrigin="0.5,0.5">
+                            BorderThickness="2" 
+                            Margin="0,0,50,50"
+                            Padding="20" RenderTransformOrigin="0.5,0.5">
                         <Border.RenderTransform>
                             <CompositeTransform/>
                         </Border.RenderTransform>
@@ -1831,8 +1831,8 @@
                                 <RowDefinition Height="auto"/>
                                 <RowDefinition Height="auto"/>
                                 <RowDefinition Height="auto"/>
-                                <RowDefinition Height="auto"/>
-                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="*"/>
+
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="224*"/>
@@ -1872,10 +1872,13 @@
                             <TextBlock x:Name="moduleExamtime_textblock" 
                                        Grid.Column="1" Grid.Row="5" FontSize="26"
                                        Margin="20,5" Padding="5,10" FontWeight="Light"/>
-                            <ListView x:Name="lecturesListView" 
+                            <ListView x:Name="lecturesListView"
                                       Grid.Column="1" Grid.Row="6" Margin="20,5" Padding="5,10"
                                       ItemsSource="{Binding Source={StaticResource lecturerListView}}"
                                       SelectionMode="None"
+                                      ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
+                                      ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                                      ScrollViewer.VerticalScrollMode="Enabled"
                                       Tapped="lecturesListView_Tapped">
                                 <ListView.ItemContainerStyle>
                                     <Style TargetType="ListViewItem">
@@ -1948,8 +1951,12 @@
                             <ColumnDefinition Width="auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <StackPanel x:Name="stackPanel1"  Orientation="Vertical">
-                            <Grid x:Name="FolderGrid" HorizontalAlignment="Left" Margin="5">
+                        <Grid x:Name="stackPanel1">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid x:Name="FolderGrid" Grid.Row="0" HorizontalAlignment="Left" Margin="5">
                                 <Button x:Name="upFolderButton" 
                                         Background="Blue" 
                                         Width="300" 
@@ -1963,6 +1970,7 @@
                                         Style="{StaticResource UpButtonStyle}"/>
                             </Grid>
                             <ListView x:Name="folderItemsControl" 
+                                      Grid.Row="1"
                                           ItemsSource="{Binding Source={StaticResource folder}}"
                                           Tapped="onFolderSelected"
                                           SelectionMode="None"
@@ -1998,7 +2006,7 @@
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>
-                        </StackPanel>
+                        </Grid>
                         <GridView x:Name="fileItemsControl" 
                                       ItemsSource="{Binding Source={StaticResource file}}"
                                       Tapped="onFileSelected"
