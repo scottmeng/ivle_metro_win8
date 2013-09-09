@@ -29,6 +29,7 @@ using Windows.Storage.Streams;
 using Windows.ApplicationModel.Search;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
+using Windows.Storage.Pickers;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
@@ -408,7 +409,7 @@ namespace icreate_test2
             {
                 String moduleFolderName = selectedModule.moduleCode.Replace("/", "_");
 
-                moduleBaseFolder = await Windows.Storage.DownloadsFolder.CreateFolderAsync(moduleFolderName, CreationCollisionOption.OpenIfExists);
+                moduleBaseFolder = await Windows.Storage.DownloadsFolder.CreateFolderAsync(moduleFolderName, CreationCollisionOption.GenerateUniqueName);
                 listToken = Windows.Storage.AccessCache.StorageApplicationPermissions.FutureAccessList.Add(moduleBaseFolder, moduleBaseFolder.Name);
 
                 folderTokens.Values[selectedModule.moduleId] = listToken;
@@ -419,6 +420,19 @@ namespace icreate_test2
 
         private async void onFileSelected(object sender, TappedRoutedEventArgs e)
         {
+            // TODO
+            // check if the download directory exits
+
+            // folder picker
+            var folderPicker = new Windows.Storage.Pickers.FolderPicker();
+            folderPicker.FileTypeFilter.Add("*");
+            folderPicker.ViewMode = PickerViewMode.Thumbnail;
+            folderPicker.SuggestedStartLocation = PickerLocationId.PicturesLibrary;
+            folderPicker.SettingsIdentifier = "FolderPicker";
+
+            StorageFolder destinationFolde =  await folderPicker.PickSingleFolderAsync();
+
+
             StorageFile targetFile;
 
             DataStructure.File selectedFile = (e.OriginalSource as FrameworkElement).DataContext as DataStructure.File;
