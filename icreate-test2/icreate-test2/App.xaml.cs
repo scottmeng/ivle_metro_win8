@@ -39,6 +39,12 @@ namespace icreate_test2
 
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+            this.Resuming += App_Resuming;
+        }
+
+        void App_Resuming(object sender, object e)
+        {
+            string test = "test";
         }
 
         /// <summary>
