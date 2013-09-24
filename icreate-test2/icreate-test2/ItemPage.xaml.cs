@@ -150,7 +150,6 @@ namespace icreate_test2
                 moduleName_textblock.Text = _currentModule.moduleName;
                 moduleCode_textblock.Text = _currentModule.moduleCode;
                 moduleAcadYear_textblock.Text = _currentModule.moduleAcadYear + _currentModule.moduleSemester;
-                moduleMc_textblock.Text = _currentModule.moduleMc;
                 lecturerListView.Source = _currentModule.moduleLecturers;
             }
             catch

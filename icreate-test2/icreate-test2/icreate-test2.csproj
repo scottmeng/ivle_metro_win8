@@ -164,6 +164,7 @@
     <Compile Include="Utils\LAPI.cs" />
     <Compile Include="DataStructure\Token.cs" />
     <Compile Include="Utils\RequestSender.cs" />
+    <Compile Include="Utils\SerializeHelper.cs" />
     <Compile Include="Utils\SettingsHelper.cs" />
     <Compile Include="Utils\TokenManager.cs" />
   </ItemGroup>

@@ -1215,9 +1215,7 @@
                     <Storyboard>
                         <DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock" d:IsOptimized="True"/>
                         <DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock1" d:IsOptimized="True"/>
-                        <DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock2" d:IsOptimized="True"/>
                         <DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock3" d:IsOptimized="True"/>
-                        <DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock4" d:IsOptimized="True"/>
                         <DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock5" d:IsOptimized="True"/>
                         <DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock6" d:IsOptimized="True"/>
                     </Storyboard>
@@ -1261,9 +1259,7 @@
                         </ObjectAnimationUsingKeyFrames>
                         <DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock" d:IsOptimized="True"/>
                         <DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock1" d:IsOptimized="True"/>
-                        <DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock2" d:IsOptimized="True"/>
                         <DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock3" d:IsOptimized="True"/>
-                        <DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock4" d:IsOptimized="True"/>
                         <DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock5" d:IsOptimized="True"/>
                         <DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock6" d:IsOptimized="True"/>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="moduleInfomation">
@@ -1373,33 +1369,20 @@
                                 </DiscreteObjectKeyFrame.Value>
                             </DiscreteObjectKeyFrame>
                         </ObjectAnimationUsingKeyFrames>
-                        <!--
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="upFolderButton_snapped">
-                            <DiscreteObjectKeyFrame KeyTime="0">
-                                <DiscreteObjectKeyFrame.Value>
-                                    <Visibility>Collapsed</Visibility>
-                                </DiscreteObjectKeyFrame.Value>
-                            </DiscreteObjectKeyFrame>
-                        </ObjectAnimationUsingKeyFrames>
-                        -->
                     </Storyboard>
                 </VisualState>
                 <VisualState x:Name="FullScreenPortrait">
                     <Storyboard>
                         <DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock" d:IsOptimized="True"/>
                         <DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock1" d:IsOptimized="True"/>
-                        <DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock2" d:IsOptimized="True"/>
                         <DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock3" d:IsOptimized="True"/>
-                        <DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock4" d:IsOptimized="True"/>
                         <DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock5" d:IsOptimized="True"/>
                         <DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock6" d:IsOptimized="True"/>
                         <DoubleAnimation Duration="0" To="1.07" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)" Storyboard.TargetName="border" d:IsOptimized="True"/>
                         <DoubleAnimation Duration="0" To="17.5" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)" Storyboard.TargetName="border" d:IsOptimized="True"/>
                         <DoubleAnimation Duration="0" To="18.667" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="moduleCode_textblock" d:IsOptimized="True"/>
                         <DoubleAnimation Duration="0" To="18.667" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="moduleName_textblock" d:IsOptimized="True"/>
-                        <DoubleAnimation Duration="0" To="18.667" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="moduleMc_textblock" d:IsOptimized="True"/>
                         <DoubleAnimation Duration="0" To="18.667" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="moduleAcadYear_textblock" d:IsOptimized="True"/>
-                        <DoubleAnimation Duration="0" To="18.667" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="moduleTimetable_textblock" d:IsOptimized="True"/>
                         <DoubleAnimation Duration="0" To="18.667" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="moduleExamtime_textblock" d:IsOptimized="True"/>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.FontStretch)" Storyboard.TargetName="moduleCode_textblock">
                             <DiscreteObjectKeyFrame KeyTime="0">
@@ -1415,21 +1398,7 @@
                                 </DiscreteObjectKeyFrame.Value>
                             </DiscreteObjectKeyFrame>
                         </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.FontStretch)" Storyboard.TargetName="moduleMc_textblock">
-                            <DiscreteObjectKeyFrame KeyTime="0">
-                                <DiscreteObjectKeyFrame.Value>
-                                    <FontStretch>Condensed</FontStretch>
-                                </DiscreteObjectKeyFrame.Value>
-                            </DiscreteObjectKeyFrame>
-                        </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.FontStretch)" Storyboard.TargetName="moduleAcadYear_textblock">
-                            <DiscreteObjectKeyFrame KeyTime="0">
-                                <DiscreteObjectKeyFrame.Value>
-                                    <FontStretch>Condensed</FontStretch>
-                                </DiscreteObjectKeyFrame.Value>
-                            </DiscreteObjectKeyFrame>
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.FontStretch)" Storyboard.TargetName="moduleTimetable_textblock">
                             <DiscreteObjectKeyFrame KeyTime="0">
                                 <DiscreteObjectKeyFrame.Value>
                                     <FontStretch>Condensed</FontStretch>
@@ -1457,21 +1426,7 @@
                                 </DiscreteObjectKeyFrame.Value>
                             </DiscreteObjectKeyFrame>
                         </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.FontStretch)" Storyboard.TargetName="textBlock2">
-                            <DiscreteObjectKeyFrame KeyTime="0">
-                                <DiscreteObjectKeyFrame.Value>
-                                    <FontStretch>Condensed</FontStretch>
-                                </DiscreteObjectKeyFrame.Value>
-                            </DiscreteObjectKeyFrame>
-                        </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.FontStretch)" Storyboard.TargetName="textBlock3">
-                            <DiscreteObjectKeyFrame KeyTime="0">
-                                <DiscreteObjectKeyFrame.Value>
-                                    <FontStretch>Condensed</FontStretch>
-                                </DiscreteObjectKeyFrame.Value>
-                            </DiscreteObjectKeyFrame>
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.FontStretch)" Storyboard.TargetName="textBlock4">
                             <DiscreteObjectKeyFrame KeyTime="0">
                                 <DiscreteObjectKeyFrame.Value>
                                     <FontStretch>Condensed</FontStretch>
@@ -1506,21 +1461,7 @@
                                 </DiscreteObjectKeyFrame.Value>
                             </DiscreteObjectKeyFrame>
                         </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.HorizontalAlignment)" Storyboard.TargetName="textBlock2">
-                            <DiscreteObjectKeyFrame KeyTime="0">
-                                <DiscreteObjectKeyFrame.Value>
-                                    <HorizontalAlignment>Right</HorizontalAlignment>
-                                </DiscreteObjectKeyFrame.Value>
-                            </DiscreteObjectKeyFrame>
-                        </ObjectAnimationUsingKeyFrames>
                         <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.HorizontalAlignment)" Storyboard.TargetName="textBlock3">
-                            <DiscreteObjectKeyFrame KeyTime="0">
-                                <DiscreteObjectKeyFrame.Value>
-                                    <HorizontalAlignment>Right</HorizontalAlignment>
-                                </DiscreteObjectKeyFrame.Value>
-                            </DiscreteObjectKeyFrame>
-                        </ObjectAnimationUsingKeyFrames>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.HorizontalAlignment)" Storyboard.TargetName="textBlock4">
                             <DiscreteObjectKeyFrame KeyTime="0">
                                 <DiscreteObjectKeyFrame.Value>
                                     <HorizontalAlignment>Right</HorizontalAlignment>
@@ -1555,9 +1496,7 @@
                     <Storyboard>
                         <DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock" d:IsOptimized="True"/>
                         <DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock1" d:IsOptimized="True"/>
-                        <DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock2" d:IsOptimized="True"/>
                         <DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock3" d:IsOptimized="True"/>
-                        <DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock4" d:IsOptimized="True"/>
                         <DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock5" d:IsOptimized="True"/>
                         <DoubleAnimation Duration="0" To="21.333" Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="textBlock6" d:IsOptimized="True"/>
                         <DoubleAnimation Duration="0" To="1.049" Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)" Storyboard.TargetName="border" d:IsOptimized="True"/>
@@ -1835,9 +1774,7 @@
                                 <RowDefinition Height="auto"/>
                                 <RowDefinition Height="auto"/>
                                 <RowDefinition Height="auto"/>
-                                <RowDefinition Height="auto"/>
                                 <RowDefinition Height="*"/>
-
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="224*"/>
@@ -1848,15 +1785,11 @@
                                        FontSize="26" Padding="5,10" Margin="0,5,5,5" HorizontalAlignment="Right" Width="138"/>
                             <TextBlock x:Name="textBlock1" Text="Module Name" Grid.Column="0" Grid.Row="1" 
                                        FontSize="26" Padding="5,10" Margin="0,5,5,5" HorizontalAlignment="Right" Width="145"/>
-                            <TextBlock x:Name="textBlock2" Text="Module Credits" Grid.Column="0" Grid.Row="2" 
-                                       FontSize="26" Padding="5,10" Margin="0,5,5,5" HorizontalAlignment="Right" Width="154"/>
-                            <TextBlock x:Name="textBlock3" Text="Module Acad Year" Grid.Column="0" Grid.Row="3" 
+                            <TextBlock x:Name="textBlock3" Text="Module Acad Year" Grid.Column="0" Grid.Row="2" 
                                        FontSize="26" Padding="5,10" Margin="0,5,5,5" HorizontalAlignment="Right" Width="181"/>
-                            <TextBlock x:Name="textBlock4" Text="Time Table" Grid.Column="0" Grid.Row="4" 
-                                       FontSize="26" Padding="5,10" Margin="0,5,5,5" HorizontalAlignment="Right" Width="110"/>
-                            <TextBlock x:Name="textBlock5" Text="Exam time" Grid.Column="0" Grid.Row="5" 
+                            <TextBlock x:Name="textBlock5" Text="Exam time" Grid.Column="0" Grid.Row="3" 
                                        FontSize="26" Padding="5,10" Margin="0,5,5,5" HorizontalAlignment="Right" Width="108"/>
-                            <TextBlock x:Name="textBlock6" Text="Lecturers" Grid.Column="0" Grid.Row="6" 
+                            <TextBlock x:Name="textBlock6" Text="Lecturers" Grid.Column="0" Grid.Row="4" 
                                        FontSize="26" Padding="5,10" Margin="0,5,5,5" HorizontalAlignment="Right" Width="95"/>
 
                             <TextBlock x:Name="moduleCode_textblock" 
@@ -1865,20 +1798,14 @@
                             <TextBlock x:Name="moduleName_textblock" 
                                        Grid.Column="1" Grid.Row="1" FontSize="26"
                                        Margin="20,5" Padding="5,10" FontWeight="Light"/>
-                            <TextBlock x:Name="moduleMc_textblock" 
+                            <TextBlock x:Name="moduleAcadYear_textblock" 
                                        Grid.Column="1" Grid.Row="2" FontSize="26"
                                        Margin="20,5" Padding="5,10" FontWeight="Light"/>
-                            <TextBlock x:Name="moduleAcadYear_textblock" 
+                            <TextBlock x:Name="moduleExamtime_textblock" 
                                        Grid.Column="1" Grid.Row="3" FontSize="26"
                                        Margin="20,5" Padding="5,10" FontWeight="Light"/>
-                            <TextBlock x:Name="moduleTimetable_textblock" 
-                                       Grid.Column="1" Grid.Row="4" FontSize="26"
-                                       Margin="20,5" Padding="5,10" FontWeight="Light"/>
-                            <TextBlock x:Name="moduleExamtime_textblock" 
-                                       Grid.Column="1" Grid.Row="5" FontSize="26"
-                                       Margin="20,5" Padding="5,10" FontWeight="Light"/>
                             <ListView x:Name="lecturesListView"
-                                      Grid.Column="1" Grid.Row="6" Margin="20,5" Padding="5,10"
+                                      Grid.Column="1" Grid.Row="4" Margin="20,5" Padding="5,10"
                                       ItemsSource="{Binding Source={StaticResource lecturerListView}}"
                                       SelectionMode="None"
                                       ScrollViewer.HorizontalScrollBarVisibility="Disabled" 
