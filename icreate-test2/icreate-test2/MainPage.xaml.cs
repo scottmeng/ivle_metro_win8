@@ -218,7 +218,7 @@ namespace icreate_test2
 
             if (this.Frame != null)
             {
-                this.Frame.Navigate(typeof(ItemPage), navParams);
+                this.Frame.Navigate(typeof(ItemPage), Utils.SerializeHelper.Serialize(navParams));
             }
         }
 
@@ -233,7 +233,7 @@ namespace icreate_test2
 
             if (this.Frame != null)
             {
-                this.Frame.Navigate(typeof(ItemPage), navParams);
+                this.Frame.Navigate(typeof(ItemPage), Utils.SerializeHelper.Serialize(navParams));
             }
         }
 
@@ -337,7 +337,7 @@ namespace icreate_test2
                     DataStructure.NavParams navParams = new DataStructure.NavParams(moduleIndex, -1);
                     if (this.Frame != null)
                     {
-                        this.Frame.Navigate(typeof(ItemPage), navParams);
+                        this.Frame.Navigate(typeof(ItemPage), Utils.SerializeHelper.Serialize(navParams));
                     }
                 }
             }
@@ -406,7 +406,7 @@ namespace icreate_test2
                 DataStructure.NavParams navParams = new DataStructure.NavParams(moduleIndex, announcementIndex);
                 if (this.Frame != null)
                 {
-                    this.Frame.Navigate(typeof(ItemPage), navParams);
+                    this.Frame.Navigate(typeof(ItemPage), Utils.SerializeHelper.Serialize(navParams));
                 }
             }
             isRightClicking = false;
