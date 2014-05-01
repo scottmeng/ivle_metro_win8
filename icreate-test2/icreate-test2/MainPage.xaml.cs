@@ -218,7 +218,7 @@ namespace icreate_test2
 
             if (this.Frame != null)
             {
-                this.Frame.Navigate(typeof(ItemPage), Utils.SerializeHelper.Serialize(navParams));
+                this.Frame.Navigate(typeof(ItemPage), JsonConvert.SerializeObject(navParams));
             }
         }
 
@@ -233,7 +233,7 @@ namespace icreate_test2
 
             if (this.Frame != null)
             {
-                this.Frame.Navigate(typeof(ItemPage), Utils.SerializeHelper.Serialize(navParams));
+                this.Frame.Navigate(typeof(ItemPage), JsonConvert.SerializeObject(navParams));
             }
         }
 
@@ -337,7 +337,7 @@ namespace icreate_test2
                     DataStructure.NavParams navParams = new DataStructure.NavParams(moduleIndex, -1);
                     if (this.Frame != null)
                     {
-                        this.Frame.Navigate(typeof(ItemPage), Utils.SerializeHelper.Serialize(navParams));
+                        this.Frame.Navigate(typeof(ItemPage), JsonConvert.SerializeObject(navParams));
                     }
                 }
             }
@@ -406,7 +406,7 @@ namespace icreate_test2
                 DataStructure.NavParams navParams = new DataStructure.NavParams(moduleIndex, announcementIndex);
                 if (this.Frame != null)
                 {
-                    this.Frame.Navigate(typeof(ItemPage), Utils.SerializeHelper.Serialize(navParams));
+                    this.Frame.Navigate(typeof(ItemPage), JsonConvert.SerializeObject(navParams));
                 }
             }
             isRightClicking = false;

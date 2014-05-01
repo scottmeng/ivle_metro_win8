@@ -96,7 +96,7 @@ namespace icreate_test2
         {
             if (e.Parameter != null)
             {
-                DataStructure.NavParams navParams = Utils.SerializeHelper.Deserialize(e.Parameter as string, typeof(DataStructure.NavParams)) 
+                DataStructure.NavParams navParams = JsonConvert.DeserializeObject<DataStructure.NavParams>(e.Parameter as string)
                     as DataStructure.NavParams;
 
                 _moduleIndex = navParams.moduleIndex;
