@@ -338,7 +338,7 @@ namespace icreate_test2
                 
         private void menuButtonClick(object sender, RoutedEventArgs e)
         {
-            Flyout f = new Flyout();
+            Callisto.Controls.Flyout f = new Callisto.Controls.Flyout();
 
             f.Placement = PlacementMode.Top;
             f.PlacementTarget = menuButton; // this is an UI element (usually the sender)

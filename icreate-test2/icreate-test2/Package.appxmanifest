@@ -1,31 +1,36 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
-  <Identity Name="26629Blackrider.MetroIVLE" Publisher="CN=6F806AEA-6C64-4127-964E-01CF2039D98E" Version="1.0.0.11" />
+<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
+  <Identity Name="26629Blackrider.MetroIVLE" Publisher="CN=6F806AEA-6C64-4127-964E-01CF2039D98E" Version="1.1.0.11" />
   <Properties>
     <DisplayName>Metro IVLE</DisplayName>
     <PublisherDisplayName>Blackrider</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   <Prerequisites>
-    <OSMinVersion>6.2.1</OSMinVersion>
-    <OSMaxVersionTested>6.2.1</OSMaxVersionTested>
+    <OSMinVersion>6.3.0</OSMinVersion>
+    <OSMaxVersionTested>6.3.0</OSMaxVersionTested>
   </Prerequisites>
   <Resources>
     <Resource Language="x-generate" />
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="icreate_test2.App">
-      <VisualElements DisplayName="IVLE Metro" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="icreate-test2" ForegroundText="light" BackgroundColor="#003399">
-        <DefaultTile ShowName="allLogos" WideLogo="Assets\WideLogo.png" />
-        <SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#003399" />
-        <InitialRotationPreference>
-          <Rotation Preference="landscape" />
-          <Rotation Preference="landscapeFlipped" />
-        </InitialRotationPreference>
-      </VisualElements>
       <Extensions>
         <Extension Category="windows.search" />
       </Extensions>
+      <m2:VisualElements DisplayName="IVLE Metro" Description="icreate-test2" BackgroundColor="#003399" ForegroundText="light" Square150x150Logo="Assets\Logo.png" Square30x30Logo="Assets\SmallLogo.png">
+        <m2:DefaultTile Wide310x150Logo="Assets\WideLogo.png">
+          <m2:ShowNameOnTiles>
+            <m2:ShowOn Tile="square150x150Logo" />
+            <m2:ShowOn Tile="wide310x150Logo" />
+          </m2:ShowNameOnTiles>
+        </m2:DefaultTile>
+        <m2:InitialRotationPreference>
+          <m2:Rotation Preference="landscape" />
+          <m2:Rotation Preference="landscapeFlipped" />
+        </m2:InitialRotationPreference>
+        <m2:SplashScreen BackgroundColor="#003399" Image="Assets\SplashScreen.png" />
+      </m2:VisualElements>
     </Application>
   </Applications>
   <Capabilities>
